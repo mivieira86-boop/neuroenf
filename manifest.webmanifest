@@ -4,6 +4,7 @@
   "description": "Apoio à equipa de enfermagem em Neurologia (adulto): temas clínicos, sinais de alarme, escalas e guia farmacológico.",
   "lang": "pt-PT",
   "dir": "ltr",
+  "id": "./",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
