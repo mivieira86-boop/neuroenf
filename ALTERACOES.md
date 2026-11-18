@@ -1,5 +1,9 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 10 — 18/11/2026 (protocolos do serviço)
+- Nova área **«Protocolos do serviço»** (menu e Acesso rápido), marcada «Em construção». Fica pronta a receber os protocolos
+  aprovados no Serviço de Neurologia, em `protocolos.js` (modelo no próprio ficheiro), com versão, data e impressão.
+
 ## Versão 9 — 18/11/2026 (marchas animadas)
 - Novo ficheiro `marchas.js`: animações esquemáticas originais de 10 marchas (normal, parkinsónica, atáxica cerebelosa,
   atáxica sensitiva, apráxica, hemiparética, espástica em tesoura, steppage, miopática e coreica), vistas de lado e de frente,

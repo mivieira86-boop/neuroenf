@@ -10,6 +10,7 @@ ou duplo clique no `index.html` no Explorador do Windows.
 - `fonts/` — letra Inter (licença SIL OFL, em `Inter-LICENSE.txt`); tem de ficar sempre ao lado do `index.html`
 - `conteudo.js` — TODO o conteúdo clínico (PARTES, TEMAS, ESCALAS, MRC). É aqui que se acrescenta ou corrige texto.
 - `farmacos.js` — guia farmacológico (FARMACOS e TERAPEUTICA por tema)
+- `protocolos.js` — protocolos do serviço (área em construção; modelo para acrescentar no início do ficheiro)
 - `marchas.js` — marchas: textos (MARCHAS), em que temas aparecem (MARCHAS_DO_TEMA) e o motor das animações (NeuroMarcha)
 - `app.js` — navegação, pesquisa, índice dos temas, página de alarmes, escalas e guia farmacológico
 - `manifest.webmanifest`, `sw.js`, `instalar.js`, `instalar.css`, `icons/` — app instalável no telemóvel (PWA) e funcionamento sem rede

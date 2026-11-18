@@ -1,6 +1,6 @@
 // NeuroEnf — lógica da app (navegação por #hash, pesquisa e escalas)
 // Rotas: #inicio, #alarmes, #tema-<id>, #escalas, #escalas-<id>,
-// #farmacos, #farmacos-az, #farmaco-<id>, #terapeutica-<temaId>
+// #farmacos, #farmacos-az, #farmaco-<id>, #terapeutica-<temaId>, #protocolos, #protocolo-<id>
 (function () {
   const $ = s => document.querySelector(s);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
@@ -17,6 +17,7 @@
 
   // ── Ícones de linha (24×24, traço 1,8, currentColor). O campo «icone» dos temas não é usado. ──
   const ICONES = {
+    protocolo: '<path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8L14 3.5Z"/><path d="M14 3.5V8h4.5"/><path d="M8.5 12.5h7M8.5 16h5"/>',
     inicio: '<path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-5.5h4V20"/>',
     escalas: '<rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.5 11h7M8.5 14.5h7M8.5 18h4"/>',
     alarme: '<path d="M10.3 4.3 2.9 17.2A2 2 0 0 0 4.6 20.2h14.8a2 2 0 0 0 1.7-3L13.7 4.3a2 2 0 0 0-3.4 0Z"/><path d="M12 9.5v4.2"/><path d="M12 17h.01"/>',
@@ -147,6 +148,7 @@
     h += item("#escalas", "escalas", ic("escalas"), "Escalas e avaliação");
     h += item("#alarmes", "alarmes", ic("alarme", "ic-alerta"), "Sinais de alarme");
     if (FARM.length) h += item("#farmacos", "farmacos", ic("capsula"), "Guia farmacológico");
+    h += item("#protocolos", "protocolos", ic("protocolo"), "Protocolos do serviço");
     PARTES.forEach(p => {
       const temas = TEMAS.filter(t => t.parte === p.id);
       if (!temas.length) return;
@@ -217,6 +219,7 @@
         <div class="lista lista-rapida">`;
     h += linha("#alarmes", "Sinais de alarme", `${temasAlarme} temas`, { icone: ic("alarme", "ic-linha ic-alerta"), cls: "linha-alarme" });
     if (FARM.length) h += linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" });
+    h += linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" });
     const rapidos = [];
     [["glasgow", "Escala de Coma de Glasgow", "Escala · consciência"], ["nihss", "NIHSS", "Escala · AVC"], ["4at", "4AT", "Escala · delirium"]].forEach(([id, txt, sub]) => {
       if (existeEscala(id)) rapidos.push(linha(`#escalas-${id}`, txt, sub, { icone: ic("escalas", "ic-linha") }));
@@ -287,6 +290,47 @@
       ${m.cuidados.length ? `<p class="marcha-sub">Cuidados de enfermagem</p><ul>${m.cuidados.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
       ${outros.length ? `<p class="marcha-ver">Ver também: ${outros.map(o => `<a href="#tema-${esc(o.id)}">${esc(o.titulo)}</a>`).join(" · ")}</p>` : ""}
     </article>`;
+  }
+
+  // ── Protocolos do serviço (protocolos.js é opcional) ──
+  const PROT = (typeof PROTOCOLOS !== "undefined" && Array.isArray(PROTOCOLOS) ? PROTOCOLOS : []).filter(x => x && x.id && x.titulo);
+  const EM_CONSTRUCAO = `<span class="etq-construcao">Em construção</span>`;
+  function vistaProtocolos() {
+    document.title = "Protocolos do serviço — NeuroEnf";
+    let h = `<header class="cab-pagina">
+        <h1 tabindex="-1">Protocolos do serviço</h1>
+        <p class="sub">Serviço de Neurologia ${EM_CONSTRUCAO}</p>
+      </header>`;
+    if (!PROT.length) {
+      return h + `<section class="cartao vazio-protocolos" aria-labelledby="t-constr">
+        <p class="ic-grande" aria-hidden="true">${ic("protocolo")}</p>
+        <h2 id="t-constr">Área em construção</h2>
+        <p>Aqui vão ficar os protocolos e normas de procedimento aprovados no Serviço de Neurologia, para consulta rápida à cabeceira.</p>
+        <p>Até estarem disponíveis, siga os protocolos em vigor no serviço e na intranet do hospital.</p>
+      </section>`;
+    }
+    h += `<section class="bloco"><div class="lista">`;
+    h += PROT.map(x => linha(`#protocolo-${esc(x.id)}`, esc(x.titulo), [x.versao ? `Versão ${esc(x.versao)}` : "", x.data ? esc(dataPT(x.data)) : ""].filter(Boolean).join(" · "), { icone: ic("protocolo", "ic-linha") })).join("");
+    h += `</div></section><p class="rodape">Novos protocolos em preparação. Confirmar sempre a versão em vigor no serviço.</p>`;
+    return h;
+  }
+  const dataPT = d => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ""); return m ? `${m[3]}/${m[2]}/${m[1]}` : d; };
+  function vistaProtocolo(id) {
+    const x = PROT.find(p => p.id === id);
+    if (!x) return null;
+    document.title = `${x.titulo} — NeuroEnf`;
+    const secs = x.seccoes || [];
+    let h = `<header class="cab-tema">
+        <a class="voltar" href="#protocolos">${ic("voltar")}<span>Protocolos do serviço</span></a>
+        <div class="cab-tema-linha"><div class="cab-tema-txt">
+          <h1 tabindex="-1">${esc(x.titulo)}</h1>
+          <p class="meta">${[x.versao ? `Versão ${esc(x.versao)}` : "", x.data ? `aprovado a ${esc(dataPT(x.data))}` : "", x.responsavel ? esc(x.responsavel) : ""].filter(Boolean).join(" · ")}</p>
+        </div><button type="button" class="btn-sec btn-imprimir" data-acao="imprimir">${ic("imprimir")}<span>Imprimir</span></button></div>
+        ${x.resumo ? `<p class="resumo">${esc(x.resumo)}</p>` : ""}
+      </header>`;
+    h += ordenarSeccoes(secs).map(([s, k]) => blocoSeccao(s, k)).join("");
+    h += `<p class="rodape">Protocolo do Serviço de Neurologia. Confirmar sempre a versão em vigor.</p>`;
+    return h;
   }
 
   function vistaTema(id) {
@@ -845,6 +889,8 @@
     else if (r === "farmacos" || r === "farmacos-az") { html = vistaFarmacos(r === "farmacos-az" ? "az" : "doenca"); rotaMenu = "farmacos"; }
     else if (r.startsWith("farmaco-")) { html = vistaFarmaco(r.slice(8)); rotaMenu = "farmacos"; }
     else if (r.startsWith("terapeutica-")) { html = vistaTerapeutica(r.slice(12)); rotaMenu = "farmacos"; }
+    else if (r === "protocolos") { html = vistaProtocolos(); rotaMenu = "protocolos"; }
+    else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     main.innerHTML = html + ASSINATURA;
     if (typeof NeuroMarcha !== "undefined") NeuroMarcha.montar(main);
