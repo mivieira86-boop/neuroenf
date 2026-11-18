@@ -866,16 +866,7 @@ const TEMAS = [
       "Repetir o rastreio se houver alteração neurológica e antes de evoluir a consistência.",
       "Se não passar: manter jejum, pedir via alternativa para a medicação, avaliação por terapia da fala e, se indicado, avaliação instrumental (videofluoroscopia ou videoendoscopia da deglutição)."
     ]},
-    { t: "GUSS — estrutura resumida", tabela: {
-      cab: ["Etapa", "O que se observa", "Regra"],
-      lin: [
-        ["1. Teste indireto (0–5)", "Vigília, tosse voluntária/pigarrear, deglutição de saliva, sialorreia, alteração da voz", "Só avança com 5 pontos; < 5 → nada por boca"],
-        ["2. Semissólido (0–5)", "Água espessada (tipo pudim) em colheres de volume crescente: deglutição, tosse, sialorreia, voz", "Só avança para líquidos com 5 pontos"],
-        ["3. Líquido (0–5)", "Água em volumes crescentes, de poucos mL até cerca de 50 mL", "Só avança para sólidos com 5 pontos"],
-        ["4. Sólido (0–5)", "Pequeno pedaço de pão seco (verificar a dentição antes)", "Total máximo: 20"]
-      ],
-      nota: "Interpretação habitual: 20 — sem disfagia aparente; 15–19 — ligeira; 10–14 — moderada; 0–9 — grave (nada por boca). Parar ao primeiro sinal de aspiração (tosse, voz molhada, sialorreia, deglutição ausente ou atrasada). Usar o impresso e as recomendações dietéticas oficiais adotados pelo hospital."
-    }},
+    { t: "GUSS — avaliar agora", escala: "guss" },
     { t: "Consistências", itens: [
       "Usar a mesma terminologia em toda a equipa, na cozinha e na carta de alta (referencial IDDSI: níveis 0–4 para líquidos, 3–7 para alimentos).",
       "Espessante: preparar segundo as instruções do produto e a consistência prescrita; respeitar o tempo de repouso — a consistência muda com o tempo e a temperatura.",
@@ -2053,6 +2044,43 @@ const ESCALAS = [
                : t >= 20 ? ["grave", "Severamente dependente (20–35)."]
                : ["grave", "Totalmente dependente (< 20)."],
   nota: "Versão de 0–100 (Mahoney e Barthel) com os pontos de corte usados em Portugal (Sequeira). Útil na admissão, para planear a alta e referenciar (reabilitação, RNCCI). Algumas instituições usam outra versão (ex.: 0–20) ou outros cortes — seguir o protocolo do hospital."
+},
+{
+  id: "guss", nome: "GUSS — rastreio da disfagia (Gugging Swallowing Screen)",
+  descricao: "Rastreio da deglutição à cabeceira, em 4 etapas pela ordem: teste indireto → semissólido → líquido → sólido. Cada etapa vale 0–5 e só se passa à seguinte com 5 pontos; com menos de 5, PARAR o teste. Total 0–20. Doente sentado a pelo menos 60°.",
+  etapas: [
+    { titulo: "1. Teste indireto (saliva)", de: 0, ate: 4, minimo: 5 },
+    { titulo: "2. Semissólido", de: 5, ate: 8, minimo: 5,
+      texto: "½ colher de chá de água espessada (IDDSI nível 3, tipo pudim); se correr bem, repetir até 5 vezes." },
+    { titulo: "3. Líquido", de: 9, ate: 12, minimo: 5,
+      texto: "Água num copo: 3, 5, 10 e 20 mL; se correr bem, 50 mL o mais depressa que conseguir." },
+    { titulo: "4. Sólido", de: 13, ate: 16, minimo: 5,
+      texto: "Pedaço pequeno de pão sem côdea ou bolacha, até 5 vezes. Verificar antes a dentição/prótese." }
+  ],
+  itens: [
+    { nome: "Vigília — desperto há pelo menos 15 minutos", opcoes: [[1, "Sim"], [0, "Não"]] },
+    { nome: "Tosse voluntária ou pigarrear (pedir para tossir 2 vezes)", opcoes: [[1, "Sim"], [0, "Não"]] },
+    { nome: "Deglutição da saliva", opcoes: [[1, "Consegue engolir"], [0, "Não consegue"]] },
+    { nome: "Sialorreia (saliva a escorrer da boca)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Alteração da voz (rouca, molhada, fraca)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Semissólido — deglutição", opcoes: [[2, "Engole bem"], [1, "Atrasada (> 2 segundos)"], [0, "Não consegue engolir"]] },
+    { nome: "Semissólido — tosse involuntária (antes, durante ou até 3 min depois)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Semissólido — sialorreia", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Semissólido — alteração da voz (pedir para dizer «Ó» antes e depois)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Líquido — deglutição", opcoes: [[2, "Engole bem"], [1, "Atrasada (> 2 segundos)"], [0, "Não consegue engolir"]] },
+    { nome: "Líquido — tosse involuntária (antes, durante ou até 3 min depois)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Líquido — sialorreia", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Líquido — alteração da voz", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Sólido — deglutição", opcoes: [[2, "Engole bem"], [1, "Atrasada (> 10 segundos)"], [0, "Não consegue engolir"]] },
+    { nome: "Sólido — tosse involuntária (antes, durante ou até 3 min depois)", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Sólido — sialorreia", opcoes: [[1, "Não"], [0, "Sim"]] },
+    { nome: "Sólido — alteração da voz", opcoes: [[1, "Não"], [0, "Sim"]] }
+  ],
+  interpretar: t => t >= 20 ? ["ligeiro", "20 — sem disfagia ou disfagia ligeira, risco mínimo de aspiração. Dieta normal e líquidos sem restrição; a primeira refeição é vigiada por um enfermeiro treinado ou pela terapia da fala."]
+    : t >= 15 ? ["moderado", "15–19 — disfagia ligeira, baixo risco de aspiração. Dieta de disfagia (pastosa e mole); líquidos muito devagar, um gole de cada vez; pedir avaliação pela terapia da fala."]
+    : t >= 10 ? ["grave", "10–14 — disfagia moderada, com risco de aspiração. Só semissólidos (tipo puré); todos os líquidos espessados; comprimidos esmagados no espessado, se puderem ser triturados (sem medicação líquida); considerar alimentação complementar por SNG; terapia da fala."]
+    : ["grave", "0–9 — disfagia grave, alto risco de aspiração. NADA POR BOCA, incluindo medicação; via alternativa conforme prescrição (SNG ou parentérica); avaliação pela terapia da fala e, se indicado, instrumental."],
+  nota: "GUSS © Michaela Trapl-Grundschober (Trapl et al., Stroke 2007), validada para português europeu. Parar logo que surja um sinal de aspiração (deglutição ausente ou atrasada, tosse, sialorreia ou voz molhada). Seguir o impresso, as consistências (IDDSI) e as recomendações dietéticas adotadas pelo hospital. Repetir se houver alteração neurológica."
 }
 ];
 

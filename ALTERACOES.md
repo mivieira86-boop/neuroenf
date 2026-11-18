@@ -1,5 +1,11 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 11 — 18/11/2026 (GUSS interativa)
+- Nova escala **GUSS** (rastreio da disfagia), por etapas: teste indireto → semissólido → líquido → sólido. Cada etapa só abre
+  com 5 pontos na anterior; com menos, a app indica PARAR, bloqueia as seguintes e dá a recomendação para o total (0–20).
+- Na Disfagia, a tabela resumida da GUSS foi substituída pela escala para avaliar ali mesmo («GUSS — avaliar agora»).
+  Também está em Escalas e avaliação e tem botão no AVC e na ELA. «Copiar resultado» dá o texto para o registo.
+
 ## Versão 10 — 18/11/2026 (protocolos do serviço)
 - Nova área **«Protocolos do serviço»** (menu e Acesso rápido), marcada «Em construção». Fica pronta a receber os protocolos
   aprovados no Serviço de Neurologia, em `protocolos.js` (modelo no próprio ficheiro), com versão, data e impressão.

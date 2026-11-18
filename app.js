@@ -68,9 +68,9 @@
   const origem = t => t.cap ? `Cap. ${esc(t.cap)}` : (t.parte === "p3" ? "Enfermagem" : "Patologia");
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
-    avc: ["nihss", "glasgow", "rankin"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
+    avc: ["nihss", "glasgow", "rankin", "guss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
     semiologia: ["glasgow", "barthel"], demencias: ["4at"], sistemicas: ["4at"], seguranca: ["morse", "braden"],
-    disfagia: [], ela: [], dnm: []
+    disfagia: [], ela: ["guss"], dnm: []
   };
   const escalasDoTema = id => (ESCALAS_DO_TEMA[id] || []).map(x => ESCALAS.find(e => e.id === x)).filter(Boolean);
   // Subtítulo de uma secção de alarme: só quando acrescenta algo ao «Sinais de alarme»
@@ -256,6 +256,7 @@
   function corpoSeccao(s) {
     let h = "";
     if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
+    if (s.escala) h += escalaEmbutida(s.escala);
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
     if (s.tabela) {
       const cab = s.tabela.cab || [];
@@ -638,6 +639,34 @@
   };
   const eNT = txt => /^NT\b/.test(txt);
 
+  // Itens de uma escala (rádios), com títulos de etapa quando existem
+  function itensEscala(e) {
+    let h = "";
+    e.itens.forEach((it, k) => {
+      const et = (e.etapas || []).findIndex(x => x.de === k);
+      if (et >= 0) {
+        const x = e.etapas[et];
+        h += `<div class="etapa-escala" id="etapa-${et}"><h3>${esc(x.titulo)}</h3><span class="etapa-estado" id="estadoEtapa-${et}"></span>${x.texto ? `<p class="etapa-txt">${esc(x.texto)}</p>` : ""}</div>`;
+      }
+      h += `<fieldset class="item-escala" id="item-${k}"><legend><span>${esc(it.nome)}</span> <span class="estado" aria-hidden="true"></span></legend><div class="opcoes">`;
+      it.opcoes.forEach(([v, txt], j) => {
+        h += `<label><input type="radio" name="i${k}" value="${esc(v)}" data-j="${j}"><span class="txt">${esc(txt)}${eNT(txt) ? "" : `<span class="so-leitor"> (${esc(v)} ${Number(v) === 1 ? "ponto" : "pontos"})</span>`}</span><span class="pts" aria-hidden="true">${eNT(txt) ? "–" : esc(v)}</span></label>`;
+      });
+      h += `</div></fieldset>`;
+    });
+    return h;
+  }
+  // Escala dentro de um tema (ex.: GUSS na Disfagia): mesmo formulário e resultado da página de escalas
+  function escalaEmbutida(id) {
+    const e = ESCALAS.find(x => x.id === id);
+    if (!e) return "";
+    setTimeout(() => ligarEscala(e), 0);
+    return `<div class="escala-embutida">${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}
+      <form id="formEscala" novalidate>${itensEscala(e)}</form>${e.nota ? `<p class="nota">${esc(e.nota)}</p>` : ""}
+      <div class="resultado" id="resultado" role="region" aria-label="Resultado da escala"></div>
+      <p class="so-leitor" id="anuncioEscala" aria-live="polite"></p></div>`;
+  }
+
   function vistaEscalas(id) {
     if (!ESCALAS.length) return `<header class="cab-pagina"><h1 tabindex="-1">Escalas e avaliação</h1><p class="sub">Sem escalas definidas.</p></header>`;
     const e = ESCALAS.find(x => x.id === id) || ESCALAS[0];
@@ -651,13 +680,7 @@
       <section class="cartao cartao-escala" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
       ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}
       <form id="formEscala" novalidate>`;
-    e.itens.forEach((it, k) => {
-      h += `<fieldset class="item-escala" id="item-${k}"><legend><span>${esc(it.nome)}</span> <span class="estado" aria-hidden="true"></span></legend><div class="opcoes">`;
-      it.opcoes.forEach(([v, txt], j) => {
-        h += `<label><input type="radio" name="i${k}" value="${esc(v)}" data-j="${j}"><span class="txt">${esc(txt)}${eNT(txt) ? "" : `<span class="so-leitor"> (${esc(v)} ${Number(v) === 1 ? "ponto" : "pontos"})</span>`}</span><span class="pts" aria-hidden="true">${eNT(txt) ? "–" : esc(v)}</span></label>`;
-      });
-      h += `</div></fieldset>`;
-    });
+    h += itensEscala(e);
     h += `</form>${e.nota ? `<p class="nota">${esc(e.nota)}</p>` : ""}</section>
       <div class="resultado" id="resultado" role="region" aria-label="Resultado da escala"></div>
       <p class="so-leitor" id="anuncioEscala" aria-live="polite"></p>`;
@@ -686,8 +709,27 @@
       const [v, txt] = e.itens[k].opcoes[Number(s.dataset.j)];
       return { v: Number(v), txt };
     };
+    // Escalas por etapas (ex.: GUSS): só se passa à etapa seguinte com a pontuação mínima da anterior
+    const ETAPAS = e.etapas || [];
+    const etapaDe = k => ETAPAS.findIndex(x => k >= x.de && k <= x.ate);
+    function estadoEtapas() {
+      const est = [];
+      ETAPAS.forEach((x, i) => {
+        let soma = 0, resp = 0;
+        for (let k = x.de; k <= x.ate; k++) { const r = escolhido(k); if (r) { resp++; soma += r.v; } }
+        const n = x.ate - x.de + 1;
+        const ativa = i === 0 || (est[i - 1].ativa && est[i - 1].completa && est[i - 1].soma >= ETAPAS[i - 1].minimo);
+        est.push({ ativa, soma, completa: resp === n, resp, n });
+      });
+      return est;
+    }
     // Texto para colar no registo de enfermagem
     function textoRegisto(total, interp) {
+      if (ETAPAS.length) {
+        const est = estadoEtapas();
+        const det = ETAPAS.map((x, i) => `${x.titulo.replace(/^\d+\.\s*/, "").replace(/\s*\(.*\)$/, "")} ${est[i].ativa && est[i].completa ? est[i].soma : "—"}`).join(", ");
+        return `${nomeCurto(e)}: ${total}/20 (${det}) — ${interp}`;
+      }
       const resp = e.itens.map((it, k) => ({ ...codigoItem(it, k), r: escolhido(k) }));
       const val = x => eNT(x.r.txt) ? "NT" : String(x.r.v);
       let det = "";
@@ -698,18 +740,45 @@
     }
     let ultimoTexto = "";
     const atualizar = () => {
-      let total = 0, resp = 0, primeiroEmFalta = -1;
+      let total = 0, resp = 0, primeiroEmFalta = -1, obrigatorios = e.itens.length, paragem = -1;
+      if (ETAPAS.length) {
+        // desativar (e limpar) as etapas a que ainda não se pode passar
+        let est = estadoEtapas();
+        ETAPAS.forEach((x, i) => {
+          for (let k = x.de; k <= x.ate; k++) {
+            const fs = form.querySelector(`#item-${k}`);
+            if (!fs) continue;
+            if (!est[i].ativa) fs.querySelectorAll("input").forEach(inp => { inp.checked = false; });
+            fs.disabled = !est[i].ativa;
+            fs.classList.toggle("bloqueado", !est[i].ativa);
+          }
+        });
+        est = estadoEtapas();
+        obrigatorios = 0;
+        ETAPAS.forEach((x, i) => {
+          if (est[i].ativa) obrigatorios += est[i].n;
+          if (est[i].ativa && est[i].completa && est[i].soma < x.minimo && paragem < 0) paragem = i;
+          const el = $(`#estadoEtapa-${i}`), bloco = $(`#etapa-${i}`);
+          let txt = "", cls = "";
+          if (!est[i].ativa) { txt = paragem >= 0 && i > paragem ? "Não fazer — o teste parou" : `Só com ${ETAPAS[i - 1].minimo} pontos na etapa anterior`; cls = "bloq"; }
+          else if (est[i].completa) { txt = `${est[i].soma}/${x.minimo}${est[i].soma < x.minimo ? " — PARAR" : " — passa"}`; cls = est[i].soma < x.minimo ? "parar" : "passa"; }
+          else if (est[i].resp) txt = `${est[i].soma} pontos até agora`;
+          if (el) { el.textContent = txt; el.className = "etapa-estado" + (cls ? " " + cls : ""); }
+          if (bloco) bloco.classList.toggle("bloqueada", !est[i].ativa);
+        });
+      }
       e.itens.forEach((_, k) => {
         const r = escolhido(k);
         const fs = form.querySelector(`#item-${k}`);
-        if (r) { resp++; total += r.v; } else if (primeiroEmFalta < 0) primeiroEmFalta = k;
+        const exigido = !ETAPAS.length || !fs || !fs.disabled;
+        if (r) { resp++; total += r.v; } else if (exigido && primeiroEmFalta < 0) primeiroEmFalta = k;
         if (fs) {
           fs.querySelector(".estado").innerHTML = r ? ic("visto") : "";
           fs.classList.toggle("respondido", !!r);
           fs.classList.remove("em-falta");
         }
       });
-      const falta = e.itens.length - resp;
+      const falta = obrigatorios - resp;
       let nivel = "", h = "";
       const compacto = e.itens.every((it, k) => codigoItem(it, k).letra) && falta === 0
         ? e.itens.map((it, k) => codigoItem(it, k).cod + (eNT(escolhido(k).txt) ? "NT" : escolhido(k).v)).join(" ") : "";
@@ -718,6 +787,7 @@
         const [n, txt] = e.interpretar(total);
         nivel = n;
         ultimoTexto = textoRegisto(total, txt);
+        if (paragem >= 0) h += `<p class="paragem">${ic("alarme")}<span>Teste parado na etapa «${esc(ETAPAS[paragem].titulo.replace(/^\d+\.\s*/, ""))}».</span></p>`;
         h += `<div class="interp">${esc(txt)}</div>`;
       } else {
         ultimoTexto = "";
