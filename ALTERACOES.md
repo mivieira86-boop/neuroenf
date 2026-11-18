@@ -1,5 +1,13 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 8 — 18/11/2026 (ligação direta aos fármacos)
+- Cada fármaco tem agora o botão **«Ver ficha no Índice Nacional Terapêutico»** (indice.eu), que abre logo a ficha da DCI,
+  sem copiar nem colar. As 184 ligações foram verificadas uma a uma (182 fichas diretas; glicose e cianocobalamina abrem a pesquisa).
+- O botão «Abrir no INFOMED (INFARMED)» mantém-se para a informação oficial (RCM). Não é possível colar automaticamente no INFOMED:
+  os browsers impedem um site de escrever noutro, e o INFOMED não aceita a pesquisa no endereço (testado). A instrução passou a
+  dizer: tocar na caixa de pesquisa, «Colar» e escolher a DCI na lista.
+- App instalável: identificador no manifesto (`id`); publicada em https://mivieira86-boop.github.io/neuroenf/ com QR code.
+
 ## Versão 7 — 17/11/2026 (guia farmacológico, app instalável, assinatura)
 - **Guia farmacológico** (`farmacos.js`): 184 fármacos em 43 temas, por doença e de A a Z, com classe, cuidados de enfermagem,
   alertas de segurança e etiqueta «Alto risco» (24, segundo a lista ISMP / Norma DGS 014/2015). Cada tema com terapêutica tem

@@ -95,6 +95,24 @@
   const etiquetaRisco = f => f.alto ? `<span class="etq-risco">${ic("alarme")}Alto risco</span>` : "";
   const AVISO_TERAP = "Ferramenta de apoio — confirmar sempre a prescrição e o RCM.";
   const INFOMED = "https://extranet.infarmed.pt/INFOMED-fo/";
+  // Índice Nacional Terapêutico (indice.eu): ficha da DCI com endereço direto, sem colar nada.
+  // Endereço = nome da DCI sem acentos, com hífenes; exceções verificadas a 18/11/2026.
+  const INDICE = "https://www.indice.eu/pt/medicamentos/DCI/";
+  const INDICE_PESQUISA = "https://www.indice.eu/pt/pesquisa-google?cx=005759960251267717830:sdfsdols638&ie=utf-8&hl=pt&q=";
+  const INDICE_EXCECOES = {
+    "ccp": "complexo-de-protrombina", "fitomenadiona": "fitomenadiona-vitamina-k1", "urapidil": "urapidilo",
+    "nacl-hipertonico": "cloreto-de-sodio", "kcl-concentrado": "cloreto-de-potassio", "valproato": "acido-valproico-valproato-de-sodio",
+    "anfotericina": "anfotericina-b", "lidocaina-penso": "lidocaina", "toxina-botulinica": "toxina-botulinica-a",
+    "levodopa-gel": "levodopa-carbidopa", "interferao-beta": "interferao-beta-1a", "glicopirronio": "brometo-de-glicopirronio",
+    "insulina": "insulina-humana", "vutrisirano": "vutrisiran", "patisirano": "patisiran", "tiamina": "tiamina-vitamina-b1",
+    "ciproheptadina": "cipro-heptadina"
+  };
+  const INDICE_SO_PESQUISA = { "glicose-hipertonica": "glicose", "cianocobalamina": "cianocobalamina" };
+  const slugDci = t => t.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  function ligacaoIndice(f) {
+    if (INDICE_SO_PESQUISA[f.id]) return { url: INDICE_PESQUISA + encodeURIComponent(INDICE_SO_PESQUISA[f.id]), pesquisa: true };
+    return { url: INDICE + (INDICE_EXCECOES[f.id] || slugDci(f.dci)) + "/informacao-geral", pesquisa: false };
+  }
 
   // ── Elementos fixos: marca, ícones dos botões ──
   document.querySelectorAll(".marca").forEach(m => {
@@ -458,14 +476,18 @@
     }
     document.title = `${f.dci} — NeuroEnf`;
     const usos = usosDoFarmaco(f.id);
+    const li = ligacaoIndice(f);
     let h = `<header class="cab-tema cab-farmaco">
         <a class="voltar" href="#farmacos">${ic("voltar")}<span>Guia farmacológico</span></a>
         <h1 tabindex="-1"><span id="dciFarmaco">${esc(f.dci)}</span></h1>
         <p class="meta meta-farmaco">${f.classe ? `<span>${esc(f.classe)}</span>` : ""}${etiquetaRisco(f)}</p>
         <div class="acoes-farmaco">
-          <a class="btn-pri" href="${INFOMED}" target="_blank" rel="noopener" data-acao="infomed" data-dci="${esc(f.dci)}" aria-describedby="explicaInfomed">${ic("externo")}<span>Abrir no INFOMED (INFARMED)</span><span class="so-leitor"> (abre noutro separador)</span></a>
+          <div class="botoes-farmaco">
+            <a class="btn-pri" href="${esc(li.url)}" target="_blank" rel="noopener">${ic("externo")}<span>${li.pesquisa ? "Pesquisar" : "Ver ficha"} no Índice Nacional Terapêutico</span><span class="so-leitor"> (abre noutro separador)</span></a>
+            <a class="btn-sec" href="${INFOMED}" target="_blank" rel="noopener" data-acao="infomed" data-dci="${esc(f.dci)}" aria-describedby="explicaInfomed">${ic("externo")}<span>Abrir no INFOMED (INFARMED)</span><span class="so-leitor"> (abre noutro separador)</span></a>
+          </div>
           <p class="msg-copia" id="msgInfomed" role="status" aria-live="polite"></p>
-          <p class="nota-infomed" id="explicaInfomed">O INFOMED não permite abrir diretamente a ficha; a DCI é copiada para colar na pesquisa.</p>
+          <p class="nota-infomed" id="explicaInfomed"><strong>Índice Nacional Terapêutico</strong>: abre logo a ficha da DCI (site privado). <strong>INFOMED</strong>: fonte oficial com o RCM; não permite abrir a ficha diretamente, por isso a DCI é copiada — toque na caixa de pesquisa, «Colar», e escolha a DCI na lista.</p>
         </div>
       </header>`;
     if (f.alerta) h += `<section class="alerta-farmaco" aria-labelledby="alertaFarm"><p class="faixa-precaucao" id="alertaFarm">${ic("precaucao")}Atenção</p><p class="alerta-txt">${esc(f.alerta)}</p></section>`;
@@ -501,14 +523,14 @@
       h += `</div></section>`;
     });
     if (x.nota) h += `<p class="nota-terap">${ic("info")}<span>${esc(x.nota)}</span></p>`;
-    h += `<p class="rodape">Para a informação oficial de cada fármaco (RCM), abrir a ficha e usar «Abrir no INFOMED».</p>`;
+    h += `<p class="rodape">Em cada fármaco: «Ver ficha no Índice Nacional Terapêutico» abre logo a ficha; «Abrir no INFOMED» leva à informação oficial (RCM).</p>`;
     return h;
   }
 
   // Copiar a DCI no clique do botão INFOMED (a ligação abre na mesma)
   function copiarDci(dci) {
     const msg = $("#msgInfomed");
-    const ok = () => { if (msg) msg.innerHTML = `${ic("visto")}<span>${esc(dci)} copiado — cole (Ctrl+V) na pesquisa do INFOMED.</span>`; };
+    const ok = () => { if (msg) msg.innerHTML = `${ic("visto")}<span>${esc(dci)} copiado — no INFOMED, toque na caixa de pesquisa, «Colar» e escolha a DCI na lista.</span>`; };
     const falha = () => {
       // Alternativa: deixar a DCI selecionada na página para copiar à mão
       try {

@@ -465,7 +465,9 @@ tbody th { font-weight: 600; }
 .cab-farmaco h1 { overflow-wrap: anywhere; }
 .meta-farmaco { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
 .acoes-farmaco { margin: 16px 0 0; display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
-.acoes-farmaco .btn-pri { text-decoration: none; white-space: normal; text-align: left; }
+.acoes-farmaco .btn-pri, .acoes-farmaco .btn-sec { text-decoration: none; white-space: normal; text-align: left; }
+.botoes-farmaco { display: flex; flex-wrap: wrap; gap: 8px; }
+.acoes-farmaco .btn-sec .ic { color: var(--acento); }
 .msg-copia {
   display: flex; align-items: flex-start; gap: 8px; margin: 0; padding: 8px 12px; border-radius: 10px;
   background: var(--ok-suave); color: var(--ok); font-weight: 600; font-size: 14.5px; line-height: 1.4;

@@ -34,6 +34,8 @@ Uma opção cujo texto começa por «NT» conta como «não testável».
 ## Acrescentar um fármaco
 Em `farmacos.js`, acrescentar um objeto a `FARMACOS` (`id`, `dci`, `classe`, `notas`, opcional `alto: true` e `alerta`) e
 referir o `id` num grupo de `TERAPEUTICA` do tema certo.
+A ligação ao Índice Nacional Terapêutico é feita a partir da DCI (sem acentos, com hífenes); se a ficha tiver outro
+endereço em indice.eu, acrescentar a exceção em `INDICE_EXCECOES` (app.js).
 
 ## Terminologia (português europeu)
 Escrever sempre em português de Portugal (Acordo Ortográfico em vigor em Portugal). Exemplos:
