@@ -2,7 +2,7 @@
 // Aumentar VERSAO a cada publicação para os telemóveis receberem a nova versão.
 const VERSAO = "neuroenf-v7";
 const FICHEIROS = [
-  "./", "index.html", "estilos.css", "conteudo.js", "farmacos.js", "app.js", "instalar.js",
+  "./", "index.html", "estilos.css", "instalar.css", "conteudo.js", "farmacos.js", "app.js", "instalar.js",
   "manifest.webmanifest", "fonts/InterVariable.woff2",
   "icons/icone-192.png", "icons/icone-512.png", "icons/icone-maskable-512.png", "icons/apple-touch-icon.png", "icons/favicon-32.png"
 ];
