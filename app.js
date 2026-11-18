@@ -295,42 +295,67 @@
 
   // ── Protocolos do serviço (protocolos.js é opcional) ──
   const PROT = (typeof PROTOCOLOS !== "undefined" && Array.isArray(PROTOCOLOS) ? PROTOCOLOS : []).filter(x => x && x.id && x.titulo);
+  const CONTACTO_PROT = typeof PROTOCOLOS_CONTACTO === "string" ? PROTOCOLOS_CONTACTO.trim() : "";
   const EM_CONSTRUCAO = `<span class="etq-construcao">Em construção</span>`;
+  const dataPT = d => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ""); return m ? `${m[3]}/${m[2]}/${m[1]}` : (d || ""); };
+  const aprovacaoProt = x => x.aprovacao || x.data || "";
+  // «A rever»: passou a data de revisão
+  const aRever = x => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(x.revisao || ""); return !!m && new Date(+m[1], m[2] - 1, +m[3], 23, 59) < new Date(); };
+  const ETQ_REVER = `<span class="etq-rever">A rever</span>`;
+  const blocoRegras = () => `<section class="cartao regras-protocolos" aria-labelledby="t-regras">
+      <h2 id="t-regras">Como entram os protocolos</h2>
+      <ul class="lista-regras">
+        <li><strong>Só protocolos aprovados pela instituição</strong>, com autorização para serem divulgados nesta app.</li>
+        <li><strong>Ficha de bolso validada</strong> pelo responsável do protocolo, com código, versão e data de aprovação.</li>
+        <li><strong>O documento oficial prevalece sempre</strong>: cada ficha liga ao original na intranet.</li>
+        <li><strong>Data de revisão</strong>: quando passa, a app mostra «A rever» até ser confirmada a versão em vigor.</li>
+        <li><strong>Propostas e correções</strong> dos colegas são bem-vindas, mas nada é publicado sem validação.</li>
+      </ul>
+      <p class="propor">${CONTACTO_PROT
+        ? `<a class="btn-sec" href="mailto:${esc(CONTACTO_PROT)}?subject=${encodeURIComponent("NeuroEnf — proposta de protocolo")}">${ic("protocolo")}<span>Propor um protocolo ou uma correção</span></a>`
+        : "Para propor um protocolo ou uma correção, fale com a enfermeira gestora ou com o elo de referência do serviço."}</p>
+    </section>`;
   function vistaProtocolos() {
     document.title = "Protocolos do serviço — NeuroEnf";
     let h = `<header class="cab-pagina">
         <h1 tabindex="-1">Protocolos do serviço</h1>
-        <p class="sub">Serviço de Neurologia ${EM_CONSTRUCAO}</p>
+        <p class="sub">Serviço de Neurologia ${PROT.length ? "" : EM_CONSTRUCAO}</p>
       </header>`;
     if (!PROT.length) {
       return h + `<section class="cartao vazio-protocolos" aria-labelledby="t-constr">
         <p class="ic-grande" aria-hidden="true">${ic("protocolo")}</p>
         <h2 id="t-constr">Área em construção</h2>
-        <p>Aqui vão ficar os protocolos e normas de procedimento aprovados no Serviço de Neurologia, para consulta rápida à cabeceira.</p>
+        <p>Aqui vão ficar os protocolos aprovados no Serviço de Neurologia, em fichas de bolso para consulta rápida à cabeceira.</p>
         <p>Até estarem disponíveis, siga os protocolos em vigor no serviço e na intranet do hospital.</p>
-      </section>`;
+      </section>` + blocoRegras();
     }
     h += `<section class="bloco"><div class="lista">`;
-    h += PROT.map(x => linha(`#protocolo-${esc(x.id)}`, esc(x.titulo), [x.versao ? `Versão ${esc(x.versao)}` : "", x.data ? esc(dataPT(x.data)) : ""].filter(Boolean).join(" · "), { icone: ic("protocolo", "ic-linha") })).join("");
-    h += `</div></section><p class="rodape">Novos protocolos em preparação. Confirmar sempre a versão em vigor no serviço.</p>`;
+    h += PROT.map(x => linha(`#protocolo-${esc(x.id)}`, esc(x.titulo),
+      [x.codigo ? esc(x.codigo) : "", x.versao ? `Versão ${esc(x.versao)}` : "", aprovacaoProt(x) ? esc(dataPT(aprovacaoProt(x))) : ""].filter(Boolean).join(" · "),
+      { icone: ic("protocolo", "ic-linha"), extra: aRever(x) ? ETQ_REVER : "" })).join("");
+    h += `</div></section>` + blocoRegras();
     return h;
   }
-  const dataPT = d => { const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(d || ""); return m ? `${m[3]}/${m[2]}/${m[1]}` : d; };
   function vistaProtocolo(id) {
     const x = PROT.find(p => p.id === id);
     if (!x) return null;
     document.title = `${x.titulo} — NeuroEnf`;
     const secs = x.seccoes || [];
+    const meta = [x.codigo ? esc(x.codigo) : "", x.versao ? `Versão ${esc(x.versao)}` : "", aprovacaoProt(x) ? `aprovado a ${esc(dataPT(aprovacaoProt(x)))}` : "",
+      x.revisao ? `revisão a ${esc(dataPT(x.revisao))}` : ""].filter(Boolean).join(" · ");
     let h = `<header class="cab-tema">
         <a class="voltar" href="#protocolos">${ic("voltar")}<span>Protocolos do serviço</span></a>
         <div class="cab-tema-linha"><div class="cab-tema-txt">
-          <h1 tabindex="-1">${esc(x.titulo)}</h1>
-          <p class="meta">${[x.versao ? `Versão ${esc(x.versao)}` : "", x.data ? `aprovado a ${esc(dataPT(x.data))}` : "", x.responsavel ? esc(x.responsavel) : ""].filter(Boolean).join(" · ")}</p>
+          <h1 tabindex="-1">${esc(x.titulo)} ${aRever(x) ? ETQ_REVER : ""}</h1>
+          <p class="meta">${meta}</p>
+          ${x.responsavel || x.validadoPor ? `<p class="meta">${[x.responsavel ? `Responsável: ${esc(x.responsavel)}` : "", x.validadoPor ? `Validado por: ${esc(x.validadoPor)}` : ""].filter(Boolean).join(" · ")}</p>` : ""}
         </div><button type="button" class="btn-sec btn-imprimir" data-acao="imprimir">${ic("imprimir")}<span>Imprimir</span></button></div>
         ${x.resumo ? `<p class="resumo">${esc(x.resumo)}</p>` : ""}
+        ${x.fonte ? `<div class="botoes-farmaco"><a class="btn-pri" href="${esc(x.fonte)}" target="_blank" rel="noopener">${ic("externo")}<span>Abrir o documento oficial</span><span class="so-leitor"> (abre noutro separador; pode exigir a rede do hospital)</span></a></div>` : ""}
       </header>`;
+    if (aRever(x)) h += `<section class="cartao precaucao"><p class="faixa-precaucao">${ic("precaucao")}A rever</p><p>A data de revisão deste protocolo já passou. Confirme a versão em vigor no documento oficial antes de o seguir.</p></section>`;
     h += ordenarSeccoes(secs).map(([s, k]) => blocoSeccao(s, k)).join("");
-    h += `<p class="rodape">Protocolo do Serviço de Neurologia. Confirmar sempre a versão em vigor.</p>`;
+    h += `<p class="rodape">Ficha de bolso do protocolo do Serviço de Neurologia. O documento oficial prevalece sempre.</p>`;
     return h;
   }
 

@@ -1,5 +1,12 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 12 — 18/11/2026 (regras dos protocolos)
+- «Protocolos do serviço» passa a mostrar as regras de entrada: só protocolos aprovados e autorizados pela instituição;
+  ficha de bolso validada pelo responsável; ligação ao documento oficial, que prevalece; data de revisão com aviso
+  automático «A rever»; propostas dos colegas só publicadas após validação.
+- `protocolos.js` com os novos campos (código, aprovação, revisão, responsável, validado por, fonte) e contacto opcional
+  para «Propor um protocolo ou uma correção».
+
 ## Versão 11 — 18/11/2026 (GUSS interativa)
 - Nova escala **GUSS** (rastreio da disfagia), por etapas: teste indireto → semissólido → líquido → sólido. Cada etapa só abre
   com 5 pontos na anterior; com menos, a app indica PARAR, bloqueia as seguintes e dá a recomendação para o total (0–20).
