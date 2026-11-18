@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#F5F4F0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0F1719" media="(prefers-color-scheme: dark)">
+  <title>NeuroEnf — Guia de Enfermagem em Neurologia</title>
+  <link rel="stylesheet" href="estilos.css">
+  <link rel="stylesheet" href="instalar.css">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/favicon-32.png" sizes="32x32" type="image/png">
+  <link rel="icon" href="icons/icone.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="NeuroEnf">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="Apoio à equipa de enfermagem em Neurologia (adulto): temas clínicos, sinais de alarme, escalas e guia farmacológico.">
+</head>
+<body>
+  <a class="saltar" href="#conteudo">Saltar para o conteúdo</a>
+
+  <!-- Barra fina (só no telemóvel e tablet): menu, marca e pesquisa -->
+  <header class="topo">
+    <button class="botao-menu" id="botaoMenu" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu"></button>
+    <a class="marca marca-topo" href="#inicio" aria-label="NeuroEnf — ir para o início"></a>
+    <div class="lugar-pesquisa" id="lugarPesquisaTopo"></div>
+  </header>
+
+  <div class="corpo">
+    <!-- Menu lateral (gaveta no telemóvel) -->
+    <aside class="lateral" id="menu" aria-label="Menu">
+      <div class="lateral-cab">
+        <a class="marca marca-lateral" href="#inicio" aria-label="NeuroEnf — ir para o início"></a>
+        <div class="lugar-pesquisa" id="lugarPesquisaLateral">
+          <form class="pesquisa" role="search" id="formPesquisa">
+            <label class="so-leitor" for="pesquisa">Pesquisar na app</label>
+            <span class="pesquisa-ic" id="pesquisaIc" aria-hidden="true"></span>
+            <input id="pesquisa" type="search" placeholder="Pesquisar" autocomplete="off" enterkeyhint="search" spellcheck="false">
+            <kbd class="atalho-tecla" aria-hidden="true">/</kbd>
+          </form>
+        </div>
+      </div>
+      <nav class="lateral-nav" id="menuNav" aria-label="Temas e escalas"></nav>
+    </aside>
+    <div class="veu" id="veu" hidden></div>
+
+    <main id="conteudo" tabindex="-1"></main>
+  </div>
+
+  <div class="aviso-estado" id="avisoEstado" role="status" aria-live="polite"></div>
+  <script src="conteudo.js"></script>
+  <script src="farmacos.js"></script>
+  <script src="app.js"></script>
+  <script src="instalar.js"></script>
+</body>
+</html>
