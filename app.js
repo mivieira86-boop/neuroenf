@@ -252,6 +252,7 @@
   // Conteúdo de uma secção (lista e/ou tabela)
   function corpoSeccao(s) {
     let h = "";
+    if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
     if (s.tabela) {
       const cab = s.tabela.cab || [];
@@ -264,6 +265,30 @@
     return h;
   }
 
+  // ── Marchas (marchas.js é opcional) ──
+  const TEM_MARCHAS = typeof MARCHAS !== "undefined" && typeof MARCHAS_DO_TEMA !== "undefined";
+  const marchasDoTema = id => TEM_MARCHAS ? (MARCHAS_DO_TEMA[id] || []).filter(m => MARCHAS[m]) : [];
+  function cartaoMarcha(id, temaAtual) {
+    const m = MARCHAS[id];
+    const outros = Object.keys(MARCHAS_DO_TEMA).filter(tid => tid !== temaAtual && tid !== "semiologia" && MARCHAS_DO_TEMA[tid].includes(id))
+      .map(tid => TEMAS.find(x => x.id === tid)).filter(Boolean);
+    const idH = `marcha-${esc(id)}-t`;
+    return `<article class="marcha" aria-labelledby="${idH}">
+      <h3 id="${idH}">${esc(m.nome)}</h3>
+      <figure class="marcha-anim" data-marcha="${esc(id)}">
+        <div class="nm-tela" role="img" aria-label="Animação esquemática da ${esc(m.nome.toLowerCase())}, vista de lado e de frente"></div>
+        <figcaption><span>Animação esquemática</span><span class="nm-botoes">
+          <button type="button" class="btn-sec nm-btn" data-nm="pausa">Pausar</button>
+          <button type="button" class="btn-sec nm-btn" data-nm="lento" aria-pressed="false">Lento</button></span></figcaption>
+      </figure>
+      <p class="marcha-sub">O que observar</p>
+      <ul>${m.observar.map(x => `<li>${esc(x)}</li>`).join("")}</ul>
+      <p class="marcha-surge"><strong>Onde surge:</strong> ${esc(m.surge)}</p>
+      ${m.cuidados.length ? `<p class="marcha-sub">Cuidados de enfermagem</p><ul>${m.cuidados.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}
+      ${outros.length ? `<p class="marcha-ver">Ver também: ${outros.map(o => `<a href="#tema-${esc(o.id)}">${esc(o.titulo)}</a>`).join(" · ")}</p>` : ""}
+    </article>`;
+  }
+
   function vistaTema(id) {
     const i = TEMAS.findIndex(t => t.id === id);
     if (i < 0) return null;
@@ -273,6 +298,8 @@
     if (t.id === "semiologia" && typeof MRC !== "undefined") {
       extra.push({ t: "Escala de força muscular (MRC)", tabela: { cab: ["Grau", "Descrição"], lin: MRC.map(([g, d]) => [String(g), d]) } });
     }
+    const marchasTema = marchasDoTema(t.id);
+    if (marchasTema.length) extra.push({ t: marchasTema.length > 1 ? "Marchas" : "Marcha", marchas: marchasTema, tema: t.id });
     const todas = seccoes.concat(extra);
     document.title = `${t.titulo} — NeuroEnf`;
     const escTema = escalasDoTema(t.id);
@@ -820,6 +847,7 @@
     else if (r.startsWith("terapeutica-")) { html = vistaTerapeutica(r.slice(12)); rotaMenu = "farmacos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     main.innerHTML = html + ASSINATURA;
+    if (typeof NeuroMarcha !== "undefined") NeuroMarcha.montar(main);
     marcarMenu(rotaMenu);
     abrirMenu(false);
     if (seccaoPendente !== null) {

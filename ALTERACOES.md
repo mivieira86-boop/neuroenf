@@ -1,5 +1,13 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 9 — 18/11/2026 (marchas animadas)
+- Novo ficheiro `marchas.js`: animações esquemáticas originais de 10 marchas (normal, parkinsónica, atáxica cerebelosa,
+  atáxica sensitiva, apráxica, hemiparética, espástica em tesoura, steppage, miopática e coreica), vistas de lado e de frente,
+  com «O que observar», «Onde surge» e «Cuidados de enfermagem».
+- Cada marcha aparece dentro das doenças em que surge (ex.: parkinsónica em Doenças do movimento e Parkinsonismos atípicos,
+  apráxica na Hidrocefalia de pressão normal) e todas juntas na Semiologia, para comparar. «Ver também» liga às outras doenças.
+- Botões «Pausar» e «Lento»; com «reduzir movimento» ativo no telemóvel, as animações começam paradas.
+
 ## Versão 8 — 18/11/2026 (ligação direta aos fármacos)
 - Cada fármaco tem agora o botão **«Ver ficha no Índice Nacional Terapêutico»** (indice.eu), que abre logo a ficha da DCI,
   sem copiar nem colar. As 184 ligações foram verificadas uma a uma (182 fichas diretas; glicose e cianocobalamina abrem a pesquisa).
