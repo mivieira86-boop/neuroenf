@@ -183,7 +183,8 @@
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
       if (!temas.length) return;
-      h += `<details class="grupo-menu" data-parte="${esc(p.id)}" open>
+      // As Patologias A–Z ficam fechadas: a lista só aparece quando se toca no título
+      h += `<details class="grupo-menu" data-parte="${esc(p.id)}"${p.id === "p4" ? "" : " open"}>
         <summary class="sec-menu"><span class="sec-nome">${esc(NOME_CURTO_PARTE[p.id] || p.nome)}</span><span class="traco" aria-hidden="true"></span><span class="cont">${temas.length}<span class="so-leitor"> temas</span></span>${ic("seta", "ic-sum")}</summary>`;
       if (p.id === "p4") {
         entradasAZ().forEach(e => {
@@ -210,7 +211,7 @@
     });
     // No computador, garantir que a parte do tema atual está aberta (as outras ficam como estão)
     const g = grupoAtual();
-    if (g && !telemovel.matches) g.open = true;
+    if (g && !telemovel.matches && g.dataset.parte !== "p4") g.open = true;
     // Abrir o subgrupo (Demências, Parkinsonismos atípicos…) da doença atual
     const atual = nav.querySelector('a.tema[aria-current="page"]');
     const sub = atual ? atual.closest("details.sub-menu") : null;
@@ -229,8 +230,11 @@
     if (abrir) {
       // Na gaveta só fica aberta a parte do tema atual
       const g = grupoAtual();
-      gruposMenu().forEach(d => { d.open = d === g; });
-      const atual = nav.querySelector('a[aria-current="page"]') || nav.querySelector("a");
+      // As Patologias A–Z nunca abrem sozinhas (só fecham se o tema atual não for de lá)
+      gruposMenu().forEach(d => { if (d.dataset.parte === "p4") { if (d !== g) d.open = false; } else d.open = d === g; });
+      let atual = nav.querySelector('a[aria-current="page"]') || nav.querySelector("a");
+      const fechado = atual && atual.closest("details.grupo-menu:not([open])");
+      if (fechado) atual = fechado.querySelector("summary");
       if (atual) { atual.scrollIntoView({ block: "center" }); atual.focus({ preventScroll: true }); }
     }
   }
@@ -274,7 +278,7 @@
     // «Estado de mal» abre a epilepsia já na secção de alarme
     const epi = TEMAS.find(t => t.id === "epilepsia");
     const kMal = epi ? (epi.seccoes || []).findIndex(s => s.alarme) : -1;
-    [["avc", "relogio", "Via Verde AVC", "Doença cerebrovascular", -1], ["epilepsia", "onda", "Estado de mal", "Epilepsia · sinais de alarme", kMal], ["urgencias", "sirene", "Urgências neurológicas", "Cap. 20", -1]].forEach(([id, i, txt, sub, k]) => {
+    [["avc", "relogio", "Via Verde AVC", "Doença cerebrovascular", -1], ["epilepsia", "onda", "Estado de mal", "Epilepsia · sinais de alarme", kMal], ["urgencias", "sirene", "Urgências neurológicas", "", -1]].forEach(([id, i, txt, sub, k]) => {
       if (existeTema(id)) rapidos.push(linha(`#tema-${id}`, txt, sub, { icone: ic(i, "ic-linha"), attrs: k >= 0 ? ` data-seccao="${k}"` : "" }));
     });
     h += `<div class="lista-grelha">${rapidos.join("")}</div></div>
@@ -1151,7 +1155,7 @@
   telemovel.addEventListener && telemovel.addEventListener("change", () => {
     textoPesquisa();
     colocarPesquisa();
-    if (!telemovel.matches) { abrirMenu(false); gruposMenu().forEach(d => { d.open = true; }); }
+    if (!telemovel.matches) { abrirMenu(false); gruposMenu().forEach(d => { d.open = d.dataset.parte !== "p4"; }); }
   });
 
   window.addEventListener("hashchange", () => { pesquisaAtual = ""; campoPesquisa.value = ""; render(); });

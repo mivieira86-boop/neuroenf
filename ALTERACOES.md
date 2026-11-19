@@ -1,5 +1,9 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 17 — 19/11/2026
+- Menu lateral: as **Patologias A–Z** ficam fechadas; a lista só aparece quando se toca no título da secção.
+- Acesso rápido: retirado o subtítulo «Cap. 20» das Urgências neurológicas.
+
 ## Versão 16 — 19/11/2026
 - Botão **«Voltar ao topo»** no fundo de todas as páginas (desliza suavemente; respeita «reduzir movimento»; não aparece na impressão).
 - Epilepsia: retirada a secção de radioproteção do SPECT.
