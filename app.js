@@ -71,7 +71,7 @@
   const ESCALAS_DO_TEMA = {
     avc: ["nihss", "glasgow", "rankin", "guss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
     semiologia: ["glasgow", "barthel"], demencias: [], sistemicas: [], seguranca: ["morse", "braden"],
-    disfagia: [], ela: ["guss"], dnm: [],
+    disfagia: [], linguagem: ["nihss", "guss"], ela: ["guss"], dnm: [],
     alzheimer: ["morse", "barthel", "guss"], "demencia-vascular": ["morse", "barthel", "guss"], dcl: ["morse", "guss"],
     "epilepsia-az": ["glasgow"], parkinson: ["morse", "guss"], "esclerose-multipla": ["morse"], nmo: ["braden", "morse"],
     "miastenia-gravis": ["guss"], sgb: ["guss", "braden"]

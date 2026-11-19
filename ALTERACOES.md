@@ -1,5 +1,14 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 18 — 19/11/2026 (avaliação da linguagem)
+- Novo tema **«Avaliação da linguagem e comunicação»** nos Cuidados de enfermagem transversais: afasia, disartria, apraxia
+  da fala; avaliação à cabeceira (fluência, compreensão, nomeação, repetição, leitura e escrita, articulação); erros a
+  reconhecer e registar (parafasias fonémicas e semânticas, neologismos, jargão, anomia, perseveração, ecolalia,
+  agramatismo); tipos de afasia e de disartria; comunicação com o doente; cuidados de enfermagem (incluindo dor,
+  consentimento, campainha, disfagia), ensinos e sinais de alarme. Botões NIHSS e GUSS. Revisto pelos agentes médico e
+  de enfermagem.
+- Semiologia: a avaliação detalhada da linguagem passou para o tema próprio; fica um rastreio rápido e o «Ver também».
+
 ## Versão 17 — 19/11/2026
 - Menu lateral: as **Patologias A–Z** ficam fechadas; a lista só aparece quando se toca no título da secção.
 - Acesso rápido: retirado o subtítulo «Cap. 20» das Urgências neurológicas.

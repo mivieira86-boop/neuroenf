@@ -56,13 +56,14 @@ const TEMAS = [
   titulo: "Semiologia — avaliação neurológica de enfermagem",
   pags: "53–68",
   resumo: "Roteiro prático do exame neurológico à cabeceira. Não é preciso aplicar todos os testes a todos os doentes — escolhe-se em função da queixa e do contexto.",
+  relacionados: ["linguagem", "avc", "topografia"],
   seccoes: [
     { t: "Roteiro rápido (vigilância neurológica)", itens: [
       "Consciência: Escala de Coma de Glasgow (ver Escalas). Registar componentes separados (O, V, M), não só o total.",
       "Orientação: pessoa, espaço, tempo. Atenção: dizer os meses do ano ao contrário.",
       "Pupilas: tamanho (mm), simetria, reflexo fotomotor direto e consensual.",
       "Força: comparar lados — escala MRC 0–5; prova dos braços estendidos (desvio/pronação sugere défice discreto).",
-      "Fala e linguagem: articulação (disartria) vs conteúdo/compreensão (afasia).",
+      "Fala e linguagem: articulação (disartria) vs conteúdo/compreensão (afasia) — ver «Linguagem e fala — rastreio rápido» abaixo.",
       "Face: assimetria do sorriso, encerramento palpebral.",
       "Sinais vitais: TA, FC, padrão respiratório, temperatura, SpO2 e glicemia capilar."
     ]},
@@ -79,6 +80,11 @@ const TEMAS = [
         ["XII — hipoglosso", "Protrusão da língua (desvia para o lado da lesão periférica)"]
       ]
     }},
+    { t: "Linguagem e fala — rastreio rápido", itens: [
+      "Conversar com o doente e pedir: uma ordem simples («Feche os olhos»), o nome de um objeto (relógio, caneta) e a repetição de uma frase curta.",
+      "Distinguir afasia (alteração da linguagem: compreender, encontrar palavras, nomear, repetir) de disartria (fala arrastada com linguagem intacta).",
+      "Afasia, disartria ou mutismo de início súbito: sinal de alarme de AVC. Avaliação completa no tema «Avaliação da linguagem e comunicação» (Cuidados de enfermagem transversais)."
+    ]},
     { t: "Outros componentes", itens: [
       "Tónus: resistência ao movimento passivo — espasticidade (aumenta com a velocidade) vs rigidez (constante, «roda dentada» no parkinsonismo).",
       "Reflexos osteotendinosos e sinal de Babinski (extensão do hálux) — habitualmente avaliados pelo médico; registar se observado.",
@@ -910,6 +916,96 @@ const TEMAS = [
       "Febre, dessaturação, taquipneia ou aumento de secreções sem outra causa: suspeitar de pneumonia de aspiração (pode ser silenciosa).",
       "Obstrução da via aérea por alimento: manobras de desobstrução e pedir ajuda.",
       "Saída acidental de gastrostomia: cobrir o estoma e contactar de imediato — o trajeto pode fechar em poucas horas."
+    ]}
+  ]
+},
+{
+  id: "linguagem", cap: null, parte: "p3", icone: "💬",
+  titulo: "Avaliação da linguagem e comunicação",
+  pags: null,
+  resumo: "Avaliar a linguagem e a fala à cabeceira, reconhecer afasias, parafasias e disartria, registar com exemplos e adaptar a comunicação. Uma alteração súbita da linguagem é sinal de alarme de AVC.",
+  relacionados: ["semiologia", "avc", "disfagia", "demencias"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Afasia: perturbação da linguagem por lesão cerebral — compreender, falar, nomear, repetir, ler e escrever —, quase sempre do hemisfério esquerdo (também na maioria dos canhotos — cerca de dois terços).",
+      "Disartria: a linguagem está intacta, mas a articulação da palavra é difícil (fala arrastada, «enrolada»). Disfonia: alteração da voz. Mutismo: ausência de fala.",
+      "Apraxia da fala: dificuldade em programar os movimentos da fala, com erros inconsistentes e tentativas de autocorreção; acompanha muitas vezes a afasia de Broca.",
+      "A afasia não é défice intelectual nem confusão: o doente pode compreender muito mais do que consegue dizer. No delirium, o problema principal é a atenção, que flutua.",
+      "Antes de avaliar: nível de consciência, audição e visão (óculos e prótese auditiva colocados), prótese dentária, língua materna e escolaridade (leitura e escrita)."
+    ]},
+    { t: "Avaliação à cabeceira", itens: [
+      "Fala espontânea: fazer perguntas abertas («O que o trouxe ao hospital?») e observar a fluência — débito de palavras, esforço, frases curtas ou «telegráficas», pausas para encontrar palavras.",
+      "Compreensão: dar ordens simples sem gestos («Feche os olhos», «Aponte para a janela») e depois mais complexas («Toque na orelha esquerda com a mão direita»); perguntas de sim/não (confirmar se o «sim/não» é fiável).",
+      "Nomeação: pedir o nome de objetos do dia a dia (relógio, caneta, óculos) e de partes deles (ponteiro, tampa).",
+      "Repetição: pedir que repita uma frase curta («Hoje está um dia de sol»).",
+      "Leitura e escrita: ler e cumprir uma ordem escrita; escrever uma frase simples (excluir antes défice visual ou motor da mão dominante).",
+      "Fala (articulação e voz): pedir que repita «pa-pa-pa», «ta-ta-ta», «ka-ka-ka» e «pa-ta-ka», e que leia ou diga uma frase; observar clareza, ritmo, volume, voz rouca ou nasalada.",
+      "No AVC, o item 9 (Linguagem) e o item 10 (Disartria) da NIHSS pontuam estes défices (ver Escalas)."
+    ]},
+    { t: "Erros a reconhecer e como registar", itens: [
+      "Parafasia fonémica: troca de sons dentro da palavra («ganela» por «janela»).",
+      "Parafasia semântica: troca por uma palavra relacionada («garfo» por «faca»).",
+      "Neologismos: palavras que não existem. Jargão: discurso fluente mas sem sentido.",
+      "Anomia: não encontra a palavra e recorre a rodeios («aquilo para ver as horas»).",
+      "Perseveração: repete a resposta anterior. Ecolalia: repete o que ouve. Agramatismo: frases sem palavras de ligação («Hospital… perna… ontem»).",
+      "Registar o que se observa com exemplos concretos (ex.: «diz “ganela” por janela; cumpre ordens simples, não as complexas»), e não apenas «afásico» — permite comparar ao longo do turno e entre turnos."
+    ]},
+    { t: "Tipos de afasia — orientação rápida", aviso: "Classificação de orientação: na prática os quadros são muitas vezes mistos. A avaliação detalhada é feita pela terapia da fala.", itens: [
+      "Broca (de expressão): não fluente, compreensão relativamente preservada, repetição alterada. Fala com esforço, frases curtas, agramatismo; o doente percebe as dificuldades e frustra-se; muitas vezes com hemiparésia direita.",
+      "Wernicke (de compreensão): fluente, compreensão muito alterada, repetição alterada. Muitas parafasias e neologismos, jargão; pouca consciência do défice — pode parecer confuso ou «psiquiátrico». Muitas vezes não há fraqueza (pode haver só defeito do campo visual direito): a ausência de défice motor não exclui AVC.",
+      "Global: não fluente, compreensão e repetição muito alteradas. Lesão extensa (ex.: oclusão da artéria cerebral média esquerda); comunicação muito limitada.",
+      "De condução: fluente, compreensão preservada, repetição muito alterada. Parafasias fonémicas; o doente tenta corrigir-se.",
+      "Transcortical: repetição preservada (surpreendentemente conservada). Na motora, a fala é não fluente com compreensão preservada; na sensitiva, a fala é fluente com compreensão alterada; na mista, a fala é não fluente e a compreensão alterada, muitas vezes com ecolalia.",
+      "Anómica: fluente, compreensão e repetição preservadas. Dificuldade em encontrar palavras, rodeios; a forma mais ligeira — frequente na recuperação e nas demências.",
+      "Afasia de instalação progressiva (semanas a meses) sugere tumor ou doença neurodegenerativa (ex.: afasia progressiva primária) — comunicar ao médico.",
+      "Afasia, disartria ou mutismo de início súbito são sinal de alarme de AVC — ativar a Via Verde segundo o protocolo do hospital."
+    ]},
+    { t: "Disartria e outras alterações da fala", itens: [
+      "Disartria flácida (lesão do neurónio motor inferior — núcleos do tronco ou nervos cranianos —, da junção neuromuscular ou do músculo; ex.: Guillain-Barré, miastenia, botulismo): voz nasalada, fraca, com escape de ar.",
+      "Disartria por lesão unilateral do neurónio motor central (ex.: AVC lacunar ou cortical): a mais frequente no AVC — articulação imprecisa, geralmente ligeira, muitas vezes com parésia facial central.",
+      "Disartria espástica (lesão bilateral do neurónio motor central — ex.: AVC bilaterais, paralisia pseudobulbar): fala lenta, esforçada, voz tensa.",
+      "Disartria atáxica (cerebelo — ex.: AVC ou hemorragia cerebelosa, EM, álcool, ataxias hereditárias como Machado-Joseph): fala «escandida», com sílabas irregulares, como se estivesse embriagado; de início súbito é sinal de alarme (AVC da fossa posterior).",
+      "Disartria hipocinética (Parkinson): voz baixa e monótona, que se vai apagando, fala apressada.",
+      "Disartria hipercinética (ex.: doença de Huntington, distonias): fala irregular, com interrupções e variações súbitas de volume e ritmo.",
+      "Disartria mista: combinação de tipos — típica da ELA (flácida e espástica); também na EM (espástica e atáxica) e nos parkinsonismos atípicos.",
+      "Na miastenia, a voz e a articulação pioram com a fala prolongada e a voz fica anasalada (fatigabilidade, típica da doença); uma voz que se apaga mais depressa do que o habitual, sobretudo com disfagia, fraqueza cervical ou dispneia, é sinal de possível crise miasténica — comunicar de imediato.",
+      "A disartria e a afasia acompanham-se muitas vezes de disfagia: rastrear a deglutição com o instrumento do serviço (ex.: GUSS no AVC) antes de qualquer ingestão oral. Se o doente não compreender ou não conseguir executar os pedidos do rastreio (tossir, pigarrear, engolir saliva), o resultado não é fiável: manter a via oral suspensa, pedir via alternativa para a medicação e sinalizar para terapia da fala."
+    ]},
+    { t: "Comunicar com o doente com afasia", itens: [
+      "Ambiente calmo, sem ruído; olhar para o doente e falar de frente, devagar, com frases curtas e uma ideia de cada vez.",
+      "Usar perguntas de sim/não, gestos, imagens, escrita ou um quadro de comunicação; dar tempo para responder.",
+      "Não falar mais alto, não completar as frases pelo doente e não o tratar como criança — a afasia não é défice intelectual.",
+      "Confirmar a compreensão de forma objetiva (pedir que mostre ou execute), sobretudo em consentimentos, ensinos e avaliação da dor (usar escalas visuais ou comportamentais).",
+      "Envolver a família na estratégia de comunicação e pedir avaliação pela terapia da fala."
+    ]},
+    { t: "Comunicar com o doente com disartria ou sem fala", itens: [
+      "Dar tempo, reduzir o ruído e pedir que fale devagar, com frases curtas; se não se perceber, dizê-lo com franqueza e pedir que repita ou escreva — não fingir que se percebeu.",
+      "Repetir o que se percebeu para confirmar («Disse que tem dor no braço, é isso?»).",
+      "Meios alternativos: quadro de comunicação com letras, palavras ou imagens, papel e caneta, tablet; combinar um sinal para sim e não.",
+      "Doentes entubados ou traqueostomizados: quadro de comunicação. Válvula fonatória só no doente traqueostomizado, segundo prescrição e protocolo, e sempre com o cuff totalmente desinsuflado — com o cuff insuflado o doente não consegue expirar (risco de asfixia); retirar de imediato se houver dificuldade respiratória."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Avaliar a linguagem e a fala na admissão (registo de base) e sempre que haja alteração do estado neurológico. No AVC agudo, reavaliar com a frequência da vigilância neurológica prescrita — muito mais apertada nas primeiras horas após trombólise ou trombectomia, segundo o protocolo — e nunca menos de uma vez por turno.",
+      "Sinalizar ao médico a necessidade de avaliação pela terapia da fala, segundo o circuito do serviço, indicando se é para linguagem, deglutição ou ambas. Integrar as recomendações no plano de cuidados e registar no SClínico a estratégia que resulta com este doente (ex.: «sim/não fiável com aceno; cumpre ordens simples; usa quadro de imagens»); transmiti-la na passagem de turno.",
+      "Campainha ao alcance da mão não afetada e do lado não negligenciado; pedir ao doente que mostre como a usa. Se não a usar de forma fiável (afasia de compreensão, apraxia, negligência), planear rondas regulares para dor, eliminação, sede e posicionamento, e reforçar as medidas de prevenção de quedas.",
+      "Dor: confirmar primeiro se o «sim/não» é fiável, com perguntas de resposta conhecida alternando sim e não (ex.: «Chama-se …?», «Estamos em casa?»). Se for fiável, usar autoavaliação visual (escala de faces ou régua numérica, pedindo que aponte); se não, usar a escala comportamental adotada no serviço (ex.: PAINAD). Registar sempre a escala usada, para o turno seguinte comparar com a mesma.",
+      "Consentimentos: a afasia, por si só, não retira a capacidade de decidir. Avaliar se o doente compreende a informação com meios adaptados (sim/não fiável, escrita, imagens) e registar como foi avaliado. Se não tiver capacidade, seguir o protocolo do hospital; a família é ouvida sobre a vontade do doente, mas não consente automaticamente em seu nome.",
+      "Estar atento à frustração, ao isolamento e à tristeza, frequentes na afasia; valorizar cada tentativa de comunicação."
+    ]},
+    { t: "Ensinos à família e ao cuidador", itens: [
+      "Explicar que a afasia afeta a linguagem e não a inteligência: falar com o doente como adulto e incluí-lo nas conversas.",
+      "Falar de frente, devagar, com frases curtas e uma ideia de cada vez; usar gestos, imagens e escrita; dar tempo para responder.",
+      "Não corrigir cada erro nem completar sempre as frases; aceitar outras formas de comunicar.",
+      "Manter os óculos e a prótese auditiva; continuar em casa os exercícios indicados pela terapia da fala.",
+      "Reconhecer sinais de novo AVC — boca ao lado, falta de força num braço, dificuldade em falar — e ligar 112 de imediato, anotando a hora de início.",
+      "Antes da alta: descrever na carta de alta de enfermagem como o doente comunica e a estratégia que resulta, e confirmar que ficou pedida a continuidade da terapia da fala (ambulatório, centro de saúde ou RNCCI)."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Afasia, disartria ou mutismo de início súbito: possível AVC — registar a hora (ou a última vez visto bem), ativar a Via Verde segundo o protocolo do hospital, avaliar a glicemia capilar (a hipoglicemia pode simular AVC) sem atrasar a ativação e suspender a via oral (incluindo medicação) até nova avaliação da deglutição.",
+      "Agravamento da linguagem ou da fala num doente já com défice (nova lesão, hemorragia, edema, crise epilética): comunicar de imediato ao médico.",
+      "Alteração transitória da linguagem que recuperou (possível AIT): comunicar sempre, mesmo que o doente já esteja bem.",
+      "Disartria ou voz fraca com disfagia ou dificuldade respiratória (ex.: miastenia, Guillain-Barré): risco de aspiração e de insuficiência respiratória — suspender a via oral, elevar a cabeceira e comunicar de imediato.",
+      "Confusão de início agudo: avaliar a atenção e procurar parafasias, neologismos ou falha na compreensão — uma afasia fluente (Wernicke) de início súbito pode parecer confusão e é um possível AVC (ativar a Via Verde); se o problema principal for a atenção, que flutua, pensar em delirium, procurar a causa e comunicar ao médico."
     ]}
   ]
 },
