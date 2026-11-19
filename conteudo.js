@@ -845,7 +845,7 @@ const TEMAS = [
   id: "especialidade", cap: 23, parte: "p2", icone: "🏥",
   titulo: "A neurologia como especialidade",
   pags: "455–458",
-  resumo: "Capítulo sobre a especialidade médica de Neurologia (formação e áreas de diferenciação). Sem conteúdo clínico específico para a prática de enfermagem — consultar o livro.",
+  resumo: "A especialidade médica de Neurologia: formação e áreas de diferenciação. Sem conteúdo clínico específico para a prática de enfermagem.",
   seccoes: [
     { t: "Áreas de diferenciação com que a equipa de enfermagem se cruza", itens: [
       "Doenças cerebrovasculares/Unidade de AVC, epilepsia (vídeo-EEG), doenças do movimento, doenças desmielinizantes, doenças neuromusculares, demências, cefaleias, neurofisiologia."

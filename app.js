@@ -66,7 +66,7 @@
   const rotuloEscala = e => nomeCurto(e).replace(/^Escala (de Coma )?de /, "");
   // Rótulo mínimo: sigla entre parênteses quando existe (mRS), senão o rótulo normal
   const rotuloCurto = e => { const m = /\(([^)]+)\)\s*$/.exec(nomeCurto(e)); return m ? m[1] : rotuloEscala(e); };
-  const origem = t => t.cap ? `Cap. ${esc(t.cap)}` : (t.parte === "p3" ? "Enfermagem" : "Patologia");
+  const origem = t => ({ p1: "Avaliação", p2: "Clínica neurológica", p3: "Enfermagem" })[t.parte] || "Patologia";
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
     avc: ["nihss", "glasgow", "rankin", "guss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
@@ -298,7 +298,7 @@
       temas.forEach(t => { h += linha(`#tema-${esc(t.id)}`, esc(t.titulo), origem(t)); });
       h += `</div></section>`;
     });
-    h += `<p class="rodape">Temas organizados pelos capítulos 1–23 de ${LIVRO}. Inclui ainda cuidados de enfermagem transversais e patologias específicas.</p>`;
+    h += `<p class="rodape">Conteúdo original escrito para a equipa de enfermagem, com base em ${LIVRO}. Inclui ainda cuidados de enfermagem transversais e patologias específicas.</p>`;
     return h;
   }
 
@@ -438,7 +438,7 @@
         <div class="cab-tema-linha">
           <div class="cab-tema-txt">
             <h1 tabindex="-1">${esc(t.titulo)}</h1>
-            <p class="meta">${t.cap ? `Capítulo ${esc(t.cap)}` : (t.parte === "p3" ? "Cuidados de enfermagem transversais" : "Patologia específica")} · ${todas.length} ${todas.length === 1 ? "secção" : "secções"}</p>
+            <p class="meta">${t.parte === "p4" ? "Patologia específica" : esc(nomeParte(t.parte))} · ${todas.length} ${todas.length === 1 ? "secção" : "secções"}</p>
           </div>
           <button type="button" class="btn-sec btn-imprimir" data-acao="imprimir">${ic("imprimir")}<span>Imprimir</span></button>
         </div>
@@ -465,7 +465,7 @@
     h += ordem.map(([s, k]) => blocoSeccao(s, k)).join("");
     const rel = (t.relacionados || []).map(temaPorId).filter(Boolean);
     if (rel.length) h += `<nav class="ver-tambem" aria-label="Ver também"><span class="etiqueta">Ver também</span><ul>${rel.map(x => `<li><a href="#tema-${esc(x.id)}">${esc(x.titulo)}</a></li>`).join("")}</ul></nav>`;
-    h += `<p class="rodape">${t.cap ? `Para aprofundar: ${LIVRO}, Cap. ${esc(t.cap)}. Texto desta app escrito para a equipa de enfermagem; não reproduz o livro.` : "Tema escrito para a equipa de enfermagem. Confirmar com as normas DGS e os protocolos do hospital."}</p>
+    h += `<p class="rodape">${t.cap ? `Para aprofundar: ${LIVRO}. Texto desta app escrito para a equipa de enfermagem; não reproduz o livro.` : "Tema escrito para a equipa de enfermagem. Confirmar com as normas DGS e os protocolos do hospital."}</p>
       <nav class="navegar" aria-label="Tema anterior e seguinte">
       ${ant ? `<a class="ant" href="#tema-${esc(ant.id)}">${ic("voltar")}<span><small>Anterior</small>${esc(ant.titulo)}</span></a>` : ""}
       ${seg ? `<a class="seg" href="#tema-${esc(seg.id)}"><span><small>Seguinte</small>${esc(seg.titulo)}</span>${ic("avancar")}</a>` : ""}</nav>`;
