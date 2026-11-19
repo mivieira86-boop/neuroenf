@@ -145,7 +145,7 @@
 
   // ── Elementos fixos: marca, ícones dos botões ──
   document.querySelectorAll(".marca").forEach(m => {
-    m.innerHTML = `${marcaSvg}<span class="marca-txt"><span class="marca-nome">NeuroEnf</span><span class="marca-sub">Enfermagem em Neurologia</span></span>`;
+    m.innerHTML = `${marcaSvg}<span class="marca-txt"><span class="marca-nome">Neuro<span class="marca-enf">Enf</span></span><span class="marca-sub">Enfermagem em Neurologia</span></span>`;
   });
   $("#pesquisaIc").innerHTML = ic("pesquisa");
   botaoMenu.innerHTML = ic("menu");
@@ -256,7 +256,7 @@
     const existeEscala = id => ESCALAS.some(e => e.id === id);
     const existeTema = id => TEMAS.some(t => t.id === id);
     const temasAlarme = TEMAS.filter(temAlarme).length;
-    let h = `<header class="cab-pagina">
+    let h = `<header class="cab-pagina cab-inicio">
         <h1 tabindex="-1">Guia de Enfermagem em Neurologia</h1>
         <p class="sub">Adulto · ${TEMAS.length} temas · ${ESCALAS.length} escalas</p>
       </header>
@@ -316,6 +316,7 @@
     let h = "";
     if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
     if (s.escala) h += escalaEmbutida(s.escala);
+    if (s.aviso) h += `<p class="nota-terap aviso-seccao">${ic("info")}<span>${esc(s.aviso)}</span></p>`;
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
     if (s.tabela) {
       const cab = s.tabela.cab || [];
@@ -945,6 +946,7 @@
     const partes = [{ txt: t.titulo, k: null }, { txt: t.resumo, k: null }];
     (t.seccoes || []).forEach((s, k) => {
       partes.push({ txt: s.t, k, s });
+      if (s.aviso) partes.push({ txt: s.aviso, k, s });
       (s.itens || []).forEach(i => partes.push({ txt: i, k, s }));
       if (s.tabela) (s.tabela.lin || []).forEach(l => partes.push({ txt: l.join(" — "), k, s }));
       if (s.tabela && s.tabela.nota) partes.push({ txt: s.tabela.nota, k, s });

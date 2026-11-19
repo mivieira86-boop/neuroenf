@@ -10,7 +10,7 @@
   "display": "standalone",
   "orientation": "any",
   "background_color": "#0B1A30",
-  "theme_color": "#F5F4F0",
+  "theme_color": "#0B1A30",
   "categories": [
     "medical",
     "education"

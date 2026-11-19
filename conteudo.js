@@ -2179,7 +2179,33 @@ const TEMAS = [
       "Antiepiléticos de manutenção escolhidos conforme o tipo de crise, a idade, o sexo e as outras doenças (ex.: levetiracetam, lamotrigina, lacosamida, valproato, carbamazepina).",
       "Valproato: contraindicado em mulheres em idade fértil, salvo programa de prevenção da gravidez; nos homens também exige informação e cautela.",
       "Estado de mal: benzodiazepina (midazolam IM, bucal ou intranasal, ou diazepam ou midazolam EV; lorazepam EV se disponível) e depois antiepilético EV (levetiracetam, valproato, fenitoína ou lacosamida), segundo o protocolo.",
-      "Epilepsia refratária: avaliação para cirurgia, estimulação do nervo vago ou dieta cetogénica."
+      "Epilepsia refratária: avaliação pré-cirúrgica para localizar o foco (ver abaixo); opções: cirurgia (incluindo técnicas minimamente invasivas, como a termoablação), estimulação do nervo vago, estimulação cerebral profunda ou dieta cetogénica."
+    ]},
+    { t: "Epilepsia refratária: avaliação pré-cirúrgica", itens: [
+      "Epilepsia refratária (farmacorresistente): não se consegue uma ausência mantida de crises com dois esquemas de antiepiléticos (em monoterapia ou em associação) bem escolhidos, bem tolerados e em dose adequada.",
+      "Nestes doentes avalia-se se há um foco epilético que possa ser tratado sem fármacos (ex.: cirurgia). Para o localizar, juntam-se vários exames.",
+      "Monitorização vídeo-EEG prolongada numa unidade de monitorização de epilepsia (em regra 24 horas a 2 semanas), muitas vezes com redução ou suspensão da medicação para registar crises. Durante a redução há maior risco de crises em salvas, estado de mal, quedas e psicose pós-ictal: vigilância contínua, acesso venoso periférico permeável, protocolo escrito de resgate e reintrodução da medicação no fim, conforme prescrição.",
+      "RM cerebral com protocolo de alta resolução (e, por vezes, RM funcional para mapear a fala e o movimento); PET (consumo de glicose); SPECT (fluxo de sangue); avaliação neuropsicológica.",
+      "Quando estes exames não chegam (cerca de um terço dos casos): EEG intracraniano com elétrodos intracerebrais (estereo-EEG) ou subdurais."
+    ]},
+    { t: "SPECT ictal: procedimento", aviso: "Este resumo não dispensa a consulta do protocolo institucional (Medicina Nuclear e unidade de monitorização de epilepsia).", itens: [
+      "O que é: exame de medicina nuclear que mostra o fluxo de sangue nas diferentes zonas do cérebro. Durante a crise, o fluxo aumenta na zona onde a crise começa.",
+      "O radiofármaco (99mTc-HMPAO ou 99mTc-ECD) fixa-se no cérebro logo após a injeção e «fotografa» o fluxo desse momento; as imagens são adquiridas mais tarde na Medicina Nuclear, com o doente já estável.",
+      "Faz-se em dois tempos: SPECT ictal (injeção durante uma crise, no internamento em vídeo-EEG) e SPECT interictal (injeção noutro dia, fora das crises). A comparação das duas, sobreposta à RM (SISCOM), ajuda a localizar o foco.",
+      "Preparação: prescrição médica e consentimento informado; confirmar com a Medicina Nuclear a disponibilidade e o prazo de utilização da dose; cateter venoso periférico de bom calibre, colocado com antecedência, permeável, reservado à injeção, com prolongamento e seringas de soro fisiológico para lavagem — definir antes por onde se dá a medicação de resgate EV (segundo acesso, ou o mesmo cateter após lavagem), para não a atrasar; mulheres em idade fértil: excluir gravidez segundo protocolo; perguntar se amamenta e seguir a indicação da Medicina Nuclear sobre a pausa.",
+      "Conhecer antes o padrão habitual das crises do doente (como começam, primeiros sinais) e combinar com o técnico de neurofisiologia como se identifica o início no EEG. Dose em contentor blindado, no local definido, pronta a usar. Injeta apenas o profissional com formação em proteção radiológica designado no protocolo acordado com a Medicina Nuclear, e só nas crises que cumpram os critérios definidos pelo neurologista.",
+      "Na crise: injetar o mais cedo possível após o início, idealmente nos primeiros 20 segundos — quanto mais tarde, mais a imagem mostra a propagação e não o início da crise. Se a crise já terminou, não injetar sem decisão do neurologista (a imagem pós-crise pode ser enganadora). Bólus seguido de lavagem com soro fisiológico.",
+      "A injeção não substitui a segurança nem o tratamento: outro profissional protege o doente durante a crise e a medicação de resgate dá-se conforme prescrição — nunca atrasar o tratamento de uma crise prolongada ou de um estado de mal.",
+      "Registar: hora de início da crise (clínica e no EEG), hora da injeção, duração e características da crise e se foi a crise habitual do doente; comunicar à Medicina Nuclear.",
+      "Depois: vigilância pós-crise habitual; transporte para aquisição das imagens quando o doente estiver estável, no período indicado pela Medicina Nuclear — acompanhado por enfermeiro, com a medicação de resgate prescrita, oxigénio e aspiração, porque continua com a medicação reduzida e em risco de nova crise.",
+      "SPECT interictal: injeção em repouso, num ambiente calmo, com pouca luz e ruído, sem crises há pelo menos 24 horas (crises focais sem alteração da consciência) ou 48 horas (crises focais com alteração da consciência), idealmente com EEG a registar durante a injeção e os 2 minutos seguintes, segundo o protocolo da Medicina Nuclear; comunicar qualquer crise antes ou durante a captação."
+    ]},
+    { t: "SPECT: radioproteção", tipo: "precaucao", aviso: "Este resumo não dispensa a consulta do protocolo institucional (Medicina Nuclear e unidade de monitorização de epilepsia).", itens: [
+      "Manusear a dose com luvas e com a seringa blindada; reduzir o tempo e aumentar a distância à dose e ao doente injetado, sem nunca prejudicar os cuidados durante e após a crise.",
+      "Seringas, compressas e material contaminado: contentor próprio, segundo as regras da Medicina Nuclear; em caso de derrame, isolar a zona e chamar a Medicina Nuclear.",
+      "Nas horas seguintes, a urina e os fluidos são radioativos: usar luvas na higiene e no manuseamento de fraldas, sacos coletores e urinóis.",
+      "Profissionais grávidas ou a amamentar: comunicar a situação ao serviço; não preparam nem injetam a dose; os outros cuidados ao doente nas horas seguintes seguem a orientação da Medicina Nuclear e da proteção radiológica da instituição.",
+      "Se puder beber, incentivar a hidratação e a micção frequente; contacto próximo e prolongado com grávidas e crianças só depois do período indicado pela Medicina Nuclear."
     ]},
     { t: "Durante a crise", itens: [
       "Manter a calma, registar a hora de início, ficar junto do doente e pedir ajuda.",
@@ -2203,7 +2229,8 @@ const TEMAS = [
       "Segurança: duche em vez de banho de imersão, não fechar a porta da casa de banho à chave, não nadar sozinho, cuidado com alturas e com o fogão.",
       "Condução: há restrições legais após uma crise — esclarecer com o médico.",
       "Ensinar a família a atuar numa crise e a usar o midazolam bucal ou intranasal, se prescrito (no adulto, uso fora da indicação aprovada).",
-      "Contraceção e gravidez: planear com o neurologista (interações e risco de malformações); ácido fólico."
+      "Contraceção e gravidez: planear com o neurologista (interações e risco de malformações); ácido fólico.",
+      "Avaliação pré-cirúrgica: explicar o objetivo da monitorização vídeo-EEG e do SPECT, que podem ser necessárias crises durante o internamento e que a equipa está preparada para as tratar; pedir ao doente e à família que carreguem logo no botão de alarme ao primeiro sinal ou aura, que o doente se mantenha no campo da câmara e não se levante sem ajuda, e que informem gravidez ou amamentação; explicar que a decisão sobre a cirurgia só é tomada depois, com o doente, em reunião da equipa."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
       "Crise com 5 minutos ou mais, ou crises repetidas sem recuperação da consciência entre elas: estado de mal — emergência.",

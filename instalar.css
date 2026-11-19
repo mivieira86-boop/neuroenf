@@ -1,9 +1,9 @@
 /* Aviso de instalação (PWA) */
 #aviso-instalar{position:fixed;left:50%;bottom:16px;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:10px;
-  max-width:min(560px,calc(100vw - 24px));padding:10px 10px 10px 16px;background:var(--superficie,#fff);color:var(--texto,#1B2A30);
-  border:1px solid var(--linha,#E2DED5);border-radius:12px;box-shadow:0 6px 24px rgba(27,42,48,.16);font-size:15px;line-height:1.35}
+  max-width:min(560px,calc(100vw - 24px));padding:10px 10px 10px 16px;background:var(--superficie,#fff);color:var(--texto,#0B1A30);
+  border:1px solid var(--linha,#D9E2EB);border-radius:12px;box-shadow:0 6px 24px rgba(11,26,48,.18);font-size:15px;line-height:1.35}
 #aviso-instalar .aviso-instalar-txt{flex:1}
-#aviso-instalar .aviso-instalar-btn{min-height:44px;padding:0 16px;border:0;border-radius:10px;background:var(--acento,#0E6B6B);color:var(--sobre-acento,#fff);font:inherit;font-weight:600;cursor:pointer}
-#aviso-instalar .aviso-instalar-fechar{min-width:44px;min-height:44px;border:0;background:transparent;color:var(--secundario,#5E6B70);font-size:22px;cursor:pointer;border-radius:10px}
-#aviso-instalar button:focus-visible{outline:3px solid var(--acento,#0E6B6B);outline-offset:2px}
+#aviso-instalar .aviso-instalar-btn{min-height:44px;padding:0 16px;border:0;border-radius:10px;background:var(--acento,#0A6C84);color:var(--sobre-acento,#fff);font:inherit;font-weight:600;cursor:pointer}
+#aviso-instalar .aviso-instalar-fechar{min-width:44px;min-height:44px;border:0;background:transparent;color:var(--secundario,#4E5D72);font-size:22px;cursor:pointer;border-radius:10px}
+#aviso-instalar button:focus-visible{outline:3px solid var(--acento,#0A6C84);outline-offset:2px}
 @media print{#aviso-instalar{display:none}}

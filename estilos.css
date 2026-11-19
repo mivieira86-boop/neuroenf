@@ -1,6 +1,7 @@
 /* NeuroEnf — estilos
-   Identidade visual do HospitalCozy: Inter, creme quente, verde-petróleo, ícones de linha.
-   «Cor forte só para o que pede atenção.» Modo escuro automático (turnos da noite). */
+   Identidade visual derivada do logótipo: Inter, azul-marinho profundo, ciano/azul-petróleo, ícones de linha.
+   «Cor forte só para o que pede atenção.» Modo escuro automático (turnos da noite).
+   Pares de cor principais verificados para contraste WCAG AA (≥4,5:1 texto; ≥3:1 contornos). */
 
 @font-face {
   font-family: NeuroEnfInter;
@@ -13,26 +14,36 @@
 /* ── Tokens ── */
 :root {
   color-scheme: light;
-  --fundo: #F5F4F0;
+  --fundo: #F1F5F9;
   --superficie: #FFFFFF;
-  --afundado: #EFEDE7;
-  --linha: #E2DED5;
-  --texto: #1B2A30;
-  --secundario: #5E6B70;
-  --acento: #0E6B6B;
+  --afundado: #E7EDF3;
+  --linha: #D9E2EB;
+  --texto: #0B1A30;
+  --secundario: #4E5D72;
+  --acento: #0A6C84;
   --sobre-acento: #FFFFFF;
-  --acento-suave: #E3F1EF;
-  --marca: #023F4F;
+  --acento-suave: #E0F4F5;
+  --marca: #0B1A30;
+  --enf-1: #087C84;
+  --enf-2: #0E5FA0;
   --alerta: #B42318;
-  --alerta-suave: #FDECEA;
-  --atencao: #9A5B00;
-  --atencao-suave: #FFF4DC;
-  --ok: #2F6B3F;
-  --ok-suave: #E8F3EA;
-  --campo-borda: #CFCAC0;
+  --alerta-suave: #FDECEC;
+  --atencao: #8F5200;
+  --atencao-suave: #FFF3D6;
+  --ok: #1F6B45;
+  --ok-suave: #E3F3EA;
+  --campo-borda: #8592A5;
   --realce: #FBE3A6;
-  --sombra: 0 1px 2px rgba(27, 42, 48, .06);
-  --sombra-flutuante: 0 -1px 0 var(--linha), 0 -6px 18px rgba(27, 42, 48, .07);
+  /* Faixa do início: o marinho do logótipo, com leve luz ao centro */
+  --heroi-fundo: #0B1A30;
+  --heroi-luz: #143456;
+  --heroi-texto: #FFFFFF;
+  --heroi-sub: #A9BED3;
+  --heroi-borda: transparent;
+  --traco-marca: linear-gradient(90deg, #00C0C0, #18A8C0 55%, #1890C0);
+  --sinal-anel: transparent;
+  --sombra: 0 1px 2px rgba(11, 26, 48, .06);
+  --sombra-flutuante: 0 -1px 0 var(--linha), 0 -6px 18px rgba(11, 26, 48, .08);
   --raio: 12px;
   --raio-pequeno: 8px;
   --lateral: 288px;
@@ -43,24 +54,33 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --fundo: #0F1719;
-    --superficie: #172226;
-    --afundado: #1E2B2F;
-    --linha: #2D3C41;
-    --texto: #E4ECEE;
-    --secundario: #9CAFB4;
-    --acento: #4FB7AE;
-    --sobre-acento: #062220;
-    --acento-suave: #173739;
-    --marca: #A5D6DF;
-    --alerta: #FF8E7E;
-    --alerta-suave: #3B1E1B;
+    --fundo: #0A1628;
+    --superficie: #102238;
+    --afundado: #162A42;
+    --linha: #233A55;
+    --texto: #E6EEF5;
+    --secundario: #9FB2C6;
+    --acento: #2CD3CF;
+    --sobre-acento: #03202A;
+    --acento-suave: #0E3442;
+    --marca: #E6EEF5;
+    --enf-1: #2CD3CF;
+    --enf-2: #4FB3F0;
+    --alerta: #FF6B5E;
+    --alerta-suave: #3D1519;
     --atencao: #F2C14E;
-    --atencao-suave: #342A12;
-    --ok: #82CC92;
-    --ok-suave: #17301E;
-    --campo-borda: #3B4C51;
+    --atencao-suave: #33280F;
+    --ok: #7FD49A;
+    --ok-suave: #11301F;
+    --campo-borda: #566F8C;
     --realce: #5A4813;
+    --heroi-fundo: #0D1F36;
+    --heroi-luz: #17375A;
+    --heroi-texto: #FFFFFF;
+    --heroi-sub: #B4C6D9;
+    --heroi-borda: #233A55;
+    --traco-marca: linear-gradient(90deg, #2CD3CF, #4FB3F0);
+    --sinal-anel: rgba(44, 211, 207, .45);
     --sombra: 0 0 0 transparent;
     --sombra-flutuante: 0 -1px 0 var(--linha), 0 -6px 18px rgba(0, 0, 0, .35);
   }
@@ -87,8 +107,9 @@ h1, h2, h3 { font-weight: 650; letter-spacing: -.011em; }
   fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round;
 }
 
-/* Foco visível (teclado) */
+/* Foco visível (teclado) e seleção em ciano */
 :focus-visible { outline: 2.5px solid var(--acento); outline-offset: 2px; border-radius: 6px; }
+::selection { background: color-mix(in srgb, var(--acento) 24%, transparent); color: inherit; }
 main:focus, h1:focus, h2:focus { outline: none; }
 
 [hidden] { display: none !important; }
@@ -108,11 +129,25 @@ main:focus, h1:focus, h2:focus { outline: none; }
   display: inline-flex; align-items: center; gap: 10px; min-height: var(--alvo);
   color: var(--marca); text-decoration: none; border-radius: 10px;
 }
-.marca-sinal { width: 30px; height: 30px; flex-shrink: 0; border-radius: 8px; display: block; }
-.marca-sinal rect { fill: var(--acento); }
-.marca-sinal path { fill: none; stroke: var(--sobre-acento); stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+/* O sinal é o cérebro do logótipo sobre marinho: contorno fino para não se perder no tema escuro */
+.marca-sinal {
+  width: 30px; height: 30px; flex-shrink: 0; border-radius: 8px; display: block;
+  background: #0B1A30; box-shadow: 0 0 0 1px var(--sinal-anel);
+}
 .marca-txt { display: flex; flex-direction: column; line-height: 1.15; }
-.marca-nome { font-weight: 700; font-size: 19px; letter-spacing: -.02em; }
+.marca-nome { font-weight: 700; font-size: 19px; letter-spacing: -.02em; color: var(--marca); }
+/* «Enf» como no logótipo: cor sólida do acento; degradé ciano→azul onde o browser o suporta */
+.marca-enf { color: var(--enf-1); }
+@supports ((-webkit-background-clip: text) or (background-clip: text)) {
+  .marca-enf {
+    background: linear-gradient(90deg, var(--enf-1), var(--enf-2));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; color: transparent;
+  }
+}
+@media (forced-colors: active) {
+  .marca-enf { background: none; -webkit-text-fill-color: currentColor; color: inherit; }
+}
 .marca-sub { font-size: 12px; color: var(--secundario); font-weight: 500; letter-spacing: 0; }
 
 /* ── Pesquisa ── */
@@ -170,7 +205,7 @@ main:focus, h1:focus, h2:focus { outline: none; }
   color: var(--texto); text-decoration: none; font-size: 15px; font-weight: 600; line-height: 1.3;
 }
 .lateral-nav a.tema { font-weight: 500; font-size: 14.5px; padding: 8px 12px; }
-.lateral-nav a .ic { color: var(--texto); }
+.lateral-nav a .ic { color: var(--acento); }
 
 /* Partes do menu: <details> com sumário no estilo da etiqueta de secção */
 .grupo-menu { margin: 0; }
@@ -199,6 +234,21 @@ main {
 h1 { font-size: 28px; line-height: 1.2; margin: 0; letter-spacing: -.02em; font-weight: 700; }
 .cab-pagina { margin: 0 0 20px; }
 .cab-pagina .sub, .sub { color: var(--secundario); margin: 6px 0 0; font-size: 15.5px; max-width: 72ch; }
+
+/* Faixa do início: marinho do logótipo, luz suave ao centro e traço ciano→azul em baixo */
+.cab-inicio {
+  position: relative; overflow: hidden;
+  margin: 0 0 24px; padding: 22px 24px 24px;
+  background: radial-gradient(120% 140% at 22% 0%, var(--heroi-luz), var(--heroi-fundo) 62%);
+  background-color: var(--heroi-fundo);
+  border: 1px solid var(--heroi-borda); border-radius: var(--raio);
+  color: var(--heroi-texto);
+}
+.cab-inicio::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: var(--traco-marca);
+}
+.cab-inicio h1 { color: var(--heroi-texto); }
+.cab-inicio .sub { color: var(--heroi-sub); }
 
 .nota-aviso {
   display: flex; gap: 8px; align-items: flex-start;
@@ -695,13 +745,14 @@ mark { background: var(--realce); color: inherit; padding: 0 2px; border-radius:
   .lateral.aberto { transform: translateX(0); visibility: visible; transition: transform .2s ease, visibility 0s; }
   .lateral-cab { display: none; }
   .lateral-nav { padding-top: 8px; padding-bottom: max(32px, env(safe-area-inset-bottom)); }
-  .veu { display: block; position: fixed; inset: var(--alt-topo) 0 0 0; z-index: 20; background: rgba(15, 23, 25, .35); }
+  .veu { display: block; position: fixed; inset: var(--alt-topo) 0 0 0; z-index: 20; background: rgba(11, 26, 48, .4); }
   .veu[hidden] { display: none; }
 
   main { max-width: none; padding: 20px clamp(14px, 4vw, 32px) 96px; }
 }
 @media (max-width: 600px) {
   h1 { font-size: 24px; }
+  .cab-inicio { padding: 18px 18px 20px; margin-bottom: 20px; }
   .cab-tema { padding: 14px 16px 16px; margin-left: -2px; margin-right: -2px; }
   .cab-tema h1 { font-size: 23px; }
   .cab-tema-linha { gap: 10px; }
@@ -756,6 +807,10 @@ mark { background: var(--realce); color: inherit; padding: 0 2px; border-radius:
   .corpo { display: block; min-height: 0; }
   main { max-width: none; padding: 0; }
   .cab-tema { background: #fff; border: 0; padding: 0; }
+  .cab-inicio { background: #fff; color: #000; border: 0; padding: 0; }
+  .cab-inicio::after { display: none; }
+  .cab-inicio h1 { color: #000; }
+  .cab-inicio .sub { color: #333; }
   .cartao { box-shadow: none; break-inside: avoid; border-color: #999; }
   .cartao.alarme, .cartao.precaucao { border: 2px solid #000; box-shadow: none; padding-left: 18px; }
   .resultado { position: static; box-shadow: none; border: 2px solid #000; border-radius: 8px; background: #fff; }
