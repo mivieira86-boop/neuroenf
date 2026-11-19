@@ -8,6 +8,7 @@
   consentimento, campainha, disfagia), ensinos e sinais de alarme. Botões NIHSS e GUSS. Revisto pelos agentes médico e
   de enfermagem.
 - Semiologia: a avaliação detalhada da linguagem passou para o tema próprio; fica um rastreio rápido e o «Ver também».
+- **Estimulação cerebral profunda (ECP / DBS)** nas Doenças do movimento: alvos, critérios de seleção no Parkinson, teste agudo de levodopa, cuidados perioperatórios de enfermagem (medicação no horário, quedas, feridas, microlesão, programação, humor e risco de suicídio), precauções (bisturi, cardioversão, ECG, desfibrilhação) e ensinos para a alta. A pesquisa por «DBS» passa a encontrá-la. Revisto pelos agentes médico e de enfermagem.
 
 ## Versão 17 — 19/11/2026
 - Menu lateral: as **Patologias A–Z** ficam fechadas; a lista só aparece quando se toca no título da secção.
