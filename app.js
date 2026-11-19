@@ -180,9 +180,11 @@
     h += item("#protocolos", "protocolos", ic("protocolo"), "Protocolos do serviço");
     const subMenu = (chave, titulo, n, corpo) =>
       `<details class="sub-menu" ${chave}><summary><span class="rot">${titulo}</span><span class="cont">${n}<span class="so-leitor"> ${n === 1 ? "doença" : "doenças"}</span></span>${ic("seta", "ic-sum")}</summary><div class="sub-itens">${corpo}</div></details>`;
+    // Clínica neurológica e Cuidados transversais estão no início; no menu não se repetem
+    const FORA_DO_MENU = ["p2", "p3"];
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
-      if (!temas.length) return;
+      if (!temas.length || FORA_DO_MENU.includes(p.id)) return;
       // As Patologias A–Z ficam fechadas: a lista só aparece quando se toca no título
       h += `<details class="grupo-menu" data-parte="${esc(p.id)}"${p.id === "p4" ? "" : " open"}>
         <summary class="sec-menu"><span class="sec-nome">${esc(NOME_CURTO_PARTE[p.id] || p.nome)}</span><span class="traco" aria-hidden="true"></span><span class="cont">${temas.length}<span class="so-leitor"> temas</span></span>${ic("seta", "ic-sum")}</summary>`;
