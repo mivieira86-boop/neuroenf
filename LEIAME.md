@@ -19,7 +19,7 @@ ou duplo clique no `index.html` no Explorador do Windows.
 
 ## Acrescentar um tema
 Em `conteudo.js`, copiar um bloco `{ id: ..., cap: ..., ... }` dentro de `TEMAS` e alterar.
-- Temas do livro: `cap` e `pags` preenchidos, `parte: "p1"` ou `"p2"`.
+- Temas do livro: `cap` preenchido (`pags` fica só como referência interna e não é mostrado), `parte: "p1"` ou `"p2"`.
 - Temas de enfermagem transversais: `cap: null`, `pags: null`, `parte: "p3"`; patologias específicas: `parte: "p4"` (por ordem alfabética).
 Uma secção pode ter `alarme: true` (vermelho) ou `tipo: "precaucao"` (âmbar).
 Cada secção pode ter `itens` (lista), `tabela` (`cab`, `lin`, `nota`) e `alarme: true` (caixa vermelha).

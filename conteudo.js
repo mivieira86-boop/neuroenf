@@ -1,7 +1,7 @@
 // NeuroEnf — conteúdo clínico (adulto)
 // Texto original orientado para enfermagem. Organizado pelos capítulos 1–23 de
-// «A Neurologia que Todo Médico Deve Saber» (Nitrini & Bacheschi, Atheneu) — as
-// páginas indicadas remetem para o livro. A Parte 3 (Neurologia Infantil) não está incluída.
+// «A Neurologia que Todo Médico Deve Saber» (Nitrini & Bacheschi, Atheneu).
+// A Parte 3 (Neurologia Infantil) não está incluída.
 
 const PARTES = [
   { id: "p1", nome: "Avaliação e diagnóstico neurológico" },
@@ -140,7 +140,7 @@ const TEMAS = [
   pags: "83–110",
   resumo: "Preparação do doente, colaboração no procedimento e cuidados após punção lombar, eletroencefalograma e eletromiografia.",
   seccoes: [
-    { t: "Punção lombar / líquido cefalorraquidiano (p. 83)", itens: [
+    { t: "Punção lombar / líquido cefalorraquidiano", itens: [
       "Antes: confirmar consentimento, coagulação e plaquetas, medicação anticoagulante/antiagregante (seguir protocolo), e se foi feita imagem quando há défice focal, alteração da consciência ou suspeita de hipertensão intracraniana.",
       "Posicionamento: decúbito lateral em posição fetal (permite medir a pressão de abertura) ou sentado inclinado para a frente.",
       "Identificar e numerar os tubos por ordem de colheita; enviar de imediato ao laboratório (células degradam-se).",
@@ -158,14 +158,14 @@ const TEMAS = [
       ],
       nota: "Confirmar sempre os intervalos de referência do laboratório da instituição."
     }},
-    { t: "Eletroencefalograma — EEG (p. 88)", itens: [
+    { t: "Eletroencefalograma — EEG", itens: [
       "Cabelo lavado na véspera, seco, sem cremes, óleos, gel ou laca.",
       "Manter a medicação habitual, salvo indicação médica em contrário.",
       "Se pedido EEG com privação de sono: confirmar as horas de sono permitidas e garantir que o doente não conduz depois.",
       "Fazer refeição normal (a hipoglicemia altera o traçado).",
       "Vídeo-EEG prolongado: segurança para crises (grades almofadadas, cama baixa, oxigénio e aspiração disponíveis), registo de eventos com hora. Se houver redução da medicação antiepilética: acesso venoso permeável, medicação de resgate prescrita e acessível, acompanhar sempre ao WC/duche, ensinar o doente e a família a acionar o botão de evento."
     ]},
-    { t: "Eletromiografia — EMG e estudos de condução nervosa (p. 91)", itens: [
+    { t: "Eletromiografia — EMG e estudos de condução nervosa", itens: [
       "Pele limpa, sem cremes nos membros a estudar; membros aquecidos (o frio altera as conduções).",
       "Informar o técnico/médico sobre anticoagulação, pacemaker/CDI e linfedema.",
       "Explicar que causa algum desconforto (choques breves e agulha).",

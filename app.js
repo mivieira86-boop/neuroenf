@@ -298,7 +298,7 @@
       temas.forEach(t => { h += linha(`#tema-${esc(t.id)}`, esc(t.titulo), origem(t)); });
       h += `</div></section>`;
     });
-    h += `<p class="rodape">Temas organizados pelos capítulos 1–23 de ${LIVRO}; as páginas de cada capítulo estão no fim do tema. Inclui ainda cuidados de enfermagem transversais e patologias específicas.</p>`;
+    h += `<p class="rodape">Temas organizados pelos capítulos 1–23 de ${LIVRO}. Inclui ainda cuidados de enfermagem transversais e patologias específicas.</p>`;
     return h;
   }
 
@@ -465,7 +465,7 @@
     h += ordem.map(([s, k]) => blocoSeccao(s, k)).join("");
     const rel = (t.relacionados || []).map(temaPorId).filter(Boolean);
     if (rel.length) h += `<nav class="ver-tambem" aria-label="Ver também"><span class="etiqueta">Ver também</span><ul>${rel.map(x => `<li><a href="#tema-${esc(x.id)}">${esc(x.titulo)}</a></li>`).join("")}</ul></nav>`;
-    h += `<p class="rodape">${t.cap ? `Para aprofundar: ${LIVRO}, Cap. ${esc(t.cap)}, p. ${esc(t.pags)}. Texto desta app escrito para a equipa de enfermagem; não reproduz o livro.` : "Tema escrito para a equipa de enfermagem. Confirmar com as normas DGS e os protocolos do hospital."}</p>
+    h += `<p class="rodape">${t.cap ? `Para aprofundar: ${LIVRO}, Cap. ${esc(t.cap)}. Texto desta app escrito para a equipa de enfermagem; não reproduz o livro.` : "Tema escrito para a equipa de enfermagem. Confirmar com as normas DGS e os protocolos do hospital."}</p>
       <nav class="navegar" aria-label="Tema anterior e seguinte">
       ${ant ? `<a class="ant" href="#tema-${esc(ant.id)}">${ic("voltar")}<span><small>Anterior</small>${esc(ant.titulo)}</span></a>` : ""}
       ${seg ? `<a class="seg" href="#tema-${esc(seg.id)}"><span><small>Seguinte</small>${esc(seg.titulo)}</span>${ic("avancar")}</a>` : ""}</nav>`;
