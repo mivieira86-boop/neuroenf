@@ -69,7 +69,7 @@
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
     avc: ["nihss", "glasgow", "rankin", "guss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
-    semiologia: ["glasgow", "barthel"], demencias: ["4at"], sistemicas: ["4at"], seguranca: ["morse", "braden"],
+    semiologia: ["glasgow", "barthel"], demencias: [], sistemicas: [], seguranca: ["morse", "braden"],
     disfagia: [], ela: ["guss"], dnm: []
   };
   const escalasDoTema = id => (ESCALAS_DO_TEMA[id] || []).map(x => ESCALAS.find(e => e.id === x)).filter(Boolean);
@@ -221,7 +221,7 @@
     if (FARM.length) h += linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" });
     h += linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" });
     const rapidos = [];
-    [["glasgow", "Escala de Coma de Glasgow", "Escala · consciência"], ["nihss", "NIHSS", "Escala · AVC"], ["4at", "4AT", "Escala · delirium"]].forEach(([id, txt, sub]) => {
+    [["glasgow", "Escala de Coma de Glasgow", "Escala · consciência"], ["nihss", "NIHSS", "Escala · AVC"], ["morse", "Escala de Morse", "Escala · risco de queda"]].forEach(([id, txt, sub]) => {
       if (existeEscala(id)) rapidos.push(linha(`#escalas-${id}`, txt, sub, { icone: ic("escalas", "ic-linha") }));
     });
     // «Estado de mal» abre a epilepsia já na secção de alarme

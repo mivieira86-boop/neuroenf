@@ -1,5 +1,10 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 13 — 19/11/2026
+- Retirada a escala 4AT (não é usada na prática diária de enfermagem do serviço). Nos temas Neurologia geriátrica e
+  Demências, o rastreio passou a vigilância de sinais de delirium com comunicação ao médico. No Acesso rápido, a 4AT
+  foi substituída pela Escala de Morse.
+
 ## Versão 12 — 18/11/2026 (regras dos protocolos)
 - «Protocolos do serviço» passa a mostrar as regras de entrada: só protocolos aprovados e autorizados pela instituição;
   ficha de bolso validada pelo responsável; ligação ao documento oficial, que prevalece; data de revisão com aviso

@@ -90,7 +90,7 @@ const TEMAS = [
     { t: "Avaliação inicial de enfermagem na admissão", itens: [
       "Nas primeiras horas após a admissão, e sempre que haja alteração clínica, transferência ou queda: risco de queda (Morse), risco de úlcera por pressão (Braden), funcionalidade (Barthel) e dor (escala adequada à capacidade de comunicar).",
       "Rastreio de disfagia antes de qualquer ingestão oral em doentes com AVC, alteração da consciência, doença neuromuscular ou bulbar, ou queixas de engasgamento.",
-      "Rastreio de delirium (4AT) em doentes com ≥ 65 anos, défice cognitivo conhecido ou alteração aguda do comportamento; repetir se houver mudança.",
+      "Vigiar sinais de delirium (alteração aguda e flutuante da atenção, do comportamento ou da vigília) em doentes com ≥ 65 anos, défice cognitivo conhecido ou alteração aguda do comportamento; comunicar ao médico.",
       "Rastreio do risco nutricional com o instrumento em uso no hospital; peso na admissão.",
       "Registar a avaliação neurológica de base (Glasgow por componentes, pupilas, força, fala) — sem ela não há termo de comparação.",
       "Qualquer alteração: registar hora, valores, a quem foi comunicada e a atitude tomada.",
@@ -618,7 +618,7 @@ const TEMAS = [
         ["Consciência", "Alterada", "Normal até fases avançadas"],
         ["Reversível", "Geralmente, se tratada a causa", "Habitualmente não"]
       ],
-      nota: "O delirium é frequentíssimo em doentes com demência internados — usar o 4AT (ver Escalas)."
+      nota: "O delirium é frequentíssimo em doentes com demência internados — vigiar alterações agudas da atenção e do comportamento e comunicar ao médico."
     }},
     { t: "Intervenções", itens: [
       "Comunicação: chamar pelo nome, frases curtas, uma instrução de cada vez, tom calmo, contacto visual, não discutir.",
@@ -1962,19 +1962,6 @@ const ESCALAS = [
                : t <= 20 ? ["grave","AVC moderado a grave (16–20)."]
                : ["grave","AVC grave (21–42)."],
   nota: "Usar a versão certificada e o manual da instituição. Só conta a 1.ª resposta (1b, 1c). 1b: afásico/estuporoso que não compreende = 2; intubado, disartria grave ou barreira linguística = 1. 7: só pontua ataxia desproporcionada à fraqueza. Doente em coma (1a = 3): 8 = 2 e 9 = 3. NT apenas em amputação/anquilose (5, 6, 7) e intubação/barreira física (10). Pontos de corte orientativos."
-},
-{
-  id: "4at", nome: "4AT — Rastreio de delirium",
-  descricao: "Rastreio rápido de delirium e défice cognitivo (< 2 min). Pontuação 0–12.",
-  itens: [
-    { nome: "1. Estado de alerta", opcoes: [[0,"Normal (totalmente alerta, não agitado)"],[0,"Ligeiramente sonolento < 10 s após acordar, depois normal"],[4,"Claramente anormal"]] },
-    { nome: "2. AMT4 (idade, data de nascimento, local, ano)", opcoes: [[0,"Sem erros"],[1,"1 erro"],[2,"2 ou mais erros / não testável"]] },
-    { nome: "3. Atenção (meses do ano por ordem inversa, a partir de dezembro)", opcoes: [[0,"Consegue 7 ou mais meses corretamente"],[1,"Começa mas < 7 meses / recusa"],[2,"Não testável (não consegue iniciar)"]] },
-    { nome: "4. Alteração aguda ou curso flutuante (nas últimas 2 semanas e ainda presente nas últimas 24 h)", opcoes: [[0,"Não"],[4,"Sim"]] }
-  ],
-  interpretar: t => t >= 4 ? ["grave","≥ 4: possível delirium ± défice cognitivo — avaliar e comunicar."]
-               : t >= 1 ? ["moderado","1–3: possível défice cognitivo."]
-               : ["ligeiro","0: delirium ou défice cognitivo grave pouco prováveis (o delirium pode surgir depois — reavaliar)."]
 },
 {
   id: "rankin", nome: "Escala de Rankin modificada (mRS)",
