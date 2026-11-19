@@ -923,4 +923,8 @@ mark { background: var(--realce); color: inherit; padding: 0 2px; border-radius:
 @media print { .marcha { break-inside: avoid; } .nm-botoes { display: none; } }
 
 .assinatura { margin: 40px 0 8px; padding-top: 12px; border-top: 1px solid var(--linha); font-size: 12px; color: var(--secundario); text-align: center; letter-spacing: .01em; }
+.assinatura p { margin: 0; }
+.btn-topo { display: flex; margin: 0 auto 16px; font-size: 14.5px; }
+.btn-topo .ic { width: 18px; height: 18px; }
+@media print { .btn-topo { display: none !important; } }
 @media print { .assinatura { margin-top: 24px; color: #555; border-top-color: #ccc; } }

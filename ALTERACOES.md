@@ -1,5 +1,9 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 16 — 19/11/2026
+- Botão **«Voltar ao topo»** no fundo de todas as páginas (desliza suavemente; respeita «reduzir movimento»; não aparece na impressão).
+- Epilepsia: retirada a secção de radioproteção do SPECT.
+
 ## Versão 15 — 19/11/2026 (novo design e SPECT na epilepsia)
 - **Novo design** a condizer com o logótipo: azul-marinho e ciano em vez de creme e verde-petróleo, nos temas claro e
   escuro; nome «Neuro**Enf**» com «Enf» em ciano; faixa azul-marinho no início. Contrastes verificados (WCAG AA).
