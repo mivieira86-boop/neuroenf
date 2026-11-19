@@ -9,6 +9,7 @@
   de enfermagem.
 - Semiologia: a avaliação detalhada da linguagem passou para o tema próprio; fica um rastreio rápido e o «Ver também».
 - **Estimulação cerebral profunda (ECP / DBS)** nas Doenças do movimento: alvos, critérios de seleção no Parkinson, teste agudo de levodopa, cuidados perioperatórios de enfermagem (medicação no horário, quedas, feridas, microlesão, programação, humor e risco de suicídio), precauções (bisturi, cardioversão, ECG, desfibrilhação) e ensinos para a alta. A pesquisa por «DBS» passa a encontrá-la. Revisto pelos agentes médico e de enfermagem.
+- Terminologia: «Demência por corpos de Lewy» (em vez de «com») em toda a app.
 
 ## Versão 17 — 19/11/2026
 - Menu lateral: as **Patologias A–Z** ficam fechadas; a lista só aparece quando se toca no título da secção.
@@ -33,7 +34,7 @@
 ## Versão 14 — 19/11/2026 (patologias A–Z mais completas, grupos e novo logótipo)
 - A secção **Patologias específicas (A–Z)** passa a aparecer em primeiro lugar no início e no menu, por ordem alfabética.
 - **Grupos e subgrupos**: ao tocar num grupo, a lista abre e mostra as doenças que inclui. Novo grupo **Demências**
-  (Doença de Alzheimer, Demência vascular, Demência com corpos de Lewy), cada uma com página própria. Os temas com várias
+  (Doença de Alzheimer, Demência vascular, Demência por corpos de Lewy), cada uma com página própria. Os temas com várias
   doenças (ex.: Parkinsonismos atípicos, Ataxias, DCJ, Tumores, Vasculites, Mielopatias, Infeções no imunodeprimido,
   Encefalites autoimunes, Doenças autoimunes) mostram as doenças incluídas, com ligação direta à secção ou ao tema próprio.
 - **9 doenças novas** na secção A–Z, com o essencial, manifestações, diagnóstico, tratamento, precauções, cuidados de

@@ -518,7 +518,7 @@ const TEMAS = [
       "Perfusões contínuas (levodopa em gel intestinal por PEG-J, apomorfina ou levodopa subcutânea): não interromper sem indicação médica; conhecer o dispositivo e o contacto da equipa de referência."
     ]},
     { t: "Fármacos a evitar no parkinsonismo", tipo: "precaucao", itens: [
-      "Antipsicóticos típicos (ex.: haloperidol) e também a maioria dos atípicos (ex.: risperidona, olanzapina), e antieméticos antidopaminérgicos (ex.: metoclopramida) — agravam muito os sintomas; na demência com corpos de Lewy podem causar reações graves.",
+      "Antipsicóticos típicos (ex.: haloperidol) e também a maioria dos atípicos (ex.: risperidona, olanzapina), e antieméticos antidopaminérgicos (ex.: metoclopramida) — agravam muito os sintomas; na demência por corpos de Lewy podem causar reações graves.",
       "Se necessário tratar agitação/psicose ou náuseas: pedir alternativa ao médico (habitualmente quetiapina ou clozapina; domperidona como antiemético).",
       "Suspensão abrupta da medicação: risco de síndrome de hiperpirexia-parkinsonismo (febre, rigidez, alteração da consciência) — emergência."
     ]},
@@ -649,7 +649,7 @@ const TEMAS = [
     { t: "Principais tipos", itens: [
       "Doença de Alzheimer: perda de memória recente progressiva, depois linguagem, orientação e funções executivas.",
       "Demência vascular: evolução em degraus, associada a AVC e fatores de risco vasculares.",
-      "Demência com corpos de Lewy: flutuações, alucinações visuais, parkinsonismo — sensibilidade grave a antipsicóticos.",
+      "Demência por corpos de Lewy: flutuações, alucinações visuais, parkinsonismo — sensibilidade grave a antipsicóticos.",
       "Demência frontotemporal: alterações de comportamento/personalidade ou de linguagem, muitas vezes antes dos 65 anos.",
       "Causas potencialmente tratáveis: défice de B12, hipotiroidismo, depressão, hidrocefalia de pressão normal (alteração da marcha + incontinência + défice cognitivo), fármacos."
     ]},
@@ -1944,14 +1944,14 @@ const TEMAS = [
     {nome: "Paralisia supranuclear progressiva (PSP)", procura: "Paralisia supranuclear progressiva"},
     {nome: "Atrofia de múltiplos sistemas (AMS)", procura: "Atrofia de múltiplos sistemas"},
     {nome: "Degenerescência corticobasal", procura: "Degenerescência corticobasal"},
-    {nome: "Demência com corpos de Lewy (DCL)", tema: "dcl"}
+    {nome: "Demência por corpos de Lewy (DCL)", tema: "dcl"}
   ],
   seccoes: [
     { t: "Principais formas", itens: [
       "Paralisia supranuclear progressiva (PSP): quedas precoces, sobretudo para trás; dificuldade em olhar para baixo; rigidez do pescoço; disartria e disfagia; alterações do comportamento.",
       "Atrofia de múltiplos sistemas (AMS): disautonomia marcada (hipotensão ortostática grave, retenção ou incontinência urinária, disfunção sexual) com parkinsonismo e/ou ataxia; ressonar e estridor noturno; perturbação do comportamento do sono REM.",
       "Degenerescência corticobasal: sintomas muito assimétricos — rigidez e distonia de um membro, dificuldade em executar gestos (apraxia), mioclonias, por vezes o membro «parece não obedecer».",
-      "Demência com corpos de Lewy: ver «Demência com corpos de Lewy (DCL)» no grupo Demências (A–Z) e o tema «Demências»."
+      "Demência por corpos de Lewy: ver «Demência por corpos de Lewy (DCL)» no grupo Demências (A–Z) e o tema «Demências»."
     ]},
     { t: "Diagnóstico e tratamento (visão geral)", itens: [
       "Diagnóstico clínico, apoiado por RM e outros exames.",
@@ -2229,7 +2229,7 @@ const TEMAS = [
 },
 {
   id: "dcl", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
-  titulo: "Demência com corpos de Lewy (DCL)", pags: null,
+  titulo: "Demência por corpos de Lewy (DCL)", pags: null,
   resumo: "Demência com flutuações marcadas da atenção, alucinações visuais, parkinsonismo e perturbação do sono REM. Muita sensibilidade aos antipsicóticos: um erro de medicação pode ser grave.",
   relacionados: ["demencias", "movimento", "parkinsonismos-atipicos"],
   seccoes: [
