@@ -180,8 +180,8 @@
     h += item("#protocolos", "protocolos", ic("protocolo"), "Protocolos do serviço");
     const subMenu = (chave, titulo, n, corpo) =>
       `<details class="sub-menu" ${chave}><summary><span class="rot">${titulo}</span><span class="cont">${n}<span class="so-leitor"> ${n === 1 ? "doença" : "doenças"}</span></span>${ic("seta", "ic-sum")}</summary><div class="sub-itens">${corpo}</div></details>`;
-    // Clínica neurológica e Cuidados transversais estão no início; no menu não se repetem
-    const FORA_DO_MENU = ["p2", "p3"];
+    // Os Cuidados de enfermagem transversais estão no início; no menu não se repetem
+    const FORA_DO_MENU = ["p3"];
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
       if (!temas.length || FORA_DO_MENU.includes(p.id)) return;
@@ -288,10 +288,10 @@
     });
     h += `<div class="lista-grelha">${rapidos.join("")}</div></div>
       <p class="nota-aviso">${ic("info")}<span>Apoio à prática: não substitui os protocolos do serviço nem a prescrição médica.</span></p></section>`;
-    // As Patologias A–Z estão só no menu lateral (evita repetir a lista no início)
+    // As Patologias A–Z e a Clínica neurológica estão só no menu lateral (evita repetir a lista no início)
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
-      if (!temas.length || p.id === "p4") return;
+      if (!temas.length || p.id === "p4" || p.id === "p2") return;
       h += `<section class="bloco" aria-labelledby="t-${esc(p.id)}">
         <h2 class="titulo-parte" id="t-${esc(p.id)}">${esc(p.nome)}<span class="cont">${temas.length}<span class="so-leitor"> temas</span></span></h2>
         <div class="lista lista-temas">`;
