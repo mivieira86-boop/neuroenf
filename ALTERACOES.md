@@ -3,8 +3,8 @@
 ## Versão 15 — 19/11/2026 (novo design e SPECT na epilepsia)
 - **Novo design** a condizer com o logótipo: azul-marinho e ciano em vez de creme e verde-petróleo, nos temas claro e
   escuro; nome «Neuro**Enf**» com «Enf» em ciano; faixa azul-marinho no início. Contrastes verificados (WCAG AA).
-- **Epilepsia**: novas secções «Epilepsia refratária: avaliação pré-cirúrgica», «SPECT ictal: procedimento» e
-  «SPECT: radioproteção», com a nota de que não dispensam o protocolo institucional; ensino ao doente e à família sobre
+- **Epilepsia**: novas secções «Epilepsia refratária: avaliação pré-cirúrgica» e «SPECT ictal: procedimento»,
+  com a nota de que não dispensa o protocolo institucional; ensino ao doente e à família sobre
   a avaliação pré-cirúrgica. Fonte base: epilepsia.pt; revisto pelo agente médico (diretrizes EANM 2024).
 - As secções podem ter um aviso destacado no início (campo `aviso`).
 
