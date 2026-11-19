@@ -1,7 +1,7 @@
 # Registo de alterações — NeuroEnf
 
 ## Versão 13 — 19/11/2026
-- Retirada a escala 4AT (não é usada na prática diária de enfermagem do serviço). Nos temas Neurologia geriátrica e
+- Retirada a escala 4AT (não é usada na prática diária de enfermagem do serviço). Na Semiologia e nas
   Demências, o rastreio passou a vigilância de sinais de delirium com comunicação ao médico. No Acesso rápido, a 4AT
   foi substituída pela Escala de Morse.
 
