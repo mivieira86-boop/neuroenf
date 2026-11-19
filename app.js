@@ -258,7 +258,6 @@
 
   function vistaInicio() {
     document.title = "NeuroEnf — Guia de Enfermagem em Neurologia";
-    const existeEscala = id => ESCALAS.some(e => e.id === id);
     const existeTema = id => TEMAS.some(t => t.id === id);
     const temasAlarme = TEMAS.filter(temAlarme).length;
     let h = `<header class="cab-pagina cab-inicio">
@@ -272,9 +271,13 @@
     if (FARM.length) h += linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" });
     h += linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" });
     const rapidos = [];
-    [["glasgow", "Escala de Coma de Glasgow", "Escala · consciência"], ["nihss", "NIHSS", "Escala · AVC"], ["morse", "Escala de Morse", "Escala · risco de queda"]].forEach(([id, txt, sub]) => {
-      if (existeEscala(id)) rapidos.push(linha(`#escalas-${id}`, txt, sub, { icone: ic("escalas", "ic-linha") }));
-    });
+    // Uma só entrada para as escalas: ao tocar, abre a lista de todas as escalas disponíveis
+    if (ESCALAS.length) {
+      const nomeEsc = e => { const [tit, ...resto] = e.nome.split(" — "); const sub = resto.join(" — "); return [tit, sub ? sub[0].toUpperCase() + sub.slice(1) : ""]; };
+      h += (`<details class="linha-grupo grupo-escalas"><summary class="linha">${ic("escalas", "ic-linha")}<span class="linha-txt"><span class="linha-tit">Escalas e avaliação</span><span class="linha-sub">${ESCALAS.length} ${ESCALAS.length === 1 ? "escala" : "escalas"} · toque para ver</span></span>${ic("seta", "ic-seta")}</summary><div class="sub-lista">`
+        + ESCALAS.map(e => { const [tit, sub] = nomeEsc(e); return linha(`#escalas-${esc(e.id)}`, esc(tit), esc(sub), { cls: "linha-subitem" }); }).join("")
+        + `</div></details>`);
+    }
     // «Estado de mal» abre a epilepsia já na secção de alarme
     const epi = TEMAS.find(t => t.id === "epilepsia");
     const kMal = epi ? (epi.seccoes || []).findIndex(s => s.alarme) : -1;
