@@ -283,26 +283,14 @@
     });
     h += `<div class="lista-grelha">${rapidos.join("")}</div></div>
       <p class="nota-aviso">${ic("info")}<span>Apoio à prática: não substitui os protocolos do serviço nem a prescrição médica.</span></p></section>`;
-    const grupoLinha = (titulo, sub, corpo) => `<details class="linha-grupo"><summary class="linha"><span class="linha-txt"><span class="linha-tit">${titulo}</span><span class="linha-sub">${sub}</span></span>${ic("seta", "ic-seta")}</summary><div class="sub-lista">${corpo}</div></details>`;
+    // As Patologias A–Z estão só no menu lateral (evita repetir a lista no início)
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
-      if (!temas.length) return;
+      if (!temas.length || p.id === "p4") return;
       h += `<section class="bloco" aria-labelledby="t-${esc(p.id)}">
         <h2 class="titulo-parte" id="t-${esc(p.id)}">${esc(p.nome)}<span class="cont">${temas.length}<span class="so-leitor"> temas</span></span></h2>
-        ${p.id === "p4" ? `<p class="nota-az">Toque num grupo para ver as doenças que inclui.</p>` : ""}
         <div class="lista lista-temas">`;
-      if (p.id === "p4") {
-        entradasAZ().forEach(e => {
-          if (e.tipo === "grupo") {
-            h += grupoLinha(esc(e.nome), `Grupo · ${e.temas.length} doenças`, e.temas.map(t => linha(`#tema-${esc(t.id)}`, esc(t.titulo), "", { cls: "linha-subitem" })).join(""));
-          } else if (subtemasDe(e.t).length) {
-            const t = e.t, subs = subtemasDe(t);
-            h += grupoLinha(esc(t.titulo), `Inclui ${subs.length}: ${esc(subs.slice(0, 3).map(s => s.nome.replace(/\s*\(.*\)$/, "")).join(", "))}${subs.length > 3 ? "…" : ""}`,
-              linha(`#tema-${esc(t.id)}`, "Visão geral do tema", "", { cls: "linha-subitem linha-geral" }) +
-              subs.map(s => { const a = alvoSubtema(t, s); return linha(a.href, esc(s.nome), s.tema ? "Tema próprio" : "", { cls: "linha-subitem", attrs: a.k >= 0 ? ` data-seccao="${a.k}"` : "" }); }).join(""));
-          } else h += linha(`#tema-${esc(e.t.id)}`, esc(e.t.titulo), origem(e.t));
-        });
-      } else temas.forEach(t => { h += linha(`#tema-${esc(t.id)}`, esc(t.titulo), origem(t)); });
+      temas.forEach(t => { h += linha(`#tema-${esc(t.id)}`, esc(t.titulo), origem(t)); });
       h += `</div></section>`;
     });
     h += `<p class="rodape">Temas organizados pelos capítulos 1–23 de ${LIVRO}; as páginas de cada capítulo estão no fim do tema. Inclui ainda cuidados de enfermagem transversais e patologias específicas.</p>`;
