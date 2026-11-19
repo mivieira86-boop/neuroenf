@@ -1080,6 +1080,11 @@ const TEMAS = [
   titulo: "Ataxias cerebelosas e doença de Machado-Joseph",
   pags: null,
   resumo: "Doenças que afetam o cerebelo e as suas ligações, com descoordenação da marcha, dos membros, da fala e da deglutição. A doença de Machado-Joseph é uma ataxia hereditária descrita em famílias de origem portuguesa e particularmente frequente nos Açores.",
+  subtemas: [
+    {nome: "Ataxias adquiridas", procura: "Causas adquiridas"},
+    {nome: "Ataxias hereditárias", procura: "Ataxias hereditárias"},
+    {nome: "Doença de Machado-Joseph (SCA3)", procura: "Machado-Joseph (SCA3)"}
+  ],
   seccoes: [
     { t: "O essencial", itens: [
       "Ataxia: marcha de base alargada e instável, descoordenação dos membros (dismetria, tremor de intenção), fala arrastada e «escandida», nistagmo, disfagia.",
@@ -1220,6 +1225,12 @@ const TEMAS = [
   titulo: "Doença de Creutzfeldt-Jakob (DCJ e vDCJ) e outras doenças priónicas",
   pags: null,
   resumo: "Doenças neurodegenerativas raras, rapidamente progressivas e fatais, causadas por priões (proteínas anómalas). Exigem cuidados paliativos e medidas específicas de controlo de infeção na manipulação de tecidos de alto risco — mas não exigem isolamento para os cuidados de rotina.",
+  subtemas: [
+    {nome: "DCJ esporádica", procura: "Esporádica (a mais frequente"},
+    {nome: "DCJ genética ou familiar", procura: "Genética/familiar"},
+    {nome: "DCJ iatrogénica", procura: "Iatrogénica (rara)"},
+    {nome: "Variante da DCJ (vDCJ)", procura: "Variante (vDCJ)"}
+  ],
   seccoes: [
     { t: "Formas", itens: [
       "Esporádica (a mais frequente, cerca de 85%): adultos mais velhos, sem causa conhecida.",
@@ -1328,6 +1339,16 @@ const TEMAS = [
   titulo: "Doenças autoimunes e o sistema nervoso",
   pags: null,
   resumo: "Nas doenças autoimunes o sistema imunitário, que devia defender o corpo de vírus e bactérias, ataca as próprias células. Há mais de 100, e muitas atingem o sistema nervoso — diretamente (esclerose múltipla, miastenia, Guillain-Barré) ou como parte de uma doença sistémica (lúpus, vasculites, Sjögren). Os tratamentos imunológicos exigem cuidados de enfermagem específicos.",
+  subtemas: [
+    {nome: "Esclerose múltipla", tema: "esclerose-multipla"},
+    {nome: "Neuromielite ótica e doença anti-MOG", tema: "nmo"},
+    {nome: "Encefalites autoimunes", tema: "encefalite-autoimune"},
+    {nome: "Miastenia gravis", tema: "miastenia-gravis"},
+    {nome: "Síndrome de Guillain-Barré", tema: "sgb"},
+    {nome: "Vasculites", tema: "vasculites"},
+    {nome: "Neurossarcoidose", tema: "neurossarcoidose"},
+    {nome: "Lúpus, Sjögren, Behçet e outras", procura: "Lúpus eritematoso sistémico"}
+  ],
   seccoes: [
     { t: "O essencial", itens: [
       "As causas exatas não são conhecidas; contribuem a genética, o tabaco e o excesso de peso; são mais frequentes nas mulheres.",
@@ -1391,6 +1412,11 @@ const TEMAS = [
   titulo: "Encefalites autoimunes",
   pags: null,
   resumo: "Inflamação do cérebro causada por anticorpos contra o próprio tecido nervoso. Podem simular doença psiquiátrica e são tratáveis — o diagnóstico precoce muda o prognóstico.",
+  subtemas: [
+    {nome: "Encefalite anti-NMDA", procura: "Anti-NMDA:"},
+    {nome: "Encefalite anti-LGI1", procura: "Anti-LGI1:"},
+    {nome: "Encefalites paraneoplásicas", procura: "Encefalites paraneoplásicas"}
+  ],
   seccoes: [
     { t: "Formas mais frequentes", itens: [
       "Anti-NMDA: sobretudo mulheres jovens; alterações psiquiátricas e do comportamento, crises, alteração da consciência, movimentos involuntários (sobretudo da boca e da face), instabilidade autonómica e hipoventilação. Pode associar-se a teratoma do ovário.",
@@ -1562,6 +1588,14 @@ const TEMAS = [
   titulo: "Infeções do SNC no imunodeprimido (VIH, LMP) e neurossífilis",
   pags: null,
   resumo: "No doente com imunodepressão (VIH, transplante, quimioterapia, imunossupressores) surgem infeções oportunistas com sinais discretos. A neurossífilis voltou a ser frequente e tem várias formas de apresentação.",
+  subtemas: [
+    {nome: "Toxoplasmose cerebral", procura: "Toxoplasmose cerebral"},
+    {nome: "Meningite criptocócica", procura: "Meningite criptocócica"},
+    {nome: "Leucoencefalopatia multifocal progressiva (LMP)", procura: "Leucoencefalopatia multifocal"},
+    {nome: "Linfoma primário do SNC", procura: "Linfoma primário do SNC"},
+    {nome: "Síndrome inflamatória de reconstituição imune", procura: "Síndrome inflamatória de reconstituição"},
+    {nome: "Neurossífilis", procura: "Neurossífilis:"}
+  ],
   seccoes: [
     { t: "Quadros a conhecer", itens: [
       "Toxoplasmose cerebral: lesões múltiplas com défices focais, crises, febre — doente com VIH muito imunodeprimido.",
@@ -1596,6 +1630,12 @@ const TEMAS = [
   titulo: "Lesão medular e mielopatias (mielite transversa, compressão medular)",
   pags: null,
   resumo: "Doenças da medula espinal — inflamatórias, compressivas, vasculares, carenciais ou traumáticas. Causam fraqueza, alteração da sensibilidade abaixo de um nível e alterações vesicais e intestinais; algumas são emergências cirúrgicas.",
+  subtemas: [
+    {nome: "Mielite transversa", procura: "Mielite transversa"},
+    {nome: "Compressão medular", procura: "Compressão medular"},
+    {nome: "Enfarte medular", procura: "Enfarte medular"},
+    {nome: "Défice de vitamina B12 ou de cobre", procura: "Défices de vitamina B12"}
+  ],
   seccoes: [
     { t: "Causas e apresentação", itens: [
       "Mielite transversa: inflamação da medula (EM, neuromielite ótica, anticorpos anti-MOG, infeções, causa desconhecida) — instala-se em horas a dias.",
@@ -1766,12 +1806,18 @@ const TEMAS = [
   titulo: "Parkinsonismos atípicos (PSP, AMS, degenerescência corticobasal)",
   pags: null,
   resumo: "Doenças que se parecem com a doença de Parkinson mas evoluem mais depressa, respondem pouco à levodopa e trazem cedo quedas, disfagia e disautonomia.",
+  subtemas: [
+    {nome: "Paralisia supranuclear progressiva (PSP)", procura: "Paralisia supranuclear progressiva"},
+    {nome: "Atrofia de múltiplos sistemas (AMS)", procura: "Atrofia de múltiplos sistemas"},
+    {nome: "Degenerescência corticobasal", procura: "Degenerescência corticobasal"},
+    {nome: "Demência com corpos de Lewy (DCL)", tema: "dcl"}
+  ],
   seccoes: [
     { t: "Principais formas", itens: [
       "Paralisia supranuclear progressiva (PSP): quedas precoces, sobretudo para trás; dificuldade em olhar para baixo; rigidez do pescoço; disartria e disfagia; alterações do comportamento.",
       "Atrofia de múltiplos sistemas (AMS): disautonomia marcada (hipotensão ortostática grave, retenção ou incontinência urinária, disfunção sexual) com parkinsonismo e/ou ataxia; ressonar e estridor noturno; perturbação do comportamento do sono REM.",
       "Degenerescência corticobasal: sintomas muito assimétricos — rigidez e distonia de um membro, dificuldade em executar gestos (apraxia), mioclonias, por vezes o membro «parece não obedecer».",
-      "Demência com corpos de Lewy: ver tema «Demências»."
+      "Demência com corpos de Lewy: ver «Demência com corpos de Lewy (DCL)» no grupo Demências (A–Z) e o tema «Demências»."
     ]},
     { t: "Diagnóstico e tratamento (visão geral)", itens: [
       "Diagnóstico clínico, apoiado por RM e outros exames.",
@@ -1857,6 +1903,12 @@ const TEMAS = [
   titulo: "Tumores do sistema nervoso central",
   pags: null,
   resumo: "Tumores primários (gliomas, meningiomas, linfoma) e metástases cerebrais. Os cuidados incluem a gestão de corticoides e antiepiléticos, a vigilância após craniotomia e uma abordagem paliativa centrada no doente e na família.",
+  subtemas: [
+    {nome: "Metástases cerebrais", procura: "Metástases"},
+    {nome: "Gliomas (incluindo glioblastoma)", procura: "gliomas"},
+    {nome: "Meningiomas", procura: "meningiomas"},
+    {nome: "Linfoma primário do SNC", procura: "linfoma"}
+  ],
   seccoes: [
     { t: "O essencial", itens: [
       "Metástases (pulmão, mama, melanoma, rim, cólon) são os tumores cerebrais mais frequentes no adulto.",
@@ -1889,6 +1941,13 @@ const TEMAS = [
   titulo: "Vasculites do sistema nervoso central",
   pags: null,
   resumo: "Inflamação dos vasos sanguíneos do cérebro, da medula ou dos nervos — isolada (angeíte primária do SNC) ou no contexto de doenças sistémicas ou infeções. Provocam AVC em pessoas sem fatores de risco, cefaleia e alterações cognitivas. O tratamento com imunossupressores exige cuidados de enfermagem específicos.",
+  subtemas: [
+    {nome: "Arterite de células gigantes (temporal)", procura: "Arterite de células gigantes"},
+    {nome: "Angeíte primária do SNC", procura: "Angeíte primária"},
+    {nome: "Vasculites sistémicas (lúpus, Behçet…)", procura: "Vasculites sistémicas"},
+    {nome: "Vasculites infeciosas", procura: "Vasculites infeciosas"},
+    {nome: "Síndrome de vasoconstrição cerebral reversível", procura: "vasoconstrição cerebral reversível"}
+  ],
   seccoes: [
     { t: "Formas a conhecer", itens: [
       "Arterite de células gigantes (temporal): após os 50 anos; cefaleia temporal nova, dor ao mastigar, sensibilidade do couro cabeludo, sintomas gerais; risco de cegueira — urgência.",
@@ -1918,10 +1977,531 @@ const TEMAS = [
       "Hematúria durante ou após ciclofosfamida."
     ]}
   ]
+},
+{
+  id: "alzheimer", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
+  titulo: "Doença de Alzheimer", pags: null,
+  resumo: "A causa mais frequente de demência: perda progressiva da memória e de outras funções cognitivas, com perda gradual de autonomia. No internamento, o doente tem risco elevado de delirium, quedas, desnutrição e disfagia.",
+  relacionados: ["demencias", "seguranca", "disfagia"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Doença neurodegenerativa com acumulação de proteínas anómalas no cérebro (beta-amiloide e tau); responsável por cerca de 60 a 70% das demências.",
+      "O principal fator de risco é a idade. Outros: história familiar, hipertensão, diabetes, tabaco, sedentarismo, baixa escolaridade, perda auditiva não corrigida e isolamento social.",
+      "As formas genéticas de início precoce (antes dos 65 anos) são raras.",
+      "Evolução lenta, ao longo de anos, em fase ligeira, moderada e grave."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Início típico com perda de memória recente: repete perguntas, esquece conversas e compromissos, perde objetos.",
+      "Depois: desorientação no tempo e no espaço, dificuldade em encontrar palavras, em planear e em gerir dinheiro ou medicação.",
+      "Alterações do comportamento e do humor: apatia, depressão, ansiedade, irritabilidade, desconfiança, deambulação e agitação ao fim do dia.",
+      "Pouca consciência das próprias dificuldades: o relato do cuidador é essencial.",
+      "Fase grave: dependência total, incontinência, disfagia e perda da marcha; as infeções (sobretudo a pneumonia de aspiração) são uma causa frequente de morte."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Avaliação clínica e testes cognitivos (ex.: MoCA, MMSE), com entrevista ao cuidador.",
+      "Análises para excluir causas tratáveis (ex.: vitamina B12, função tiroideia) e imagem cerebral (RM ou TC).",
+      "Em casos selecionados: biomarcadores no LCR ou no sangue e PET, sobretudo se se considerar tratamento anti-amiloide."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Inibidores da acetilcolinesterase (donepezilo, rivastigmina, galantamina) nas fases ligeira a moderada; memantina nas fases moderada a grave. Melhoram os sintomas de forma modesta, mas não travam a doença.",
+      "Anticorpos antiamiloide (lecanemab, donanemab): só no défice cognitivo ligeiro ou na demência ligeira, com amiloide confirmado e sem duas cópias do gene APOE ε4, em centros com protocolo e acesso controlado; não se usam em doentes anticoagulados. Exigem RM de vigilância pelo risco de edema e micro-hemorragias cerebrais (ARIA).",
+      "Alterações do comportamento: primeiro as medidas não farmacológicas e a procura de causas (dor, infeção, obstipação). Antipsicóticos só se necessário, na dose mais baixa e pelo menor tempo possível.",
+      "Controlo dos fatores de risco vascular, atividade física, estimulação cognitiva e social; apoio ao cuidador."
+    ]},
+    { t: "Fármacos a evitar ou usar com cautela", tipo: "precaucao", itens: [
+      "Anticolinérgicos (ex.: oxibutinina, anti-histamínicos de 1.ª geração, amitriptilina) e benzodiazepinas: agravam a confusão e o risco de queda.",
+      "Antipsicóticos: aumentam o risco de AVC e de morte nos doentes com demência; só com prescrição e reavaliação frequente.",
+      "Inibidores da acetilcolinesterase: podem causar bradicardia e síncope (vigiar FC), náuseas e perda de peso."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Conhecer o estado habitual do doente com o cuidador: cognição, autonomia, hábitos, sono, alimentação e comunicação; registar.",
+      "Vigiar sinais de delirium (alteração aguda e flutuante da atenção ou da vigília) e procurar causas: infeção, dor, retenção urinária, obstipação, desidratação, fármacos.",
+      "Orientação: relógio e calendário visíveis, luz natural de dia e penumbra à noite, óculos e aparelho auditivo colocados, rotinas estáveis; incentivar a presença da família.",
+      "Comunicar com frases curtas, uma instrução de cada vez, em tom calmo e de frente para o doente; não discutir nem corrigir de forma insistente.",
+      "Prevenção de quedas (Morse): cama baixa, campainha e objetos ao alcance, calçado adequado, acompanhar na deambulação. Evitar a contenção física; se for inevitável, só com prescrição, segundo a norma da DGS e o protocolo do serviço, com vigilância e registo.",
+      "Risco de fuga: identificação visível (pulseira), vigilância das saídas do serviço e aviso à equipa nas passagens de turno.",
+      "Fases avançadas: avaliar o risco de úlceras por pressão (Braden) e posicionar.",
+      "Alimentação: ajudar nas refeições, vigiar ingestão e peso, rastrear disfagia (GUSS) e oferecer líquidos regularmente.",
+      "Eliminação: horário miccional; vigiar retenção urinária e obstipação.",
+      "Avaliar a dor com escalas para pessoas com demência (ex.: PAINAD): a dor não verbalizada provoca agitação.",
+      "Medicação: confirmar a toma; rivastigmina transdérmica — um só adesivo de cada vez, retirar o anterior e mudar o local.",
+      "Preparar a alta desde a admissão: avaliar a autonomia (Barthel) e envolver o serviço social (apoio domiciliário, RNCCI)."
+    ]},
+    { t: "Ensinos ao doente e ao cuidador", itens: [
+      "Explicar a doença e a sua evolução; planear com antecedência as decisões futuras (diretivas antecipadas de vontade, procurador de cuidados de saúde).",
+      "Segurança em casa: retirar tapetes, boa iluminação, supervisão da medicação, do fogão e da condução.",
+      "Procurar ajuda se houver agravamento súbito da confusão, febre ou quedas.",
+      "Apoio ao cuidador: descanso do cuidador, Estatuto do Cuidador Informal, associações de doentes (ex.: Alzheimer Portugal)."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Agravamento súbito da confusão, da vigília ou do comportamento (delirium): comunicar e procurar a causa.",
+      "Febre, tosse ou engasgamento durante as refeições (pneumonia de aspiração).",
+      "Queda, sobretudo com traumatismo craniano ou em doente anticoagulado.",
+      "Recusa alimentar ou de líquidos e sinais de desidratação.",
+      "Doente sob antiamiloide com cefaleia nova, confusão, alterações visuais ou crises: possível ARIA — comunicar de imediato.",
+      "Doente sob antiamiloide com suspeita de AVC: informar logo a equipa da Via Verde (maior risco de hemorragia; a trombólise pode estar contraindicada)."
+    ]}
+  ]
+},
+{
+  id: "demencia-vascular", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
+  titulo: "Demência vascular", pags: null,
+  resumo: "Declínio cognitivo causado por doença dos vasos cerebrais, após AVC ou por lesão difusa dos pequenos vasos. Prevenir novos AVC é a base do tratamento.",
+  relacionados: ["avc", "demencias", "seguranca"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Segunda causa mais frequente de demência; coexiste muitas vezes com a doença de Alzheimer (demência mista).",
+      "Causas: enfartes múltiplos ou em locais estratégicos, doença dos pequenos vasos (lesões da substância branca, enfartes lacunares) e hemorragias.",
+      "Fatores de risco: hipertensão, diabetes, colesterol elevado, tabaco, fibrilhação auricular e AVC prévio.",
+      "Evolução em degraus (agravamento após cada AVC) ou progressiva e lenta (doença dos pequenos vasos)."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Lentificação do pensamento e dificuldade de atenção, planeamento e organização; a memória pode estar relativamente preservada no início.",
+      "Alterações do humor: depressão, apatia, labilidade emocional (choro ou riso fácil).",
+      "Marcha de pequenos passos, instabilidade e quedas; urgência ou incontinência urinária.",
+      "Sinais de AVC anteriores: fraqueza de um lado, disartria, disfagia."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Avaliação cognitiva e RM cerebral (lesões vasculares que expliquem o quadro).",
+      "Estudo dos fatores de risco: TA, glicemia, perfil lipídico, ECG e Holter (fibrilhação auricular), ecodoppler dos vasos do pescoço."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Prevenção secundária: controlo da TA, da diabetes e do colesterol (estatina), antiagregação ou anticoagulação conforme a causa, cessação tabágica e exercício.",
+      "Os inibidores da acetilcolinesterase e a memantina têm benefício limitado; usam-se sobretudo na demência mista.",
+      "Reabilitação (fisioterapia, terapia da fala, terapia ocupacional) e tratamento da depressão."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Vigiar TA e glicemia e a adesão à terapêutica preventiva; registar.",
+      "Avaliação neurológica regular: um défice novo pode ser um novo AVC.",
+      "Prevenção de quedas (Morse) e treino de marcha com a fisioterapia; auxiliares de marcha quando indicados.",
+      "Rastreio de disfagia (GUSS) antes de dar alimentos ou medicação oral, sobretudo após AVC.",
+      "Orientação, comunicação simples e rotinas, como na doença de Alzheimer; vigiar sinais de delirium.",
+      "Eliminação: horário miccional e prevenção da obstipação; avaliar o resíduo pós-miccional se houver retenção.",
+      "Avaliar o humor: a depressão e a apatia são frequentes e tratáveis.",
+      "Fases avançadas: avaliar o risco de úlceras por pressão (Braden)."
+    ]},
+    { t: "Ensinos ao doente e ao cuidador", itens: [
+      "Controlo dos fatores de risco: medicação diária, medir a TA, alimentação com pouco sal, cessação tabágica e atividade física.",
+      "Reconhecer os sinais de AVC — face descaída, falta de força num braço, alteração da fala — e ligar 112.",
+      "Adaptar a casa para prevenir quedas; apoio ao cuidador."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Défice neurológico de início súbito (assimetria da face, fraqueza de um lado, alteração da fala ou da visão): ativar a Via Verde AVC e registar a hora em que o doente foi visto bem pela última vez.",
+      "Agravamento súbito da confusão ou da vigília.",
+      "Quedas repetidas, ou queda em doente antiagregado ou anticoagulado.",
+      "TA muito elevada, ou hipotensão (pode agravar a perfusão cerebral)."
+    ]}
+  ]
+},
+{
+  id: "dcl", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
+  titulo: "Demência com corpos de Lewy (DCL)", pags: null,
+  resumo: "Demência com flutuações marcadas da atenção, alucinações visuais, parkinsonismo e perturbação do sono REM. Muita sensibilidade aos antipsicóticos: um erro de medicação pode ser grave.",
+  relacionados: ["demencias", "movimento", "parkinsonismos-atipicos"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Doença neurodegenerativa por acumulação de alfa-sinucleína (corpos de Lewy), da mesma família da doença de Parkinson.",
+      "Fala-se em DCL quando a demência surge antes do parkinsonismo ou até um ano depois; quando surge anos depois de uma doença de Parkinson estabelecida, chama-se demência da doença de Parkinson.",
+      "É uma das causas mais frequentes de demência neurodegenerativa, a seguir à doença de Alzheimer."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Flutuações da atenção e da vigília: períodos de confusão ou sonolência alternados com períodos lúcidos, no mesmo dia.",
+      "Alucinações visuais bem formadas (pessoas, animais), muitas vezes precoces.",
+      "Parkinsonismo: rigidez, lentidão e alteração da marcha; o tremor é menos frequente.",
+      "Perturbação do comportamento do sono REM: fala, grita ou debate-se durante o sono, como se vivesse os sonhos.",
+      "Disautonomia: hipotensão ortostática, síncopes, obstipação, incontinência urinária; quedas frequentes.",
+      "No início, a atenção e a orientação no espaço estão muitas vezes mais afetadas do que a memória."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Clínico, com avaliação cognitiva e entrevista ao cuidador.",
+      "Exames de apoio: DaTSCAN (cintigrafia dos transportadores de dopamina), polissonografia (sono REM) e RM para excluir outras causas."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Inibidores da acetilcolinesterase (rivastigmina, donepezilo): costumam melhorar a cognição, as flutuações e as alucinações.",
+      "Parkinsonismo: levodopa em dose baixa e com cautela (pode agravar as alucinações).",
+      "Alucinações com sofrimento ou risco: rever primeiro a medicação; se necessário, quetiapina ou clozapina em dose baixa, por indicação médica.",
+      "Perturbação do sono REM: melatonina ou clonazepam (cuidado com as quedas) e quarto seguro.",
+      "Hipotensão ortostática: medidas gerais e, se prescrito, midodrina ou fludrocortisona."
+    ]},
+    { t: "Sensibilidade grave aos antipsicóticos", tipo: "precaucao", itens: [
+      "Haloperidol e muitos outros antipsicóticos podem provocar rigidez grave, confusão, quedas, síndrome maligna dos neurolépticos e morte. Não administrar sem confirmação médica, mesmo em SOS para agitação.",
+      "Evitar a metoclopramida; para náuseas, usar a alternativa prescrita (ex.: domperidona).",
+      "Benzodiazepinas e anticolinérgicos agravam a confusão e as quedas.",
+      "Registar de forma visível no processo «sensibilidade a neurolépticos» e informar a equipa nas passagens de turno."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Registar o padrão das flutuações (horas de maior e menor lucidez) e planear cuidados e avaliações nos melhores períodos.",
+      "Alucinações: manter a calma, não discutir o conteúdo, tranquilizar e distrair; boa iluminação, evitar sombras e reflexos; verificar os óculos.",
+      "Prevenção de quedas: TA deitado e de pé, levante faseado, hidratação, cama baixa; acompanhar na marcha.",
+      "Noite: vigiar comportamentos durante o sono, afastar objetos perigosos, cama baixa e grades almofadadas (não subir as grades se o doente tentar passar por cima delas); não acordar o doente bruscamente.",
+      "Rastreio de disfagia (GUSS) e vigilância de aspiração.",
+      "Vigiar sinais de delirium e procurar causas (infeção, retenção urinária, obstipação, fármacos).",
+      "Antiparkinsónicos no horário do doente, como na doença de Parkinson.",
+      "Fases avançadas: avaliar o risco de úlceras por pressão (Braden)."
+    ]},
+    { t: "Ensinos ao doente e ao cuidador", itens: [
+      "Explicar que as flutuações e as alucinações fazem parte da doença.",
+      "Levar sempre a lista de medicação e informar qualquer profissional da sensibilidade aos antipsicóticos, incluindo na urgência e antes de cirurgias.",
+      "Segurança noturna (quarto e cama), levantar devagar, beber água e prevenir a obstipação."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Rigidez grave, febre, sudorese e alteração da consciência após um antipsicótico: suspeitar de síndrome maligna dos neurolépticos — comunicar de imediato.",
+      "Agravamento súbito da confusão ou da vigília, para além das flutuações habituais.",
+      "Síncope ou quedas repetidas.",
+      "Engasgamento, febre ou dessaturação (aspiração)."
+    ]}
+  ]
+},
+{
+  id: "epilepsia-az", cap: null, parte: "p4", icone: "⚡",
+  titulo: "Epilepsia", pags: null,
+  resumo: "Tendência para crises epiléticas recorrentes. Na enfermaria, o essencial é a segurança durante a crise, reconhecer o estado de mal (crise com 5 minutos ou mais) e não falhar as tomas dos antiepiléticos.",
+  relacionados: ["epilepsia", "urgencias", "coma"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Crise epilética: alteração transitória causada por atividade elétrica anómala dos neurónios. Epilepsia: tendência para ter crises não provocadas recorrentes.",
+      "Causas no adulto: AVC, tumores, traumatismo craniano, infeções, doenças neurodegenerativas e causas genéticas; muitas vezes a causa não é encontrada.",
+      "Crises provocadas (não são epilepsia): hipoglicemia, hiponatremia, privação de álcool ou de benzodiazepinas, fármacos e infeção do SNC."
+    ]},
+    { t: "Tipos de crise", itens: [
+      "Focal com consciência preservada: sintomas motores, sensitivos, visuais ou uma sensação estranha (aura); o doente lembra-se.",
+      "Focal com alteração da consciência: olhar parado, não responde, automatismos (mastigar, mexer na roupa) e confusão no fim.",
+      "Tónico-clónica (generalizada ou focal que generaliza): perda de consciência, rigidez e depois abalos dos quatro membros, mordedura lateral da língua, incontinência, confusão e sonolência a seguir.",
+      "Ausências, crises mioclónicas e crises atónicas (quedas) são mais típicas das epilepsias generalizadas.",
+      "Depois da crise: confusão, cefaleia, sonolência e, por vezes, fraqueza transitória de um lado (paralisia de Todd)."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Descrição rigorosa da crise por uma testemunha — é a informação mais importante; um vídeo de telemóvel ajuda muito.",
+      "Glicemia capilar imediata; análises (sódio, cálcio, magnésio, função renal e hepática, tóxicos, níveis de antiepiléticos).",
+      "EEG, TC e RM cerebral; punção lombar se houver suspeita de infeção."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Antiepiléticos de manutenção escolhidos conforme o tipo de crise, a idade, o sexo e as outras doenças (ex.: levetiracetam, lamotrigina, lacosamida, valproato, carbamazepina).",
+      "Valproato: contraindicado em mulheres em idade fértil, salvo programa de prevenção da gravidez; nos homens também exige informação e cautela.",
+      "Estado de mal: benzodiazepina (midazolam IM, bucal ou intranasal, ou diazepam ou midazolam EV; lorazepam EV se disponível) e depois antiepilético EV (levetiracetam, valproato, fenitoína ou lacosamida), segundo o protocolo.",
+      "Epilepsia refratária: avaliação para cirurgia, estimulação do nervo vago ou dieta cetogénica."
+    ]},
+    { t: "Durante a crise", itens: [
+      "Manter a calma, registar a hora de início, ficar junto do doente e pedir ajuda.",
+      "Proteger a cabeça, afastar objetos e desapertar a roupa; não conter os movimentos nem pôr nada na boca.",
+      "Quando os abalos param: posição lateral de segurança, aspirar secreções se necessário, oxigénio se SpO2 baixa e glicemia capilar. Nada pela boca até recuperar a consciência e a deglutição.",
+      "Vigilância pós-crise: Glasgow, sinais vitais e SpO2 até o doente voltar ao estado basal; registar.",
+      "Se durar 5 minutos ou mais, ou se houver crises seguidas sem recuperar: tratar como estado de mal (protocolo e médico de imediato).",
+      "Registar: hora e duração, como começou (lado, desvio do olhar), tipo de movimentos, consciência, incontinência, mordedura da língua e recuperação."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Antiepiléticos à hora certa, sem omitir doses; em jejum ou com disfagia, pedir ao médico uma alternativa (EV ou por SNG).",
+      "Fenitoína EV é medicação de alto risco: monitorização cardíaca e da TA durante a perfusão, diluir só em soro fisiológico, vigiar flebite e extravasamento.",
+      "Cama baixa e grades almofadadas se as crises forem frequentes; aspirador e oxigénio prontos à cabeceira; acesso venoso nos doentes com crises frequentes.",
+      "Durante a monitorização vídeo-EEG com redução de fármacos: não deixar o doente sozinho na casa de banho e garantir a campainha ao alcance.",
+      "Vigiar efeitos adversos: sonolência, tonturas e ataxia (toxicidade), alterações do humor (levetiracetam), hiponatremia (carbamazepina, oxcarbazepina), erupção cutânea (lamotrigina, carbamazepina).",
+      "Identificar e corrigir desencadeantes: privação de sono, febre, álcool e fármacos que baixam o limiar convulsivo ou interagem (ex.: tramadol; carbapenemos com valproato)."
+    ]},
+    { t: "Ensinos ao doente e à família", itens: [
+      "Tomar a medicação todos os dias à mesma hora e nunca a suspender sem indicação médica.",
+      "Evitar a privação de sono e o álcool em excesso; registar as crises num diário.",
+      "Segurança: duche em vez de banho de imersão, não fechar a porta da casa de banho à chave, não nadar sozinho, cuidado com alturas e com o fogão.",
+      "Condução: há restrições legais após uma crise — esclarecer com o médico.",
+      "Ensinar a família a atuar numa crise e a usar o midazolam bucal ou intranasal, se prescrito (no adulto, uso fora da indicação aprovada).",
+      "Contraceção e gravidez: planear com o neurologista (interações e risco de malformações); ácido fólico."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Crise com 5 minutos ou mais, ou crises repetidas sem recuperação da consciência entre elas: estado de mal — emergência.",
+      "Não recupera a consciência após a crise, ou défice novo que não regride.",
+      "Crise com traumatismo craniano (sobretudo se anticoagulado), dificuldade respiratória ou SpO2 baixa.",
+      "Primeira crise, ou crise com febre e rigidez da nuca ou com cefaleia intensa: procurar uma causa urgente.",
+      "Erupção cutânea com febre ou lesões nas mucosas depois de iniciar um antiepilético (reação grave)."
+    ]}
+  ]
+},
+{
+  id: "parkinson", cap: null, parte: "p4", icone: "🚶",
+  titulo: "Doença de Parkinson", pags: null,
+  resumo: "Doença neurodegenerativa com lentidão, rigidez e tremor de repouso. No internamento, o horário exato da medicação é decisivo: os atrasos causam bloqueio, disfagia e quedas.",
+  relacionados: ["movimento", "parkinsonismos-atipicos", "disfagia"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Perda de neurónios produtores de dopamina; doença neurodegenerativa frequente, sobretudo depois dos 60 anos.",
+      "Evolução lenta ao longo de anos; com o tempo surgem flutuações motoras («on» e «off») e discinesias.",
+      "Os sintomas não motores precedem muitas vezes os motores: perda do olfato, obstipação, depressão e perturbação do comportamento do sono REM."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Lentidão e diminuição dos movimentos (bradicinesia), rigidez e tremor de repouso, geralmente assimétricos no início.",
+      "Marcha de pequenos passos, sem balanço dos braços, com bloqueios (freezing); instabilidade postural e quedas nas fases mais avançadas.",
+      "Face pouco expressiva, voz baixa, letra pequena, disfagia e sialorreia.",
+      "Sintomas não motores: obstipação, hipotensão ortostática, urgência urinária, depressão, ansiedade, alucinações, défice cognitivo, dor e alterações do sono.",
+      "Flutuações: «on» (a medicação está a fazer efeito) e «off» (os sintomas regressam); discinesias (movimentos involuntários) no pico da dose."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Diagnóstico clínico; a boa resposta à levodopa apoia-o.",
+      "RM para excluir outras causas; DaTSCAN nos casos de dúvida."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Levodopa (com carbidopa ou benserazida), o fármaco mais eficaz; agonistas dopaminérgicos (pramipexol, ropinirol, rotigotina transdérmica); inibidores da MAO-B (rasagilina, safinamida); inibidores da COMT (entacapona, opicapona); amantadina.",
+      "Doença avançada: apomorfina (caneta ou perfusão subcutânea), levodopa em perfusão intestinal (gel) ou subcutânea (foslevodopa/foscarbidopa) e estimulação cerebral profunda.",
+      "Fisioterapia, terapia da fala e terapia ocupacional em todas as fases."
+    ]},
+    { t: "Medicação: horário e fármacos a evitar", tipo: "precaucao", itens: [
+      "Dar a medicação antiparkinsónica no horário do doente, não no horário da enfermaria; não atrasar mais de 15 a 30 minutos.",
+      "Nunca suspender de repente (risco de síndrome de hiperpirexia-parkinsonismo). Em jejum ou com disfagia, pedir ao médico uma alternativa (SNG, rotigotina transdérmica).",
+      "Não triturar as formulações de libertação prolongada (levodopa de libertação prolongada, agonistas LP); por SNG, usar a formulação dispersível prescrita.",
+      "Evitar haloperidol e outros antipsicóticos típicos, metoclopramida e prometazina: agravam o parkinsonismo. Para náuseas, domperidona (prolonga o QT: na dose e durante o tempo mínimos prescritos); para alucinações, quetiapina ou clozapina por indicação médica.",
+      "Inibidores da MAO-B: há interações (ex.: tramadol, petidina, alguns antidepressivos) — confirmar com o médico ou o farmacêutico."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Registar à admissão o horário habitual da medicação; manter a autogestão pelo doente ou pela família quando for seguro.",
+      "Avaliar e registar o estado motor ao longo do dia (períodos «on» e «off», discinesias).",
+      "Prevenção de quedas (Morse): levante faseado, TA deitado e de pé, calçado adequado; pistas visuais (linha no chão) ou ritmo («um, dois») para os bloqueios.",
+      "Rastreio de disfagia (GUSS); comprimidos com o doente sentado e em período «on»; vigiar aspiração.",
+      "Obstipação: hidratação, fibras e laxantes conforme prescrição; vigiar retenção urinária.",
+      "Vigiar alucinações, confusão (delirium), sono e humor.",
+      "A levodopa absorve-se melhor longe das refeições (refeições ricas em proteína reduzem o efeito), mas o horário do doente tem sempre prioridade.",
+      "Rotigotina: retirar o adesivo antes de RM ou de cardioversão.",
+      "Fases avançadas: avaliar o risco de úlceras por pressão (Braden).",
+      "Doentes com estimulação cerebral profunda: não usar diatermia; RM só segundo protocolo; confirmar o estado do neuroestimulador."
+    ]},
+    { t: "Ensinos ao doente e ao cuidador", itens: [
+      "Cumprir os horários da medicação (alarmes, caixa semanal) e nunca a suspender por iniciativa própria.",
+      "Exercício físico regular, estratégias para os bloqueios e adaptação da casa.",
+      "Agonistas dopaminérgicos: avisar de alterações do controlo dos impulsos (jogo, compras, sexualidade, comida) e de adormecimento súbito, com implicações na condução.",
+      "Procurar ajuda se houver quedas, engasgamento, alucinações ou obstipação prolongada.",
+      "Associação de doentes (APDPk) e apoio ao cuidador."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Rigidez extrema, febre, sudorese e alteração da consciência após suspensão ou redução da medicação (síndrome de hiperpirexia-parkinsonismo): emergência.",
+      "Incapacidade de engolir a medicação: comunicar de imediato para encontrar uma via alternativa.",
+      "Engasgamento, febre ou dessaturação (pneumonia de aspiração).",
+      "Confusão aguda ou alucinações novas (procurar infeção, desidratação ou fármacos).",
+      "Quedas com traumatismo; síncope por hipotensão ortostática."
+    ]}
+  ]
+},
+{
+  id: "esclerose-multipla", cap: null, parte: "p4", icone: "🧬",
+  titulo: "Esclerose múltipla (EM)", pags: null,
+  resumo: "Doença inflamatória e desmielinizante do sistema nervoso central, mais frequente em adultos jovens e em mulheres. Evolui por surtos e/ou de forma progressiva; as terapêuticas modificadoras reduzem os surtos e a incapacidade.",
+  relacionados: ["desmielinizantes", "mielopatias", "nmo"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "O sistema imunitário ataca a mielina do cérebro, da medula e dos nervos óticos, formando lesões (placas).",
+      "Início habitual entre os 20 e os 40 anos; mais frequente nas mulheres.",
+      "Formas: surto-remissão (a mais frequente no início), secundária progressiva e primária progressiva.",
+      "Surto: sintomas novos, ou agravamento, com mais de 24 horas e sem febre ou infeção que o expliquem."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Nevrite ótica: dor ao mexer o olho e perda de visão de um olho.",
+      "Formigueiros e dormência, fraqueza, espasticidade, alterações do equilíbrio e da marcha.",
+      "Visão dupla, vertigem, disartria; sinal de Lhermitte (sensação de choque elétrico ao fletir o pescoço).",
+      "Alterações urinárias (urgência, retenção), intestinais e sexuais.",
+      "Fadiga (muito frequente), alterações cognitivas, depressão e dor.",
+      "Fenómeno de Uhthoff: agravamento transitório com o calor ou a febre (pseudossurto)."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "RM cerebral e medular com contraste (critérios de McDonald 2024): lesões em vários locais, incluindo o nervo ótico; em certos casos já não é preciso demonstrar disseminação no tempo.",
+      "LCR (bandas oligoclonais ou índice de cadeias leves kappa) e potenciais evocados; análises para excluir outras causas, incluindo os anticorpos anti-AQP4 e anti-MOG."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Surto: metilprednisolona EV (habitualmente 3 a 5 dias) ou oral em dose alta; plasmaférese nos surtos graves sem resposta.",
+      "Terapêuticas modificadoras: injetáveis (interferão beta, acetato de glatirâmero, ofatumumab), orais (teriflunomida, fumarato de dimetilo, fingolimod, siponimod, ozanimod, cladribina) e perfusões (natalizumab, ocrelizumab, alemtuzumab).",
+      "Sintomáticos: baclofeno ou tizanidina (espasticidade), fampridina (marcha), oxibutinina ou mirabegrom (bexiga), toxina botulínica.",
+      "Reabilitação e gestão da fadiga."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Pulsos de corticoide: vigiar glicemia, TA, sono, humor e queixas gástricas; perfusão no tempo prescrito.",
+      "Perfusões de anticorpos monoclonais: pré-medicação conforme protocolo, sinais vitais e vigilância de reações durante e depois da perfusão.",
+      "Primeira toma de fingolimod (e ao reiniciar após interrupção): ECG antes e às 6 horas, FC e TA de hora a hora durante 6 horas (risco de bradicardia).",
+      "Avaliar e registar o défice neurológico, a visão, a marcha e a função urinária (resíduo pós-miccional).",
+      "Prevenção de quedas (Morse); gestão da fadiga (atividades com pausas); evitar o calor excessivo.",
+      "Rastrear infeções urinárias e respiratórias, que desencadeiam pseudossurtos.",
+      "Imunossupressão: vigiar sinais de infeção; vacinação de acordo com o plano antes de iniciar algumas terapêuticas."
+    ]},
+    { t: "Ensinos ao doente", itens: [
+      "Reconhecer um surto (sintoma novo com mais de 24 horas) e contactar a equipa.",
+      "Adesão à terapêutica; técnica de injeção e rotação dos locais; gestão dos efeitos adversos.",
+      "Não suspender natalizumab nem fingolimod por iniciativa própria (risco de agravamento grave por efeito rebound); várias terapêuticas contraindicam as vacinas vivas.",
+      "Autocateterismo vesical intermitente, se indicado: técnica, frequência e sinais de infeção urinária.",
+      "Natalizumab: risco de leucoencefalopatia multifocal progressiva (LMP) — comunicar alterações cognitivas, do comportamento, da fala ou da visão.",
+      "Planear a gravidez com o neurologista; deixar de fumar; vitamina D se prescrita; exercício adaptado."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Perda rápida de força nas pernas, nível sensitivo ou retenção urinária (mielite ou compressão medular): comunicar de imediato.",
+      "Perda súbita de visão.",
+      "Febre ou sinais de infeção em doente imunossuprimido.",
+      "Durante uma perfusão: dispneia, urticária, hipotensão ou edema da face (reação à perfusão ou anafilaxia) — parar a perfusão e chamar o médico.",
+      "Alterações cognitivas, do comportamento ou da linguagem progressivas sob natalizumab (suspeita de LMP)."
+    ]}
+  ]
+},
+{
+  id: "nmo", cap: null, parte: "p4", icone: "👁️",
+  titulo: "Neuromielite ótica (NMOSD)", pags: null,
+  resumo: "Doença autoimune rara com surtos graves de nevrite ótica e de mielite, na maioria com o anticorpo antiaquaporina-4. Distingue-se da esclerose múltipla: alguns tratamentos da EM podem agravá-la.",
+  relacionados: ["desmielinizantes", "esclerose-multipla", "mielopatias"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Doença inflamatória do SNC mediada por anticorpos, na maioria antiaquaporina-4 (anti-AQP4); mais frequente nas mulheres, sobretudo entre os 30 e os 50 anos.",
+      "Evolui por surtos e cada surto pode deixar sequelas graves (cegueira, paraplegia): prevenir as recaídas é essencial.",
+      "Associa-se por vezes a outras doenças autoimunes (lúpus, síndrome de Sjögren).",
+      "A doença associada ao anticorpo anti-MOG (MOGAD) é parecida mas distinta (ver «Esclerose múltipla, neuromielite ótica e outras doenças desmielinizantes»)."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Nevrite ótica grave, por vezes dos dois olhos.",
+      "Mielite extensa: fraqueza das pernas ou dos quatro membros, nível sensitivo, alterações urinárias e intestinais, espasmos dolorosos.",
+      "Síndrome da área postrema: soluços ou náuseas e vómitos persistentes, sem outra causa.",
+      "Outros: sonolência excessiva e sintomas do tronco cerebral (visão dupla, vertigem)."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Anticorpos anti-AQP4 e anti-MOG no sangue.",
+      "RM do cérebro, das órbitas e da medula (mielite longa, com 3 ou mais segmentos vertebrais) e LCR."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Surto: metilprednisolona EV em dose alta e plasmaférese precoce se não houver melhoria rápida (ou logo de início nos surtos graves).",
+      "Prevenção de recaídas: eculizumab, ravulizumab, inebilizumab, satralizumab (na UE, aprovados só para a doença AQP4+), rituximab, azatioprina ou micofenolato.",
+      "Alguns fármacos da esclerose múltipla (interferão beta, natalizumab, fingolimod) podem agravar a NMO: por isso o diagnóstico correto é essencial."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Avaliação neurológica frequente durante o surto: força, sensibilidade, visão, função vesical e intestinal e respiração (a mielite cervical alta pode atingir os músculos respiratórios).",
+      "Plasmaférese: cuidados com o cateter; vigiar hipotensão, hipocalcemia (formigueiros, cãibras), hemorragia e reações.",
+      "Eculizumab e ravulizumab: vacinas contra meningococos ACWY e B pelo menos 2 semanas antes; se o tratamento começar antes, antibiótico profilático até 2 semanas depois da vacina. A vacina não elimina o risco: vigiar febre, cefaleia e rigidez da nuca. A plasmaférese remove o fármaco (pode ser precisa uma dose suplementar).",
+      "Bexiga e intestino: resíduo pós-miccional, cateterismo vesical intermitente se necessário, prevenção da obstipação.",
+      "Prevenção de úlceras por pressão (Braden), de quedas e de trombose (mobilização e profilaxia prescrita).",
+      "Avaliar e tratar a dor neuropática e os espasmos tónicos dolorosos, conforme prescrição.",
+      "Perda visual: identificar-se ao entrar no quarto e manter os objetos sempre no mesmo lugar; risco de queda acrescido."
+    ]},
+    { t: "Ensinos ao doente", itens: [
+      "Reconhecer um surto (visão, força, sensibilidade, soluços ou vómitos persistentes) e procurar ajuda logo.",
+      "Adesão rigorosa à terapêutica preventiva; com eculizumab ou ravulizumab, andar sempre com o cartão do doente (sinais de meningite).",
+      "Vacinação conforme o plano; procurar ajuda se tiver febre."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Perda rápida de força, nível sensitivo, retenção urinária ou dificuldade respiratória (mielite alta): comunicar de imediato.",
+      "Perda súbita de visão.",
+      "Febre, cefaleia, rigidez da nuca ou petéquias sob eculizumab ou ravulizumab: suspeitar de meningite meningocócica — emergência.",
+      "Soluços ou vómitos incoercíveis (área postrema): risco de desidratação e de aspiração."
+    ]}
+  ]
+},
+{
+  id: "miastenia-gravis", cap: null, parte: "p4", icone: "💪",
+  titulo: "Miastenia gravis", pags: null,
+  resumo: "Doença autoimune da junção neuromuscular: fraqueza que piora com o esforço e melhora com o repouso. O grande risco é a crise miasténica, com insuficiência respiratória e disfagia.",
+  relacionados: ["miastenia", "urgencias", "disfagia"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Anticorpos (sobretudo antirrecetor da acetilcolina; também anti-MuSK) bloqueiam a transmissão entre o nervo e o músculo.",
+      "Dois picos de frequência: mulheres jovens e homens mais velhos; associa-se a timoma ou a hiperplasia do timo.",
+      "Forma ocular (só pálpebras e olhos) ou generalizada."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Ptose (pálpebra descaída) e visão dupla, flutuantes e piores ao fim do dia.",
+      "Fraqueza dos braços, das pernas e do pescoço, que agrava com o esforço.",
+      "Voz anasalada, disfagia e dificuldade em mastigar.",
+      "Dispneia, sobretudo deitado: sinal de crise iminente."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Anticorpos no sangue; EMG (estimulação repetitiva e fibra única); TC do tórax (timo).",
+      "Provas de função respiratória (capacidade vital forçada) para vigiar a gravidade."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Sintomático: piridostigmina.",
+      "Imunossupressão: prednisolona (subida lenta da dose — pode agravar no início), azatioprina, micofenolato, rituximab.",
+      "Miastenia generalizada: inibidores do complemento (eculizumab, ravulizumab, zilucoplan — só com anticorpos antirrecetor da acetilcolina) e do recetor FcRn (efgartigimod, rozanolixizumab).",
+      "Timectomia (no timoma e em alguns doentes com anticorpos antirrecetor da acetilcolina).",
+      "Crise miasténica: imunoglobulina EV ou plasmaférese; ventilação em UCI se necessário."
+    ]},
+    { t: "Fármacos que podem agravar a miastenia", tipo: "precaucao", itens: [
+      "Antibióticos: aminoglicosídeos, fluoroquinolonas e macrólidos (ex.: azitromicina).",
+      "Magnésio EV, bloqueadores neuromusculares, alguns antiarrítmicos e betabloqueadores (incluindo colírios), toxina botulínica, hidroxicloroquina e inibidores dos checkpoints imunitários.",
+      "Sedativos, benzodiazepinas e opioides: risco de depressão respiratória.",
+      "Confirmar sempre com o médico ou o farmacêutico antes de um fármaco novo; o doente deve ter consigo a lista de fármacos a evitar."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Avaliação respiratória pelo menos de 4 em 4 horas e sempre que houver queixas (mais vezes se prescrito): FR, SpO2, padrão respiratório e contagem em voz alta numa só inspiração; capacidade vital forçada conforme protocolo. Registar em tabela para ver a tendência — a descida da SpO2 é um sinal tardio.",
+      "Cabeceira elevada; aspirador de secreções e material de ventilação prontos.",
+      "Avaliar a deglutição antes das refeições e da medicação (GUSS); refeições no período de melhor força (30 a 60 minutos após a piridostigmina).",
+      "Piridostigmina à hora exata; vigiar efeitos colinérgicos (salivação, cólicas, diarreia, bradicardia).",
+      "Planear as atividades com pausas; prevenção de quedas.",
+      "Proteger o olho se a pálpebra não fechar bem (lubrificante prescrito e oclusão noturna); para a visão dupla, oclusão alternada por indicação médica.",
+      "Imunoglobulina ou plasmaférese: vigiar reações, TA, função renal e sinais de trombose; cuidados com o cateter.",
+      "Inibidores do complemento: confirmar a vacinação antimeningocócica e vigiar sinais de meningite."
+    ]},
+    { t: "Ensinos ao doente", itens: [
+      "Reconhecer o agravamento — falta de ar, dificuldade em engolir, voz mais fraca — e procurar ajuda urgente.",
+      "Cumprir o horário da piridostigmina e nunca suspender os corticoides de forma brusca.",
+      "Andar com a lista de fármacos a evitar e mostrá-la a todos os profissionais (incluindo dentista e farmácia).",
+      "Desencadeantes: infeções, cirurgias, stress, calor e falta de sono; manter a vacinação em dia."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Dispneia, ortopneia, tosse fraca, uso dos músculos acessórios ou incapacidade de contar até 20 numa só inspiração: possível crise miasténica — chamar o médico de imediato (pode precisar de ventilação).",
+      "Disfagia grave, engasgamento ou acumulação de secreções.",
+      "Fraqueza com aumento de secreções, cólicas e bradicardia: possível crise colinérgica (excesso de piridostigmina). Na dúvida, atuar como numa crise miasténica (via aérea e ventilação); não dar doses extra de piridostigmina sem indicação médica.",
+      "Capacidade vital forçada abaixo de 20 mL/kg ou a descer mais de 30%: considerar UCI.",
+      "Agravamento depois de um fármaco novo (ex.: antibiótico, magnésio)."
+    ]}
+  ]
+},
+{
+  id: "sgb", cap: null, parte: "p4", icone: "🦵",
+  titulo: "Síndrome de Guillain-Barré (SGB)", pags: null,
+  resumo: "Polirradiculoneuropatia aguda autoimune: fraqueza ascendente que agrava ao longo de dias a semanas, muitas vezes depois de uma infeção. Pode atingir a respiração e a deglutição e causar disautonomia grave.",
+  relacionados: ["neuropatias", "urgencias", "seguranca"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Inflamação aguda dos nervos periféricos e das raízes nervosas, muitas vezes 1 a 4 semanas após uma infeção gastrointestinal (ex.: Campylobacter) ou respiratória.",
+      "Pode surgir em qualquer idade. Agrava até cerca de 4 semanas, estabiliza e recupera lentamente, ao longo de meses.",
+      "Cerca de 20 a 30% dos doentes precisam de ventilação mecânica; a maioria volta a andar, mas pode ficar com sequelas.",
+      "Variante de Miller Fisher: visão dupla por paralisia dos músculos oculares, ataxia e ausência de reflexos."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Fraqueza simétrica que começa geralmente nas pernas e sobe; reflexos geralmente diminuídos ou ausentes (podem estar normais no início ou nas variantes motoras).",
+      "Formigueiros nos pés e nas mãos; dor lombar ou nas pernas, frequente e por vezes intensa.",
+      "Paralisia facial (muitas vezes dos dois lados), disfagia e disartria.",
+      "Insuficiência respiratória por fraqueza do diafragma.",
+      "Disautonomia: oscilações da TA e da FC, arritmias, retenção urinária e íleo."
+    ]},
+    { t: "Diagnóstico (visão geral)", itens: [
+      "Clínico, apoiado pelo LCR (proteínas elevadas com poucas células; pode ser normal na 1.ª semana) e pelo EMG.",
+      "Avaliação respiratória seriada (capacidade vital forçada)."
+    ]},
+    { t: "Tratamento (visão geral)", itens: [
+      "Imunoglobulina EV (habitualmente durante 5 dias) ou plasmaférese — mais eficazes quando iniciadas cedo.",
+      "Os corticoides não estão indicados.",
+      "Suporte: ventilação em UCI se necessário, profilaxia da trombose, tratamento da dor neuropática (gabapentina, pregabalina) e reabilitação precoce."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Vigilância respiratória de 2 em 2 a 4 em 4 horas na fase de progressão, conforme prescrição: FR, SpO2, força da tosse, contagem numa só inspiração e capacidade vital forçada; registar em tabela para ver a tendência.",
+      "Monitorização cardíaca e da TA (disautonomia); cuidado com a hipotensão nas mudanças de posição.",
+      "A aspiração de secreções e as mudanças de posição podem provocar bradicardia grave ou assistolia: fazer com monitorização e atropina disponível, conforme o protocolo. A resposta aos fármacos vasoativos pode ser exagerada.",
+      "Avaliar a deglutição (GUSS) e a força muscular (escala MRC) várias vezes por dia na fase de agravamento.",
+      "Dor: avaliar com regularidade (escala numérica; se o doente não comunicar, escala comportamental) e tratar conforme prescrição; posicionamento confortável.",
+      "Prevenir as complicações da imobilidade: úlceras por pressão (Braden), trombose (profilaxia prescrita), contraturas e pé equino (posicionamento, mobilização passiva e talas, se prescritas).",
+      "Bexiga e intestino: vigiar retenção urinária e íleo.",
+      "Imunoglobulina: vigiar cefaleia, reações, função renal e trombose. Plasmaférese: hipotensão, hipocalcemia e cuidados com o cateter.",
+      "Apoio emocional e meios de comunicação adaptados: o doente mantém-se consciente, mesmo muito paralisado."
+    ]},
+    { t: "Ensinos ao doente e à família", itens: [
+      "Explicar a evolução: agravamento inicial, estabilização e recuperação lenta.",
+      "Continuar a reabilitação depois da alta; prevenção de quedas.",
+      "Vacinação futura: esclarecer com o médico."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Dispneia, tosse fraca, ortopneia, capacidade vital forçada abaixo de 20 mL/kg ou a descer, ou incapacidade de contar até 20 numa inspiração: risco de falência respiratória — chamar o médico (UCI).",
+      "Disfagia ou acumulação de secreções.",
+      "Arritmias, bradicardia ou oscilações acentuadas da TA.",
+      "Fraqueza a progredir rapidamente, em horas.",
+      "Dor torácica, dispneia súbita ou edema de uma perna (tromboembolismo)."
+    ]}
+  ]
 }
 ];
 
 // ───────────────────────────── ESCALAS ─────────────────────────────
+// Grupos da secção «Patologias específicas (A–Z)»: no menu e no índice aparecem como uma entrada que,
+// ao tocar, mostra as doenças do grupo (cada uma com página própria)
+const GRUPOS_AZ = [
+  { id: "demencias-az", titulo: "Demências", temas: ["alzheimer", "demencia-vascular", "dcl"] }
+];
+
 const ESCALAS = [
 {
   id: "glasgow", nome: "Escala de Coma de Glasgow",

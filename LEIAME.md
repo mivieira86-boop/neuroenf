@@ -33,6 +33,12 @@ Uma opção cujo texto começa por «NT» conta como «não testável».
 2. Em `sw.js`, aumentar `VERSAO` (ex.: `neuroenf-v7` → `neuroenf-v8`) — sem isto, os telemóveis continuam com a versão guardada.
 3. Enviar para o repositório `neuroenf` (commit e push); o GitHub Pages atualiza em 1–2 minutos.
 
+## Secção A–Z: grupos, subgrupos e «Ver também»
+- Grupo de doenças com página própria cada uma: acrescentar a `GRUPOS_AZ` (conteudo.js) e pôr `grupo: "<id do grupo>"` nos temas.
+- Tema com várias doenças descritas na mesma página: campo `subtemas: [{ nome, procura }]` (texto a procurar nas secções) ou
+  `{ nome, tema }` (ligação a outro tema).
+- `relacionados: ["id", …]` mostra «Ver também» no fim do tema.
+
 ## Acrescentar um fármaco
 Em `farmacos.js`, acrescentar um objeto a `FARMACOS` (`id`, `dci`, `classe`, `notas`, opcional `alto: true` e `alerta`) e
 referir o `id` num grupo de `TERAPEUTICA` do tema certo.

@@ -1,5 +1,17 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 14 — 19/11/2026 (patologias A–Z mais completas, grupos e novo logótipo)
+- A secção **Patologias específicas (A–Z)** passa a aparecer em primeiro lugar no início e no menu, por ordem alfabética.
+- **Grupos e subgrupos**: ao tocar num grupo, a lista abre e mostra as doenças que inclui. Novo grupo **Demências**
+  (Doença de Alzheimer, Demência vascular, Demência com corpos de Lewy), cada uma com página própria. Os temas com várias
+  doenças (ex.: Parkinsonismos atípicos, Ataxias, DCJ, Tumores, Vasculites, Mielopatias, Infeções no imunodeprimido,
+  Encefalites autoimunes, Doenças autoimunes) mostram as doenças incluídas, com ligação direta à secção ou ao tema próprio.
+- **9 doenças novas** na secção A–Z, com o essencial, manifestações, diagnóstico, tratamento, precauções, cuidados de
+  enfermagem, ensinos e sinais de alarme, além de terapêutica, escalas, marchas e «Ver também»: Doença de Alzheimer,
+  Demência vascular, DCL, Epilepsia, Doença de Parkinson, Esclerose múltipla, Neuromielite ótica, Miastenia gravis e
+  Síndrome de Guillain-Barré. Revistas pelos agentes médico e de enfermagem.
+- Novo logótipo (cérebro com estetoscópio, fornecido pela autora) nos ícones da app, no favicon e no cabeçalho.
+
 ## Versão 13 — 19/11/2026
 - Retirada a escala 4AT (não é usada na prática diária de enfermagem do serviço). Na Semiologia e nas
   Demências, o rastreio passou a vigilância de sinais de delirium com comunicação ao médico. No Acesso rápido, a 4AT

@@ -166,6 +166,11 @@ const MARCHAS_DO_TEMA = {
   desmielinizantes: ["espastica", "cerebelosa"],
   dnm: ["espastica", "steppage"],
   "distrofia-miotonica": ["steppage"],
+  parkinson: ["parkinsonica"],
+  dcl: ["parkinsonica"],
+  "demencia-vascular": ["apraxica"],
+  "esclerose-multipla": ["espastica", "cerebelosa"],
+  nmo: ["espastica", "sensitiva"],
   miastenia: ["miopatica"],
   ame: ["miopatica"]
 };
