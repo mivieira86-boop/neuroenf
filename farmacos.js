@@ -441,6 +441,27 @@ const TERAPEUTICA = [
   { t: "Hemorragia subaracnoideia", farmacos: ["nimodipina"] },
   { t: "Prevenção secundária e complicações", farmacos: ["atorvastatina", "enoxaparina", "paracetamol", "insulina"] }
 ] },
+{ tema: "avc-isquemico", grupos: [
+  { t: "Reperfusão", farmacos: ["alteplase", "tenecteplase"] },
+  { t: "Controlo tensional (só nos alvos prescritos)", farmacos: ["labetalol", "urapidil"] },
+  { t: "Prevenção secundária", farmacos: ["aas", "clopidogrel", "apixabano", "rivaroxabano", "edoxabano", "dabigatrano", "varfarina", "atorvastatina"] },
+  { t: "Complicações", farmacos: ["paracetamol", "insulina", "enoxaparina"] }
+] },
+{ tema: "avc-hemorragico", grupos: [
+  { t: "Controlo tensional", farmacos: ["labetalol", "urapidil"] },
+  { t: "Reversão da anticoagulação", farmacos: ["ccp", "fitomenadiona", "idarucizumab", "andexanet", "protamina"] },
+  { t: "Hemorragia subaracnoideia", farmacos: ["nimodipina"] },
+  { t: "Crises e hipertensão intracraniana", farmacos: ["levetiracetam", "manitol", "nacl-hipertonico"] },
+  { t: "Sintomáticos", farmacos: ["paracetamol"] }
+] },
+{ tema: "trombectomia", grupos: [
+  { t: "Reperfusão (quando associada)", farmacos: ["alteplase", "tenecteplase"] },
+  { t: "Controlo tensional após o procedimento", farmacos: ["labetalol", "urapidil"] },
+  { t: "Após a imagem de controlo", farmacos: ["aas", "clopidogrel"] }
+] },
+{ tema: "territorios-arteriais", grupos: [
+  { t: "Reperfusão e prevenção secundária", farmacos: ["alteplase", "tenecteplase", "aas", "clopidogrel", "atorvastatina"] }
+] },
 { tema: "tce", grupos: [
   { t: "Hipertensão intracraniana", farmacos: ["manitol", "nacl-hipertonico"] },
   { t: "Crises", farmacos: ["levetiracetam"] },

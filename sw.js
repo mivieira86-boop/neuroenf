@@ -1,8 +1,8 @@
 // NeuroEnf — service worker: funciona sem rede e atualiza-se em segundo plano.
 // Aumentar VERSAO a cada publicação para os telemóveis receberem a nova versão.
-const VERSAO = "neuroenf-v28";
+const VERSAO = "neuroenf-v29";
 const FICHEIROS = [
-  "./", "index.html", "estilos.css", "instalar.css", "conteudo.js", "farmacos.js", "marchas.js", "protocolos.js", "app.js", "instalar.js",
+  "./", "index.html", "estilos.css", "instalar.css", "conteudo.js", "farmacos.js", "marchas.js", "protocolos.js", "esquemas.js", "app.js", "instalar.js",
   "manifest.webmanifest", "fonts/InterVariable.woff2",
   "icons/icone-192.png", "icons/icone-512.png", "icons/icone-maskable-512.png", "icons/apple-touch-icon.png", "icons/favicon-32.png"
 ];

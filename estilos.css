@@ -928,3 +928,45 @@ mark { background: var(--realce); color: inherit; padding: 0 2px; border-radius:
 .btn-topo .ic { width: 18px; height: 18px; }
 @media print { .btn-topo { display: none !important; } }
 @media print { .assinatura { margin-top: 24px; color: #555; border-top-color: #ccc; } }
+
+/* Esquemas anatómicos (esquemas.js) */
+.esquema { margin: 12px 0 4px; }
+.esquema-svg { background: var(--afundado); border-radius: 12px; padding: 8px; color: var(--texto); }
+.esquema-svg svg { display: block; width: 100%; height: auto; max-height: 420px; }
+.esquema-svg text { fill: currentColor; font: 600 16px Inter, system-ui, sans-serif; }
+.esquema-svg text.orient { font-weight: 500; font-size: 14px; fill: var(--secundario); }
+@media (min-width: 761px) { .esquema-svg text { font-size: 14px; } .esquema-svg text.orient { font-size: 13px; } .esquema-svg { max-width: 640px; } }
+.esquema-svg .contorno { fill: none; stroke: currentColor; stroke-width: 2; }
+.esquema-svg .sulco { fill: none; stroke: currentColor; stroke-width: 1.2; opacity: .45; }
+.esquema-svg .calo { fill: var(--superficie); stroke: currentColor; stroke-width: 1.2; opacity: .9; }
+.esquema-svg .guia { stroke: currentColor; stroke-width: 1; opacity: .6; }
+.esquema-svg .fronteira { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-dasharray: 4 4; opacity: .7; }
+.esquema-svg .talamo { stroke: currentColor; stroke-width: 1; }
+.esquema-svg .vaso { fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round; opacity: .55; }
+.esquema-svg .vaso.ant, .esquema-svg .vaso.pos { stroke: var(--c-vb); opacity: 1; }
+.esquema-svg .vaso.aci { stroke: var(--c-acm); opacity: 1; }
+.esquema-svg .vaso.aca { stroke: var(--c-aca); opacity: 1; }
+.esquema-svg .vaso.acm { stroke: var(--c-acm); opacity: 1; }
+.esquema-svg .vaso.acp { stroke: var(--c-acp); opacity: 1; }
+.esquema-svg .no { fill: var(--superficie); stroke: currentColor; stroke-width: 2; }
+:root { --c-aca: #3B82F6; --c-acm: #14A39A; --c-acp: #8B5CF6; --c-vb: #E08A00; --c-prof: #E0457B; }
+@media (prefers-color-scheme: dark) { :root { --c-aca: #60A5FA; --c-acm: #2CD3CF; --c-acp: #A78BFA; --c-vb: #F2C14E; --c-prof: #F472B6; } }
+.esquema-svg .t-aca { fill: var(--c-aca); fill-opacity: .42; }
+.esquema-svg .t-acm { fill: var(--c-acm); fill-opacity: .38; }
+.esquema-svg .t-acp { fill: var(--c-acp); fill-opacity: .45; }
+.esquema-svg .t-vb { fill: var(--c-vb); fill-opacity: .4; stroke: currentColor; stroke-width: 1.2; }
+.esquema-svg .t-prof { fill: var(--c-prof); fill-opacity: .7; stroke: currentColor; stroke-width: 1; }
+.esquema figcaption { margin-top: 8px; font-size: 14px; }
+.legenda { list-style: none; margin: 6px 0 0; padding: 0; display: grid; gap: 6px; }
+.legenda li { display: flex; align-items: flex-start; gap: 8px; line-height: 1.35; }
+.amostra { flex: 0 0 auto; width: 16px; height: 16px; border-radius: 4px; margin-top: 1px; border: 1px solid var(--linha); }
+.amostra.t-aca { background: var(--c-aca); } .amostra.t-acm { background: var(--c-acm); } .amostra.t-acp { background: var(--c-acp); }
+.amostra.t-vb, .amostra.pos { background: var(--c-vb); } .amostra.t-prof { background: var(--c-prof); } .amostra.aci { background: var(--c-acm); }
+.amostra.fronteira { background: repeating-linear-gradient(90deg, var(--texto) 0 4px, transparent 4px 8px); height: 3px; margin-top: 8px; border: 0; }
+.amostra.no { background: var(--superficie); border: 2px solid var(--texto); border-radius: 50%; }
+@media print { .esquema-svg { background: none; } }
+
+/* AVC em destaque no acesso rápido */
+.grupo-avc > summary.linha { border-left: 4px solid var(--acento); background: linear-gradient(90deg, var(--acento-suave), var(--superficie) 75%); }
+.grupo-avc > summary .ic-linha { color: var(--acento); }
+.grupo-avc > summary .linha-tit { font-weight: 700; }

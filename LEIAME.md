@@ -59,3 +59,6 @@ Se usar a extensão do Claude Code no VS Code, mova-os para `.claude/agents/` pa
 Conteúdo escrito de raiz para a equipa de enfermagem. Os temas clínicos seguem a organização dos capítulos 1–23 de
 «A Neurologia que Todo Médico Deve Saber» (Nitrini & Bacheschi), sem reproduzir o texto do livro.
 Não substitui protocolos institucionais nem a prescrição médica.
+
+## Esquemas anatómicos
+`esquemas.js` define `ESQUEMAS` (SVG originais com título e legenda). Numa secção de tema, `{ t: "…", esquema: "lateral" }` mostra o esquema; as cores dos territórios estão em `estilos.css` (`--c-aca`, `--c-acm`, `--c-acp`, `--c-vb`, `--c-prof`).

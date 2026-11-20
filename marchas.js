@@ -150,6 +150,7 @@ const MARCHAS = {
 
 // Marchas mostradas em cada tema (por ordem)
 const MARCHAS_DO_TEMA = {
+  "avc-isquemico": ["hemiparetica"], "avc-hemorragico": ["hemiparetica"], "territorios-arteriais": ["hemiparetica", "cerebelosa"],
   semiologia: ["normal", "parkinsonica", "cerebelosa", "sensitiva", "apraxica", "hemiparetica", "espastica", "steppage", "miopatica", "coreica"],
   movimento: ["parkinsonica", "apraxica", "coreica"],
   "parkinsonismos-atipicos": ["parkinsonica", "cerebelosa"],

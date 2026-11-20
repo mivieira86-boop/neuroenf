@@ -280,7 +280,8 @@ const TEMAS = [
   id: "avc", cap: 8, parte: "p2", icone: "⚡",
   titulo: "Doença cerebrovascular (AVC)",
   pags: "177–186",
-  resumo: "Tempo é cérebro. Reconhecer, ativar a Via Verde AVC, vigiar após trombólise/trombectomia e prevenir complicações.",
+  resumo: "Tempo é cérebro. Reconhecer, ativar a Via Verde AVC e prevenir complicações. O pormenor de cada tipo está no grupo AVC: AVC isquémico, AVC hemorrágico, trombectomia e territórios arteriais.",
+  relacionados: ["avc-isquemico", "avc-hemorragico", "trombectomia", "territorios-arteriais"],
   seccoes: [
     { t: "Reconhecer (BE-FAST)", itens: [
       "Balance — desequilíbrio súbito; Eyes — perda de visão; Face — boca ao lado; Arm — falta de força num braço; Speech — dificuldade em falar; Time — registar a hora.",
@@ -296,12 +297,6 @@ const TEMAS = [
       "Sem trombólise nem trombectomia: não baixar a TA por rotina — tratar só se > 220/120 mmHg (descida gradual) ou por outra indicação médica. Após trombectomia: manter < 180/105 mmHg, mas não descer a PAS abaixo de 140 mmHg salvo prescrição.",
       "Trombectomia: oclusão de grande vaso — até 6 h na circulação anterior e 6–24 h com seleção por imagem; oclusão basilar até 24 h. Não atrasar a trombólise à espera da trombectomia.",
       "Glicemia e temperatura: tratar hiperglicemia e febre (pioram o prognóstico)."
-    ]},
-    { t: "Vigilância pós-trombólise (esquema habitual)", itens: [
-      "Avaliação neurológica e TA a cada 15 min nas primeiras 2 h, a cada 30 min nas 6 h seguintes e de hora a hora até às 24 h (confirmar protocolo local).",
-      "Evitar SNG, algaliação e punções nas primeiras horas, salvo necessidade.",
-      "Angioedema orolingual (sobretudo com IECA): vigiar lábios e língua.",
-      "Não administrar antiagregantes nem anticoagulantes nas primeiras 24 h após trombólise sem indicação médica explícita (habitualmente após imagem de controlo)."
     ]},
     { t: "Prevenção de complicações", itens: [
       "Aspiração/pneumonia: rastreio de disfagia, cabeceira elevada, higiene oral.",
@@ -321,12 +316,6 @@ const TEMAS = [
       "Articular atempadamente com serviço social, enfermagem de reabilitação e centro de saúde (carta de alta de enfermagem); referenciar para a RNCCI quando indicado.",
       "Condução: não conduzir até autorização médica.",
       "Humor, sexualidade e regresso ao trabalho: abordar com abertura e sinalizar à equipa."
-    ]},
-    { t: "AVC hemorrágico e hemorragia subaracnoideia", itens: [
-      "Hemorragia intracerebral: baixar a TA cedo e de forma suave até ao alvo prescrito (habitualmente PAS ≈ 140 mmHg; evitar < 130 mmHg e grandes oscilações); reverter a anticoagulação o mais cedo possível conforme protocolo; controlar glicemia e temperatura; vigiar agravamento (expansão do hematoma, sobretudo nas primeiras 24 h).",
-      "HSA: cefaleia súbita e intensa («a pior da vida»), pode ter rigidez da nuca e perda de consciência.",
-      "Na HSA: vigiar vasospasmo/isquemia tardia (novo défice ou sonolência, sobretudo entre o 3.º e o 14.º dia), sódio (hiponatremia frequente) e hidrocefalia. Manter euvolemia e balanço hídrico rigoroso — não fazer restrição hídrica para corrigir a hiponatremia.",
-      "Nimodipina conforme prescrição — vigiar hipotensão."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
       "Durante/após trombólise: cefaleia intensa, vómitos, agravamento neurológico, subida súbita da TA, edema da língua/lábios → chamar o médico de imediato; se a alteplase ainda estiver em perfusão, suspendê-la (a tenecteplase é bólus único). Preparar TC urgente.",
@@ -2113,6 +2102,264 @@ const TEMAS = [
   ]
 },
 {
+  id: "avc-isquemico", cap: null, parte: "p4", grupo: "avc-az", icone: "🧠",
+  titulo: "AVC isquémico", pags: null,
+  resumo: "Oclusão de uma artéria cerebral. Apoiar a reperfusão (trombólise e trombectomia), proteger a penumbra — perfusão, TA, glicemia, temperatura, oxigenação — e prevenir complicações.",
+  relacionados: ["avc", "trombectomia", "territorios-arteriais", "avc-hemorragico", "linguagem", "disfagia"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Cerca de 85% dos AVC são isquémicos: um trombo ou êmbolo oclui uma artéria e o território que ela irriga deixa de receber sangue.",
+      "No centro forma-se o núcleo de enfarte (lesão irreversível); à volta fica a penumbra — tecido em sofrimento que ainda se pode salvar se a artéria for reaberta a tempo. Por cada minuto sem tratamento perdem-se cerca de 2 milhões de neurónios: tempo é cérebro.",
+      "Os sinais dependem da artéria ocluída (ver «Territórios arteriais e síndromes»). Os défices são do lado oposto à lesão no hemisfério; no tronco cerebral podem ser cruzados.",
+      "Acidente isquémico transitório (AIT): sintomas que regridem totalmente, sem lesão na imagem — é um aviso; o risco de AVC nos dias seguintes é elevado."
+    ]},
+    { t: "Causas (classificação TOAST)", itens: [
+      "Aterosclerose de grandes artérias (ex.: estenose da carótida interna).",
+      "Cardioembolismo — sobretudo fibrilhação auricular; também enfarte recente, próteses valvulares, endocardite.",
+      "Doença de pequenos vasos (enfartes lacunares) — associada a HTA e diabetes.",
+      "Outras causas determinadas: dissecção arterial (doentes jovens, dor cervical ou cefaleia), trombofilias, vasculites, drogas.",
+      "Causa indeterminada, apesar do estudo completo (ECG/Holter, ecocardiograma, estudo dos vasos do pescoço e intracranianos, análises)."
+    ]},
+    { t: "Reperfusão: trombólise endovenosa", aviso: "A decisão é médica e segue o protocolo da Via Verde AVC do hospital. Confirmar sempre doses e tempos no protocolo local.", itens: [
+      "Janela: até 4,5 h após o início dos sintomas (ou a última vez visto bem); entre 4,5 e 9 h, ou AVC ao acordar, só com seleção por imagem avançada.",
+      "Alteplase: 0,9 mg/kg (máximo 90 mg) — 10% em bólus em 1 minuto e o restante em perfusão de 60 minutos. No fim, lavar o sistema com soro fisiológico ao mesmo ritmo, para o doente receber a dose que fica na linha.",
+      "Tenecteplase: 0,25 mg/kg (máximo 25 mg) em bólus único EV.",
+      "A dose depende do peso: pesar sempre que possível (a estimativa errada é causa frequente de erro); dupla verificação da dose por dois profissionais.",
+      "Antes: TA < 185/110 mmHg; glicemia capilar (corrigir hipoglicemia); dois acessos venosos (um só para o trombolítico); não atrasar à espera de análises, salvo suspeita de coagulopatia ou anticoagulação.",
+      "Principais contraindicações (avaliação médica): hemorragia na TC; anticoagulação eficaz; plaquetas baixas ou coagulopatia; AVC ou traumatismo craniano grave recentes; cirurgia major ou hemorragia ativa recentes; TA que não se consegue controlar."
+    ]},
+    { t: "Vigilância após trombólise (esquema habitual)", itens: [
+      "Avaliação neurológica e TA a cada 15 min nas primeiras 2 h, a cada 30 min nas 6 h seguintes e de hora a hora até às 24 h (confirmar protocolo local).",
+      "Evitar SNG, algaliação e punções nas primeiras horas, salvo necessidade.",
+      "TA < 180/105 mmHg durante e nas 24 h seguintes; se a TA subir, comunicar de imediato (tratamento conforme prescrição).",
+      "Vigiar hemorragia sistémica: gengivas, nariz, locais de punção, urina, fezes, vómito; comprimir os locais de punção mais tempo.",
+      "Angioedema orolingual (sobretudo com IECA): vigiar lábios e língua; se surgir, suspender a perfusão de alteplase, chamar o médico de imediato e vigiar a via aérea.",
+      "Não administrar antiagregantes nem anticoagulantes nas primeiras 24 h após trombólise sem indicação médica explícita (habitualmente após imagem de controlo)."
+    ]},
+    { t: "Cuidados de enfermagem: perfusão tecidular cerebral", itens: [
+      "TA: na fase aguda não baixar por rotina — a TA alta ajuda a perfundir a penumbra. Cumprir os alvos prescritos (sem reperfusão: tratar só se > 220/120 mmHg; com trombólise ou trombectomia: < 180/105 mmHg) e evitar descidas bruscas e hipotensão.",
+      "Hidratação: soro fisiológico 0,9% conforme prescrição; evitar soros hipotónicos e com glicose (agravam o edema e a hiperglicemia); balanço hídrico.",
+      "Posição: cabeça alinhada com o tronco; cabeceira conforme protocolo — elevar a 30° se houver risco de aspiração, vómitos, edema ou hipertensão intracraniana.",
+      "Oxigénio só se SpO₂ < 94% (não por rotina).",
+      "Glicemia: vigiar e manter dentro do alvo prescrito (habitualmente 140–180 mg/dL); evitar e tratar de imediato a hipoglicemia.",
+      "Temperatura: tratar a febre (> 37,5 °C) conforme prescrição e procurar a causa (aspiração, infeção urinária).",
+      "Monitorização cardíaca contínua nas primeiras 24–72 h, para detetar fibrilhação auricular.",
+      "Avaliação neurológica (NIHSS, Glasgow, pupilas) com a frequência prescrita; registar sempre a hora e comunicar qualquer agravamento."
+    ]},
+    { t: "Edema cerebral e transformação hemorrágica", itens: [
+      "Enfarte extenso da ACM («maligno»): o edema é máximo entre o 2.º e o 5.º dia — sonolência crescente, agravamento do défice, vómitos, anisocoria, desvio do olhar. Comunicar de imediato: a craniectomia descompressiva, em doentes selecionados, deve ser decidida cedo (idealmente nas primeiras 48 h).",
+      "Enfarte do cerebelo: o edema pode comprimir o tronco cerebral e causar hidrocefalia — vigiar consciência, vómitos e respiração; pode precisar de cirurgia urgente.",
+      "Transformação hemorrágica (sangramento dentro do enfarte), sobretudo após reperfusão: cefaleia, vómitos, agravamento neurológico — TC urgente."
+    ]},
+    { t: "Prevenção secundária", itens: [
+      "Antiagregação (ácido acetilsalicílico, clopidogrel); no AVC minor ou AIT de alto risco pode ser prescrita dupla antiagregação por um período curto (ex.: 21 dias).",
+      "Fibrilhação auricular: anticoagulação oral, com início definido pela equipa conforme a gravidade do AVC (cada vez mais precoce nos AVC pequenos).",
+      "Estenose carotídea sintomática significativa: endarterectomia ou angioplastia com stent, de preferência nas primeiras 2 semanas.",
+      "Estatina, controlo da TA e da diabetes, deixar de fumar, atividade física, alimentação equilibrada."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Agravamento neurológico (aumento do NIHSS, queda da consciência, novo défice): comunicar de imediato e preparar TC urgente.",
+      "Durante ou após trombólise: cefaleia intensa, vómitos, subida súbita da TA, hemorragia ativa ou edema da língua e dos lábios — suspender a alteplase se ainda estiver em perfusão e chamar o médico.",
+      "Sonolência crescente, anisocoria ou vómitos entre o 2.º e o 5.º dia num enfarte extenso (edema maligno).",
+      "Hipoglicemia, febre, dessaturação ou sinais de aspiração."
+    ]}
+  ]
+},
+{
+  id: "avc-hemorragico", cap: null, parte: "p4", grupo: "avc-az", icone: "🩸",
+  titulo: "AVC hemorrágico e hemorragia subaracnoideia", pags: null,
+  resumo: "Hemorragia dentro do cérebro (intracerebral) ou à sua volta (subaracnoideia). As primeiras horas decidem: controlar a TA, reverter a anticoagulação, vigiar o crescimento do hematoma e a hipertensão intracraniana.",
+  relacionados: ["avc", "avc-isquemico", "hic", "territorios-arteriais"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Hemorragia intracerebral (HIC): cerca de 10–15% dos AVC, com mortalidade mais alta do que o AVC isquémico. O hematoma pode crescer nas primeiras horas — é nesse período que os cuidados mais contam.",
+      "Hemorragia subaracnoideia (HSA): sangue no espaço à volta do cérebro, na maioria dos casos por rotura de um aneurisma; doentes muitas vezes mais jovens.",
+      "Os sinais focais são semelhantes aos do AVC isquémico; cefaleia intensa, vómitos e alteração precoce da consciência são mais frequentes. Só a imagem (TC) distingue."
+    ]},
+    { t: "Hemorragia intracerebral: causas e localizações", tabela: {
+      cab: ["Causa", "Localização típica", "Notas"],
+      lin: [
+        ["Hipertensão arterial", "Profunda: putâmen, tálamo, ponte, cerebelo", "A causa mais frequente"],
+        ["Angiopatia amiloide", "Lobar (junto ao córtex)", "Idosos; hemorragias repetidas; associação a declínio cognitivo"],
+        ["Anticoagulantes", "Qualquer", "Hematomas maiores e que crescem mais — reverter de imediato"],
+        ["Malformações vasculares", "Qualquer", "MAV, cavernomas; pensar nelas em doentes jovens"],
+        ["Outras", "Variável", "Tumores, trombose venosa cerebral, transformação hemorrágica de um enfarte, cocaína e anfetaminas"]
+      ],
+      nota: "Escala ICH (gravidade): Glasgow, volume do hematoma ≥ 30 mL, sangue nos ventrículos, origem infratentorial e idade ≥ 80 anos."
+    }},
+    { t: "Hemorragia intracerebral: tratamento na fase aguda", aviso: "Decisões médicas segundo o protocolo do hospital; o papel da enfermagem é preparar, administrar sem atrasos, vigiar e registar as horas.", itens: [
+      "TA: baixar cedo e de forma suave até ao alvo prescrito (habitualmente PAS ≈ 140 mmHg; evitar < 130 mmHg e grandes oscilações). Medir com frequência — de 5 em 5 a 15 em 15 minutos durante o ajuste.",
+      "Reverter a anticoagulação o mais cedo possível: varfarina → complexo de protrombina (CCP) + vitamina K EV; dabigatrano → idarucizumab; inibidores do fator Xa (apixabano, rivaroxabano, edoxabano) → andexanet alfa ou CCP, conforme o protocolo; heparina → protamina.",
+      "Doentes antiagregados: a transfusão de plaquetas não está indicada por rotina (só em situações selecionadas, como antes de cirurgia).",
+      "Controlar glicemia e temperatura; crises epiléticas tratam-se se ocorrerem (sem profilaxia por rotina).",
+      "Prevenção de TVP: compressão pneumática intermitente desde a admissão; heparina profilática só quando prescrita (em regra após confirmação de que o hematoma estabilizou).",
+      "Cirurgia: hematoma do cerebelo grande ou com compressão do tronco/hidrocefalia → cirurgia urgente; sangue nos ventrículos com hidrocefalia → drenagem ventricular externa (DVE)."
+    ]},
+    { t: "Hemorragia intracerebral: cuidados de enfermagem", itens: [
+      "Vigilância neurológica apertada nas primeiras 24–48 h (Glasgow, pupilas, NIHSS, força), com a frequência prescrita: o crescimento do hematoma manifesta-se por agravamento.",
+      "Sinais de hipertensão intracraniana: cefaleia crescente, vómitos, sonolência, anisocoria; tardios — HTA com bradicardia e respiração irregular (tríade de Cushing). Comunicar de imediato.",
+      "Cabeceira a 30°, cabeça alinhada, evitar flexão ou rotação do pescoço e roupas ou fixações apertadas no pescoço.",
+      "Evitar aumentos da pressão intracraniana: prevenir obstipação e esforço (laxantes conforme prescrição), tratar náuseas, dor e tosse; aspirar secreções só quando necessário e de forma breve; ambiente calmo.",
+      "DVE (se existir): ver o tema «Hipertensão intracraniana» — nível do sistema, clampagem ao mobilizar, débito e aspeto do LCR, assepsia.",
+      "Disfagia: jejum até rastreio; posicionamento e prevenção de úlceras e quedas como no AVC isquémico."
+    ]},
+    { t: "Hemorragia subaracnoideia: reconhecer e avaliar", itens: [
+      "Cefaleia súbita e muito intensa, máxima em segundos ou minutos («a pior da vida»), muitas vezes com vómitos, rigidez da nuca, fotofobia, perda de consciência ou crise epilética.",
+      "Diagnóstico: TC sem contraste (e punção lombar se a TC for normal e a suspeita se mantiver); angio-TC ou angiografia para encontrar o aneurisma.",
+      "Gravidade: escalas de Hunt e Hess ou WFNS (clínica) e de Fisher modificada (quantidade de sangue na TC, que prevê o risco de vasospasmo).",
+      "O aneurisma deve ser tratado cedo (idealmente nas primeiras 24 h): embolização endovascular (coils) ou clipagem cirúrgica."
+    ]},
+    { t: "Hemorragia subaracnoideia: cuidados de enfermagem", itens: [
+      "Antes de o aneurisma estar tratado o risco de nova hemorragia é máximo: repouso, ambiente calmo e com pouca luz, controlo da dor, TA no alvo prescrito, laxantes e antieméticos, evitar esforço e manobras de Valsalva.",
+      "Nimodipina conforme prescrição (habitualmente 21 dias) — vigiar hipotensão e comunicar; por via oral ou SNG a horas certas; a forma EV protege-se da luz e administra-se segundo o RCM.",
+      "Isquemia cerebral tardia / vasospasmo, sobretudo entre o 3.º e o 14.º dia: nova sonolência, confusão, défice focal ou agravamento da cefaleia — comunicar de imediato.",
+      "Manter euvolemia e balanço hídrico rigoroso; vigiar o sódio — a hiponatremia é frequente e não se corrige com restrição hídrica nestes doentes.",
+      "Hidrocefalia (aguda ou tardia): sonolência, alteração da marcha ou da consciência; pode exigir DVE.",
+      "Vigiar ECG e sinais de disfunção cardíaca (arritmias, «coração de stress»); febre e crises epiléticas.",
+      "Mobilização gradual após o tratamento do aneurisma, segundo o protocolo e a indicação médica."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Agravamento neurológico, queda do Glasgow ≥ 2 pontos, anisocoria ou nova crise epilética: comunicar de imediato (crescimento do hematoma, nova hemorragia, hidrocefalia).",
+      "Cefaleia que agrava subitamente na HSA com aneurisma ainda não tratado (possível nova rotura).",
+      "Entre o 3.º e o 14.º dia de HSA: confusão, sonolência ou novo défice (vasospasmo).",
+      "TA fora do alvo apesar do tratamento, ou hipotensão com a nimodipina.",
+      "Tríade de Cushing (HTA, bradicardia, respiração irregular): hipertensão intracraniana grave."
+    ]}
+  ]
+},
+{
+  id: "trombectomia", cap: null, parte: "p4", grupo: "avc-az", icone: "🩺",
+  titulo: "Trombectomia (AVC isquémico)", pags: null,
+  resumo: "Remoção do trombo por via endovascular numa oclusão de grande artéria. Cuidados antes e depois: vigilância neurológica, TA, local de punção, perfusão do membro, perdas hemáticas e penso.",
+  relacionados: ["avc-isquemico", "avc", "territorios-arteriais"],
+  seccoes: [
+    { t: "O que é", itens: [
+      "Procedimento de neurorradiologia de intervenção: através de uma artéria (femoral ou radial) leva-se um cateter até à artéria cerebral ocluída e retira-se o trombo com um stent-retriever e/ou aspiração.",
+      "Indicada na oclusão de grande vaso — carótida interna, segmento proximal da ACM (M1/M2), artéria basilar.",
+      "Janelas: circulação anterior até 6 h; entre 6 e 24 h com seleção por imagem; oclusão basilar até 24 h. Em doentes selecionados, também em enfartes já extensos.",
+      "Faz-se nos centros com neurorradiologia de intervenção; o doente pode ser transferido depois de iniciar a trombólise noutro hospital. A trombólise, quando indicada, não se atrasa à espera da trombectomia."
+    ]},
+    { t: "Antes do procedimento", itens: [
+      "Via Verde AVC: hora de início (ou última vez visto bem), NIHSS e TA registados; tempo é cérebro — preparar em paralelo, sem atrasos.",
+      "Peso, alergias (sobretudo ao contraste iodado), anticoagulantes e antiagregantes em curso; glicemia capilar.",
+      "Dois acessos venosos; colheitas (hemograma, coagulação, bioquímica com função renal) sem atrasar o procedimento.",
+      "Avaliar e registar os pulsos periféricos (femorais, pediosos, tibiais posteriores e radiais), a cor e a temperatura dos membros — servem de comparação depois.",
+      "Jejum; retirar próteses dentárias, adornos e roupa; consentimento quando possível (em situação urgente segue-se o protocolo).",
+      "O procedimento faz-se com sedação ou anestesia geral (decisão da equipa); transporte monitorizado e acompanhado."
+    ]},
+    { t: "Depois: vigilância neurológica e hemodinâmica", itens: [
+      "NIHSS, Glasgow, pupilas e sinais vitais com a frequência do protocolo (habitualmente de 15 em 15 min nas primeiras 2 h, de 30 em 30 min nas 6 h seguintes e de hora a hora até às 24 h).",
+      "TA no alvo prescrito: em regra < 180/105 mmHg; após recanalização não baixar a PAS abaixo de 140 mmHg salvo prescrição (descidas muito intensas pioram o prognóstico).",
+      "Qualquer agravamento (cefaleia, vómitos, sonolência, novo défice, aumento do NIHSS): comunicar de imediato — pode ser hemorragia, nova oclusão ou edema; preparar TC urgente.",
+      "Doente que esteve sob anestesia: vigiar via aérea, SpO₂ e despertar; rastreio da deglutição só com o doente bem acordado."
+    ]},
+    { t: "Depois: local de punção, penso e perfusão do membro", itens: [
+      "Acesso femoral: repouso no leito com o membro em extensão durante o tempo definido (depende do dispositivo de encerramento e do protocolo, em regra 2 a 6 h); cabeceira ≤ 30°; não fletir a anca; ensinar a comprimir o penso ao tossir ou espirrar.",
+      "Vigiar o penso com a mesma frequência dos sinais vitais: hemorragia, hematoma (delimitar com caneta e registar a dimensão), dor, massa pulsátil ou sopro (pseudoaneurisma).",
+      "Perfusão do membro: pulsos distais (pedioso e tibial posterior), cor, temperatura, preenchimento capilar, sensibilidade e mobilidade — comparar com o outro membro e com o registo de antes. Membro frio, pálido, sem pulso ou doloroso: comunicar de imediato (isquemia).",
+      "Hemorragia no local: compressão manual firme logo acima do ponto de punção e chamar o médico.",
+      "Hemorragia retroperitoneal (acesso femoral): dor lombar, no flanco ou abdominal, hipotensão, taquicardia, palidez, queda da hemoglobina — mesmo sem hematoma visível. Comunicar de imediato.",
+      "Acesso radial: pulseira de compressão retirada de forma progressiva segundo o protocolo; vigiar a mão (cor, temperatura, preenchimento capilar, dor, sensibilidade); não puncionar nem medir a TA nesse braço nas primeiras 24 h."
+    ]},
+    { t: "Depois: perdas hemáticas e outros cuidados", itens: [
+      "Vigiar perdas hemáticas, sobretudo se houve trombólise: penso, gengivas, nariz, urina, fezes, vómito, equimoses; hemoglobina conforme prescrição.",
+      "Contraste iodado: hidratação conforme prescrição, diurese e função renal; vigiar reações alérgicas tardias (prurido, exantema).",
+      "Imagem de controlo (TC ou RM) em regra às 24 h, antes de iniciar antiagregação ou anticoagulação.",
+      "Glicemia, temperatura e balanço hídrico como no AVC isquémico.",
+      "Levante só depois do repouso prescrito, com o local de punção estável e sem hemorragia; primeiro levante acompanhado.",
+      "Prevenção de TVP conforme prescrição (compressão pneumática intermitente)."
+    ]},
+    { t: "Ensinos para a alta", itens: [
+      "Local de punção: manter limpo e seco; vigiar inchaço, dor, hematoma que aumenta ou sangue.",
+      "Na primeira semana: evitar pegar em pesos e esforços com o membro puncionado; não fazer banhos de imersão até cicatrizar.",
+      "Se sangrar: comprimir com firmeza e ligar 112.",
+      "Reconhecer um novo AVC (BE-FAST) e ligar 112 de imediato, anotando a hora."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Agravamento neurológico, cefaleia intensa ou vómitos após o procedimento.",
+      "Hematoma que cresce, hemorragia que não para com a compressão ou massa pulsátil no local de punção.",
+      "Membro frio, pálido, sem pulso, dormente ou doloroso.",
+      "Dor lombar ou abdominal com hipotensão e taquicardia (hemorragia retroperitoneal).",
+      "TA acima do alvo prescrito ou hipotensão."
+    ]}
+  ]
+},
+{
+  id: "territorios-arteriais", cap: null, parte: "p4", grupo: "avc-az", icone: "🗺️",
+  titulo: "Territórios arteriais e síndromes de AVC", pags: null,
+  resumo: "Que artéria irriga cada zona do cérebro e que sinais dá a sua oclusão. Esquemas da face lateral, medial, corte axial e polígono de Willis, com as síndromes a reconhecer à cabeceira.",
+  relacionados: ["avc-isquemico", "avc", "topografia", "linguagem"],
+  seccoes: [
+    { t: "O essencial", aviso: "Esquemas simplificados, para orientação. Os limites dos territórios variam de pessoa para pessoa.", itens: [
+      "Circulação anterior: as duas carótidas internas dão a artéria cerebral anterior (ACA) e a artéria cerebral média (ACM).",
+      "Circulação posterior (vertebrobasilar): as duas artérias vertebrais juntam-se na basilar, que irriga o tronco cerebral e o cerebelo e termina nas artérias cerebrais posteriores (ACP).",
+      "O polígono de Willis liga as duas circulações através das comunicantes anterior e posteriores.",
+      "Lesões de um hemisfério dão sinais do lado oposto do corpo; lesões do tronco cerebral podem dar sinais «cruzados» (nervos cranianos de um lado, membros do outro)."
+    ]},
+    { t: "Polígono de Willis", esquema: "willis", itens: [] },
+    { t: "Face lateral do cérebro", esquema: "lateral", itens: [
+      "A ACM irriga a maior parte da face lateral — áreas motoras e sensitivas da face e do membro superior, linguagem (hemisfério esquerdo) e atenção espacial (hemisfério direito)."
+    ]},
+    { t: "Face medial do cérebro", esquema: "medial", itens: [
+      "A ACA irriga a face medial dos lobos frontal e parietal — incluindo a área motora e sensitiva do membro inferior.",
+      "A ACP irriga o lobo occipital (visão), a face inferior do lobo temporal (memória) e o tálamo."
+    ]},
+    { t: "Corte axial", esquema: "axial", itens: [
+      "As artérias perfurantes profundas (lenticuloestriadas, ramos da ACM) irrigam os gânglios da base e a cápsula interna: por aqui passam todas as fibras motoras — uma lesão pequena pode dar uma hemiparesia completa (enfarte lacunar).",
+      "As zonas de fronteira entre territórios sofrem primeiro quando a TA baixa muito (enfartes de fronteira)."
+    ]},
+    { t: "Artérias, localização e sinais", tabela: {
+      cab: ["Artéria", "Território", "Sinais típicos (lado oposto à lesão)"],
+      lin: [
+        ["ACA", "Face medial dos lobos frontal e parietal", "Parésia e hipostesia sobretudo do membro inferior; incontinência urinária; abulia, lentidão, reflexo de preensão"],
+        ["ACM — divisão superior", "Lobo frontal lateral e parietal anterior", "Parésia da face e do membro superior > inferior; afasia de Broca (esquerda); desvio do olhar para o lado da lesão"],
+        ["ACM — divisão inferior", "Lobo temporal e parietal posterior", "Afasia de Wernicke (esquerda) ou negligência (direita); quadrantanopsia superior; muitas vezes sem fraqueza"],
+        ["ACM — tronco (M1)", "Todo o território da ACM, incluindo os gânglios da base", "Hemiplegia e hemianestesia (face e membro superior > inferior), hemianopsia homónima, desvio do olhar; afasia global (esquerda) ou negligência e anosognosia (direita)"],
+        ["Perfurantes (lenticuloestriadas)", "Gânglios da base e cápsula interna", "Síndromes lacunares — sem afasia, negligência nem alterações do campo visual"],
+        ["Coroideia anterior", "Braço posterior da cápsula interna, parte do tálamo", "Hemiparesia, hemi-hipostesia e hemianopsia"],
+        ["ACP", "Lobo occipital, face inferior do temporal, tálamo", "Hemianopsia homónima (muitas vezes com poupança macular); alexia sem agrafia (esquerda); alterações da memória; tálamo: perda de sensibilidade e dor do hemicorpo"],
+        ["Basilar", "Ponte, mesencéfalo, cerebelo, ACP", "Tetraparesia, coma, alterações dos movimentos oculares, disartria, disfagia; «síndrome de encarceramento» (locked-in): acordado, só mexe os olhos"],
+        ["Vertebral / PICA", "Bulbo lateral e cerebelo inferior", "Síndrome de Wallenberg: vertigem, vómitos, disfagia, rouquidão, Horner e ataxia do mesmo lado; perda da sensibilidade térmica e dolorosa da face do mesmo lado e do corpo do lado oposto"],
+        ["AICA e cerebelosa superior", "Ponte lateral e cerebelo", "Ataxia do mesmo lado, vertigem, nistagmo; na AICA também surdez e paralisia facial do mesmo lado"]
+      ],
+      nota: "Esquerda/direita referem-se ao hemisfério dominante habitual (linguagem à esquerda na maioria das pessoas)."
+    }},
+    { t: "Hemisfério esquerdo e hemisfério direito", itens: [
+      "Esquerdo (dominante na maioria): afasia, alexia, agrafia, acalculia, apraxia — ver «Avaliação da linguagem e comunicação».",
+      "Direito: negligência do lado esquerdo do espaço e do corpo, anosognosia (não reconhece o défice), dificuldade em vestir-se e em orientar-se no espaço, fala sem entoação."
+    ]},
+    { t: "Classificação clínica de Oxford (OCSP / Bamford)", tabela: {
+      cab: ["Tipo", "Critérios", "O que sugere"],
+      lin: [
+        ["TACI — enfarte total da circulação anterior", "As três: défice motor e/ou sensitivo de 2 de 3 áreas (face, membro superior, inferior); hemianopsia homónima; disfunção cortical (afasia, negligência)", "Oclusão da ACM proximal ou da carótida; pior prognóstico"],
+        ["PACI — enfarte parcial da circulação anterior", "Duas das três, ou só disfunção cortical", "Oclusão de ramo da ACM ou da ACA"],
+        ["LACI — enfarte lacunar", "Síndrome lacunar, sem disfunção cortical nem hemianopsia", "Oclusão de uma artéria perfurante"],
+        ["POCI — enfarte da circulação posterior", "Sinais do tronco ou do cerebelo, sinais cruzados, alteração dos movimentos oculares ou hemianopsia isolada", "Território vertebrobasilar ou ACP"]
+      ]
+    }},
+    { t: "Síndromes lacunares", itens: [
+      "Motora pura: parésia da face, do membro superior e do inferior do mesmo lado, sem outros défices.",
+      "Sensitiva pura: perda de sensibilidade de um hemicorpo.",
+      "Sensitivomotora: as duas anteriores juntas.",
+      "Hemiparesia atáxica: fraqueza e ataxia do mesmo lado, desproporcionadas à força.",
+      "Disartria–mão desajeitada: disartria com falta de destreza de uma mão."
+    ]},
+    { t: "Circulação posterior: não deixar passar", itens: [
+      "Sinais a valorizar: vertigem com diplopia, disartria, disfagia, ataxia, hemianopsia, alteração da consciência ou sinais cruzados.",
+      "A vertigem isolada pode ser AVC do cerebelo — valorizar sobretudo se súbita, persistente, com incapacidade de andar ou de se sentar sem apoio, cefaleia occipital ou fatores de risco vascular. Comunicar e não atribuir logo a «labirintite».",
+      "A oclusão da basilar pode começar com sintomas flutuantes e evoluir rapidamente para coma: é emergência (trombectomia até 24 h)."
+    ]},
+    { t: "Da localização aos cuidados de enfermagem", itens: [
+      "ACM esquerda: comunicação (afasia) — estratégias do tema «Avaliação da linguagem e comunicação»; confirmar a compreensão antes de ensinos.",
+      "ACM direita: negligência e anosognosia — abordar inicialmente pelo lado preservado, campainha e objetos ao alcance, risco elevado de quedas (o doente não reconhece o défice).",
+      "ACA: membro inferior e incontinência — transferências seguras, programa de eliminação; abulia — estimular a participação.",
+      "ACP: campo visual — colocar objetos e aproximar-se pelo lado que vê; orientar no espaço; atenção às alterações da memória.",
+      "Tronco e cerebelo: disfagia e via aérea (risco de aspiração), vómitos, ataxia e quedas; vigiar a respiração e a consciência.",
+      "Todos: rastreio da disfagia antes de qualquer ingestão oral; posicionamento e prevenção de complicações."
+    ]}
+  ]
+},
+{
   id: "alzheimer", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
   titulo: "Doença de Alzheimer", pags: null,
   resumo: "A causa mais frequente de demência: perda progressiva da memória e de outras funções cognitivas, com perda gradual de autonomia. No internamento, o doente tem risco elevado de delirium, quedas, desnutrição e disfagia.",
@@ -2653,6 +2900,7 @@ const TEMAS = [
 // Grupos da secção «Patologias específicas (A–Z)»: no menu e no índice aparecem como uma entrada que,
 // ao tocar, mostra as doenças do grupo (cada uma com página própria)
 const GRUPOS_AZ = [
+  { id: "avc-az", titulo: "AVC", temas: ["avc", "avc-isquemico", "avc-hemorragico", "trombectomia", "territorios-arteriais"] },
   { id: "demencias-az", titulo: "Demências", temas: ["alzheimer", "demencia-vascular", "dcl"] }
 ];
 

@@ -69,7 +69,7 @@
   const origem = t => ({ p1: "Avaliação", p2: "Clínica neurológica", p3: "Enfermagem" })[t.parte] || "Patologia";
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
-    avc: ["nihss", "glasgow", "rankin", "guss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
+    avc: ["nihss", "glasgow", "rankin", "guss"], "avc-isquemico": ["nihss", "glasgow", "rankin", "guss"], "avc-hemorragico": ["glasgow", "nihss", "rankin", "guss"], trombectomia: ["nihss", "glasgow", "rankin"], "territorios-arteriais": ["nihss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
     semiologia: ["glasgow", "barthel"], demencias: [], sistemicas: [], seguranca: ["morse", "braden"],
     disfagia: [], linguagem: ["nihss", "guss"], ela: ["guss"], dnm: [],
     alzheimer: ["morse", "barthel", "guss"], "demencia-vascular": ["morse", "barthel", "guss"], dcl: ["morse", "guss"],
@@ -269,6 +269,14 @@
       <section class="bloco bloco-rapido" aria-labelledby="t-rapido">
         <h2 class="etiqueta" id="t-rapido">Acesso rápido</h2>
         <div class="lista lista-rapida">`;
+    // AVC em destaque: uma entrada recolhida que abre a lista dos temas do grupo AVC
+    const AVC_RAPIDO = [["avc", "Via Verde AVC e visão geral", "Reconhecer, fase aguda, complicações, alta"], ["avc-isquemico", "AVC isquémico", "Trombólise, perfusão cerebral, edema"], ["avc-hemorragico", "AVC hemorrágico e HSA", "TA, reversão da anticoagulação, vasospasmo"], ["trombectomia", "Trombectomia", "Punção, penso, perfusão do membro, perdas hemáticas"], ["territorios-arteriais", "Territórios arteriais e síndromes", "Esquemas e localização"]].filter(([id]) => existeTema(id));
+    if (AVC_RAPIDO.length) {
+      h += `<details class="linha-grupo grupo-avc"><summary class="linha">${ic("clinica", "ic-linha")}<span class="linha-txt"><span class="linha-tit">AVC</span><span class="linha-sub">Isquémico · hemorrágico · trombectomia · territórios — toque para ver</span></span>${ic("seta", "ic-seta")}</summary><div class="sub-lista">`
+        + AVC_RAPIDO.map(([id, tit, sub]) => linha(`#tema-${id}`, tit, sub, { cls: "linha-subitem" })).join("")
+        + (ESCALAS.some(e => e.id === "nihss") ? linha("#escalas-nihss", "Escala NIHSS", "Gravidade do AVC", { cls: "linha-subitem" }) : "")
+        + `</div></details>`;
+    }
     h += linha("#alarmes", "Sinais de alarme", `${temasAlarme} temas`, { icone: ic("alarme", "ic-linha ic-alerta"), cls: "linha-alarme" });
     if (FARM.length) h += linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" });
     h += linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" });
@@ -283,7 +291,7 @@
     // «Estado de mal» abre a epilepsia já na secção de alarme
     const epi = TEMAS.find(t => t.id === "epilepsia");
     const kMal = epi ? (epi.seccoes || []).findIndex(s => s.alarme) : -1;
-    [["avc", "relogio", "Via Verde AVC", "Doença cerebrovascular", -1], ["epilepsia", "onda", "Estado de mal", "Epilepsia · sinais de alarme", kMal], ["urgencias", "sirene", "Urgências neurológicas", "", -1]].forEach(([id, i, txt, sub, k]) => {
+    [["epilepsia", "onda", "Estado de mal", "Epilepsia · sinais de alarme", kMal], ["urgencias", "sirene", "Urgências neurológicas", "", -1]].forEach(([id, i, txt, sub, k]) => {
       if (existeTema(id)) rapidos.push(linha(`#tema-${id}`, txt, sub, { icone: ic(i, "ic-linha"), attrs: k >= 0 ? ` data-seccao="${k}"` : "" }));
     });
     h += `<div class="lista-grelha">${rapidos.join("")}</div></div>
@@ -309,11 +317,19 @@
       ${prec ? `<p class="faixa-precaucao">${ic("precaucao")}Precaução</p>` : ""}
       <h2 id="sec-${k}-t" tabindex="-1">${s.alarme && /alarme/i.test(s.t) ? ic("alarme") : ""}${esc(s.t)}</h2>${corpoSeccao(s)}</section>`;
   }
+  // Esquema anatómico (SVG original, em esquemas.js)
+  const esquemaHTML = id => {
+    const e = (typeof ESQUEMAS !== "undefined" && ESQUEMAS) ? ESQUEMAS[id] : null;
+    if (!e) return "";
+    const leg = (e.legenda || []).map(l => `<li><span class="amostra ${esc(l.cls)}" aria-hidden="true"></span>${esc(l.txt)}</li>`).join("");
+    return `<figure class="esquema"><div class="esquema-svg">${e.svg}</div><figcaption><strong>${esc(e.titulo)}</strong><ul class="legenda">${leg}</ul></figcaption></figure>`;
+  };
   // Conteúdo de uma secção (lista e/ou tabela)
   function corpoSeccao(s) {
     let h = "";
     if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
     if (s.escala) h += escalaEmbutida(s.escala);
+    if (s.esquema) h += esquemaHTML(s.esquema);
     if (s.aviso) h += `<p class="nota-terap aviso-seccao">${ic("info")}<span>${esc(s.aviso)}</span></p>`;
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
     if (s.tabela) {

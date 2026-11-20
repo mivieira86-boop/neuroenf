@@ -1,5 +1,24 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 19 — 20/11/2026 (grupo AVC)
+- **AVC em destaque no acesso rápido**: uma entrada recolhida que abre a lista do grupo AVC (Via Verde e visão geral,
+  AVC isquémico, AVC hemorrágico e HSA, trombectomia, territórios arteriais) e a escala NIHSS. Saiu a entrada «Via Verde AVC».
+- Novo grupo **AVC** nas Patologias A–Z, com quatro temas novos:
+  - **AVC isquémico**: penumbra, causas (TOAST), trombólise (doses, preparação, vigilância), cuidados de perfusão
+    tecidular cerebral (TA, hidratação, posição, O₂, glicemia, temperatura, monitorização), edema e transformação
+    hemorrágica, prevenção secundária, sinais de alarme.
+  - **AVC hemorrágico e HSA**: causas e localizações, tratamento agudo (TA, reversão da anticoagulação), cuidados de
+    enfermagem (hipertensão intracraniana, DVE), HSA (nimodipina, vasospasmo, sódio, hidrocefalia), sinais de alarme.
+  - **Trombectomia**: indicações e janelas, preparação, vigilância neurológica e da TA, local de punção e penso,
+    perfusão do membro, perdas hemáticas, hemorragia retroperitoneal, acesso radial, contraste, ensinos.
+  - **Territórios arteriais e síndromes**: esquemas originais (polígono de Willis, face lateral, face medial, corte
+    axial), tabela artéria–território–sinais, hemisfério esquerdo/direito, classificação de Oxford (OCSP), síndromes
+    lacunares, circulação posterior e da localização aos cuidados de enfermagem.
+- O tema «Doença cerebrovascular (AVC)» ficou como visão geral e Via Verde; a vigilância pós-trombólise e o AVC
+  hemorrágico passaram para os temas próprios.
+- Novo ficheiro `esquemas.js` (esquemas SVG) e novo campo de secção `esquema`.
+- Revisão clínica pelos agentes médico e de enfermagem ainda por fazer (limite de utilização atingido a 20/11).
+
 ## Versão 18 — 19/11/2026 (avaliação da linguagem)
 - Novo tema **«Avaliação da linguagem e comunicação»** nos Cuidados de enfermagem transversais: afasia, disartria, apraxia
   da fala; avaliação à cabeceira (fluência, compreensão, nomeação, repetição, leitura e escrita, articulação); erros a
