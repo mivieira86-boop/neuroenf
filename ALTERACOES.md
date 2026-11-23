@@ -5,6 +5,7 @@
   uma lupa, que volta a abrir o campo (Escape ou sair do campo vazio volta a reduzi-la). No início, quando a faixa sai do
   ecrã, a pesquisa passa para a barra de topo (telemóvel) ou para o menu lateral (computador).
 - **Sinais de alarme**: cada tema aparece recolhido, só com o nome e o número de sinais; ao tocar abre a lista, com «Abrir o tema» no fim. O mesmo para as precauções com fármacos.
+- **Ordem alfabética** das patologias em todas as listas: Patologias A–Z na página de alarmes e no guia farmacológico, precauções com fármacos, doenças incluídas em cada tema e lista do AVC no acesso rápido.
 
 ## Versão 20 — 23/11/2026 (design HealthTech e revisão do AVC)
 - **Novo design** ao estilo das apps de saúde atuais: faixa marinho no início com pesquisa em pílula; acesso rápido em

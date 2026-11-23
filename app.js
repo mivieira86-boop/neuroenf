@@ -111,7 +111,13 @@
     const k = (t.seccoes || []).findIndex(x => JSON.stringify(x).includes(s.procura || "\u0000"));
     return { href: `#tema-${esc(t.id)}`, k };
   }
-  const subtemasDe = t => (t.subtemas || []).filter(s => s && s.nome);
+  // Subtemas (doenças incluídas num tema) por ordem alfabética
+  const subtemasDe = t => (t.subtemas || []).filter(s => s && s.nome).slice().sort((a, b) => ordemPT(a.nome, b.nome));
+  // Temas de uma parte; as Patologias A–Z por ordem alfabética do título
+  const temasParteAlfa = id => {
+    const l = TEMAS.filter(t => t.parte === id);
+    return id === "p4" ? l.slice().sort((a, b) => ordemPT(a.titulo, b.titulo)) : l;
+  };
   // Partes por ordem de apresentação: a secção A–Z primeiro (acesso rápido às patologias)
   const PARTES_ORDEM = PARTES.slice().sort((a, b) => (a.id === "p4" ? -1 : 0) - (b.id === "p4" ? -1 : 0));
   const temasDaParte = id => id === "p4" ? entradasAZ().flatMap(e => e.tipo === "grupo" ? e.temas : [e.t]) : TEMAS.filter(t => t.parte === id);
@@ -325,7 +331,7 @@
         <h2 class="etiqueta" id="t-rapido">Acesso rápido</h2>
         <div class="lista lista-rapida">`;
     // AVC em destaque: uma entrada recolhida que abre a lista dos temas do grupo AVC
-    const AVC_RAPIDO = [["avc", "Via Verde AVC e visão geral", "Reconhecer, fase aguda, complicações, alta"], ["avc-isquemico", "AVC isquémico", "Trombólise, perfusão cerebral, edema"], ["avc-hemorragico", "AVC hemorrágico e HSA", "TA, reversão da anticoagulação, vasospasmo"], ["trombectomia", "Trombectomia", "Punção, penso, perfusão do membro, perdas hemáticas"], ["territorios-arteriais", "Territórios arteriais e síndromes", "Esquemas e localização"]].filter(([id]) => existeTema(id));
+    const AVC_RAPIDO = [["avc", "Via Verde AVC e visão geral", "Reconhecer, fase aguda, complicações, alta"], ["avc-isquemico", "AVC isquémico", "Trombólise, perfusão cerebral, edema"], ["avc-hemorragico", "AVC hemorrágico e HSA", "TA, reversão da anticoagulação, vasospasmo"], ["trombectomia", "Trombectomia", "Punção, penso, perfusão do membro, perdas hemáticas"], ["territorios-arteriais", "Territórios arteriais e síndromes", "Esquemas e localização"]].filter(([id]) => existeTema(id)).sort((a, b) => ordemPT(a[1], b[1]));
     if (AVC_RAPIDO.length) {
       h += `<details class="linha-grupo grupo-avc"><summary class="linha">${ic("clinica", "ic-linha")}<span class="linha-txt"><span class="linha-tit">AVC</span><span class="linha-sub">Isquémico · hemorrágico · trombectomia · territórios — toque para ver</span></span>${ic("seta", "ic-seta")}</summary><div class="sub-lista">`
         + AVC_RAPIDO.map(([id, tit, sub]) => linha(`#tema-${id}`, tit, sub, { cls: "linha-subitem" })).join("")
@@ -561,9 +567,9 @@
       });
       return c + `<p class="rec-abrir"><a href="#tema-${esc(t.id)}" data-seccao="${lista[0][1]}">Abrir o tema ${ic("seta", "ic-seta")}</a></p></div></details>`;
     };
-    const grupos = PARTES.map(p => ({ p, itens: TEMAS.filter(t => t.parte === p.id).map(t => [t, secs(t, s => s.alarme)]).filter(([, l]) => l.length) }))
+    const grupos = PARTES.map(p => ({ p, itens: temasParteAlfa(p.id).map(t => [t, secs(t, s => s.alarme)]).filter(([, l]) => l.length) }))
       .filter(g => g.itens.length);
-    const precs = TEMAS.map(t => [t, secs(t, ePrecaucao)]).filter(([, l]) => l.length);
+    const precs = TEMAS.slice().sort((a, b) => ordemPT(a.titulo, b.titulo)).map(t => [t, secs(t, ePrecaucao)]).filter(([, l]) => l.length);
     const nTemas = grupos.reduce((n, g) => n + g.itens.length, 0);
     let h = `<header class="cab-pagina"><h1 tabindex="-1">Sinais de alarme</h1>
       ${nTemas ? `<p class="sub">${nTemas} temas${precs.length ? ` · ${precs.length} precauções com fármacos` : ""}</p>` : ""}</header>`;
@@ -630,7 +636,7 @@
     } else {
       if (!TERAP.length) return h + `<p class="sub">Ainda não há terapêutica associada a temas. Veja a lista <a href="#farmacos-az">A–Z</a>.</p>`;
       PARTES.forEach(p => {
-        const lista = TEMAS.filter(t => t.parte === p.id).map(t => [t, terapDoTema(t.id)]).filter(([, x]) => x);
+        const lista = temasParteAlfa(p.id).map(t => [t, terapDoTema(t.id)]).filter(([, x]) => x);
         if (!lista.length) return;
         h += `<section class="bloco grupo-doencas" data-filtro-grupo aria-labelledby="pd-${esc(p.id)}">
           <h2 class="etiqueta" id="pd-${esc(p.id)}">${esc(p.nome)}</h2><div class="lista lista-doencas">`;
