@@ -2102,6 +2102,70 @@ const TEMAS = [
   ]
 },
 {
+  id: "angiopatia-amiloide", cap: null, parte: "p4", icone: "🩸",
+  titulo: "Angiopatia amiloide cerebral", pags: null,
+  resumo: "Depósito de proteína amiloide (β-amiloide) nas paredes das pequenas artérias do córtex, que ficam frágeis. Principal causa de hemorragia lobar no idoso; também dá episódios neurológicos transitórios, siderose superficial e declínio cognitivo. Na enfermagem: vigilância como na HIC, reconhecer os episódios transitórios, prevenir quedas e rever os antitrombóticos.",
+  relacionados: ["avc-hemorragico", "avc", "demencias", "alzheimer", "territorios-arteriais"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Doença dos pequenos vasos: o β-amiloide deposita-se na parede das arteríolas do córtex e das meninges, que perdem a camada muscular e se tornam frágeis — rompem com facilidade (hemorragias) ou estreitam (pequenos enfartes e lesão da substância branca).",
+      "Atinge sobretudo pessoas com mais de 60 anos, de ambos os sexos; aumenta com a idade e é mais frequente em quem tem demência (partilha o β-amiloide com a doença de Alzheimer).",
+      "É a principal causa de hemorragia intracerebral lobar (junto ao córtex) no idoso; as hemorragias tendem a repetir-se.",
+      "Os vasos mais atingidos são os do córtex, sobretudo posterior (occipital e parietal); os gânglios da base, o tálamo e o tronco cerebral são poupados — por isso as hemorragias são lobares e não profundas (as profundas apontam para hipertensão).",
+      "Fatores genéticos: os alelos APOE ε4 (mais amiloide nos vasos; associa-se também à inflamação relacionada com a angiopatia e às ARIA) e ε2 (vasos mais frágeis) aumentam o risco de hemorragia lobar e de recorrência. Há formas hereditárias raras, de início mais precoce: por mutações do gene APP (holandesa, italiana, Ártica, Iowa) ou por outras proteínas, incluindo a transtirretina na paramiloidose (relevante em Portugal: episódios transitórios, siderose e HSA). Em pessoas mais novas com neurocirurgia ou enxerto de dura-máter na infância, suspeitar de forma iatrogénica."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Hemorragia intracerebral lobar: cefaleia, défice focal conforme o lobo (ex.: hemianopsia no occipital), crises epiléticas, alteração da consciência. É a forma mais típica.",
+      "Episódios neurológicos focais transitórios («amyloid spells»): formigueiro ou dormência que se espalha (ex.: da mão à boca) durante minutos, por vezes fraqueza ou alteração da fala; repetidos e semelhantes entre si. Podem ser confundidos com AIT ou crise focal. Associam-se muitas vezes a siderose superficial ou a HSA da convexidade e anunciam risco elevado de hemorragia lobar nas semanas seguintes.",
+      "Hemorragia subaracnoideia da convexidade (num sulco do córtex, sem aneurisma) e siderose superficial cortical (depósito de ferro de hemorragias antigas) — aumentam o risco de hemorragia lobar futura.",
+      "Declínio cognitivo e demência: lentidão do pensamento, alterações da memória e das funções executivas; muitas vezes com microhemorragias e lesão da substância branca.",
+      "Inflamação relacionada com a angiopatia amiloide: forma rara, subaguda — cefaleia, confusão, alterações do comportamento, crises e défices focais, com edema assimétrico da substância branca na RM. Responde a imunossupressão (corticoides).",
+      "Muitas vezes é silenciosa e descobre-se na RM (microhemorragias lobares)."
+    ]},
+    { t: "Diagnóstico (critérios de Boston 2.0)", aviso: "O diagnóstico definitivo exige exame neuropatológico completo (autópsia); tecido de biópsia ou de hematoma drenado permite o diagnóstico de «angiopatia provável com suporte patológico». Na prática usa-se a RM com sequências sensíveis ao sangue (T2* / SWI).", itens: [
+      "Aplicam-se a pessoas com 50 anos ou mais que se apresentam com hemorragia intracerebral espontânea, episódios focais transitórios, ou défice cognitivo ou demência (a HSA da convexidade conta como lesão hemorrágica na RM).",
+      "Angiopatia provável: duas ou mais lesões hemorrágicas estritamente lobares, em qualquer combinação (hemorragia, microhemorragias, focos de siderose superficial ou de HSA da convexidade); ou uma lesão lobar mais um marcador da substância branca (mais de 20 espaços perivasculares visíveis no centro semioval num hemisfério, ou mais de 10 focos subcorticais em FLAIR, em padrão «multispot») — sem lesões hemorrágicas profundas nem outra causa. As lesões do cerebelo não contam como lobares nem como profundas.",
+      "Angiopatia possível: uma lesão hemorrágica lobar sem outra causa, ou apenas um marcador não hemorrágico, sem lesões profundas. Os marcadores não hemorrágicos são pouco específicos (também surgem com a idade e a hipertensão).",
+      "Siderose superficial: focal se atinge até 3 sulcos, disseminada se atinge 4 ou mais (maior risco de hemorragia).",
+      "Exames de apoio, em casos selecionados: PET amiloide e biomarcadores no LCR (β-amiloide 40 e 42); estudo genético nas formas precoces ou familiares."
+    ]},
+    { t: "Tratamento e decisões terapêuticas", aviso: "Decisões médicas, individualizadas. O papel da enfermagem é identificar e comunicar os fármacos de risco e garantir que a decisão fica registada e é conhecida do doente.", itens: [
+      "Não há tratamento que trave a doença: o objetivo é prevenir hemorragias e tratar as complicações.",
+      "Hemorragia aguda: tratamento como em qualquer hemorragia intracerebral (ver «AVC hemorrágico e HSA») — TA, reversão da anticoagulação, vigilância neurológica; cirurgia em casos selecionados.",
+      "Controlo rigoroso da TA a longo prazo (alvo habitual < 130/80 mmHg, conforme prescrição): é a medida com mais impacto na prevenção de nova hemorragia.",
+      "Antiagregantes e anticoagulantes aumentam o risco de hemorragia: manter, suspender, retomar ou trocar é sempre decisão médica individual, que pesa o risco de hemorragia contra o de enfarte. O risco é maior após hemorragia lobar, HSA da convexidade ou siderose disseminada — num ensaio recente (ENRICH-AF), a anticoagulação após hemorragia intracraniana aumentou as hemorragias e estes doentes deixaram de ser incluídos por segurança. Na fibrilhação auricular pode ser proposta a oclusão do apêndice auricular esquerdo em vez da anticoagulação; a antiagregação, se houver indicação forte, pode ser retomada por decisão médica. Numa angiopatia «possível» diagnosticada só por marcadores não hemorrágicos, a anticoagulação não deve ser retirada sem avaliação cuidadosa.",
+      "Trombólise e trombectomia num AVC isquémico: uma hemorragia intracraniana prévia (incluindo hemorragia lobar ou HSA da convexidade) contraindica a trombólise segundo o RCM da alteplase. Sem hemorragia prévia (só microhemorragias ou siderose), a decisão é médica, caso a caso. A trombectomia não fica excluída. Informar logo a equipa da Via Verde do diagnóstico de angiopatia e de qualquer tratamento anti-amiloide.",
+      "Anticorpos anti-amiloide para a doença de Alzheimer (lecanemab, donanemab): risco elevado de ARIA (edema e hemorragias). No RCM europeu do lecanemab, uma RM prévia com hemorragia intracerebral, mais de 4 microhemorragias, qualquer siderose superficial ou outros sinais de angiopatia contraindica o tratamento; não se inicia em doentes anticoagulados e os trombolíticos devem ser evitados durante o tratamento (donanemab: restrições semelhantes — confirmar no RCM).",
+      "Crises epiléticas: antiepilético conforme prescrição. Inflamação relacionada com a angiopatia: corticoides e, por vezes, outros imunossupressores."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Na hemorragia aguda: os mesmos cuidados da hemorragia intracerebral — vigilância neurológica apertada, TA no alvo prescrito, sinais de hipertensão intracraniana, jejum até rastreio da deglutição (ver «AVC hemorrágico e HSA»).",
+      "Défice focal novo (fraqueza, formigueiro, alteração da fala ou da visão): atuar como num possível AVC — avaliar (NIHSS ou BE-FAST, Glasgow, pupilas), medir a glicemia capilar, registar a hora de início e chamar o médico de imediato. Não assumir que é «só um episódio da amiloide», mesmo que já tenha tido outros iguais. Se for ativada a Via Verde, informar logo do diagnóstico de angiopatia e dos antitrombóticos em curso. Descrever cada episódio com rigor (o que sentiu, onde começou e para onde se espalhou, duração, se se repete igual). Não iniciar nem reforçar antiagregantes por iniciativa própria ou por protocolo de «AIT» sem confirmação médica — nestes doentes podem precipitar hemorragia.",
+      "Na admissão e na reconciliação terapêutica: identificar antiagregantes, anticoagulantes, AINE e suplementos com efeito antiagregante e comunicar ao médico. Registar no processo (ex.: SClínico) a angiopatia amiloide como alerta e a decisão sobre cada antitrombótico (manter, suspender ou trocar, e data de reavaliação). Transmitir esta decisão na passagem de turno e na nota de alta de enfermagem, incluindo aos cuidados de saúde primários ou à RNCCI.",
+      "Prevenção de quedas (Morse): um traumatismo craniano tem mais risco de hemorragia — cama baixa, calçado adequado, levante acompanhado, avaliação da marcha e da visão.",
+      "TA: confirmar o alvo prescrito (se não estiver escrito, pedi-lo ao médico); medir e registar com a frequência prescrita. Comunicar valores acima do alvo e também hipotensão, tonturas ou mal-estar ao levantar. Quando os anti-hipertensores são reforçados, medir a TA deitado e de pé antes do primeiro levante e levantar de forma faseada (risco de queda).",
+      "Cognição e comportamento: na admissão, registar com o cuidador o estado cognitivo e a autonomia habituais (Barthel) — é a referência para comparar. Confusão, sonolência ou alteração do comportamento de novo não se atribuem à demência: avaliar consciência, orientação, défice focal e glicemia capilar; procurar causas (dor avaliada com PAINAD, retenção urinária, infeção, fármacos); comunicar de imediato — pode ser nova hemorragia, crise não convulsiva ou inflamação relacionada com a angiopatia. Orientação e prevenção de delirium como em «Doença de Alzheimer»; contenção física só como último recurso (ver «Demências»).",
+      "Crises epiléticas (mais frequentes nas hemorragias lobares, por estarem junto ao córtex): precauções de segurança; registar a hora, a duração, como começou (que parte do corpo, para onde se espalhou) e o estado depois da crise. Crise com mais de 5 minutos, ou crises seguidas sem recuperar a consciência: emergência — atuar segundo o protocolo e chamar o médico. Antiepilético a horas; se o doente não puder engolir, comunicar para via alternativa. Ensinar a família a reconhecer e a registar as crises.",
+      "Corticoides na inflamação relacionada com a angiopatia: vigiar glicemia, TA, sono e humor, e proteção gástrica conforme prescrição (ver «Doenças autoimunes e o sistema nervoso»)."
+    ]},
+    { t: "Ensinos ao doente e à família", itens: [
+      "Explicar a doença em linguagem simples: os pequenos vasos do cérebro estão frágeis e podem sangrar.",
+      "Cumprir o tratamento da tensão arterial e medi-la em casa, se indicado; levar os registos às consultas.",
+      "Informar sempre qualquer médico, dentista ou farmacêutico do diagnóstico, sobretudo antes de começar antiagregantes, anticoagulantes, anti-inflamatórios ou tratamentos para a memória com anticorpos anti-amiloide. Andar com a lista de medicação atualizada e a carta de alta. Não tomar por iniciativa própria produtos com ácido acetilsalicílico ou ibuprofeno (incluindo alguns antigripais de venda livre) nem suplementos como o ginkgo; para dores ou febre, perguntar ao médico ou ao farmacêutico (o paracetamol é habitualmente a opção, salvo indicação contrária).",
+      "Prevenir quedas em casa (tapetes, iluminação, apoios no WC).",
+      "Ligar 112 se surgir cefaleia súbita e intensa, fraqueza, formigueiro, alteração da fala ou da visão, sonolência ou convulsão — mesmo que pareça estar a passar; não esperar para ver. Anotar a hora de início e dizer à equipa de emergência que tem angiopatia amiloide e que medicação toma. Registar num caderno cada episódio (data, hora, duração, o que sentiu) e levá-lo às consultas.",
+      "Moderar o álcool; manter atividade física e estimulação cognitiva."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Défice focal súbito: ativar a Via Verde AVC e informar de imediato do diagnóstico de angiopatia, de hemorragia prévia e de tratamento anti-amiloide (podem contraindicar a trombólise).",
+      "Cefaleia súbita e intensa, vómitos, novo défice focal, sonolência ou crise epilética: possível nova hemorragia — comunicar de imediato e preparar TC urgente.",
+      "Episódios focais transitórios repetidos ou que mudam de padrão: comunicar antes de qualquer decisão sobre antitrombóticos.",
+      "Confusão, alteração do comportamento ou crises de instalação subaguda: pensar em inflamação relacionada com a angiopatia.",
+      "Queda, mesmo sem lesão visível, sobretudo com traumatismo craniano ou sob antiagregante ou anticoagulante: comunicar de imediato ao médico, fazer avaliação neurológica seriada (Glasgow, pupilas, força) segundo o protocolo pós-queda do serviço e registar a hora da queda — a hemorragia pode manifestar-se só horas depois. Notificar o incidente no sistema do hospital e rever o plano de prevenção de quedas (Morse)."
+    ]}
+  ]
+},
+{
   id: "avc-isquemico", cap: null, parte: "p4", grupo: "avc-az", icone: "🧠",
   titulo: "AVC isquémico", pags: null,
   resumo: "Oclusão de uma artéria cerebral. Apoiar a reperfusão (trombólise e trombectomia), proteger a penumbra — perfusão, TA, glicemia, temperatura, oxigenação — e prevenir complicações.",
@@ -2181,7 +2245,7 @@ const TEMAS = [
   id: "avc-hemorragico", cap: null, parte: "p4", grupo: "avc-az", icone: "🩸",
   titulo: "AVC hemorrágico e hemorragia subaracnoideia", pags: null,
   resumo: "Hemorragia dentro do cérebro (intracerebral) ou à sua volta (subaracnoideia). As primeiras horas decidem: controlar a TA, reverter a anticoagulação, vigiar o crescimento do hematoma e a hipertensão intracraniana.",
-  relacionados: ["avc", "avc-isquemico", "hic", "territorios-arteriais"],
+  relacionados: ["avc", "avc-isquemico", "angiopatia-amiloide", "hic", "territorios-arteriais"],
   seccoes: [
     { t: "O essencial", itens: [
       "Hemorragia intracerebral (HIC): cerca de 10–15% dos AVC, com mortalidade mais alta do que o AVC isquémico. O hematoma pode crescer nas primeiras horas — é nesse período que os cuidados mais contam.",

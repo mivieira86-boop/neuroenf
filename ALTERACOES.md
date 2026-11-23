@@ -1,5 +1,12 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 22 — 23/11/2026
+- Novo tema **«Angiopatia amiloide cerebral»** nas Patologias A–Z: fisiopatologia, genética (APOE, formas hereditárias,
+  paramiloidose, forma iatrogénica), manifestações (hemorragia lobar, episódios focais transitórios, siderose, HSA da
+  convexidade, declínio cognitivo, inflamação relacionada), critérios de Boston 2.0, decisões terapêuticas
+  (TA, antitrombóticos, trombólise, anti-amiloide), cuidados de enfermagem, ensinos e sinais de alarme. Fontes base:
+  dissertações UBI 2014 e ICBAS 2023. Revisto pelos agentes médico e de enfermagem.
+
 ## Versão 21 — 23/11/2026
 - **Pesquisa sempre à mão**: no telemóvel e tablet, a pesquisa fica fixa na barra de topo; ao descer a página reduz-se a
   uma lupa, que volta a abrir o campo (Escape ou sair do campo vazio volta a reduzi-la). No início, quando a faixa sai do

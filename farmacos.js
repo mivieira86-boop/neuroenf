@@ -441,6 +441,12 @@ const TERAPEUTICA = [
   { t: "Hemorragia subaracnoideia", farmacos: ["nimodipina"] },
   { t: "Prevenção secundária e complicações", farmacos: ["atorvastatina", "enoxaparina", "paracetamol", "insulina"] }
 ] },
+{ tema: "angiopatia-amiloide", grupos: [
+  { t: "Hemorragia aguda (como na HIC): TA e reversão da anticoagulação", farmacos: ["labetalol", "urapidil", "ccp", "fitomenadiona", "idarucizumab", "andexanet", "protamina"] },
+  { t: "Crises epiléticas", farmacos: ["levetiracetam", "lacosamida"] },
+  { t: "Inflamação relacionada com a angiopatia", farmacos: ["metilprednisolona", "prednisolona", "ciclofosfamida"] },
+  { t: "Fármacos de risco a rever (antitrombóticos, AINE e anti-amiloide)", farmacos: ["aas", "clopidogrel", "apixabano", "rivaroxabano", "edoxabano", "dabigatrano", "varfarina", "ibuprofeno", "naproxeno", "lecanemab", "donanemab"] }
+], nota: "Prevenção: o controlo da TA é a medida mais eficaz (alvo habitual < 130/80 mmHg, conforme prescrição); o anti-hipertensor oral é escolhido pelo médico. Antitrombóticos e anti-amiloide: não iniciar, suspender nem retomar sem decisão médica registada." },
 { tema: "avc-isquemico", grupos: [
   { t: "Reperfusão", farmacos: ["alteplase", "tenecteplase"] },
   { t: "Controlo tensional (só nos alvos prescritos)", farmacos: ["labetalol", "urapidil"] },
