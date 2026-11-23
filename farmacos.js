@@ -392,7 +392,8 @@ const FARMACOS = [
   notas: ["Injeção SC mensal (autoadministração); suplemento de vitamina A."] },
 // ── Metabólicas, álcool e urgências ──
 { id: "tiamina", dci: "Tiamina", classe: "Vitamina B1",
-  notas: ["Encefalopatia de Wernicke e doentes de risco (álcool, desnutrição, vómitos, cirurgia bariátrica): IV precoce.", "Nunca atrasar a correção de uma hipoglicemia por causa da tiamina."] },
+  notas: ["Encefalopatia de Wernicke e doentes de risco (álcool, desnutrição, vómitos, cirurgia bariátrica): IV precoce, antes ou com soros glicosados ou o início da alimentação.", "Fase aguda: via EV (a oral absorve-se mal); diluída e perfundida em cerca de 30 minutos, conforme protocolo; IM só sem acesso venoso e sem coagulopatia.", "Nunca atrasar a correção de uma hipoglicemia por causa da tiamina."],
+  alerta: "Reação alérgica rara: vigiar durante a perfusão e ter material de emergência disponível; prurido, urticária, dispneia ou hipotensão — parar e chamar o médico." },
 { id: "glicose-hipertonica", dci: "Glicose (solução hipertónica)", classe: "Glúcido / corretor da hipoglicemia", alto: true,
   notas: ["Hipoglicemia grave (IV, acesso de bom calibre — irritante); glicemia capilar repetida.", "Doentes de risco de Wernicke: tiamina logo a seguir ou em simultâneo."] },
 { id: "insulina", dci: "Insulina", classe: "Antidiabético (insulina humana e análogos)", alto: true,
@@ -408,7 +409,7 @@ const FARMACOS = [
   notas: ["Diabetes insípida (neurossarcoidose, pós-cirurgia hipofisária); balanço hídrico, peso e natremia."],
   alerta: "Excesso de líquidos causa hiponatremia grave — seguir a restrição/ingestão prescrita." },
 { id: "sulfato-magnesio", dci: "Sulfato de magnésio", classe: "Eletrólito / anticonvulsivante na eclâmpsia", alto: true,
-  notas: ["Eclâmpsia/PRES na gravidez conforme protocolo obstétrico; vigiar reflexos, frequência respiratória e diurese."],
+  notas: ["Eclâmpsia/PRES na gravidez conforme protocolo obstétrico; vigiar reflexos, frequência respiratória e diurese.", "Hipomagnesemia (álcool, desnutrição, realimentação, Wernicke): só com magnésio baixo e prescrito; perfusão diluída no ritmo prescrito e magnesemia de controlo."],
   alerta: "Depressão respiratória, reflexos abolidos ou oligúria: parar a perfusão; antídoto gluconato de cálcio disponível. Agrava a miastenia." },
 { id: "gluconato-calcio", dci: "Gluconato de cálcio", classe: "Eletrólito (antídoto do magnésio)",
   notas: ["Toxicidade do magnésio e hipocalcemia sintomática (ex.: plasmaférese); IV lenta com monitorização."] },
@@ -441,6 +442,12 @@ const TERAPEUTICA = [
   { t: "Hemorragia subaracnoideia", farmacos: ["nimodipina"] },
   { t: "Prevenção secundária e complicações", farmacos: ["atorvastatina", "enoxaparina", "paracetamol", "insulina"] }
 ] },
+{ tema: "encefalopatia-wernicke", grupos: [
+  { t: "Tratamento", farmacos: ["tiamina"] },
+  { t: "Correção de eletrólitos (só se baixos, conforme análises e prescrição)", farmacos: ["sulfato-magnesio"] },
+  { t: "Hipoglicemia (não atrasar)", farmacos: ["glicose-hipertonica"] },
+  { t: "Abstinência alcoólica", farmacos: ["diazepam", "lorazepam"] }
+], nota: "Tiamina EV antes ou ao mesmo tempo que soros com glicose ou o início da alimentação; a hipoglicemia corrige-se de imediato. Abstinência: benzodiazepina conforme escala e protocolo (na doença hepática avançada o médico pode preferir lorazepam). Antipsicóticos só como adjuvante prescrito, nunca isolados (baixam o limiar convulsivo). Doses e duração conforme prescrição e protocolo." },
 { tema: "angiopatia-amiloide", grupos: [
   { t: "Hemorragia aguda (como na HIC): TA e reversão da anticoagulação", farmacos: ["labetalol", "urapidil", "ccp", "fitomenadiona", "idarucizumab", "andexanet", "protamina"] },
   { t: "Crises epiléticas", farmacos: ["levetiracetam", "lacosamida"] },

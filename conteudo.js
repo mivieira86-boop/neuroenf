@@ -2443,6 +2443,77 @@ const TEMAS = [
   ]
 },
 {
+  id: "encefalopatia-wernicke", cap: null, parte: "p4", icone: "💊",
+  titulo: "Encefalopatia de Wernicke", pags: null,
+  resumo: "Emergência neurológica por falta de tiamina (vitamina B1), tratável se for reconhecida cedo. A tríade clássica é rara: basta a suspeita num doente de risco para dar tiamina EV. Na enfermagem: identificar o risco na admissão, administrar a tiamina sem atrasos, vigiar a consciência, os olhos e a marcha, e prevenir quedas, abstinência e síndrome de realimentação.",
+  relacionados: ["coma", "sistemicas", "seguranca", "disfagia"],
+  seccoes: [
+    { t: "O essencial", itens: [
+      "Doença neurológica grave causada pela falta de tiamina (vitamina B1), essencial para o cérebro usar a glicose. As lesões atingem o tálamo medial, os corpos mamilares, a substância cinzenta à volta do aqueduto e o vérmis do cerebelo.",
+      "É potencialmente reversível se for tratada cedo; sem tratamento pode evoluir para coma e morte. Mesmo com tratamento, sobretudo se tardio ou no consumo de álcool, pode ficar uma síndrome de Korsakoff (incapacidade de fixar informação nova, desorientação, confabulação), muitas vezes permanente.",
+      "Tríade clássica: alterações dos movimentos oculares, ataxia e confusão. Está completa só numa minoria dos doentes (cerca de 16%) — por isso o diagnóstico é muitas vezes tardio.",
+      "Regra prática: num doente de risco com qualquer alteração do estado mental, da marcha ou dos movimentos oculares, pensar em Wernicke e tratar logo, sem esperar pela confirmação."
+    ]},
+    { t: "Quem está em risco", itens: [
+      "Consumo excessivo de álcool (a causa mais frequente).",
+      "Desnutrição de qualquer causa: vómitos persistentes (incluindo hiperémese gravídica), jejum prolongado, anorexia nervosa, cancro, doenças infecciosas graves.",
+      "Cirurgia bariátrica ou gastrointestinal, dificuldade em iniciar a alimentação no pós-operatório, nutrição parentérica sem vitaminas.",
+      "Hemodiálise, diálise peritoneal e diarreia crónica (perdas de vitaminas).",
+      "Início de alimentação ou de soros com glicose num doente desnutrido: pode precipitar ou agravar o quadro."
+    ]},
+    { t: "Como se manifesta", itens: [
+      "Estado mental: confusão, desorientação, apatia, sonolência, alterações da memória; nos casos graves, estupor e coma.",
+      "Olhos: nistagmo (o mais frequente), paresia do olhar lateral (VI par), oftalmoplegia, visão dupla.",
+      "Marcha: ataxia do tronco, marcha de base alargada, desequilíbrio, dificuldade em ficar de pé ou sentado sem apoio.",
+      "Outros: hipotermia e hipotensão (lesão do hipotálamo), neuropatia periférica associada, sinais de abstinência alcoólica.",
+      "Critérios de Caine (sobretudo no doente com consumo de álcool): bastam 2 de 4 — défice nutricional, alterações oculomotoras, disfunção cerebelosa, alteração do estado mental ou défice de memória."
+    ]},
+    { t: "Diagnóstico", aviso: "O diagnóstico é clínico. Os exames não devem atrasar a tiamina.", itens: [
+      "Colher sangue para doseamento de tiamina antes da primeira dose, se for possível sem atrasar o tratamento.",
+      "Glicemia, ionograma com magnésio e fósforo, função hepática e renal, álcool no sangue.",
+      "RM encefálica: alterações simétricas (hipersinal em T2/FLAIR, com restrição à difusão) no tálamo medial junto ao 3.º ventrículo, corpos mamilares, substância cinzenta periaquedutal, tectum do mesencéfalo e vérmis. Com tratamento precoce, as lesões podem desaparecer.",
+      "Uma RM normal não exclui o diagnóstico."
+    ]},
+    { t: "Tratamento", aviso: "Doses e duração segundo a prescrição e o protocolo do hospital.", itens: [
+      "Tiamina EV em doses altas e o mais cedo possível (ex.: 200 mg 3 vezes por dia segundo a EFNS, ou 300–500 mg 3 vezes por dia em protocolos britânicos), durante pelo menos 3–5 dias e enquanto houver melhoria; depois passa a via oral, durante semanas.",
+      "A via oral não chega na fase aguda: a absorção intestinal é fraca, sobretudo no consumo de álcool.",
+      "Glicose: num doente de risco, a tiamina deve ser dada antes ou ao mesmo tempo que soros com glicose ou o início da alimentação. Mas uma hipoglicemia corrige-se de imediato — nunca se atrasa a glicose à espera da tiamina.",
+      "Corrigir o magnésio (necessário para a tiamina atuar), o potássio e o fósforo; tratar a abstinência alcoólica e a causa da desnutrição.",
+      "Doentes de risco sem sintomas (ex.: consumo de álcool com má alimentação, abstinência, vómitos persistentes): tiamina profilática por via parentérica (EV, ou IM se não houver coagulopatia) e depois oral, conforme prescrição."
+    ]},
+    { t: "Cuidados de enfermagem", itens: [
+      "Na admissão, identificar o risco e registá-lo de forma visível («risco de Wernicke»). Perguntar pelo consumo de álcool (quantidade, frequência e hora da última bebida) e confirmar com a família, porque o doente pode minimizar ou confabular. Perguntar também por vómitos, perda de peso, ingestão reduzida nos últimos dias, cirurgia bariátrica e diálise. Pesar e medir (IMC), fazer glicemia capilar e o rastreio de risco nutricional com o instrumento do hospital. Comunicar ao médico para prescrição de tiamina antes de soros com glicose, do início da alimentação ou de um jejum prolongado para exames.",
+      "Tiamina EV: dar à hora prescrita, num horário fixo não ligado às refeições, sem omitir nem atrasar doses. Preparar segundo o protocolo e o RCM do produto do hospital (confirmar com a farmácia a apresentação e o número de ampolas por dose) — em regra diluída em 50–100 mL de soro fisiológico e perfundida em 30 minutos. Não misturar outros fármacos no mesmo soro e lavar a linha antes e depois (incompatível com soluções alcalinas, como o bicarbonato). Guardar as ampolas protegidas da luz. Vigiar a TA e sinais de reação alérgica em todas as perfusões, não só na primeira, com material de emergência disponível. Sem acesso venoso, pedir ao médico a via IM (só sem coagulopatia). Registar a hora de cada dose e a hora de início dos soros com glicose ou da alimentação.",
+      "Avaliação neurológica antes da 1.ª dose de tiamina (registo de base); nas primeiras 24–48 h, pelo menos de 4 em 4 horas ou conforme prescrição e protocolo; depois, pelo menos uma vez por turno. Usar sempre os mesmos itens, para comparar: Glasgow, orientação (pessoa, local, tempo), nistagmo ou visão dupla ao olhar para os lados, equilíbrio sentado sem apoio e marcha (só se for seguro). Registar também a glicemia capilar, a temperatura e a TA. A melhoria dos olhos costuma surgir em horas a dias; a marcha e a memória demoram semanas. Sem melhoria ou com agravamento: comunicar.",
+      "Prevenção de quedas (Morse): ataxia e confusão — cama baixa, avaliar o equilíbrio sentado antes do primeiro levante (na fase aguda, levante com 2 pessoas), levante sempre acompanhado, calçado adequado, campainha ao alcance.",
+      "Abstinência alcoólica: vigiar nos primeiros 5 dias após a última bebida (crises sobretudo nas primeiras 48 h; delirium tremens habitualmente às 48–96 h). Avaliar com a CIWA-Ar na frequência do protocolo do serviço, e mais vezes se a pontuação subir; registar a pontuação, os sinais vitais e a intervenção. A CIWA-Ar exige um doente orientado e capaz de comunicar: no doente confuso ou sonolento não é fiável — registar os sinais observáveis (tremor, sudação, FC, TA, temperatura, agitação) e o nível de sedação (ex.: RASS) e comunicar. A confusão pode ser Wernicke e não só abstinência: não atrasar a tiamina.",
+      "Benzodiazepinas: medicação de alto risco. Antes de cada dose, avaliar a sedação, a FR e a SpO₂; se o doente estiver sonolento, não administrar e confirmar com o médico — a sedação excessiva esconde o agravamento do Wernicke e aumenta o risco de aspiração.",
+      "Síndrome de realimentação: risco alto se tiver 1 de: IMC < 16, perda de peso > 15% em 3–6 meses, ingestão mínima há mais de 10 dias, ou potássio, fósforo ou magnésio baixos antes de alimentar; ou 2 de: IMC < 18,5, perda de peso > 10% em 3–6 meses, ingestão mínima há mais de 5 dias, consumo excessivo de álcool ou certos fármacos (ex.: insulina, diuréticos). Nestes doentes: tiamina antes de iniciar a alimentação, progressão lenta conforme prescrição e referenciação à nutrição nas primeiras 24 h; fósforo, potássio e magnésio diários nos primeiros dias, conforme prescrição; peso diário, balanço hídrico e vigilância de edemas, dispneia, FC irregular e glicemia.",
+      "Sinais vitais e temperatura: vigiar hipotensão e hipotermia.",
+      "Confusão e delirium: orientação, ambiente calmo, presença da família; contenção física só como último recurso, segundo o protocolo.",
+      "Deglutição: fazer o rastreio da deglutição (GUSS) antes de qualquer via oral, incluindo a tiamina e as benzodiazepinas orais, se houver sonolência, confusão, sedação recente ou disartria; repetir se o estado mental mudar. Refeições sentado a 90° e com supervisão — a visão dupla e a ataxia dificultam comer sozinho: ajudar e registar a ingestão. Se falhar o rastreio: nada por boca, pedir ao médico uma via alternativa para a medicação e referenciar à terapia da fala."
+    ]},
+    { t: "Ensinos ao doente e à família", itens: [
+      "Explicar que a doença resulta da falta de uma vitamina e que é importante cumprir a suplementação oral durante o tempo indicado.",
+      "No consumo de álcool: a abstinência total é essencial, porque o álcool prejudica a absorção da tiamina e a recuperação. Com o acordo do doente, pedir ao médico a referenciação para a consulta de alcoologia ou para a unidade de comportamentos aditivos da área de residência, de preferência com data marcada antes da alta; envolver a família.",
+      "Alimentação equilibrada e regular; procurar ajuda se houver vómitos persistentes, perda de peso ou dificuldade em comer.",
+      "Alterações de memória que persistem: o doente pode não reter os ensinos — fazê-los também ao cuidador, por escrito, e confirmar que foram percebidos (pedir que repita ou demonstre). Supervisão da medicação (caixa semanal), do fogão, do dinheiro e da condução (não conduzir até avaliação médica). Preparar a alta desde a admissão: avaliar a autonomia (Barthel) e o risco de queda em casa, e articular com a reabilitação e o serviço social (apoio domiciliário, RNCCI).",
+      "Regressar se surgir confusão, sonolência, visão dupla ou desequilíbrio."
+    ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Agravamento da consciência (sonolência, estupor, coma): comunicar de imediato.",
+      "Doente de risco com confusão, nistagmo, visão dupla ou desequilíbrio novos ou a agravar, mesmo que pareça intoxicação ou abstinência: possível Wernicke — comunicar de imediato para iniciar tiamina EV.",
+      "Doente de risco a quem vão ser dados soros com glicose ou alimentação sem tiamina prescrita: alertar o médico antes de iniciar (exceto na hipoglicemia, que se corrige logo).",
+      "Hipotensão ou hipotermia.",
+      "Glicemia capilar baixa ou sinais de hipoglicemia (sudação, tremor, confusão que agrava — confundem-se com a abstinência): corrigir de imediato segundo o protocolo e comunicar; a tiamina não pode atrasar a glicose.",
+      "Sedação excessiva após benzodiazepinas (difícil de acordar, FR baixa, SpO₂ a descer), ou tosse, engasgamento e febre (aspiração): comunicar de imediato.",
+      "Durante a perfusão de tiamina: prurido, urticária, dispneia, edema da face ou hipotensão — parar a perfusão e chamar o médico (reação alérgica).",
+      "Abstinência grave: agitação intensa, alucinações, febre, crises epiléticas (delirium tremens).",
+      "Síndrome de realimentação: fraqueza, edemas, dispneia, arritmias, fósforo ou potássio baixos."
+    ]}
+  ]
+},
+{
   id: "alzheimer", cap: null, parte: "p4", grupo: "demencias-az", icone: "🧠",
   titulo: "Doença de Alzheimer", pags: null,
   resumo: "A causa mais frequente de demência: perda progressiva da memória e de outras funções cognitivas, com perda gradual de autonomia. No internamento, o doente tem risco elevado de delirium, quedas, desnutrição e disfagia.",

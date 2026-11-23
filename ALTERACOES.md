@@ -1,5 +1,14 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 24 — 23/11/2026
+- Novo tema **«Encefalopatia de Wernicke»** nas Patologias A–Z: défice de tiamina, doentes de risco, manifestações e
+  critérios de Caine, RM, tiamina EV (doses, administração, relação com a glicose), magnésio, Korsakoff, cuidados de
+  enfermagem (identificação do risco na admissão, vigilância neurológica com registo de base, quedas, abstinência com
+  CIWA-Ar e sedação, síndrome de realimentação com critérios, deglutição), ensinos e sinais de alarme. Fonte base:
+  Giesta Ramos C, Pereira C, Acta Med Port 2006;19:442-5. Revisto pelos agentes médico e de enfermagem.
+- Guia farmacológico: fichas da tiamina (administração e alerta de reação alérgica) e do sulfato de magnésio
+  (hipomagnesemia) atualizadas.
+
 ## Versão 23 — 23/11/2026
 - **Seta «Voltar» em todas as páginas** (exceto o início): no telemóvel e tablet fica fixa na barra de topo; no
   computador aparece no início do conteúdo com o nome da página anterior. Volta à página de onde se veio (a mesma do

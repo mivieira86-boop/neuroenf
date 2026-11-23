@@ -72,7 +72,7 @@
   const origem = t => ({ p1: "Avaliação", p2: "Clínica neurológica", p3: "Enfermagem" })[t.parte] || "Patologia";
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
-    avc: ["nihss", "glasgow", "rankin", "guss"], "angiopatia-amiloide": ["glasgow", "nihss", "morse"], "avc-isquemico": ["nihss", "glasgow", "rankin", "guss"], "avc-hemorragico": ["glasgow", "nihss", "rankin", "guss"], trombectomia: ["nihss", "glasgow", "rankin"], "territorios-arteriais": ["nihss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
+    avc: ["nihss", "glasgow", "rankin", "guss"], "angiopatia-amiloide": ["glasgow", "nihss", "morse"], "encefalopatia-wernicke": ["glasgow", "morse", "guss"], "avc-isquemico": ["nihss", "glasgow", "rankin", "guss"], "avc-hemorragico": ["glasgow", "nihss", "rankin", "guss"], trombectomia: ["nihss", "glasgow", "rankin"], "territorios-arteriais": ["nihss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
     semiologia: ["glasgow", "barthel"], demencias: [], sistemicas: [], seguranca: ["morse", "braden"],
     disfagia: [], linguagem: ["nihss", "guss"], ela: ["guss"], dnm: [],
     alzheimer: ["morse", "barthel", "guss"], "demencia-vascular": ["morse", "barthel", "guss"], dcl: ["morse", "guss"],
