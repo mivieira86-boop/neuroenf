@@ -1192,3 +1192,26 @@ details.linha-grupo[open] > .sub-lista { animation: abrir-grupo .18s ease-out; }
 @keyframes pesquisa-abre { from { opacity: 0; transform: scaleX(.6); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .topo .botao-lupa, .topo #lugarPesquisaTopo { animation: none !important; } }
 @media print { .botao-lupa { display: none !important; } }
+
+/* Sinais de alarme: cartões recolhidos (só o nome do tema; ao tocar abre a lista) */
+details.cartao-recolhido { padding-top: 0; padding-bottom: 0; }
+details.cartao-recolhido > summary {
+  list-style: none; display: flex; align-items: center; gap: 12px; min-height: 60px; padding: 10px 0;
+  cursor: pointer; font-size: 17px; font-weight: 650; color: var(--texto);
+}
+details.cartao-recolhido > summary::-webkit-details-marker { display: none; }
+details.cartao-recolhido > summary .ic-tipo { flex: 0 0 auto; width: 36px; height: 36px; padding: 8px; border-radius: 50%; color: var(--alerta); background: var(--alerta-suave); }
+details.cartao.precaucao.cartao-recolhido > summary .ic-tipo { color: var(--atencao); background: var(--atencao-suave); }
+details.cartao-recolhido > summary .rec-tit { flex: 1; min-width: 0; }
+details.cartao-recolhido > summary .rec-cont { font-size: 13px; font-weight: 600; color: var(--secundario); background: var(--afundado); border-radius: 999px; padding: 2px 9px; }
+details.cartao-recolhido > summary .ic-seta { width: 18px; height: 18px; color: var(--secundario); transform: rotate(90deg); transition: transform var(--transicao, .15s); }
+details.cartao-recolhido[open] > summary .ic-seta { transform: rotate(-90deg); }
+details.cartao-recolhido > summary:hover .rec-tit { color: var(--acento); }
+details.cartao-recolhido > summary:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; border-radius: 10px; }
+details.cartao-recolhido .rec-corpo { padding: 0 0 14px; border-top: 1px solid var(--linha); }
+details.cartao-recolhido .rec-corpo > h3 { margin: 12px 0 2px; font-size: 15px; font-weight: 650; }
+.rec-abrir { margin: 12px 0 0; }
+.rec-abrir a { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; min-height: 44px; }
+.rec-abrir .ic-seta { width: 16px; height: 16px; }
+@media (prefers-reduced-motion: reduce) { details.cartao-recolhido > summary .ic-seta { transition: none; } }
+@media print { details.cartao-recolhido > summary .ic-seta, .rec-abrir { display: none; } }

@@ -550,14 +550,16 @@
     // Um cartão por tema: o nome do tema é o título; a cor fica na faixa lateral e no ícone
     const cartao = (t, lista, tipo) => {
       const id = `al-${esc(t.id)}-${tipo}`;
-      let c = `<section class="cartao ${tipo} cartao-lista" id="sec-${esc(t.id)}-${tipo}" aria-labelledby="${id}">
-        <h2 id="${id}" tabindex="-1"><a href="#tema-${esc(t.id)}" data-seccao="${lista[0][1]}">${ic(tipo === "alarme" ? "alarme" : "precaucao", "ic-tipo")}<span>${esc(t.titulo)}</span>${ic("seta", "ic-seta")}</a></h2>`;
+      // Recolhido: só o nome do tema à vista; ao tocar abre a lista de sinais (ou de precauções)
+      let c = `<details class="cartao ${tipo} cartao-lista cartao-recolhido" id="sec-${esc(t.id)}-${tipo}">
+        <summary id="${id}">${ic(tipo === "alarme" ? "alarme" : "precaucao", "ic-tipo")}<span class="rec-tit">${esc(t.titulo)}</span><span class="rec-cont">${lista.reduce((n, [s]) => n + (s.itens || []).length, 0)}</span>${ic("seta", "ic-seta")}</summary>
+        <div class="rec-corpo">`;
       lista.forEach(([s]) => {
         const sub = tipo === "alarme" ? subtituloAlarme(s) : s.t;
         if (sub) c += `<h3>${esc(sub)}</h3>`;
         c += corpoSeccao(s);
       });
-      return c + `</section>`;
+      return c + `<p class="rec-abrir"><a href="#tema-${esc(t.id)}" data-seccao="${lista[0][1]}">Abrir o tema ${ic("seta", "ic-seta")}</a></p></div></details>`;
     };
     const grupos = PARTES.map(p => ({ p, itens: TEMAS.filter(t => t.parte === p.id).map(t => [t, secs(t, s => s.alarme)]).filter(([, l]) => l.length) }))
       .filter(g => g.itens.length);
