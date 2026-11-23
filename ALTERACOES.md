@@ -1,5 +1,10 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 21 — 23/11/2026
+- **Pesquisa sempre à mão**: no telemóvel e tablet, a pesquisa fica fixa na barra de topo; ao descer a página reduz-se a
+  uma lupa, que volta a abrir o campo (Escape ou sair do campo vazio volta a reduzi-la). No início, quando a faixa sai do
+  ecrã, a pesquisa passa para a barra de topo (telemóvel) ou para o menu lateral (computador).
+
 ## Versão 20 — 23/11/2026 (design HealthTech e revisão do AVC)
 - **Novo design** ao estilo das apps de saúde atuais: faixa marinho no início com pesquisa em pílula; acesso rápido em
   cartões e mosaicos (AVC em destaque, Sinais de alarme, Escalas, e mosaicos com ícones em chips de cor); barra de

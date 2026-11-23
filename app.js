@@ -161,11 +161,57 @@
   heroi.innerHTML = `<h1 tabindex="-1">Guia de Enfermagem em Neurologia</h1>
     <p class="sub">Adulto · ${TEMAS.length} temas · ${ESCALAS.length} escalas</p><div class="lugar-pesquisa" id="lugarPesquisaInicio"></div>`;
 
-  // A pesquisa vive na faixa do início, no menu lateral (computador) ou na barra de topo (telemóvel)
+  // A pesquisa vive na faixa do início (enquanto está à vista), no menu lateral (computador) ou na barra de topo (telemóvel).
+  // Ao descer a página fica sempre acessível: na barra de topo reduz-se a uma lupa, que volta a abrir o campo.
+  const topo = $(".topo");
+  const botaoLupa = document.createElement("button");
+  botaoLupa.type = "button"; botaoLupa.className = "botao-lupa"; botaoLupa.setAttribute("aria-label", "Pesquisar");
+  botaoLupa.innerHTML = ic("pesquisa");
+  topo.appendChild(botaoLupa);
+  let heroiVisivel = true;   // a pesquisa da faixa do início está à vista?
+  let pesquisaAberta = false; // o utilizador abriu a pesquisa a partir da lupa
   function colocarPesquisa() {
-    const destino = heroi.isConnected ? $("#lugarPesquisaInicio") : telemovel.matches ? $("#lugarPesquisaTopo") : $("#lugarPesquisaLateral");
-    if (formPesquisa.parentNode !== destino) destino.appendChild(formPesquisa);
+    const destino = (heroi.isConnected && heroiVisivel) ? $("#lugarPesquisaInicio") : telemovel.matches ? $("#lugarPesquisaTopo") : $("#lugarPesquisaLateral");
+    if (formPesquisa.parentNode !== destino) {
+      const tinhaFoco = document.activeElement === campoPesquisa;
+      destino.appendChild(formPesquisa);
+      if (tinhaFoco) campoPesquisa.focus({ preventScroll: true });
+    }
+    atualizarLupa();
   }
+  function atualizarLupa() {
+    const noTopo = formPesquisa.parentNode === $("#lugarPesquisaTopo");
+    const emUso = pesquisaAberta || document.activeElement === campoPesquisa || campoPesquisa.value !== "";
+    const compacta = noTopo && !emUso && (heroi.isConnected || window.scrollY > 24);
+    topo.classList.toggle("pesquisa-compacta", compacta);
+    topo.classList.toggle("pesquisa-aberta", noTopo && emUso && (heroi.isConnected || window.scrollY > 24));
+  }
+  // A faixa do início sai do ecrã → a pesquisa passa para a barra de topo (telemóvel) ou para o menu lateral (computador)
+  if ("IntersectionObserver" in window) {
+    let obs = null;
+    const observar = () => {
+      if (obs) obs.disconnect();
+      obs = new IntersectionObserver(([e]) => {
+        if (!heroi.isConnected) return;
+        heroiVisivel = e.isIntersecting;
+        if (heroiVisivel) pesquisaAberta = false;
+        colocarPesquisa();
+      }, { rootMargin: telemovel.matches ? "-60px 0px 0px 0px" : "0px" });
+      obs.observe(heroi.querySelector("#lugarPesquisaInicio"));
+    };
+    observar();
+    telemovel.addEventListener && telemovel.addEventListener("change", observar);
+  }
+  let pedidoLupa = 0;
+  window.addEventListener("scroll", () => {
+    if (pedidoLupa) return;
+    pedidoLupa = requestAnimationFrame(() => { pedidoLupa = 0; atualizarLupa(); });
+  }, { passive: true });
+  botaoLupa.addEventListener("click", () => {
+    pesquisaAberta = true;
+    atualizarLupa();
+    campoPesquisa.focus({ preventScroll: true });
+  });
 
   // ── Mensagem temporária (substitui alert) ──
   const aviso = $("#avisoEstado");
@@ -1080,7 +1126,7 @@
     else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     // Faixa do início (com a pesquisa) só no início
-    if (rotaMenu === "inicio") { if (!heroi.isConnected) main.prepend(heroi); } else heroi.remove();
+    if (rotaMenu === "inicio") { if (!heroi.isConnected) { main.prepend(heroi); heroiVisivel = true; pesquisaAberta = false; } } else heroi.remove();
     document.body.classList.toggle("no-inicio", rotaMenu === "inicio");
     colocarPesquisa();
     vista.innerHTML = html + ASSINATURA;
@@ -1158,7 +1204,15 @@
   });
   campoPesquisa.addEventListener("keydown", ev => {
     if (ev.key === "Escape" && campoPesquisa.value) { ev.preventDefault(); campoPesquisa.value = ""; pesquisaAtual = ""; render(); }
+    else if (ev.key === "Escape" && pesquisaAberta) { ev.preventDefault(); pesquisaAberta = false; campoPesquisa.blur(); atualizarLupa(); botaoLupa.focus({ preventScroll: true }); }
   });
+  campoPesquisa.addEventListener("focus", () => atualizarLupa());
+  // Ao sair do campo vazio, a pesquisa volta a reduzir-se à lupa
+  campoPesquisa.addEventListener("blur", () => setTimeout(() => {
+    if (document.activeElement === campoPesquisa) return;
+    if (!campoPesquisa.value) pesquisaAberta = false;
+    atualizarLupa();
+  }, 120));
 
   // Menu (telemóvel)
   botaoMenu.addEventListener("click", () => {
