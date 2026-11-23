@@ -1,5 +1,16 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 20 — 23/11/2026 (design HealthTech e revisão do AVC)
+- **Novo design** ao estilo das apps de saúde atuais: faixa marinho no início com pesquisa em pílula; acesso rápido em
+  cartões e mosaicos (AVC em destaque, Sinais de alarme, Escalas, e mosaicos com ícones em chips de cor); barra de
+  navegação inferior no telemóvel (Início, Alarmes, Fármacos, Escalas, Menu); cartões com raio 18–20 px e sombras
+  suaves; chips para escalas, Terapêutica e «Nesta página»; separadores em pílula. Contraste AA nos dois temas.
+- **Grupo AVC revisto** pelos agentes médico (14 correções) e de enfermagem (10 correções): tenecteplase (só a
+  apresentação de 25 mg; incompatível com glicose), reversão dos anticoagulantes na 1.ª hora (acenocumarol, edoxabano),
+  alvos de TA na HIC, na HSA e após trombectomia, vasos médios na trombectomia, novas secções de perfusão tecidular
+  periférica e de segurança no AVC isquémico, registos à chegada da angiografia, introdutor femoral, síndrome
+  compartimental no acesso radial, Wallenberg e síndrome de encarceramento, polígono de Willis corrigido.
+
 ## Versão 19 — 20/11/2026 (grupo AVC)
 - **AVC em destaque no acesso rápido**: uma entrada recolhida que abre a lista do grupo AVC (Via Verde e visão geral,
   AVC isquémico, AVC hemorrágico e HSA, trombectomia, territórios arteriais) e a escala NIHSS. Saiu a entrada «Via Verde AVC».
@@ -17,7 +28,6 @@
 - O tema «Doença cerebrovascular (AVC)» ficou como visão geral e Via Verde; a vigilância pós-trombólise e o AVC
   hemorrágico passaram para os temas próprios.
 - Novo ficheiro `esquemas.js` (esquemas SVG) e novo campo de secção `esquema`.
-- Revisão clínica pelos agentes médico e de enfermagem ainda por fazer (limite de utilização atingido a 20/11).
 
 ## Versão 18 — 19/11/2026 (avaliação da linguagem)
 - Novo tema **«Avaliação da linguagem e comunicação»** nos Cuidados de enfermagem transversais: afasia, disartria, apraxia

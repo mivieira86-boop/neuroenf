@@ -96,8 +96,8 @@ const ESQUEMAS = (() => {
     ${willisLado}
     <g transform="translate(480,0) scale(-1,1)">${willisLado}</g>
     <path class="vaso aca" d="M226,72 L254,72"/>
-    <circle class="no" cx="190" cy="112" r="6"/><circle class="no" cx="290" cy="112" r="6"/>
-    ${rotulo(240, 66, "ACoA")}
+    <circle class="no" cx="240" cy="72" r="6"/><circle class="no" cx="190" cy="136" r="6"/><circle class="no" cx="290" cy="136" r="6"/>
+    ${rotulo(240, 58, "ACoA")}
     ${rotulo(232, 18, "ACA", "end")}
     ${rotulo(86, 94, "ACM", "end")}
     ${rotulo(166, 154, "ACI", "end")}
@@ -116,6 +116,6 @@ const ESQUEMAS = (() => {
     lateral: { titulo: "Face lateral do hemisfério", svg: lateral, legenda: [L("t-aca", "Artéria cerebral anterior (ACA)"), L("t-acm", "Artéria cerebral média (ACM)"), L("t-acp", "Artéria cerebral posterior (ACP)"), L("t-vb", "Vertebrobasilar: tronco cerebral e cerebelo")] },
     medial: { titulo: "Face medial do hemisfério", svg: medial, legenda: [L("t-aca", "ACA: face medial frontal e parietal"), L("t-acp", "ACP: lobo occipital, face inferior do temporal e tálamo"), L("t-acm", "ACM: pólo temporal"), L("t-vb", "Vertebrobasilar: tronco cerebral e cerebelo")] },
     axial: { titulo: "Corte axial (gânglios da base)", svg: axial, legenda: [L("t-aca", "ACA"), L("t-acm", "ACM (superficial)"), L("t-prof", "Perfurantes profundas da ACM: gânglios da base e cápsula interna (enfartes lacunares)"), L("t-acp", "ACP, incluindo o tálamo"), L("fronteira", "Zonas de fronteira entre territórios")] },
-    willis: { titulo: "Polígono de Willis e circulação posterior", svg: willis, legenda: [L("aci", "Circulação anterior: carótidas internas (ACI) → ACA e ACM"), L("pos", "Circulação posterior: vertebrais → basilar → cerebelosas e ACP"), L("no", "Comunicantes (ACoA e ACoP) ligam as duas circulações")] }
+    willis: { titulo: "Polígono de Willis e circulação posterior", svg: willis, legenda: [L("aci", "Circulação anterior: carótidas internas (ACI) → ACA e ACM"), L("pos", "Circulação posterior: vertebrais (dão a PICA) → basilar (AICA, cerebelosa superior) → ACP"), L("no", "Comunicantes: a ACoA une as duas ACA; as ACoP unem a carótida interna à ACP")] }
   };
 })();

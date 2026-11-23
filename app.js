@@ -11,6 +11,9 @@
   const botaoMenu = $("#botaoMenu");
   const campoPesquisa = $("#pesquisa");
   const formPesquisa = $("#formPesquisa");
+  const vista = $("#vista");
+  const navInf = $("#navInferior");
+  const botaoMenuInf = $("#botaoMenuInf");
   const LIVRO = "«A Neurologia que Todo Médico Deve Saber» (Nitrini & Bacheschi)";
   // Menu lateral fixo a partir de 961 px; abaixo disso, barra fina + gaveta
   const telemovel = window.matchMedia("(max-width: 960px)");
@@ -150,10 +153,17 @@
   });
   $("#pesquisaIc").innerHTML = ic("pesquisa");
   botaoMenu.innerHTML = ic("menu");
+  // Barra de navegação inferior (telemóvel): ícones de linha
+  navInf.querySelectorAll("[data-ic]").forEach(el => el.insertAdjacentHTML("afterbegin", ic(el.dataset.ic, el.dataset.ic === "alarme" ? "ic-alerta" : "")));
+  // Faixa do início: fora de #vista, para a pesquisa não ser destruída enquanto se escreve
+  const heroi = document.createElement("header");
+  heroi.className = "cab-pagina cab-inicio";
+  heroi.innerHTML = `<h1 tabindex="-1">Guia de Enfermagem em Neurologia</h1>
+    <p class="sub">Adulto · ${TEMAS.length} temas · ${ESCALAS.length} escalas</p><div class="lugar-pesquisa" id="lugarPesquisaInicio"></div>`;
 
-  // A pesquisa vive no menu lateral (computador) ou na barra de topo (telemóvel)
+  // A pesquisa vive na faixa do início, no menu lateral (computador) ou na barra de topo (telemóvel)
   function colocarPesquisa() {
-    const destino = telemovel.matches ? $("#lugarPesquisaTopo") : $("#lugarPesquisaLateral");
+    const destino = heroi.isConnected ? $("#lugarPesquisaInicio") : telemovel.matches ? $("#lugarPesquisaTopo") : $("#lugarPesquisaLateral");
     if (formPesquisa.parentNode !== destino) destino.appendChild(formPesquisa);
   }
 
@@ -208,7 +218,7 @@
   const gruposMenu = () => [...nav.querySelectorAll("details.grupo-menu")];
   const grupoAtual = () => { const a = nav.querySelector('a.tema[aria-current="page"]'); return a ? a.closest("details.grupo-menu") : null; };
   function marcarMenu(rota) {
-    nav.querySelectorAll("a").forEach(a => {
+    [...nav.querySelectorAll("a"), ...navInf.querySelectorAll("a")].forEach(a => {
       if (a.dataset.r === rota) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
     // No computador, garantir que a parte do tema atual está aberta (as outras ficam como estão)
@@ -228,6 +238,7 @@
     main.inert = abrir;
     botaoMenu.setAttribute("aria-expanded", String(abrir));
     botaoMenu.setAttribute("aria-label", abrir ? "Fechar menu" : "Abrir menu");
+    botaoMenuInf.setAttribute("aria-expanded", String(abrir));
     if (mudou || !botaoMenu.firstChild) botaoMenu.innerHTML = ic(abrir ? "fechar" : "menu");
     if (abrir) {
       // Na gaveta só fica aberta a parte do tema atual
@@ -241,10 +252,12 @@
     }
   }
   const menuAberto = () => lateral.classList.contains("aberto");
+  // No telemóvel o botão do menu está na barra inferior; no tablet, na barra de topo
+  const botaoMenuVisivel = () => botaoMenu.getClientRects().length ? botaoMenu : botaoMenuInf;
   // Foco preso na gaveta: botão do menu + elementos visíveis da gaveta
   function prenderFoco(ev) {
-    const alvos = [botaoMenu, ...lateral.querySelectorAll("a[href], summary, button, input")]
-      .filter(el => el === botaoMenu || el.getClientRects().length);
+    const alvos = [botaoMenuVisivel(), ...lateral.querySelectorAll("a[href], summary, button, input")]
+      .filter(el => el === botaoMenuVisivel() || el.getClientRects().length);
     if (!alvos.length) return;
     const i = alvos.indexOf(document.activeElement);
     let j;
@@ -262,11 +275,7 @@
     document.title = "NeuroEnf — Guia de Enfermagem em Neurologia";
     const existeTema = id => TEMAS.some(t => t.id === id);
     const temasAlarme = TEMAS.filter(temAlarme).length;
-    let h = `<header class="cab-pagina cab-inicio">
-        <h1 tabindex="-1">Guia de Enfermagem em Neurologia</h1>
-        <p class="sub">Adulto · ${TEMAS.length} temas · ${ESCALAS.length} escalas</p>
-      </header>
-      <section class="bloco bloco-rapido" aria-labelledby="t-rapido">
+    let h = `<section class="bloco bloco-rapido" aria-labelledby="t-rapido">
         <h2 class="etiqueta" id="t-rapido">Acesso rápido</h2>
         <div class="lista lista-rapida">`;
     // AVC em destaque: uma entrada recolhida que abre a lista dos temas do grupo AVC
@@ -278,8 +287,6 @@
         + `</div></details>`;
     }
     h += linha("#alarmes", "Sinais de alarme", `${temasAlarme} temas`, { icone: ic("alarme", "ic-linha ic-alerta"), cls: "linha-alarme" });
-    if (FARM.length) h += linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" });
-    h += linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" });
     const rapidos = [];
     // Uma só entrada para as escalas: ao tocar, abre a lista de todas as escalas disponíveis
     if (ESCALAS.length) {
@@ -288,12 +295,15 @@
         + ESCALAS.map(e => { const [tit, sub] = nomeEsc(e); return linha(`#escalas-${esc(e.id)}`, esc(tit), esc(sub), { cls: "linha-subitem" }); }).join("")
         + `</div></details>`);
     }
+    // Mosaicos: fármacos, estado de mal, urgências, protocolos
+    if (FARM.length) rapidos.push(linha("#farmacos", "Guia farmacológico", `${FARM.length} ${FARM.length === 1 ? "fármaco" : "fármacos"}${TERAP.length ? ` · ${TERAP.length} ${TERAP.length === 1 ? "tema" : "temas"}` : ""}`, { icone: ic("capsula", "ic-linha"), cls: "linha-farmacos" }));
     // «Estado de mal» abre a epilepsia já na secção de alarme
     const epi = TEMAS.find(t => t.id === "epilepsia");
     const kMal = epi ? (epi.seccoes || []).findIndex(s => s.alarme) : -1;
     [["epilepsia", "onda", "Estado de mal", "Epilepsia · sinais de alarme", kMal], ["urgencias", "sirene", "Urgências neurológicas", "", -1]].forEach(([id, i, txt, sub, k]) => {
       if (existeTema(id)) rapidos.push(linha(`#tema-${id}`, txt, sub, { icone: ic(i, "ic-linha"), attrs: k >= 0 ? ` data-seccao="${k}"` : "" }));
     });
+    rapidos.push(linha("#protocolos", "Protocolos do serviço", PROT.length ? `${PROT.length} ${PROT.length === 1 ? "protocolo" : "protocolos"}` : "Em construção", { icone: ic("protocolo", "ic-linha"), cls: "linha-protocolos" }));
     h += `<div class="lista-grelha">${rapidos.join("")}</div></div>
       <p class="nota-aviso">${ic("info")}<span>Apoio à prática: não substitui os protocolos do serviço nem a prescrição médica.</span></p></section>`;
     // As Patologias A–Z e a Clínica neurológica estão só no menu lateral (evita repetir a lista no início)
@@ -1057,7 +1067,7 @@
 
   function render() {
     aviso.classList.remove("visivel");
-    if (pesquisaAtual.trim()) { main.innerHTML = vistaPesquisa(pesquisaAtual) + ASSINATURA; marcarMenu(""); abrirMenu(false); window.scrollTo(0, 0); return; }
+    if (pesquisaAtual.trim()) { vista.innerHTML = vistaPesquisa(pesquisaAtual) + ASSINATURA; marcarMenu(""); abrirMenu(false); window.scrollTo(0, 0); return; }
     const r = decodeURIComponent(location.hash.replace(/^#/, "")) || "inicio";
     let rotaMenu = "inicio", html = null;
     if (r.startsWith("tema-")) { html = vistaTema(r.slice(5)); rotaMenu = r; }
@@ -1069,7 +1079,11 @@
     else if (r === "protocolos") { html = vistaProtocolos(); rotaMenu = "protocolos"; }
     else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
-    main.innerHTML = html + ASSINATURA;
+    // Faixa do início (com a pesquisa) só no início
+    if (rotaMenu === "inicio") { if (!heroi.isConnected) main.prepend(heroi); } else heroi.remove();
+    document.body.classList.toggle("no-inicio", rotaMenu === "inicio");
+    colocarPesquisa();
+    vista.innerHTML = html + ASSINATURA;
     if (typeof NeuroMarcha !== "undefined") NeuroMarcha.montar(main);
     marcarMenu(rotaMenu);
     abrirMenu(false);
@@ -1152,9 +1166,15 @@
     abrirMenu(abrir);
     if (!abrir) botaoMenu.focus();
   });
-  veu.addEventListener("click", () => { abrirMenu(false); botaoMenu.focus(); });
+  botaoMenuInf.addEventListener("click", () => {
+    const abrir = !menuAberto();
+    abrirMenu(abrir);
+    if (!abrir) botaoMenuInf.focus();
+  });
+  navInf.addEventListener("click", tratarClique);
+  veu.addEventListener("click", () => { abrirMenu(false); botaoMenuVisivel().focus(); });
   document.addEventListener("keydown", ev => {
-    if (ev.key === "Escape" && menuAberto()) { abrirMenu(false); botaoMenu.focus(); return; }
+    if (ev.key === "Escape" && menuAberto()) { abrirMenu(false); botaoMenuVisivel().focus(); return; }
     if (ev.key === "Tab" && menuAberto()) { prenderFoco(ev); return; }
     // «/» foca a pesquisa (fora de campos de texto)
     if (ev.key === "/" && !ev.ctrlKey && !ev.metaKey && !/^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName)) {

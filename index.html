@@ -45,8 +45,17 @@
     </aside>
     <div class="veu" id="veu" hidden></div>
 
-    <main id="conteudo" tabindex="-1"></main>
+    <main id="conteudo" tabindex="-1"><div id="vista"></div></main>
   </div>
+
+  <!-- Barra de navegação inferior (só no telemóvel) -->
+  <nav class="nav-inferior" id="navInferior" aria-label="Navegação principal">
+    <a href="#inicio" data-r="inicio" data-ic="inicio"><span class="rot">Início</span></a>
+    <a href="#alarmes" data-r="alarmes" data-ic="alarme"><span class="rot">Alarmes</span></a>
+    <a href="#farmacos" data-r="farmacos" data-ic="capsula"><span class="rot">Fármacos</span></a>
+    <a href="#escalas" data-r="escalas" data-ic="escalas"><span class="rot">Escalas</span></a>
+    <button type="button" id="botaoMenuInf" data-ic="menu" aria-expanded="false" aria-controls="menu"><span class="rot">Menu</span></button>
+  </nav>
 
   <div class="aviso-estado" id="avisoEstado" role="status" aria-live="polite"></div>
   <script src="conteudo.js"></script>
