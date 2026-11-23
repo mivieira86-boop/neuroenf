@@ -170,6 +170,11 @@
   // A pesquisa vive na faixa do início (enquanto está à vista), no menu lateral (computador) ou na barra de topo (telemóvel).
   // Ao descer a página fica sempre acessível: na barra de topo reduz-se a uma lupa, que volta a abrir o campo.
   const topo = $(".topo");
+  const botaoVoltarTopo = document.createElement("button");
+  botaoVoltarTopo.type = "button"; botaoVoltarTopo.className = "botao-voltar"; botaoVoltarTopo.setAttribute("aria-label", "Voltar");
+  botaoVoltarTopo.innerHTML = ic("voltar");
+  topo.insertBefore(botaoVoltarTopo, topo.querySelector(".marca"));
+  botaoVoltarTopo.addEventListener("click", () => voltar());
   const botaoLupa = document.createElement("button");
   botaoLupa.type = "button"; botaoLupa.className = "botao-lupa"; botaoLupa.setAttribute("aria-label", "Pesquisar");
   botaoLupa.innerHTML = ic("pesquisa");
@@ -636,7 +641,7 @@
     } else {
       if (!TERAP.length) return h + `<p class="sub">Ainda não há terapêutica associada a temas. Veja a lista <a href="#farmacos-az">A–Z</a>.</p>`;
       PARTES.forEach(p => {
-        const lista = temasParteAlfa(p.id).map(t => [t, terapDoTema(t.id)]).filter(([, x]) => x);
+        const lista = TEMAS.filter(t => t.parte === p.id).sort((a, b) => ordemPT(a.titulo, b.titulo)).map(t => [t, terapDoTema(t.id)]).filter(([, x]) => x);
         if (!lista.length) return;
         h += `<section class="bloco grupo-doencas" data-filtro-grupo aria-labelledby="pd-${esc(p.id)}">
           <h2 class="etiqueta" id="pd-${esc(p.id)}">${esc(p.nome)}</h2><div class="lista lista-doencas">`;
@@ -1107,6 +1112,45 @@
 
   // ── Router (#inicio, #alarmes, #escalas-glasgow, #tema-avc) ──
   let pesquisaAtual = "";
+  // ── Histórico dentro da app: cada página tem um número (history.state.nav) ──
+  // Permite à seta «Voltar» regressar à página anterior (history.back) e repor a posição de leitura.
+  let navAtual = 0, paiAtual = "#inicio";
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  const posicoes = {}, titulos = {}, abertos = {};
+  // Guarda a posição e os grupos abertos (details) da página que se vai deixar
+  const guardarPagina = () => { posicoes[navAtual] = window.scrollY; abertos[navAtual] = [...vista.querySelectorAll("details")].map((d, i) => d.open ? i : -1).filter(i => i >= 0); };
+  let congelado = false; // entre o clique numa ligação e o fim do desenho, não regista posições
+  function registarEntrada() {
+    let st = history.state;
+    const nova = !(st && typeof st.nav === "number");
+    if (nova) { st = { nav: navAtual + 1 }; try { history.replaceState(st, "", location.href); } catch (e) { /* sem histórico */ } }
+    navAtual = st.nav;
+    return nova;
+  }
+  const podeVoltar = () => navAtual > 1;
+  function voltar() {
+    guardarPagina(); congelado = true;
+    if (podeVoltar()) history.back();
+    else irPara(paiAtual);
+  }
+  let pedidoPos = 0;
+  window.addEventListener("scroll", () => {
+    if (pedidoPos) return;
+    pedidoPos = requestAnimationFrame(() => { pedidoPos = 0; if (!congelado) posicoes[navAtual] = window.scrollY; });
+  }, { passive: true });
+  // Página «mãe» de cada rota (destino da seta quando não há página anterior nesta sessão)
+  const paiDaRota = r => r.startsWith("terapeutica-") ? `#tema-${r.slice(12)}`
+    : r.startsWith("farmaco-") || r === "farmacos-az" ? "#farmacos"
+    : r.startsWith("protocolo-") ? "#protocolos" : "#inicio";
+  const nomeRota = h => {
+    const r = h.replace(/^#/, "");
+    if (r === "inicio") return "Início";
+    if (r === "farmacos") return "Guia farmacológico";
+    if (r === "protocolos") return "Protocolos do serviço";
+    if (r.startsWith("tema-")) { const t = TEMAS.find(x => x.id === r.slice(5)); return t ? t.titulo : "Início"; }
+    return "Início";
+  };
+
   let seccaoPendente = null;
   let focarTitulo = false;
 
@@ -1121,6 +1165,7 @@
 
   function render() {
     aviso.classList.remove("visivel");
+    const nova = registarEntrada();
     if (pesquisaAtual.trim()) { vista.innerHTML = vistaPesquisa(pesquisaAtual) + ASSINATURA; marcarMenu(""); abrirMenu(false); window.scrollTo(0, 0); return; }
     const r = decodeURIComponent(location.hash.replace(/^#/, "")) || "inicio";
     let rotaMenu = "inicio", html = null;
@@ -1138,15 +1183,37 @@
     document.body.classList.toggle("no-inicio", rotaMenu === "inicio");
     colocarPesquisa();
     vista.innerHTML = html + ASSINATURA;
+    // Seta «Voltar» em todas as páginas (exceto no início): volta à página anterior; sem anterior, à página «mãe»
+    paiAtual = paiDaRota(r);
+    document.body.classList.toggle("com-voltar", rotaMenu !== "inicio");
+    if (rotaMenu !== "inicio") {
+      const anterior = podeVoltar() ? titulos[navAtual - 1] : null;
+      const rotulo = anterior || nomeRota(paiAtual);
+      let v = vista.querySelector("a.voltar");
+      if (!v) {
+        vista.insertAdjacentHTML("afterbegin", `<a class="voltar voltar-geral" href="${paiAtual}">${ic("voltar")}<span></span></a>`);
+        v = vista.querySelector("a.voltar");
+      }
+      v.setAttribute("href", paiAtual);
+      v.dataset.voltar = "";
+      v.querySelector("span").textContent = rotulo;
+      v.setAttribute("aria-label", `Voltar a ${rotulo}`);
+      botaoVoltarTopo.setAttribute("aria-label", `Voltar a ${rotulo}`);
+    }
+    { const h1 = vista.querySelector("h1"); titulos[navAtual] = rotaMenu === "inicio" ? "Início" : (h1 ? h1.textContent.trim() : document.title.replace(/ — NeuroEnf$/, "")); }
     if (typeof NeuroMarcha !== "undefined") NeuroMarcha.montar(main);
     marcarMenu(rotaMenu);
     abrirMenu(false);
     if (seccaoPendente !== null) {
       const k = seccaoPendente; seccaoPendente = null; focarTitulo = false;
       irParaSeccao(k);
+      requestAnimationFrame(() => { congelado = false; });
       return;
     }
-    window.scrollTo(0, 0);
+    // Ao regressar a uma página já vista, reabrir os grupos que estavam abertos e repor a posição de leitura
+    if (!nova && abertos[navAtual]) { const ds = vista.querySelectorAll("details"); abertos[navAtual].forEach(i => { if (ds[i]) ds[i].open = true; }); }
+    window.scrollTo(0, !nova && posicoes[navAtual] !== undefined ? posicoes[navAtual] : 0);
+    requestAnimationFrame(() => { congelado = false; });
     if (focarTitulo) {
       focarTitulo = false;
       const h1 = main.querySelector("h1");
@@ -1175,6 +1242,8 @@
     if (acao && acao.dataset.acao === "infomed") { copiarDci(acao.dataset.dci); return; }
     const a = ev.target.closest("a[href^='#']");
     if (!a || ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button > 0) return;
+    if (a.dataset.voltar !== undefined && podeVoltar()) { ev.preventDefault(); voltar(); return; }
+    guardarPagina(); congelado = true;
     ev.preventDefault();
     if (a.dataset.seccao !== undefined) seccaoPendente = a.dataset.seccao;
     irPara(a.getAttribute("href"));

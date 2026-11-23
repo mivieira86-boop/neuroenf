@@ -1215,3 +1215,20 @@ details.cartao-recolhido .rec-corpo > h3 { margin: 12px 0 2px; font-size: 15px; 
 .rec-abrir .ic-seta { width: 16px; height: 16px; }
 @media (prefers-reduced-motion: reduce) { details.cartao-recolhido > summary .ic-seta { transition: none; } }
 @media print { details.cartao-recolhido > summary .ic-seta, .rec-abrir { display: none; } }
+
+/* Seta «Voltar»: na barra de topo (telemóvel/tablet) e no início do conteúdo (computador) */
+.botao-voltar { display: none; }
+@media (max-width: 960px) {
+  body.com-voltar .botao-voltar {
+    display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: var(--alvo); height: var(--alvo); margin-left: -6px; border-radius: 999px;
+    border: 0; background: transparent; color: var(--texto);
+  }
+  body.com-voltar .botao-voltar .ic { width: 22px; height: 22px; }
+  body.com-voltar .botao-voltar:active { background: var(--afundado); }
+  /* no telemóvel a seta está sempre visível no topo; a do conteúdo seria repetida */
+  #vista a.voltar { display: none; }
+  .topo.pesquisa-aberta .botao-voltar { display: none; }
+}
+.voltar-geral { margin-bottom: 12px; }
+@media print { .botao-voltar, .voltar-geral { display: none !important; } }

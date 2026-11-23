@@ -1,5 +1,12 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 23 — 23/11/2026
+- **Seta «Voltar» em todas as páginas** (exceto o início): no telemóvel e tablet fica fixa na barra de topo; no
+  computador aparece no início do conteúdo com o nome da página anterior. Volta à página de onde se veio (a mesma do
+  botão «retroceder» do telemóvel), na mesma posição de leitura e com os grupos que estavam abertos; se a página foi
+  aberta diretamente, vai para a página «mãe» (início, guia farmacológico, tema ou protocolos).
+- **Guia farmacológico «Por doença»**: todas as listas (Clínica, Cuidados transversais, Patologias A–Z) por ordem alfabética.
+
 ## Versão 22 — 23/11/2026
 - Novo tema **«Angiopatia amiloide cerebral»** nas Patologias A–Z: fisiopatologia, genética (APOE, formas hereditárias,
   paramiloidose, forma iatrogénica), manifestações (hemorragia lobar, episódios focais transitórios, siderose, HSA da
