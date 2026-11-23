@@ -1,5 +1,14 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 25 — 23/11/2026
+- **Ligações diretas para outras secções**: sempre que o texto sugere ver outro tema ou secção (por exemplo «ver
+  «Avaliação da linguagem e comunicação»»), o nome passa a ser um botão que abre logo esse tema ou essa secção.
+- **Menos scroll nos temas**: nos temas extensos (53 dos 67) as secções aparecem fechadas, só com o título e o número de
+  pontos; toca-se para abrir. Os sinais de alarme mantêm o destaque a vermelho. Botão «Abrir tudo / Fechar tudo».
+  Na impressão aparecem todas abertas. Inclui «Territórios arteriais e síndromes de AVC».
+- **Guia farmacológico A–Z**: as letras ficam fechadas (abrem com o filtro); na terapêutica de cada tema, os grupos de
+  fármacos ficam fechados quando a lista é longa (o primeiro grupo aberto).
+
 ## Versão 24 — 23/11/2026
 - Novo tema **«Encefalopatia de Wernicke»** nas Patologias A–Z: défice de tiamina, doentes de risco, manifestações e
   critérios de Caine, RM, tiamina EV (doses, administração, relação com a glicose), magnésio, Korsakoff, cuidados de

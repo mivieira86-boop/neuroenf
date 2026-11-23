@@ -377,12 +377,47 @@
     return h;
   }
 
-  function blocoSeccao(s, k) {
+  // ── Referências «…» a outros temas ou secções: passam a botão que leva diretamente lá ──
+  const normRef = x => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s*\([^)]*\)\s*/g, " ").replace(/\s+/g, " ").trim();
+  const ALIAS_REF = { "avc hemorragico e hsa": "avc-hemorragico", "esclerose multipla, neuromielite otica e outras doencas desmielinizantes": "desmielinizantes" };
+  function resolverRef(q, t) {
+    const nq = normRef(q);
+    if (nq.length < 3) return null;
+    if (t) { const k = (t.seccoes || []).findIndex(x => normRef(x.t) === nq); if (k >= 0) return { href: `#tema-${t.id}`, k }; }
+    let alvo = TEMAS.find(x => normRef(x.titulo) === nq) || temaPorId(ALIAS_REF[nq]);
+    if (!alvo && nq.length >= 10) { const c = TEMAS.filter(x => normRef(x.titulo).startsWith(nq)); if (c.length === 1) alvo = c[0]; }
+    if (!alvo || (t && alvo.id === t.id)) return null;
+    return { href: `#tema-${alvo.id}`, k: -1 };
+  }
+  function textoComRefs(raw, t) {
+    raw = String(raw);
+    let out = "", ultimo = 0;
+    for (const m of raw.matchAll(/«([^«»]{3,140})»/g)) {
+      const alvo = resolverRef(m[1], t);
+      if (!alvo) continue;
+      out += esc(raw.slice(ultimo, m.index)) + `<a class="ref-ligacao" href="${alvo.href}"${alvo.k >= 0 ? ` data-seccao="${alvo.k}"` : ""}>${esc(m[1])}${ic("seta", "ic-ref")}</a>`;
+      ultimo = m.index + m[0].length;
+    }
+    return out + esc(raw.slice(ultimo));
+  }
+
+  // ── Secções recolhíveis: nos temas extensos só se veem os títulos; ao tocar abre-se o conteúdo ──
+  const tamanhoTema = secs => secs.reduce((n, x) => n + (x.itens || []).join(" ").length + ((x.tabela && x.tabela.lin) || []).flat().join(" ").length + (x.esquema ? 600 : 0) + (x.marchas ? 600 : 0) + (x.escala ? 800 : 0), 0);
+  const temaRecolhivel = secs => secs.length >= 2 && tamanhoTema(secs) > 700;
+
+  function blocoSeccao(s, k, t, recolher) {
     const prec = ePrecaucao(s);
+    if (recolher) {
+      const n = (s.itens || []).length + ((s.tabela && s.tabela.lin) || []).length;
+      return `<details class="cartao seccao-rec${s.alarme ? " alarme" : prec ? " precaucao" : ""}" id="sec-${k}">
+      <summary>${s.alarme ? ic("alarme", "ic-sec") : prec ? ic("precaucao", "ic-sec") : ""}<h2 id="sec-${k}-t" tabindex="-1">${esc(s.t)}</h2>${n ? `<span class="rec-cont">${n}</span>` : ""}${ic("seta", "ic-seta")}</summary>
+      <div class="sec-corpo">${corpoSeccao(s, t)}</div></details>`;
+    }
+    
     return `<section class="cartao${s.alarme ? " alarme" : prec ? " precaucao" : ""}" id="sec-${k}" aria-labelledby="sec-${k}-t">
       ${s.alarme && !/alarme/i.test(s.t) ? `<p class="faixa-alarme">${ic("alarme")}Sinal de alarme</p>` : ""}
       ${prec ? `<p class="faixa-precaucao">${ic("precaucao")}Precaução</p>` : ""}
-      <h2 id="sec-${k}-t" tabindex="-1">${s.alarme && /alarme/i.test(s.t) ? ic("alarme") : ""}${esc(s.t)}</h2>${corpoSeccao(s)}</section>`;
+      <h2 id="sec-${k}-t" tabindex="-1">${s.alarme && /alarme/i.test(s.t) ? ic("alarme") : ""}${esc(s.t)}</h2>${corpoSeccao(s, t)}</section>`;
   }
   // Esquema anatómico (SVG original, em esquemas.js)
   const esquemaHTML = id => {
@@ -392,20 +427,20 @@
     return `<figure class="esquema"><div class="esquema-svg">${e.svg}</div><figcaption><strong>${esc(e.titulo)}</strong><ul class="legenda">${leg}</ul></figcaption></figure>`;
   };
   // Conteúdo de uma secção (lista e/ou tabela)
-  function corpoSeccao(s) {
+  function corpoSeccao(s, t) {
     let h = "";
     if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
     if (s.escala) h += escalaEmbutida(s.escala);
     if (s.esquema) h += esquemaHTML(s.esquema);
-    if (s.aviso) h += `<p class="nota-terap aviso-seccao">${ic("info")}<span>${esc(s.aviso)}</span></p>`;
-    if (s.itens) h += `<ul>${s.itens.map(i => `<li>${esc(i)}</li>`).join("")}</ul>`;
+    if (s.aviso) h += `<p class="nota-terap aviso-seccao">${ic("info")}<span>${textoComRefs(s.aviso, t)}</span></p>`;
+    if (s.itens) h += `<ul>${s.itens.map(i => `<li>${textoComRefs(i, t)}</li>`).join("")}</ul>`;
     if (s.tabela) {
       const cab = s.tabela.cab || [];
       h += `<div class="tabela-envolvente" role="region" aria-label="Tabela: ${esc(s.t)}" tabindex="0"><table>`;
       if (cab.length) h += `<thead><tr>${cab.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>`;
-      h += `<tbody>` + (s.tabela.lin || []).map(l => `<tr>${l.map((c, i) => i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${esc(c)}</td>`).join("")}</tr>`).join("");
+      h += `<tbody>` + (s.tabela.lin || []).map(l => `<tr>${l.map((c, i) => i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${textoComRefs(c, t)}</td>`).join("")}</tr>`).join("");
       h += `</tbody></table></div>`;
-      if (s.tabela.nota) h += `<p class="nota">${esc(s.tabela.nota)}</p>`;
+      if (s.tabela.nota) h += `<p class="nota">${textoComRefs(s.tabela.nota, t)}</p>`;
     }
     return h;
   }
@@ -528,7 +563,7 @@
         ${escTema.length || terTema ? `<div class="botoes-tema">${escTema.length ? `<div class="escalas-tema" role="group" aria-label="Escalas deste tema">${escTema.map(e =>
           `<a class="btn-sec" href="#escalas-${esc(e.id)}">${ic("escalas")}<span><span class="so-leitor">Escala </span>${esc(rotuloCurto(e))}</span></a>`).join("")}</div>` : ""}${terTema
           ? `<a class="btn-sec btn-terap" href="#terapeutica-${esc(t.id)}">${ic("capsula")}<span>Terapêutica</span></a>` : ""}</div>` : ""}
-        <p class="resumo">${esc(t.resumo)}</p>
+        <p class="resumo">${textoComRefs(t.resumo, t)}</p>
         ${grupo ? `<nav class="grupo-tema" aria-label="Doenças do grupo ${esc(grupo.titulo)}"><span class="etiqueta">Grupo ${esc(grupo.titulo)}</span><ul>${grupo.temas.map(temaPorId).filter(Boolean).sort((a, b) => ordemPT(a.titulo, b.titulo)).map(x =>
           `<li><a href="#tema-${esc(x.id)}"${x.id === t.id ? ` aria-current="page"` : ""}>${esc(x.titulo)}</a></li>`).join("")}</ul></nav>` : ""}
         ${subs.length ? `<nav class="grupo-tema" aria-label="Doenças incluídas neste tema"><span class="etiqueta">Inclui</span><ul>${subs.map(s => { const a = alvoSubtema(t, s);
@@ -536,7 +571,10 @@
       </header>`;
     // Alarmes primeiro, depois precauções, depois as restantes (os índices k mantêm-se)
     const ordem = ordenarSeccoes(todas);
-    if (todas.length > 1) {
+    const recolher = temaRecolhivel(todas);
+    if (recolher) {
+      h += `<div class="barra-seccoes"><span class="etiqueta">${todas.length} secções</span><button type="button" class="btn-sec btn-abrir-tudo" data-acao="abrir-tudo" aria-pressed="false">${ic("baixo")}<span>Abrir tudo</span></button></div>`;
+    } else if (todas.length > 1) {
       h += `<nav class="nesta-pagina" aria-label="Nesta página"><span class="etiqueta">Nesta página</span><ul class="separadores-sec">`;
       h += ordem.map(([s, k]) => s.alarme
         ? `<li><button type="button" class="sep-alarme" data-ir="${k}">${ic("alarme")}${esc(s.t)}${/alarme/i.test(s.t) ? "" : `<span class="so-leitor"> (sinal de alarme)</span>`}</button></li>`
@@ -545,7 +583,7 @@
           : `<li><button type="button" data-ir="${k}">${esc(s.t)}</button></li>`).join("");
       h += `</ul></nav>`;
     }
-    h += ordem.map(([s, k]) => blocoSeccao(s, k)).join("");
+    h += ordem.map(([s, k]) => blocoSeccao(s, k, t, recolher)).join("");
     const rel = (t.relacionados || []).map(temaPorId).filter(Boolean);
     if (rel.length) h += `<nav class="ver-tambem" aria-label="Ver também"><span class="etiqueta">Ver também</span><ul>${rel.map(x => `<li><a href="#tema-${esc(x.id)}">${esc(x.titulo)}</a></li>`).join("")}</ul></nav>`;
     h += `<p class="rodape">${t.cap ? `Para aprofundar: ${LIVRO}. Texto desta app escrito para a equipa de enfermagem; não reproduz o livro.` : "Tema escrito para a equipa de enfermagem. Confirmar com as normas DGS e os protocolos do hospital."}</p>
@@ -568,7 +606,7 @@
       lista.forEach(([s]) => {
         const sub = tipo === "alarme" ? subtituloAlarme(s) : s.t;
         if (sub) c += `<h3>${esc(sub)}</h3>`;
-        c += corpoSeccao(s);
+        c += corpoSeccao(s, t);
       });
       return c + `<p class="rec-abrir"><a href="#tema-${esc(t.id)}" data-seccao="${lista[0][1]}">Abrir o tema ${ic("seta", "ic-seta")}</a></p></div></details>`;
     };
@@ -631,11 +669,11 @@
       });
       h += `<div class="lista-az">`;
       letras.forEach((lista, l) => {
-        h += `<section class="grupo-letra" data-filtro-grupo aria-labelledby="letra-${esc(l)}">
-          <h2 class="letra" id="letra-${esc(l)}">${esc(l)}</h2><div class="lista">`;
+        h += `<details class="grupo-letra grupo-letra-rec" data-filtro-grupo>
+          <summary><h2 class="letra" id="letra-${esc(l)}">${esc(l)}</h2><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">`;
         h += lista.map(f => linha(`#farmaco-${esc(f.id)}`, esc(f.dci), esc(f.classe || ""),
           { extra: etiquetaRisco(f), attrs: ` data-filtro="${textoFiltro(f.dci, f.classe || "")}"` })).join("");
-        h += `</div></section>`;
+        h += `</div></details>`;
       });
       h += `</div>`;
     } else {
@@ -684,6 +722,9 @@
           let vis = 0;
           sec.querySelectorAll("[data-filtro]").forEach(el => { const ok = bateFiltro(el.dataset.filtro, q); el.hidden = !ok; if (ok) vis++; });
           sec.hidden = !vis; n += vis;
+          // abrir as letras com resultados enquanto há filtro; ao limpar, fechar as que o filtro abriu
+          if (q && vis) { if (!sec.open) { sec.open = true; sec.dataset.auto = "1"; } }
+          else if (!q && sec.dataset.auto) { sec.open = false; delete sec.dataset.auto; }
         });
       } else {
         main.querySelectorAll(".grupo-doencas").forEach(sec => {
@@ -764,10 +805,12 @@
         <p class="meta">${n} ${n === 1 ? "fármaco" : "fármacos"} · <a href="#farmacos">Guia farmacológico</a></p>
         <p class="nota-aviso">${ic("info")}<span>${esc(AVISO_TERAP)}</span></p>
       </header>`;
+    const recolherT = x.grupos.length > 2 && n > 8;
     x.grupos.forEach((g, k) => {
-      h += `<section class="bloco-terap" aria-labelledby="gt-${k}"><h2 class="etiqueta" id="gt-${k}">${esc(g.t)}</h2><div class="lista">`;
-      h += g.farmacos.map(f => linha(`#farmaco-${esc(f.id)}`, esc(f.dci), esc(f.classe || ""), { icone: ic("capsula", "ic-linha"), extra: etiquetaRisco(f) })).join("");
-      h += `</div></section>`;
+      const corpo = g.farmacos.map(f => linha(`#farmaco-${esc(f.id)}`, esc(f.dci), esc(f.classe || ""), { icone: ic("capsula", "ic-linha"), extra: etiquetaRisco(f) })).join("");
+      h += recolherT
+        ? `<details class="cartao grupo-terap"${k === 0 ? " open" : ""}><summary><h2 id="gt-${k}">${esc(g.t)}</h2><span class="rec-cont">${g.farmacos.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">${corpo}</div></details>`
+        : `<section class="bloco-terap" aria-labelledby="gt-${k}"><h2 class="etiqueta" id="gt-${k}">${esc(g.t)}</h2><div class="lista">${corpo}</div></section>`;
     });
     if (x.nota) h += `<p class="nota-terap">${ic("info")}<span>${esc(x.nota)}</span></p>`;
     h += `<p class="rodape">Em cada fármaco: «Ver ficha no Índice Nacional Terapêutico» abre logo a ficha; «Abrir no INFOMED» leva à informação oficial (RCM).</p>`;
@@ -1157,6 +1200,7 @@
   function irParaSeccao(k) {
     const sec = document.getElementById("sec-" + k);
     if (!sec) return;
+    if (sec.tagName === "DETAILS") sec.open = true;
     sec.scrollIntoView({ block: "start" });
     const t = sec.querySelector(".etiqueta[tabindex], h2");
     if (t) t.focus({ preventScroll: true });
@@ -1232,6 +1276,13 @@
     if (alvo) { irParaSeccao(alvo.dataset.ir); return; }
     const acao = ev.target.closest("[data-acao]");
     if (acao && acao.dataset.acao === "imprimir") { window.print(); return; }
+    if (acao && acao.dataset.acao === "abrir-tudo") {
+      const abrir = acao.getAttribute("aria-pressed") !== "true";
+      vista.querySelectorAll("details.seccao-rec, details.grupo-letra-rec, details.grupo-terap").forEach(d => { d.open = abrir; });
+      acao.setAttribute("aria-pressed", String(abrir));
+      acao.querySelector("span").textContent = abrir ? "Fechar tudo" : "Abrir tudo";
+      return;
+    }
     if (acao && acao.dataset.acao === "topo") {
       const suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       window.scrollTo({ top: 0, behavior: suave ? "smooth" : "auto" });
@@ -1249,6 +1300,9 @@
     irPara(a.getAttribute("href"));
   }
   main.addEventListener("click", tratarClique);
+  // Na impressão, todas as secções recolhidas aparecem abertas
+  window.addEventListener("beforeprint", () => vista.querySelectorAll("details:not([open])").forEach(d => { d.open = true; d.dataset.fechadoImpr = "1"; }));
+  window.addEventListener("afterprint", () => vista.querySelectorAll("details[data-fechado-impr]").forEach(d => { d.open = false; delete d.dataset.fechadoImpr; }));
   nav.addEventListener("click", tratarClique);
   document.querySelectorAll(".marca").forEach(m => m.addEventListener("click", ev => { ev.preventDefault(); irPara("#inicio"); }));
 

@@ -1232,3 +1232,46 @@ details.cartao-recolhido .rec-corpo > h3 { margin: 12px 0 2px; font-size: 15px; 
 }
 .voltar-geral { margin-bottom: 12px; }
 @media print { .botao-voltar, .voltar-geral { display: none !important; } }
+
+/* Ligações para outros temas/secções citados no texto */
+.ref-ligacao {
+  display: inline; padding: 2px 6px 2px 8px; margin: 0 1px;
+  border-radius: 8px; background: var(--acento-suave); color: var(--acento); font-weight: 600;
+  text-decoration: none; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.ref-ligacao:hover { text-decoration: underline; text-underline-offset: 2px; }
+.ref-ligacao:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+.ref-ligacao .ic-ref { width: 14px; height: 14px; vertical-align: -2px; margin-left: 2px; }
+@media print { .ref-ligacao { background: none; padding: 0; color: inherit; } .ref-ligacao .ic-ref { display: none; } }
+
+/* Secções recolhíveis nos temas extensos */
+.barra-seccoes { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 20px 0 10px; }
+.barra-seccoes .etiqueta { margin: 0; }
+.btn-abrir-tudo[aria-pressed="true"] .ic { transform: rotate(180deg); }
+details.seccao-rec { padding-top: 0; padding-bottom: 0; }
+details.seccao-rec > summary, details.grupo-terap > summary {
+  list-style: none; display: flex; align-items: center; gap: 10px; min-height: 58px; padding: 8px 0; cursor: pointer;
+}
+details.seccao-rec > summary::-webkit-details-marker, details.grupo-terap > summary::-webkit-details-marker,
+details.grupo-letra-rec > summary::-webkit-details-marker { display: none; }
+details.seccao-rec > summary h2, details.grupo-terap > summary h2 { flex: 1; min-width: 0; margin: 0; font-size: 17px; }
+details.seccao-rec > summary .ic-sec { flex: 0 0 auto; width: 22px; height: 22px; }
+details.seccao-rec.alarme > summary .ic-sec, details.seccao-rec.alarme > summary h2 { color: var(--alerta); }
+details.seccao-rec.precaucao > summary .ic-sec, details.seccao-rec.precaucao > summary h2 { color: var(--atencao); }
+.rec-cont { flex: 0 0 auto; font-size: 13px; font-weight: 600; color: var(--secundario); background: var(--afundado); border-radius: 999px; padding: 2px 9px; }
+details.seccao-rec > summary .ic-seta, details.grupo-terap > summary .ic-seta, details.grupo-letra-rec > summary .ic-seta {
+  flex: 0 0 auto; width: 18px; height: 18px; color: var(--secundario); transform: rotate(90deg); transition: transform var(--transicao, .15s);
+}
+details[open].seccao-rec > summary .ic-seta, details[open].grupo-terap > summary .ic-seta, details[open].grupo-letra-rec > summary .ic-seta { transform: rotate(-90deg); }
+details.seccao-rec > summary:hover h2, details.grupo-terap > summary:hover h2 { color: var(--acento); }
+details.seccao-rec.alarme > summary:hover h2 { color: var(--alerta); }
+details.seccao-rec > summary:focus-visible, details.grupo-terap > summary:focus-visible, details.grupo-letra-rec > summary:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; border-radius: 10px; }
+details.seccao-rec .sec-corpo { border-top: 1px solid var(--linha); padding: 6px 0 14px; }
+details.seccao-rec { margin-bottom: 10px; }
+details.grupo-terap { margin-bottom: 10px; padding-top: 0; padding-bottom: 0; }
+details.grupo-terap > .lista { padding-bottom: 12px; }
+details.grupo-letra-rec { margin-bottom: 8px; }
+details.grupo-letra-rec > summary { list-style: none; display: flex; align-items: center; gap: 10px; min-height: 48px; cursor: pointer; }
+details.grupo-letra-rec > summary .letra { flex: 1; margin: 0; }
+@media (prefers-reduced-motion: reduce) { details > summary .ic-seta { transition: none !important; } }
+@media print { .barra-seccoes, details > summary .ic-seta { display: none !important; } }
