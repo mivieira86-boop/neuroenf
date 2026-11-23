@@ -3,7 +3,22 @@
   try {
     if (window.self !== window.top) return; // dentro de outra página (pré-visualização): não instalar
     if (!("serviceWorker" in navigator) || location.protocol !== "https:") return;
-    window.addEventListener("load", () => { navigator.serviceWorker.register("sw.js").catch(() => {}); });
+    window.addEventListener("load", () => {
+      const tinhaVersao = !!navigator.serviceWorker.controller;
+      navigator.serviceWorker.register("sw.js", { updateViaCache: "none" }).then(reg => {
+        // Procurar versão nova ao abrir e sempre que a app volta ao ecrã
+        const procurar = () => reg.update().catch(() => {});
+        document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") procurar(); });
+        procurar();
+      }).catch(() => {});
+      // Quando a versão nova fica ativa, recarregar uma vez para a mostrar logo
+      let recarregou = false;
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        if (!tinhaVersao || recarregou) return;
+        recarregou = true;
+        location.reload();
+      });
+    });
   } catch (e) { return; }
 
   const jaInstalada = () => window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;

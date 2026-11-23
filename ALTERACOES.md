@@ -1,6 +1,8 @@
 # Registo de alterações — NeuroEnf
 
 ## Versão 25 — 23/11/2026
+- **Atualização no telemóvel**: a app vai sempre buscar os ficheiros novos ao servidor (sem cópias antigas da cache) e,
+  quando há versão nova, recarrega-se sozinha uma vez ao abrir ou ao voltar ao ecrã.
 - **Ligações diretas para outras secções**: sempre que o texto sugere ver outro tema ou secção (por exemplo «ver
   «Avaliação da linguagem e comunicação»»), o nome passa a ser um botão que abre logo esse tema ou essa secção.
 - **Menos scroll nos temas**: nos temas extensos (53 dos 67) as secções aparecem fechadas, só com o título e o número de

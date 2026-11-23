@@ -1,6 +1,6 @@
 // NeuroEnf — service worker: funciona sem rede e atualiza-se em segundo plano.
 // Aumentar VERSAO a cada publicação para os telemóveis receberem a nova versão.
-const VERSAO = "neuroenf-v37";
+const VERSAO = "neuroenf-v38";
 const FICHEIROS = [
   "./", "index.html", "estilos.css", "instalar.css", "conteudo.js", "farmacos.js", "marchas.js", "protocolos.js", "esquemas.js", "app.js", "instalar.js",
   "manifest.webmanifest", "fonts/InterVariable.woff2",
@@ -8,7 +8,7 @@ const FICHEIROS = [
 ];
 
 self.addEventListener("install", ev => {
-  ev.waitUntil(caches.open(VERSAO).then(c => c.addAll(FICHEIROS)).then(() => self.skipWaiting()));
+  ev.waitUntil(caches.open(VERSAO).then(c => c.addAll(FICHEIROS.map(f => new Request(f, { cache: "reload" })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener("activate", ev => {
@@ -19,13 +19,15 @@ self.addEventListener("activate", ev => {
 });
 
 // Mostra logo o que está guardado e vai buscar a versão nova em segundo plano.
+// Quando há versão nova, a página recarrega-se sozinha (instalar.js).
 self.addEventListener("fetch", ev => {
   const pedido = ev.request;
   if (pedido.method !== "GET" || new URL(pedido.url).origin !== location.origin) return;
   ev.respondWith(
     caches.open(VERSAO).then(async cache => {
       const guardado = await cache.match(pedido, { ignoreSearch: true });
-      const daRede = fetch(pedido).then(resp => {
+      // «no-cache»: confirmar sempre com o servidor, para não guardar cópias antigas da cache do navegador
+      const daRede = fetch(pedido.url, { cache: "no-cache", credentials: "same-origin" }).then(resp => {
         if (resp && resp.ok) cache.put(pedido, resp.clone());
         return resp;
       }).catch(() => null);
