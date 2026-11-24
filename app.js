@@ -20,6 +20,9 @@
 
   // ── Ícones de linha (24×24, traço 1,8, currentColor). O campo «icone» dos temas não é usado. ──
   const ICONES = {
+    mais: '<path d="M12 5v14M5 12h14"/>',
+    verificar: '<rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="m8 9 1.6 1.6L12.5 7.7"/><path d="M14.5 9.2H16.5"/><path d="m8 15 1.6 1.6 2.9-2.9"/><path d="M14.5 15.2H16.5"/>',
+    respirar: '<path d="M12 4v7"/><path d="M12 11c-1.5 0-2.5 1-3.2 2.6L7.2 17.4a2.4 2.4 0 0 1-4.2-2.2C4.6 11 6 7.5 9 6.2"/><path d="M12 11c1.5 0 2.5 1 3.2 2.6l1.6 3.8a2.4 2.4 0 0 0 4.2-2.2C19.4 11 18 7.5 15 6.2"/>',
     protocolo: '<path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8L14 3.5Z"/><path d="M14 3.5V8h4.5"/><path d="M8.5 12.5h7M8.5 16h5"/>',
     inicio: '<path d="M3.5 10.5 12 3.8l8.5 6.7"/><path d="M5.5 9v11h13V9"/><path d="M10 20v-5.5h4V20"/>',
     escalas: '<rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9.5 3h5v3h-5z"/><path d="M8.5 11h7M8.5 14.5h7M8.5 18h4"/>',
@@ -74,11 +77,11 @@
   // Escalas ligadas a cada tema (botões no cabeçalho do tema)
   const ESCALAS_DO_TEMA = {
     avc: ["nihss", "glasgow", "rankin", "guss"], "angiopatia-amiloide": ["glasgow", "nihss", "morse"], "encefalopatia-wernicke": ["glasgow", "morse", "guss"], "avc-isquemico": ["nihss", "glasgow", "rankin", "guss"], "avc-hemorragico": ["glasgow", "nihss", "rankin", "guss"], trombectomia: ["nihss", "glasgow", "rankin"], "territorios-arteriais": ["nihss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
-    semiologia: ["glasgow", "barthel"], demencias: [], sistemicas: [], seguranca: ["morse", "braden"],
-    disfagia: [], linguagem: ["nihss", "guss"], ela: ["guss"], dnm: [],
-    alzheimer: ["morse", "barthel", "guss"], "demencia-vascular": ["morse", "barthel", "guss"], dcl: ["morse", "guss"],
+    semiologia: ["glasgow", "barthel"], demencias: ["painad"], sistemicas: [], seguranca: ["morse", "braden"],
+    disfagia: [], linguagem: ["nihss", "guss", "painad"], ela: ["respiratoria", "guss"], dnm: ["respiratoria"],
+    alzheimer: ["morse", "barthel", "guss", "painad"], "demencia-vascular": ["morse", "barthel", "guss", "painad"], dcl: ["morse", "guss", "painad"],
     "epilepsia-az": ["glasgow"], parkinson: ["morse", "guss"], "esclerose-multipla": ["morse"], nmo: ["braden", "morse"],
-    "miastenia-gravis": ["guss"], sgb: ["guss", "braden"], vasculites: ["glasgow", "nihss", "morse", "braden", "barthel"]
+    "miastenia-gravis": ["respiratoria", "guss"], miastenia: ["respiratoria", "guss"], neuropatias: ["respiratoria"], botulismo: ["respiratoria", "guss"], sgb: ["respiratoria", "guss", "braden"], vasculites: ["glasgow", "nihss", "morse", "braden", "barthel"], "dor": ["painad"], "meningites-encefalites": ["glasgow"], "emergencias-farmacos": ["glasgow", "braden"], sodio: ["glasgow", "morse"], "disseccao-cervical": ["nihss", "glasgow", "guss"], funcionais: ["morse", "braden"], "delirium": ["painad"], "paliativos": ["painad"], "parkinsonismos-atipicos": ["painad"], "huntington": ["painad"], "dcj": ["painad"]
   };
   const escalasDoTema = id => (ESCALAS_DO_TEMA[id] || []).map(x => ESCALAS.find(e => e.id === x)).filter(Boolean);
   // Subtítulo de uma secção de alarme: só quando acrescenta algo ao «Sinais de alarme»
@@ -92,6 +95,9 @@
     .filter(f => f && f.id && f.dci);
   const farmaco = id => FARM.find(f => f.id === id);
   const temaPorId = id => TEMAS.find(t => t.id === id);
+  const LV = typeof LISTAS !== "undefined" && Array.isArray(LISTAS) ? LISTAS.filter(x => x && x.id && Array.isArray(x.itens)) : [];
+  const listaPorId = id => LV.find(x => x.id === id);
+  const CIPE_T = typeof CIPE !== "undefined" && CIPE ? CIPE : {};
 
   // ── Glossário (glossario.js é opcional) ──
   const slugGl = x => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -300,6 +306,7 @@
     h += item("#alarmes", "alarmes", ic("alarme", "ic-alerta"), "Sinais de alarme");
     if (FARM.length) h += item("#farmacos", "farmacos", ic("capsula"), "Guia farmacológico");
     h += item("#protocolos", "protocolos", ic("protocolo"), "Protocolos do serviço");
+    if (LV.length) h += item("#listas", "listas", ic("verificar"), "Listas de verificação");
     const subMenu = (chave, titulo, n, corpo) =>
       `<details class="sub-menu" ${chave}><summary><span class="rot">${titulo}</span><span class="cont">${n}<span class="so-leitor"> ${n === 1 ? "doença" : "doenças"}</span></span>${ic("seta", "ic-sum")}</summary><div class="sub-itens">${corpo}</div></details>`;
     // Os Cuidados de enfermagem transversais estão no início; no menu não se repetem
@@ -496,6 +503,7 @@
     if (s.marchas) h += s.marchas.map(id => cartaoMarcha(id, s.tema)).join("");
     if (s.escala) h += escalaEmbutida(s.escala);
     if (s.esquema) h += esquemaHTML(s.esquema);
+    if (s.lista) h += listaVerifHTML(listaPorId(s.lista), true);
     if (s.aviso) h += `<p class="nota-terap aviso-seccao">${ic("info")}<span>${textoComRefs(s.aviso, t)}</span></p>`;
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${textoComRefs(i, t)}</li>`).join("")}</ul>`;
     if (s.tabela) {
@@ -599,6 +607,180 @@
     h += ordenarSeccoes(secs).map(([s, k]) => blocoSeccao(s, k)).join("");
     h += `<p class="rodape">Ficha de bolso do protocolo do Serviço de Neurologia. O documento oficial prevalece sempre.</p>`;
     return h;
+  }
+
+  // ── Listas de verificação: marcar à cabeceira; a hora de cada ponto fica registada (só nesta sessão) ──
+  const estadoLV = {};
+  const horaAgora = () => new Date().toLocaleTimeString("pt-PT", { hour: "2-digit", minute: "2-digit" });
+  function listaVerifHTML(x, embutida) {
+    if (!x) return "";
+    const st = estadoLV[x.id] || {};
+    const feitos = x.itens.filter((_, i) => st[i]).length;
+    return `<div class="lista-verif" data-lv="${esc(x.id)}">
+      ${!embutida && x.resumo ? `<p class="resumo">${esc(x.resumo)}</p>` : ""}
+      <div class="lv-barra"><p class="lv-progresso" role="status" aria-live="polite"><strong>${feitos}</strong> de ${x.itens.length} feitos</p>
+        <div class="lv-acoes"><button type="button" class="btn-sec" data-lv-acao="copiar">${ic("copiar")}<span>Copiar</span></button><button type="button" class="btn-sec" data-lv-acao="limpar">${ic("fechar")}<span>Limpar</span></button></div></div>
+      <ol class="lv-itens">${x.itens.map((it, i) => `<li><label><input type="checkbox" data-lv-i="${i}"${st[i] ? " checked" : ""}><span class="lv-txt">${textoComRefs(it)}</span><time class="lv-hora">${st[i] ? esc(st[i]) : ""}</time></label></li>`).join("")}</ol>
+      <p class="lv-nota">${ic("info")}<span>As marcas e as horas ficam só neste dispositivo enquanto a app está aberta. Registar no processo clínico.</span></p></div>`;
+  }
+  function atualizarLV(caixa) {
+    const x = listaPorId(caixa.dataset.lv); if (!x) return;
+    const st = estadoLV[x.id] || {};
+    const feitos = x.itens.filter((_, i) => st[i]).length;
+    const pr = caixa.querySelector(".lv-progresso");
+    if (pr) pr.innerHTML = `<strong>${feitos}</strong> de ${x.itens.length} feitos`;
+    caixa.classList.toggle("lv-completa", feitos === x.itens.length);
+  }
+  main.addEventListener("change", ev => {
+    const cb = ev.target.closest && ev.target.closest("input[data-lv-i]");
+    if (!cb) return;
+    const caixa = cb.closest(".lista-verif"), id = caixa.dataset.lv, i = Number(cb.dataset.lvI);
+    const st = estadoLV[id] || (estadoLV[id] = {});
+    if (cb.checked) st[i] = horaAgora(); else delete st[i];
+    const t = cb.closest("li").querySelector(".lv-hora"); if (t) t.textContent = st[i] || "";
+    atualizarLV(caixa);
+  });
+  main.addEventListener("click", ev => {
+    const b = ev.target.closest && ev.target.closest("[data-lv-acao]");
+    if (!b) return;
+    const caixa = b.closest(".lista-verif"), x = listaPorId(caixa.dataset.lv); if (!x) return;
+    const st = estadoLV[x.id] || {};
+    if (b.dataset.lvAcao === "limpar") {
+      delete estadoLV[x.id];
+      caixa.querySelectorAll("input[data-lv-i]").forEach(c => { c.checked = false; });
+      caixa.querySelectorAll(".lv-hora").forEach(t => { t.textContent = ""; });
+      atualizarLV(caixa);
+    } else if (b.dataset.lvAcao === "copiar") {
+      const txt = `${x.titulo} (${new Date().toLocaleDateString("pt-PT")}):\n` + x.itens.map((it, i) => `${st[i] ? "[x] " + st[i] : "[ ]"} ${it}`).join("\n");
+      copiarTexto(txt, b);
+    }
+  });
+  function copiarTexto(txt, botao) {
+    const ok = () => { const sp = botao.querySelector("span"); if (!sp) return; const o = sp.textContent; sp.textContent = "Copiado"; setTimeout(() => { sp.textContent = o; }, 1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(ok, () => {});
+    else { const a = document.createElement("textarea"); a.value = txt; document.body.appendChild(a); a.select(); try { document.execCommand("copy"); ok(); } catch (e) {} a.remove(); }
+  }
+  function vistaListas() {
+    document.title = "Listas de verificação — NeuroEnf";
+    let h = `<header class="cab-pagina"><h1 tabindex="-1">Listas de verificação</h1>
+      <p class="sub">Para marcar à cabeceira, por ordem. Cada lista também aparece no tema respetivo.</p></header>`;
+    if (!LV.length) return h + `<p class="sub">Ainda não há listas.</p>`;
+    h += `<section class="bloco"><div class="lista">` + LV.map(x => {
+      const t = temaPorId(x.tema);
+      return linha(`#lista-${esc(x.id)}`, esc(x.titulo), `${x.itens.length} pontos${t ? " · " + esc(t.titulo) : ""}`, { icone: ic("verificar", "ic-linha") });
+    }).join("") + `</div></section>`;
+    return h;
+  }
+  function vistaLista(id) {
+    const x = listaPorId(id);
+    if (!x) return null;
+    document.title = `${x.titulo} — NeuroEnf`;
+    const t = temaPorId(x.tema);
+    return `<header class="cab-tema"><a class="voltar" href="#listas">${ic("voltar")}<span>Listas de verificação</span></a>
+      <div class="cab-tema-linha"><div class="cab-tema-txt"><h1 tabindex="-1">${esc(x.titulo)}</h1>
+      ${t ? `<p class="meta">Tema: <a href="#tema-${esc(t.id)}">${esc(t.titulo)}</a></p>` : ""}</div>
+      <button type="button" class="btn-sec btn-imprimir" data-acao="imprimir">${ic("imprimir")}<span>Imprimir</span></button></div></header>
+      <section class="cartao">${listaVerifHTML(x, false)}</section>
+      <p class="rodape">Lista de apoio; segue sempre o protocolo do hospital e a prescrição.</p>`;
+  }
+
+  // ── Folha de tendência respiratória (SGB, miastenia, ELA): registos em série com alarmes ──
+  const folhaResp = { peso: "", linhas: [] };
+  function folhaRespHTML(e) {
+    return `<section class="cartao cartao-escala folha-resp" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
+      ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}
+      <form id="formResp" class="form-resp" novalidate>
+        <div class="campos-resp">
+          <label>Hora<input type="time" name="hora"></label>
+          <label>Peso (kg)<input type="number" name="peso" inputmode="decimal" min="20" max="250" step="0.1" value="${esc(folhaResp.peso)}"></label>
+          <label>Contagem numa só expiração<input type="number" name="contagem" inputmode="numeric" min="0" max="80"></label>
+          <label>CVF (mL)<input type="number" name="cvf" inputmode="numeric" min="0" max="8000" step="10"></label>
+          <label>PImáx (cmH₂O)<input type="number" name="pimax" inputmode="numeric" min="-200" max="0" placeholder="ex.: −45"></label>
+          <label>PEmáx (cmH₂O)<input type="number" name="pemax" inputmode="numeric" min="0" max="300"></label>
+          <label>SpO₂ (%)<input type="number" name="spo2" inputmode="numeric" min="50" max="100"></label>
+          <label>FR (/min)<input type="number" name="fr" inputmode="numeric" min="4" max="60"></label>
+        </div>
+        <fieldset class="sinais-resp"><legend>Sinais clínicos</legend>
+          ${[["tosse", "Tosse fraca"], ["acessorios", "Uso de músculos acessórios"], ["paradoxal", "Respiração paradoxal"], ["ortopneia", "Ortopneia"], ["cervical", "Fraqueza cervical"], ["degl", "Disfagia ou voz molhada"]]
+            .map(([k, t]) => `<label class="chk"><input type="checkbox" name="${k}"><span>${t}</span></label>`).join("")}
+        </fieldset>
+        <div class="botoes-resp"><button type="submit" class="btn-pri">${ic("mais")}<span>Registar avaliação</span></button></div>
+      </form>
+      ${e.nota ? `<p class="nota">${esc(e.nota)}</p>` : ""}</section>
+      <section class="cartao resultado-resp" aria-labelledby="tTend"><div class="cab-resp"><h2 id="tTend">Tendência</h2>
+        <div class="lv-acoes"><button type="button" class="btn-sec" id="copiarResp">${ic("copiar")}<span>Copiar</span></button><button type="button" class="btn-sec" id="limparResp">${ic("fechar")}<span>Limpar</span></button></div></div>
+        <div id="saidaResp"></div>
+        <p class="lv-nota">${ic("info")}<span>Os valores ficam só neste dispositivo enquanto a app está aberta. Registar no processo clínico.</span></p></section>`;
+  }
+  function avaliarResp(l, basal) {
+    const a = [];
+    if (l.contagem !== "" && Number(l.contagem) < 20) a.push("contagem < 20");
+    if (l.cvfkg !== null && l.cvfkg < 20) a.push("CVF < 20 mL/kg");
+    if (basal && l.cvf !== "" && basal.cvf !== "" && Number(basal.cvf) > 0 && (1 - Number(l.cvf) / Number(basal.cvf)) > 0.3) a.push("CVF caiu > 30% do basal");
+    if (l.pimax !== "" && Number(l.pimax) > -30) a.push("PImáx menos negativa que −30");
+    if (l.pemax !== "" && Number(l.pemax) < 40) a.push("PEmáx < 40");
+    if (l.sinais.some(x => ["acessorios", "paradoxal", "ortopneia"].includes(x))) a.push("sinais de fadiga respiratória");
+    return a;
+  }
+  const NOMES_SINAIS = { tosse: "tosse fraca", acessorios: "acessórios", paradoxal: "resp. paradoxal", ortopneia: "ortopneia", cervical: "fraqueza cervical", degl: "disfagia/voz molhada" };
+  function desenharResp() {
+    const out = $("#saidaResp"); if (!out) return;
+    const L = folhaResp.linhas;
+    if (!L.length) { out.innerHTML = `<p class="sub">Ainda sem avaliações. A primeira com CVF fica como valor basal.</p>`; return; }
+    const basal = L.find(l => l.cvf !== "");
+    let h = `<div class="tabela-envolvente tabela-empilhada"><table class="tab-resp"><thead><tr><th scope="col">Hora</th><th scope="col">Contagem</th><th scope="col">CVF (mL/kg)</th><th scope="col">PImáx / PEmáx</th><th scope="col">SpO₂ · FR</th><th scope="col">Alarmes</th></tr></thead><tbody>`;
+    L.forEach(l => {
+      const al = avaliarResp(l, basal === l ? null : basal);
+      h += `<tr class="${al.length ? "linha-alarme-resp" : ""}"><th scope="row">${esc(l.hora || "—")}</th><td data-rot="Contagem">${l.contagem !== "" ? esc(l.contagem) : "—"}</td>
+        <td data-rot="CVF mL (mL/kg)">${l.cvf !== "" ? `${esc(l.cvf)}${l.cvfkg !== null ? ` <span class="sub">(${l.cvfkg.toFixed(1)})</span>` : ""}` : "—"}</td>
+        <td data-rot="PImáx / PEmáx">${l.pimax !== "" ? esc(l.pimax) : "—"} / ${l.pemax !== "" ? esc(l.pemax) : "—"}</td>
+        <td data-rot="SpO₂ · FR">${l.spo2 !== "" ? esc(l.spo2) + "%" : "—"} · ${l.fr !== "" ? esc(l.fr) : "—"}</td>
+        <td data-rot="Alarmes">${al.length ? `<strong class="txt-alerta">${al.map(esc).join("; ")}</strong>` : "—"}${l.sinais.length ? `<br><span class="sub">${l.sinais.map(x => NOMES_SINAIS[x]).join(", ")}</span>` : ""}</td></tr>`;
+    });
+    h += `</tbody></table></div>`;
+    // gráfico simples da contagem e da CVF em mL/kg
+    const serie = (k, lim, nome, cls) => {
+      const pts = L.map((l, i) => [i, l[k] === null || l[k] === "" ? null : Number(l[k])]).filter(p => p[1] !== null);
+      if (pts.length < 2) return "";
+      const W = 320, H = 110, max = Math.max(lim * 1.6, ...pts.map(p => p[1])), x = i => 18 + i * ((W - 30) / Math.max(1, L.length - 1)), y = v => H - 14 - (v / max) * (H - 26);
+      return `<figure class="graf-resp"><figcaption>${nome}</figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${nome}: ${pts.map(p => p[1]).join(", ")}">
+        <line x1="12" x2="${W - 6}" y1="${y(lim)}" y2="${y(lim)}" class="lim"/><text x="${W - 8}" y="${y(lim) - 4}" text-anchor="end" class="lim-t">${lim}</text>
+        <polyline class="${cls}" fill="none" points="${pts.map(p => `${x(p[0])},${y(p[1])}`).join(" ")}"/>
+        ${pts.map(p => `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="3.5" class="${cls}${p[1] < lim ? " abaixo" : ""}"/>`).join("")}</svg></figure>`;
+    };
+    h += `<div class="graf-resp-grelha">${serie("contagem", 20, "Contagem numa só expiração (limiar 20)", "s1")}${serie("cvfkg", 20, "CVF em mL/kg (limiar 20)", "s2")}</div>`;
+    const ult = L[L.length - 1], alU = avaliarResp(ult, basal === ult ? null : basal);
+    if (alU.length) h += `<p class="aviso-resp">${ic("alarme")}<span><strong>Comunicar de imediato ao médico</strong> (possível falência respiratória; avaliar transferência para UCI): ${alU.map(esc).join("; ")}.</span></p>`;
+    out.innerHTML = h;
+  }
+  function ligarFolhaResp() {
+    const f = $("#formResp"); if (!f) return;
+    const hora = f.elements.hora; if (hora && !hora.value) hora.value = horaAgora();
+    f.addEventListener("submit", ev => {
+      ev.preventDefault();
+      const g = n => (f.elements[n].value || "").trim();
+      folhaResp.peso = g("peso");
+      const l = { hora: g("hora") || horaAgora(), contagem: g("contagem"), cvf: g("cvf"), pimax: g("pimax"), pemax: g("pemax"), spo2: g("spo2"), fr: g("fr"),
+        sinais: ["tosse", "acessorios", "paradoxal", "ortopneia", "cervical", "degl"].filter(k => f.elements[k].checked) };
+      l.cvfkg = l.cvf !== "" && Number(folhaResp.peso) > 0 ? Number(l.cvf) / Number(folhaResp.peso) : null;
+      if ([l.contagem, l.cvf, l.pimax, l.pemax, l.spo2, l.fr].every(v => v === "") && !l.sinais.length) return;
+      folhaResp.linhas.push(l);
+      ["contagem", "cvf", "pimax", "pemax", "spo2", "fr"].forEach(n => { f.elements[n].value = ""; });
+      f.querySelectorAll(".sinais-resp input").forEach(c => { c.checked = false; });
+      hora.value = horaAgora();
+      desenharResp();
+      const a = $("#anuncioEscala"); if (a) a.textContent = "Avaliação registada.";
+    });
+    $("#limparResp").addEventListener("click", () => { folhaResp.linhas = []; desenharResp(); });
+    $("#copiarResp").addEventListener("click", ev => {
+      const basal = folhaResp.linhas.find(l => l.cvf !== "");
+      const txt = `Tendência respiratória (${new Date().toLocaleDateString("pt-PT")}; peso ${folhaResp.peso || "—"} kg):\n` + folhaResp.linhas.map(l => {
+        const al = avaliarResp(l, basal === l ? null : basal);
+        return `${l.hora}: contagem ${l.contagem || "—"}; CVF ${l.cvf || "—"} mL${l.cvfkg !== null ? ` (${l.cvfkg.toFixed(1)} mL/kg)` : ""}; PImáx ${l.pimax || "—"}; PEmáx ${l.pemax || "—"}; SpO2 ${l.spo2 || "—"}%; FR ${l.fr || "—"}${l.sinais.length ? "; " + l.sinais.map(x => NOMES_SINAIS[x]).join(", ") : ""}${al.length ? " — ALARME: " + al.join("; ") : ""}`;
+      }).join("\n");
+      copiarTexto(txt, ev.currentTarget);
+    });
+    desenharResp();
   }
 
   // ── Patologias A–Z: índice de letras (fechadas), com filtro; grupos (AVC, Demências) e doenças incluídas por baixo ──
@@ -741,6 +923,10 @@
     }
     const marchasTema = marchasDoTema(t.id);
     if (marchasTema.length) extra.push({ t: marchasTema.length > 1 ? "Marchas" : "Marcha", marchas: marchasTema, tema: t.id });
+    LV.filter(x => x.tema === t.id && !seccoes.some(s => s.lista === x.id)).forEach(x => extra.push({ t: `Lista de verificação: ${x.titulo}`, lista: x.id }));
+    const cp = CIPE_T[t.id];
+    if (cp && cp.focos && cp.focos.length) extra.push({ t: "Focos de enfermagem (CIPE)", itens: cp.focos });
+    if (cp && cp.registar && cp.registar.length) extra.push({ t: "O que registar", itens: cp.registar });
     const todas = seccoes.concat(extra);
     document.title = `${t.titulo} — NeuroEnf`;
     const escTema = escalasDoTema(t.id);
@@ -1091,9 +1277,15 @@
       : `<span class="rot-longo">${esc(rotuloEscala(x))}</span><span class="rot-curto" aria-hidden="true">${esc(rotuloCurto(x))}</span>`;
     let h = `<header class="cab-pagina"><h1 tabindex="-1">Escalas e avaliação</h1></header>
       <nav class="separadores" id="separadoresEscalas" aria-label="Escolher escala">${ESCALAS.map(x =>
-        `<a href="#escalas-${esc(x.id)}"${x.id === e.id ? ' aria-current="page"' : ""}>${rotSep(x)}</a>`).join("")}</nav>
-      <section class="cartao cartao-escala" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
-      ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}
+        `<a href="#escalas-${esc(x.id)}"${x.id === e.id ? ' aria-current="page"' : ""}>${rotSep(x)}</a>`).join("")}</nav>`;
+    if (e.tipo === "folha") {
+      h += folhaRespHTML(e) + `<p class="so-leitor" id="anuncioEscala" aria-live="polite"></p>`;
+      setTimeout(() => { ligarFolhaResp(); ligarSeparadores(); }, 0);
+      return h;
+    }
+    h += `
+<section class="cartao cartao-escala" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
+      ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}${e.aviso ? `<p class="nota-terap aviso-seccao">${ic("info")}<span>${esc(e.aviso)}</span></p>` : ""}
       <form id="formEscala" novalidate>`;
     h += itensEscala(e);
     h += `</form>${e.nota ? `<p class="nota">${esc(e.nota)}</p>` : ""}</section>
@@ -1388,7 +1580,7 @@
   // Página «mãe» de cada rota (destino da seta quando não há página anterior nesta sessão)
   const paiDaRota = r => r.startsWith("terapeutica-") ? `#tema-${r.slice(12)}`
     : r.startsWith("farmaco-") || r === "farmacos-az" ? "#farmacos"
-    : r.startsWith("protocolo-") ? "#protocolos" : r.startsWith("glossario-") ? "#glossario"
+    : r.startsWith("protocolo-") ? "#protocolos" : r.startsWith("glossario-") ? "#glossario" : r.startsWith("lista-") ? "#listas"
     : r.startsWith("tema-") && (temaPorId(r.slice(5)) || {}).parte === "p4" ? "#patologias" : "#inicio";
   const nomeRota = h => {
     const r = h.replace(/^#/, "");
@@ -1396,6 +1588,7 @@
     if (r === "farmacos") return "Guia farmacológico";
     if (r === "protocolos") return "Protocolos do serviço";
     if (r === "glossario") return "Glossário";
+    if (r === "listas") return "Listas de verificação";
     if (r === "patologias") return NOME_CURTO_PARTE.p4 || "Patologias A–Z";
     if (r.startsWith("tema-")) { const t = TEMAS.find(x => x.id === r.slice(5)); return t ? t.titulo : "Início"; }
     return "Início";
@@ -1429,6 +1622,8 @@
     else if (r === "protocolos") { html = vistaProtocolos(); rotaMenu = "protocolos"; }
     else if (r === "glossario" || r.startsWith("glossario-")) { html = vistaGlossario(r.slice(10)); rotaMenu = "glossario"; }
     else if (r === "patologias") { html = vistaPatologias(); rotaMenu = "patologias"; }
+    else if (r === "listas") { html = vistaListas(); rotaMenu = "listas"; }
+    else if (r.startsWith("lista-")) { html = vistaLista(r.slice(6)); rotaMenu = "listas"; }
     else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     // Faixa do início (com a pesquisa) só no início

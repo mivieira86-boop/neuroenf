@@ -1364,3 +1364,62 @@ details.grupo-gl > dl.glossario .termo:first-child { border-top: 0; }
     font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--secundario);
   }
 }
+
+/* Listas de verificação */
+.lista-verif { margin: 4px 0 6px; }
+.lv-barra { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin: 6px 0 10px; }
+.lv-progresso { margin: 0; color: var(--secundario); }
+.lv-progresso strong { color: var(--texto); font-size: 18px; }
+.lista-verif.lv-completa .lv-progresso strong { color: var(--sucesso, #1f7a4d); }
+.lv-acoes { display: flex; gap: 8px; }
+.lv-acoes .btn-sec { min-height: 40px; padding: 0 12px; }
+.lv-itens { list-style: none; margin: 0; padding: 0; counter-reset: lv; }
+.lv-itens li { counter-increment: lv; border-top: 1px solid var(--linha); }
+.lv-itens li:first-child { border-top: 0; }
+.lv-itens label { display: grid; grid-template-columns: 28px 1fr auto; gap: 10px; align-items: start; padding: 10px 4px; min-height: 48px; cursor: pointer; border-radius: 10px; }
+.lv-itens label:hover { background: var(--afundado); }
+.lv-itens input[type="checkbox"] { width: 22px; height: 22px; margin: 2px 0 0; accent-color: var(--acento); }
+.lv-itens .lv-txt { line-height: 1.5; }
+.lv-itens .lv-txt::before { content: counter(lv) ". "; font-weight: 700; color: var(--secundario); }
+.lv-itens input:checked ~ .lv-txt { color: var(--secundario); text-decoration: line-through; text-decoration-color: color-mix(in srgb, var(--secundario) 60%, transparent); }
+.lv-hora { font-size: 13px; font-weight: 700; color: var(--acento); font-variant-numeric: tabular-nums; min-width: 3em; text-align: right; padding-top: 2px; }
+.lv-nota { display: flex; gap: 8px; align-items: flex-start; margin: 10px 0 0; font-size: 13.5px; color: var(--secundario); }
+.lv-nota .ic { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 1px; }
+@media print { .lv-acoes, .lv-nota { display: none !important; } .lv-itens input { -webkit-appearance: none; appearance: none; border: 1.5px solid #000; border-radius: 3px; } }
+
+/* Folha de tendência respiratória */
+.campos-resp { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px 14px; margin: 8px 0 12px; }
+.campos-resp label { display: flex; flex-direction: column; gap: 4px; font-size: 13.5px; font-weight: 600; color: var(--secundario); }
+.campos-resp input { min-height: 44px; padding: 8px 10px; border: 1px solid var(--linha-forte, var(--linha)); border-radius: 10px; background: var(--superficie); color: var(--texto); font: inherit; font-size: 16px; }
+.campos-resp input:focus-visible { outline: 3px solid var(--acento); outline-offset: 1px; }
+.sinais-resp { border: 0; margin: 0 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.sinais-resp legend { font-size: 13.5px; font-weight: 600; color: var(--secundario); margin-bottom: 6px; padding: 0; }
+.sinais-resp .chk { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 12px; border: 1px solid var(--linha); border-radius: 999px; cursor: pointer; }
+.sinais-resp .chk input { width: 18px; height: 18px; accent-color: var(--alerta); }
+.sinais-resp .chk:has(input:checked) { background: var(--alerta-suave, #fdeaea); border-color: var(--alerta); }
+.botoes-resp { display: flex; justify-content: flex-end; }
+.cab-resp { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.cab-resp h2 { margin: 0; }
+.tab-resp td, .tab-resp th { font-variant-numeric: tabular-nums; }
+.linha-alarme-resp { background: var(--alerta-suave, #fdeaea); }
+.txt-alerta { color: var(--alerta); }
+.graf-resp-grelha { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; margin: 12px 0 0; }
+.graf-resp { margin: 0; padding: 10px; border: 1px solid var(--linha); border-radius: 12px; }
+.graf-resp figcaption { font-size: 13px; font-weight: 600; color: var(--secundario); margin-bottom: 4px; }
+.graf-resp svg { width: 100%; height: auto; display: block; }
+.graf-resp .lim { stroke: var(--alerta); stroke-dasharray: 4 4; stroke-width: 1.5; }
+.graf-resp .lim-t { fill: var(--alerta); font-size: 11px; font-weight: 700; }
+.graf-resp polyline { stroke-width: 2.5; }
+.graf-resp polyline.s1, .graf-resp circle.s1 { stroke: var(--acento); }
+.graf-resp polyline.s2, .graf-resp circle.s2 { stroke: var(--azul, #2a5ba8); }
+.graf-resp circle { fill: var(--superficie); stroke-width: 2.5; }
+.graf-resp circle.abaixo { fill: var(--alerta); stroke: var(--alerta); }
+.aviso-resp { display: flex; gap: 10px; align-items: flex-start; margin: 12px 0 0; padding: 12px 14px; border-radius: 12px; background: var(--alerta-suave, #fdeaea); color: var(--alerta); border: 1px solid var(--alerta); }
+.aviso-resp .ic { flex: 0 0 22px; width: 22px; height: 22px; }
+
+@media (max-width: 760px) {
+  .tab-resp tr.linha-alarme-resp { border-color: var(--alerta); }
+  .tab-resp tr.linha-alarme-resp th[scope="row"] { background: var(--alerta-suave); color: var(--alerta); }
+  .tab-resp tbody td { display: grid; grid-template-columns: 9.5em 1fr; gap: 8px; align-items: baseline; padding: 6px 14px; }
+  .tab-resp tbody td::before { margin: 0; }
+}

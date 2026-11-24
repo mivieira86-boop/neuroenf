@@ -1,5 +1,26 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 30 — 24/11/2026
+Bloco C da avaliação dos agentes médico e de enfermagem.
+- **Novo tema «Delirium (estado confusional agudo)»** (Cuidados transversais): sinais de alarme, formas hiper/hipoativa,
+  risco, rastreio por turno com o instrumento do hospital e procura de causas, prevenção multicomponente, intervenções,
+  fármacos a vigiar, contenção (DGS 021/2011), família e ensino.
+- **Alarmes com ação**: 133 sinais de alarme reescritos no formato «sinal → o que fazer já → quem chamar».
+- **Vigilância por defeito** (quando não há prescrição): após queda (Segurança), TCE e HSA, com frequência e critério de
+  comunicação.
+- **Listas de verificação** (nova página no menu e dentro de cada tema): admissão neurológica, antes da trombólise, 24 h após
+  trombólise, após trombectomia, crise epilética e estado de mal (0/5/10/20/40 min), colheita de LCR, após punção lombar,
+  segurança para RM e alta. Marca-se à cabeceira com a hora de cada ponto (só neste dispositivo), copiar e imprimir.
+- **6 temas novos (Patologias A–Z)**: Meningites e encefalites infeciosas; Emergências neurológicas por fármacos;
+  Alterações do sódio em Neurologia; Perturbação neurológica funcional e crises funcionais/dissociativas; Dissecção
+  arterial cervical (no grupo AVC); Cuidados paliativos em Neurologia — parte clínica (agente médico) e de enfermagem, com
+  tabelas «Vigiar | Frequência | Comunicar se». Fichas novas: ciprofloxacina, rifampicina, lítio, butilescopolamina.
+- **Escalas interativas novas**: PAINAD (só quando a dor não pode ser avaliada pelas escalas de autoavaliação) e Folha de
+  tendência respiratória (SGB, miastenia, ELA), com cálculo de CVF em mL/kg, regra 20/30/40, alarmes e gráfico.
+- **Focos de enfermagem (CIPE) e «O que registar»** em todos os temas com cuidados.
+- Contagem respiratória corrigida para «cerca de 2 números por segundo, a ritmo de fala rápida» (com 1 por segundo o
+  limiar de 20 dava falsos alarmes). Ligação para «Parkinsonismos atípicos» corrigida no tema das doenças do movimento.
+
 ## Versão 29 — 24/11/2026
 Correções da avaliação dos agentes médico e de enfermagem (blocos A e B).
 - **GUSS**: etapa 2 com água espessada **IDDSI nível 4** (extremamente espessa, tipo pudim), e não nível 3.
