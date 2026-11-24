@@ -1299,3 +1299,16 @@ dl.glossario dd { margin: 4px 0 0; color: var(--texto); line-height: 1.55; }
 dl.glossario .termo.destaque { background: var(--acento-suave); padding-left: 10px; padding-right: 10px; }
 .item-glossario .cont { margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--secundario); }
 @media print { a.termo-gl { text-decoration: none; } .letras-gl, .lista-gl .filtro-farm { display: none; } }
+
+/* Glossário no menu: mesmo estilo de índice que as partes (Patologias A–Z, Avaliação, Clínica) */
+.lateral-nav a.sec-menu-link {
+  display: flex; align-items: center; gap: 8px; min-height: var(--alvo); margin: 8px 0 2px; padding: 0 8px 0 6px;
+  border-radius: 8px; background: none; box-shadow: none; color: var(--acento); text-decoration: none;
+  font-size: 11.5px; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; line-height: normal;
+}
+.lateral-nav a.sec-menu-link::after { display: none; }
+.lateral-nav a.sec-menu-link .traco { flex: 1; height: 1px; background: var(--linha); }
+.lateral-nav a.sec-menu-link .ic-sum { width: 16px; height: 16px; color: var(--secundario); }
+.lateral-nav a.sec-menu-link:hover { background: var(--afundado); }
+.lateral-nav a.sec-menu-link[aria-current="page"] { background: var(--acento-suave); color: var(--acento); box-shadow: none; }
+.lateral-nav a.sec-menu-link > .ic.ic-sum { width: 16px; height: 16px; flex: 0 0 16px; padding: 0; border-radius: 0; background: none; color: var(--secundario); }

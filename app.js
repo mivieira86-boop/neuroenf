@@ -321,7 +321,7 @@
         });
       } else temas.forEach(t => { h += item(`#tema-${esc(t.id)}`, `tema-${esc(t.id)}`, "", esc(t.titulo), "tema"); });
       h += `</details>`;
-      if (p.id === "p4" && GLOSS.length) h += item("#glossario", "glossario", ic("livro"), `Glossário <span class="cont">${GLOSS.length}<span class="so-leitor"> termos</span></span>`, "item-glossario");
+      if (p.id === "p4" && GLOSS.length) h += `<a class="sec-menu sec-menu-link" href="#glossario" data-r="glossario"><span class="sec-nome">Glossário</span><span class="traco" aria-hidden="true"></span><span class="cont">${GLOSS.length}<span class="so-leitor"> termos</span></span>${ic("seta", "ic-sum")}</a>`;
     });
     nav.innerHTML = h;
   }
@@ -604,7 +604,6 @@
     });
     let h = `<header class="cab-pagina">
         <h1 tabindex="-1">Glossário</h1>
-        <p class="sub">${GLOSS.length} termos de semiologia neurológica e psiquiátrica. Ao longo da app, as palavras <span class="termo-gl exemplo">sublinhadas assim</span> abrem aqui o significado.</p>
         <div class="filtro-farm">
           <label class="so-leitor" for="filtroGl">Filtrar termos</label>
           <span class="pesquisa-ic" aria-hidden="true">${ic("pesquisa")}</span>
