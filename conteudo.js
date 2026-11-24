@@ -2064,40 +2064,164 @@ const TEMAS = [
   titulo: "Vasculites do sistema nervoso central",
   pags: null,
   resumo: "Inflamação dos vasos sanguíneos do cérebro, da medula ou dos nervos — isolada (angeíte primária do SNC) ou no contexto de doenças sistémicas ou infeções. Provocam AVC em pessoas sem fatores de risco, cefaleia e alterações cognitivas. O tratamento com imunossupressores exige cuidados de enfermagem específicos.",
+  relacionados: ["avc-isquemico", "avc-hemorragico", "trombectomia", "pres", "tvc", "autoimunes", "imunodeprimido"],
   subtemas: [
     {nome: "Arterite de células gigantes (temporal)", procura: "Arterite de células gigantes"},
-    {nome: "Angeíte primária do SNC", procura: "Angeíte primária"},
+    {nome: "Angeíte primária do SNC", procura: "Angeíte primária do SNC"},
     {nome: "Vasculites sistémicas (lúpus, Behçet…)", procura: "Vasculites sistémicas"},
     {nome: "Vasculites infeciosas", procura: "Vasculites infeciosas"},
-    {nome: "Síndrome de vasoconstrição cerebral reversível", procura: "vasoconstrição cerebral reversível"}
+    {nome: "Síndrome de vasoconstrição cerebral reversível", procura: "Síndrome de vasoconstrição cerebral reversível (SVCR)"}
   ],
   seccoes: [
-    { t: "Formas a conhecer", itens: [
-      "Arterite de células gigantes (temporal): após os 50 anos; cefaleia temporal nova, dor ao mastigar, sensibilidade do couro cabeludo, sintomas gerais; risco de cegueira — urgência.",
-      "Angeíte primária do SNC: rara; cefaleia, alterações cognitivas, AVC múltiplos, crises.",
-      "Vasculites sistémicas com atingimento neurológico: lúpus, doença de Behçet (aftas orais e genitais), granulomatose com poliangeíte, poliarterite nodosa — também neuropatias (mononeurite múltipla).",
-      "Vasculites infeciosas: varicela-zóster, sífilis, tuberculose, VIH.",
-      "Diagnóstico diferencial importante: síndrome de vasoconstrição cerebral reversível — cefaleias súbitas «em trovão» repetidas, muitas vezes no puerpério ou associadas a fármacos vasoativos ou drogas. Perante cefaleia em trovão, excluir primeiro hemorragia subaracnoideia. O tratamento é diferente e os corticoides podem agravá-la: não iniciar imunossupressão sem diagnóstico."
+    { t: "Quadro comparativo das formas", tabela: {
+      cab: ["Forma", "Quem e contexto", "Clínica neurológica típica", "Exames que mais ajudam", "O que a distingue"],
+      lin: [
+        ["Arterite de células gigantes (temporal)",
+         "50 anos ou mais (pico 70–80); mais em mulheres; muitas vezes com polimialgia reumática",
+         "Cefaleia temporal nova, dor na mandíbula ao mastigar, alterações visuais súbitas; AVC raro, sobretudo vertebrobasilar",
+         "VS e PCR; ecografia das artérias temporais e axilares (sinal do halo); biópsia da artéria temporal",
+         "Idade, sintomas cranianos e inflamação sistémica; risco de cegueira — corticoide imediato, sem esperar pelos exames"],
+        ["Angeíte primária do SNC",
+         "Meia-idade (mediana cerca de 50 anos), ambos os sexos; vasculite só no cérebro e na medula",
+         "Início insidioso: cefaleia progressiva, declínio cognitivo, AVC múltiplos e recorrentes, crises",
+         "RM (enfartes de idades diferentes), LCR inflamatório, angiografia; biópsia de meninges e córtex",
+         "Sem doença sistémica nem desencadeante; diagnóstico de exclusão; exige imunossupressão prolongada"],
+        ["Vasculites sistémicas (lúpus, Behçet, vasculites ANCA, poliarterite nodosa)",
+         "Doença autoimune conhecida ou sinais noutros órgãos: pele, mucosas, olhos, rim, pulmão, seios perinasais",
+         "Mononeurite múltipla, neuropatias cranianas, AVC, encefalopatia, crises; no Behçet, tronco cerebral e trombose venosa",
+         "ANA, anti-ADN, complemento, antifosfolipídicos, ANCA, hepatite B, urina; biópsia do órgão mais acessível",
+         "Sinais fora do sistema nervoso e análises imunológicas; no lúpus, o AVC é muitas vezes trombótico, não vasculítico"],
+        ["Vasculites infeciosas",
+         "Após zona ou varicela, sífilis, tuberculose, VIH; sobretudo imunodeprimidos, mas também imunocompetentes",
+         "AVC, por vezes recorrentes, com meningite, cefaleia, febre ou alterações cognitivas",
+         "LCR (células, glicose, PCR, anticorpos anti-VZV, VDRL, micobactérias); VIH e sífilis no sangue",
+         "Há um agente tratável; imunossuprimir sem tratar a infeção agrava o quadro"],
+        ["Síndrome de vasoconstrição cerebral reversível (diagnóstico diferencial)",
+         "Sobretudo mulheres de 20–50 anos; puerpério, fármacos vasoativos ou serotoninérgicos, canábis, cocaína",
+         "Cefaleias em trovão recorrentes durante 1–3 semanas; HSA da convexidade, PRES, hemorragia, enfarte",
+         "Angio-TC ou angio-RM repetidas; LCR normal ou quase; artérias normalizam até 3 meses",
+         "Não é vasculite: monofásica e reversível; os corticoides podem agravá-la"]
+      ],
+      nota: "Perante uma primeira cefaleia em trovão, excluir sempre primeiro a hemorragia subaracnoideia aneurismática. Não se inicia imunossupressão sem diagnóstico estabelecido e sem excluir infeção."
+    }},
+    { t: "Angeíte primária do SNC vs síndrome de vasoconstrição cerebral reversível", tabela: { empilhar: true,
+      cab: ["Característica", "Angeíte primária do SNC", "SVCR"],
+      lin: [
+        ["Doente típico", "Meia-idade, homens e mulheres por igual", "Sobretudo mulheres de 20–50 anos; puerpério ou fármaco/droga vasoativa"],
+        ["Início e cefaleia", "Insidioso (semanas a meses); cefaleia progressiva, raramente em trovão", "Súbito; cefaleias em trovão repetidas, com intensidade máxima em menos de 1 minuto"],
+        ["Evolução", "Progressiva ou com recidivas se não for tratada", "Monofásica; sem sintomas novos após cerca de 1 mês"],
+        ["Desencadeantes", "Habitualmente nenhum", "Frequentes: puerpério, vasoativos, drogas; crises de dor com esforço, atividade sexual, tosse ou banho"],
+        ["LCR", "Alterado em cerca de 80–90% (linfócitos e/ou proteínas aumentados)", "Normal ou quase normal"],
+        ["RM", "Enfartes múltiplos, bilaterais, de idades diferentes; realce das meninges; RM normal torna-a muito improvável", "Muitas vezes normal no início; HSA da convexidade, PRES, hematoma; enfartes em zonas de fronteira"],
+        ["Angiografia e evolução", "Pode ser normal (pequenos vasos); alterações pouco específicas que persistem", "Estreitamentos e dilatações alternados («em rosário») que normalizam em até 3 meses"],
+        ["Biópsia", "Único exame que confirma; falsamente negativa em cerca de 1 em cada 4 doentes", "Não indicada (não há inflamação da parede)"],
+        ["Tratamento e corticoides", "Corticoides com imunossupressor (ex.: ciclofosfamida, rituximab), depois manutenção prolongada", "Retirar o desencadeante, analgesia, controlo da TA; os corticoides associam-se a agravamento"]
+      ],
+      nota: "Repetir o estudo vascular semanas depois ajuda a distinguir: a SVCR reverte, a angeíte não."
+    }},
+    { t: "Arterite de células gigantes (temporal)", itens: [
+      "Quem: pessoas com 50 anos ou mais (pico entre os 70 e os 80), 2 a 3 vezes mais frequente em mulheres. Atinge artérias de grande e médio calibre: ramos da carótida externa (temporal), artérias que irrigam o olho e também a aorta e as artérias subclávias e axilares.",
+      "Apresentação craniana: cefaleia nova, muitas vezes temporal; dor no couro cabeludo ao pentear ou ao apoiar a cabeça; dor na mandíbula ou na língua que surge ao mastigar e alivia em repouso (claudicação); artéria temporal endurecida, dolorosa ou sem pulso.",
+      "Sintomas gerais e polimialgia reumática: febre baixa, perda de peso e cansaço; dor e rigidez matinal dos ombros, do pescoço e das ancas. Num doente com polimialgia, cefaleia ou queixas visuais novas fazem suspeitar de arterite.",
+      "Complicações visuais (urgência): perdas de visão transitórias de um olho ou visão dupla podem anteceder a perda súbita e indolor da visão, por neuropatia ótica isquémica anterior arterítica ou por oclusão da artéria central da retina. A perda costuma ser irreversível e o outro olho pode ser atingido em poucos dias.",
+      "Outras complicações: AIT ou AVC (pouco frequentes, sobretudo no território vertebrobasilar); dor nos braços com o esforço, ou pulsos e TA diferentes entre os braços (atingimento das subclávias ou axilares); aneurisma da aorta a longo prazo.",
+      "Exames: VS e PCR habitualmente elevadas (valores normais não excluem), plaquetas altas, anemia. A ecografia das artérias temporais e axilares é o primeiro exame de imagem (sinal do halo); PET ou RM são alternativas. A biópsia da artéria temporal pode não apanhar a lesão, porque esta é salteada: um resultado negativo não exclui.",
+      "Critérios ACR/EULAR 2022: idade de 50 anos ou mais obrigatória e pontuação de 6 ou mais. Os itens que mais pesam são a biópsia ou o halo positivos, a VS ou a PCR muito elevadas e a perda visual súbita. Servem para classificar doentes em estudos, não para excluir o diagnóstico num doente concreto.",
+      "Tratamento: corticoides em dose alta logo que há suspeita, sem esperar pela ecografia ou pela biópsia, que continuam úteis nos primeiros dias de tratamento. Com perda visual pode iniciar-se por via EV, por decisão médica. Poupadores de corticoides: tocilizumab ou, em alternativa, metotrexato; o upadacitinib está aprovado na UE desde 2025. O desmame leva meses a anos e as recidivas são frequentes durante a redução."
     ]},
-    { t: "Diagnóstico e tratamento (visão geral)", itens: [
-      "RM, estudo vascular (angio-RM, angiografia), LCR, análises (VS, PCR, autoimunidade, serologias), biópsia (artéria temporal, cérebro/meninges).",
-      "Suspeita de arterite de células gigantes: corticoides iniciados de imediato, sem esperar pela biópsia nem pela ecografia das artérias temporais, que devem ser feitas nos dias seguintes. Com sintomas visuais é uma emergência: a primeira dose não pode atrasar.",
-      "Corticoides em dose alta e outros imunossupressores (ex.: ciclofosfamida, rituximab, tocilizumab), conforme o tipo; nas infeciosas, tratamento da infeção."
+    { t: "Angeíte primária do SNC", itens: [
+      "Quem: doença muito rara; adultos de meia-idade (mediana de cerca de 50 anos, mas pode surgir em qualquer idade), homens e mulheres por igual. A inflamação limita-se aos vasos do cérebro e da medula, sem doença sistémica.",
+      "Apresentação: habitualmente insidiosa e progressiva, ao longo de semanas a meses: cefaleia persistente, alterações cognitivas ou do comportamento, défices focais (AIT ou AVC repetidos), crises epiléticas. Por vezes há mielopatia ou hemorragia. Febre e sintomas gerais são raros.",
+      "Duas formas principais: a de vasos médios (vê-se na angiografia, com mais AVC) e a de pequenos vasos (angiografia normal, com mais alterações cognitivas, crises e realce das meninges; só a biópsia a confirma). Uma variante associa-se a depósitos de β-amiloide (ver «Angiopatia amiloide cerebral»).",
+      "Complicações: enfartes múltiplos e recorrentes, declínio cognitivo, epilepsia e incapacidade. Há recidivas em cerca de um quarto a um terço dos doentes e a mortalidade é relevante, sobretudo quando o diagnóstico se atrasa.",
+      "RM, alterada em mais de 90% dos doentes: enfartes múltiplos, bilaterais e de idades diferentes, lesões da substância branca, realce leptomeníngeo, lesões que parecem tumores, micro-hemorragias. RM e LCR normais tornam o diagnóstico muito improvável.",
+      "LCR, alterado em cerca de 80–90%: aumento ligeiro de linfócitos e/ou de proteínas, com glicose normal. É inespecífico, mas essencial para excluir infeção e linfoma.",
+      "Angiografia: mostra estenoses e dilatações multifocais, mas é pouco específica (aterosclerose, SVCR e infeções dão imagens semelhantes) e normal quando só os pequenos vasos estão atingidos. A biópsia de meninges e córtex é o único exame que confirma, mas falha em cerca de 1 em cada 4 casos. É um diagnóstico de exclusão: SVCR, infeções (VZV, sífilis, tuberculose, VIH, fungos), linfoma, vasculites sistémicas.",
+      "Tratamento: corticoides em dose alta, habitualmente com ciclofosfamida (rituximab como alternativa), seguidos de manutenção com azatioprina ou micofenolato durante pelo menos 12–18 meses. As profilaxias (ex.: Pneumocystis, proteção óssea) são feitas conforme prescrição."
+    ]},
+    { t: "Vasculites sistémicas com atingimento neurológico", itens: [
+      "Princípio: o sistema nervoso é um de vários órgãos atingidos, por isso procuram-se sempre sinais fora dele. Pele: púrpura palpável, livedo, úlceras, necrose dos dedos. Mucosas: aftas. Olhos: uveíte. Também seios perinasais e ouvidos, pulmão (hemoptises), rim (sangue ou proteínas na urina, subida da creatinina), febre e perda de peso.",
+      "Mononeurite múltipla: vários nervos atingidos de forma assimétrica e sucessiva, com dor (ex.: pé pendente e depois mão caída, em dias ou semanas). Num doente com sintomas gerais é sinal de vasculite sistémica até prova em contrário. Estuda-se com EMG e biópsia de nervo e músculo.",
+      "Lúpus eritematoso sistémico: manifestações neuropsiquiátricas variadas — cefaleia, crises, psicose, alterações cognitivas e do humor, AVC, mielite, coreia, meningite assética, neuropatias. A vasculite cerebral verdadeira é rara: muitos AVC são trombóticos por anticorpos antifosfolipídicos, cardioembólicos (endocardite de Libman-Sacks) ou por aterosclerose precoce. Excluir sempre infeção, PRES e efeitos de fármacos.",
+      "Lúpus — exames e tratamento: ANA, anti-ADN de dupla cadeia, C3 e C4 baixos (atividade), anticorpos antifosfolipídicos, RM e LCR (sobretudo para excluir infeção). Na forma inflamatória: corticoides e imunossupressores (ex.: ciclofosfamida, rituximab). Na forma trombótica (síndrome antifosfolipídica): anticoagulação, habitualmente com antagonista da vitamina K.",
+      "Doença de Behçet: mais frequente em homens e na bacia mediterrânica, no Médio Oriente e na Ásia; o atingimento neurológico surge por volta da 4.ª década, em até cerca de 10% dos doentes. Aftas orais recorrentes (quase sempre), úlceras genitais, uveíte, lesões da pele, reação exagerada da pele a picadas (patergia).",
+      "Neuro-Behçet: a forma parenquimatosa é a mais frequente, com lesões do tronco cerebral, do diencéfalo e dos gânglios da base — cefaleia, ataxia, disartria, hemiparesia, alterações de nervos cranianos e do comportamento; o LCR tem células e proteínas aumentadas. A forma não parenquimatosa é a trombose venosa cerebral (ver «Trombose venosa cerebral»). Tratamento: corticoides com azatioprina ou anti-TNF (infliximab); a ciclosporina deve ser evitada (neurotoxicidade).",
+      "Vasculites ANCA: granulomatose com poliangeíte (sinusite crónica, crostas e epistaxe, otite, nódulos pulmonares, glomerulonefrite), poliangeíte microscópica (rim e pulmão) e granulomatose eosinofílica com poliangeíte (asma, pólipos nasais, eosinofilia). No sistema nervoso periférico dão sobretudo mononeurite múltipla e polineuropatia; no SNC, paquimeningite (cefaleia, neuropatias cranianas), hipofisite (diabetes insípida) e AVC. ANCA negativos não excluem. Tratamento das formas graves: corticoides com rituximab ou ciclofosfamida, depois manutenção.",
+      "Poliarterite nodosa: vasculite de artérias médias, com ANCA negativos; pode associar-se à hepatite B. A mononeurite múltipla é muito frequente (até cerca de 70%) e o SNC raramente é atingido. Outros sinais: livedo, nódulos e úlceras da pele, dor abdominal, dor testicular, HTA, perda de peso. Tratamento: corticoides com ciclofosfamida nas formas graves; antiviral quando há hepatite B."
+    ]},
+    { t: "Vasculites infeciosas", itens: [
+      "Princípio: algumas infeções inflamam ou estreitam as artérias cerebrais e causam AVC, muitas vezes com meningite. São tratáveis e excluem-se antes de qualquer imunossupressão intensa: corticoides ou outros imunossupressores sem tratamento da infeção agravam o quadro.",
+      "Vírus varicela-zóster (VZV): surge após zona (sobretudo oftálmica) ou varicela, em média cerca de 4 meses depois; cerca de 1 em cada 3 doentes não teve exantema. Mais frequente em idosos e imunodeprimidos. Dá AIT ou AVC, cefaleia e alterações cognitivas.",
+      "VZV — exames e tratamento: o LCR tem células aumentadas em cerca de 2 em cada 3 doentes. Os anticorpos IgG anti-VZV no LCR são muito mais sensíveis do que a PCR do vírus, por isso uma PCR negativa não exclui. Tratamento: aciclovir EV; o corticoide pode ser associado por decisão médica, sempre com o antiviral em curso.",
+      "Sífilis meningovascular: surge anos após a infeção (sobretudo nos primeiros 10), em doentes mais novos do que no AVC habitual. Pode haver semanas a meses de cefaleias e alterações do comportamento antes do AVC; a artéria mais atingida é a cerebral média.",
+      "Sífilis — exames e tratamento: serologias no sangue; LCR com linfócitos e proteínas aumentados. O VDRL no LCR é muito específico mas pouco sensível (negativo não exclui). Tratamento: penicilina EV durante 10 a 14 dias; testar VIH e outras infeções sexualmente transmissíveis.",
+      "Meningite tuberculosa: meningite subaguda, ao longo de semanas, com febre, cefaleia, alteração da consciência, parésias de nervos cranianos e hiponatremia. A inflamação da base do cérebro atinge as artérias perfurantes e causa AVC em muitos doentes, sobretudo no caudado, no tálamo e na cápsula interna. A hidrocefalia é frequente.",
+      "Tuberculose — exames e tratamento: LCR com linfócitos, proteínas muito altas e glicose baixa; pesquisa de micobactérias e cultura no LCR; RM com realce das cisternas da base; procurar tuberculose pulmonar e testar VIH. Tratamento: antituberculosos com dexametasona associada (aqui o corticoide é seguro porque a infeção está a ser tratada). A hidrocefalia pode exigir derivação.",
+      "VIH: o AVC pode resultar da vasculopatia do próprio VIH, de infeções oportunistas (VZV, sífilis, tuberculose, criptococo) ou de agravamento inflamatório após iniciar antirretrovirais (ver «Infeções do SNC no imunodeprimido (VIH, LMP) e neurossífilis»). Outras causas: meningites bacterianas e fúngicas; na endocardite, embolias e aneurismas micóticos."
+    ]},
+    { t: "Síndrome de vasoconstrição cerebral reversível (SVCR)", itens: [
+      "Quem: sobretudo mulheres entre os 20 e os 50 anos, mas também homens; muitas vezes com história de enxaqueca. Não é uma vasculite: é uma alteração transitória do tónus das artérias cerebrais, sem inflamação da parede.",
+      "Desencadeantes: puerpério (habitualmente 1 a 3 semanas após o parto), pré-eclâmpsia e eclâmpsia; fármacos vasoativos e serotoninérgicos (descongestionantes nasais, antidepressivos ISRS e IRSN, triptanos, ergotamínicos); drogas (canábis, cocaína, anfetaminas, ecstasy); alguns imunossupressores e quimioterapia; feocromocitoma. As crises de dor surgem muitas vezes com esforço, atividade sexual, defecação, tosse, banho ou emoções.",
+      "Apresentação: cefaleias em trovão (intensidade máxima em menos de 1 minuto) que se repetem durante 1 a 3 semanas, na grande maioria dos doentes. Pode haver náuseas, vómitos, fotofobia, subida da TA, crises, défices focais ou alterações visuais. Não surgem sintomas novos depois de cerca de 1 mês.",
+      "Complicações, sobretudo nas 2 primeiras semanas: HSA da convexidade, PRES (ver «PRES — síndrome de encefalopatia posterior reversível»), hemorragia intracerebral, crises. A isquemia (AIT ou enfarte) surge mais tarde, sobretudo na 2.ª semana, por vezes quando a cefaleia já melhorou. A maioria recupera totalmente; as formas pós-parto podem ser mais graves.",
+      "Exames: a primeira cefaleia em trovão obriga a excluir HSA aneurismática (TC e, se necessário, punção lombar) e outras causas (dissecção arterial, trombose venosa cerebral, apoplexia hipofisária). Angio-TC, angio-RM ou angiografia mostram estreitamentos e dilatações segmentares («em rosário»), que podem não aparecer nos primeiros dias — por isso repete-se o estudo. LCR normal ou quase normal.",
+      "Diagnóstico: confirma-se pela normalização das artérias num estudo de controlo até 12 semanas após o início. A pontuação RCVS2 (cefaleias em trovão recorrentes, desencadeante vasoativo, sexo feminino, HSA; desconta se a carótida intracraniana estiver atingida) apoia o diagnóstico quando é 5 ou mais.",
+      "Tratamento: suspender o desencadeante, evitar esforços e manobras de Valsalva, analgesia, controlo da TA sem descidas bruscas, tratamento das crises. Bloqueadores dos canais de cálcio (ex.: nimodipina, verapamil) por decisão médica, com evidência limitada. Evitar triptanos e ergotamínicos.",
+      "Os corticoides associam-se a agravamento clínico e radiológico: não iniciar corticoides empíricos «por suspeita de vasculite» sem discussão médica. A biópsia cerebral não está indicada."
+    ]},
+    { t: "Exames: preparação e cuidados", aviso: "Preparação, jejum e suspensão de antitrombóticos segundo o protocolo do hospital e a indicação médica.", itens: [
+      "Ecografia das artérias temporais (e axilares): não precisa de preparação. Deve fazer-se cedo, idealmente nas primeiras 24–48 h e até 7 dias depois de iniciar o corticoide, porque o tratamento faz desaparecer os sinais. Ajudar a não atrasar a marcação, mas nunca adiar o corticoide por causa do exame.",
+      "Biópsia da artéria temporal — antes: confirmar o lado, o consentimento e os antiagregantes e anticoagulantes (manter ou suspender é decisão médica). Faz-se com anestesia local, em regra sem jejum, de preferência nas 2 semanas após iniciar o corticoide, que se mantém.",
+      "Biópsia da artéria temporal — depois: vigiar hemorragia ou hematoma (comprimir e comunicar), dor, sinais de infeção e assimetria da face (ex.: não consegue levantar a sobrancelha — lesão de um ramo do nervo facial). Analgesia prescrita e frio local protegido.",
+      "Punção lombar: antes, confirmar plaquetas, coagulação e antitrombóticos, explicar o procedimento e posicionar. Identificar e enviar logo as amostras (algumas têm de chegar rapidamente ao laboratório). Depois, vigiar o local, a cefaleia que agrava de pé, a dor lombar e alterações da sensibilidade ou da força nas pernas.",
+      "Angiografia cerebral por cateter — antes: alergias (contraste iodado), função renal recente, metformina (confirmar com o médico se suspende), antitrombóticos, jejum conforme protocolo e acesso venoso. Registar os pulsos periféricos, a cor e a temperatura dos membros, para comparar depois.",
+      "Angiografia cerebral por cateter — depois: repouso, penso, pulsos distais, cor, temperatura e hematoma, como na «Trombectomia». Hidratação conforme prescrição, diurese e reações tardias ao contraste. Um défice novo comunica-se de imediato (o exame tem um pequeno risco de AVC).",
+      "Biópsia cerebral ou leptomeníngea: antes da primeira dose de corticoide, confirmar com o médico se deve esperar pela biópsia (o corticoide pode tornar a amostra pouco útil, sobretudo se houver suspeita de linfoma). Exceção: na suspeita de arterite de células gigantes o corticoide nunca espera. Depois, cuidados de pós-craniotomia como nos «Tumores do sistema nervoso central»: Glasgow, pupilas, défice focal, penso e saída de LCR, crises e dor."
+    ]},
+    { t: "Tratamento: o que vigiar", tipo: "precaucao", aviso: "Doses, esquemas, pré-medicação e profilaxias segundo a prescrição e o protocolo do hospital.", itens: [
+      "Pulsos de metilprednisolona EV: perfundir no tempo prescrito (as doses altas, em regra, em pelo menos 30 minutos); a perfusão rápida pode causar arritmias e colapso circulatório. Vigiar TA, FC e glicemia capilar, e ainda rubor, sabor metálico, insónia e agitação.",
+      "Corticoide oral prolongado: dar de manhã, com alimento. A hiperglicemia surge sobretudo à tarde: medir a glicemia capilar antes do almoço e do jantar, conforme prescrição. Vigiar TA, peso, edemas, humor e sono (euforia, depressão, psicose), fraqueza das coxas e candidíase oral.",
+      "Corticoide prolongado — proteção: confirmar a proteção gástrica e óssea e a profilaxia de Pneumocystis, quando prescritas. O corticoide esconde a febre e os sinais de infeção.",
+      "Desmame do corticoide: cumprir o plano escrito e nunca suspender bruscamente. Fraqueza, hipotensão, vómitos ou hipoglicemia podem ser insuficiência suprarrenal; em jejum ou com vómitos, pedir uma alternativa EV. Na arterite de células gigantes, cefaleia temporal, dor ao mastigar ou queixas visuais durante o desmame sugerem recaída: comunicar.",
+      "Ciclofosfamida EV — antes e durante: confirmar hemograma, função renal e urina pedidos, e teste de gravidez se aplicável. Antiemético, hidratação e mesna conforme prescrição, de preferência de manhã. Perfundir no tempo prescrito e vigiar extravasamento.",
+      "Ciclofosfamida — depois: estimular a ingestão de líquidos e o esvaziamento frequente da bexiga, também à noite, e fazer balanço hídrico. Vigiar hematúria e ardor ao urinar, náuseas e infeção (os leucócitos descem mais na 1.ª–2.ª semana). Manusear como citotóxico: EPI, sistema fechado, resíduos próprios e precauções com urina, fezes e vómito durante o período do protocolo.",
+      "Rituximab: antes da 1.ª perfusão, confirmar o rastreio da hepatite B e as imunoglobulinas. Perguntar ao médico se suspende os anti-hipertensores nas 12 h anteriores (risco de hipotensão). Pré-medicação completa, ritmo em escalada na 1.ª perfusão, sinais vitais conforme protocolo e material de anafilaxia junto do doente. Entregar o cartão de alerta.",
+      "Tocilizumab: baixa a febre e a PCR, por isso uma infeção pode dar só mal-estar, taquicardia, hipotensão ou confusão — avaliar o doente e não confiar só nos valores. Dor abdominal intensa ou persistente, ou alteração do trânsito com febre, pode ser diverticulite ou perfuração. Fazer as análises prescritas (neutrófilos, enzimas hepáticas).",
+      "Aciclovir EV: em pelo menos 1 hora (nunca em bólus), com hidratação, diurese e creatinina (pode lesar o rim). Vigiar confusão ou alucinações, sobretudo em idosos e na insuficiência renal, e flebite. Penicilina G EV a horas rigorosas; nas primeiras 24 h pode surgir febre, arrepios, mialgias e hipotensão (reação de Jarisch-Herxheimer): comunicar, não é alergia.",
+      "Antituberculosos: toma observada, conforme prescrição. A rifampicina cora a urina e as lágrimas de laranja e reduz o efeito de corticoides, contracetivos hormonais e anticoagulantes — confirmar ajustes com o médico. Vigiar icterícia e náuseas, formigueiros (isoniazida) e alterações da visão ou das cores (etambutol).",
+      "SVCR: não dar triptanos, ergotamínicos nem descongestionantes nasais. Confirmar com o médico qualquer fármaco vasoativo ou serotoninérgico e qualquer corticoide prescrito (podem agravar). Analgesia regular prescrita. Nimodipina ou verapamil, se prescritos: TA antes de cada toma e comunicar hipotensão (agrava a perfusão cerebral)."
     ]},
     { t: "Cuidados de enfermagem", itens: [
-      "Vigilância neurológica seriada (novos défices = possível novo AVC) e da visão na arterite de células gigantes.",
-      "Corticoides: glicemia, TA, sono, humor, proteção gástrica e óssea conforme prescrição, sinais de infeção; desmame conforme prescrição, nunca suspender bruscamente.",
-      "Ciclofosfamida: hidratação e esvaziamento vesical frequente, vigiar hematúria (cistite hemorrágica), náuseas, leucopenia; manipular como citotóxico segundo o protocolo.",
-      "Rituximab e outros biológicos: confirmar o rastreio de hepatite B antes da primeira perfusão; pré-medicação e vigilância de reações à perfusão conforme protocolo.",
-      "Prevenção de infeções no doente imunossuprimido; vacinação e profilaxias conforme indicação médica.",
-      "Tocilizumab: pode suprimir a febre e a PCR, e uma infeção pode manifestar-se só por mal-estar, taquicardia ou alteração do estado geral. Comunicar mesmo sem febre.",
-      "Ensino: sinais de infeção, adesão à terapêutica, contraceção (a ciclofosfamida afeta a fertilidade e é teratogénica)."
+      "Vigilância neurológica: Glasgow, pupilas, força (MRC), linguagem e NIHSS se houver défice. Registo de base na admissão e repetir com a frequência prescrita (pelo menos uma vez por turno). Um défice novo é um possível AVC: registar a hora e chamar o médico.",
+      "Visão na arterite de células gigantes — como avaliar: cada olho em separado, tapando o outro com um cartão (não com os dedos), com os óculos habituais. Cartão de leitura a cerca de 35 cm ou escala de Snellen; se não ler, registar se conta dedos, se vê o movimento da mão ou só a luz. Perguntar por visão turva, perdas de visão de segundos ou minutos, visão dupla e dor ao mastigar.",
+      "Visão na arterite de células gigantes — quando: na admissão (registo de base) e depois pelo menos uma vez por turno; de 4 em 4 h nas primeiras 48–72 h se houve sintomas visuais, ou conforme prescrição, e sempre que o doente se queixar. Registar sempre com o mesmo método, para o turno seguinte poder comparar.",
+      "Prevenção de quedas (Morse): défice visual, mononeurite múltipla (pé pendente, mão fraca, perda de sensibilidade), fraqueza muscular pelos corticoides, hipotensão (nimodipina) e confusão. Cama baixa, boa luz, objetos sempre no mesmo lugar e ao alcance, identificar-se ao entrar e levante acompanhado. Tala antiequino se prescrita; inspecionar os pés insensíveis.",
+      "Prevenção de infeção: higiene das mãos, cuidados com os cateteres e inspeção diária da pele, da boca e dos locais de punção. Temperatura e sinais vitais pelo menos uma vez por turno. Evitar a algaliação desnecessária; visitas com sintomas respiratórios não entram. Leucopenia: medidas do protocolo de neutropenia.",
+      "Isolamento conforme o agente: na suspeita ou confirmação de tuberculose pulmonar ou laríngea, isolamento de via aérea (quarto individual, porta fechada, respirador FFP2/FFP3 nos profissionais, máscara cirúrgica no doente fora do quarto) até indicação do GCL-PPCIRA; a forma meníngea isolada não se transmite, mas a pulmonar tem de ser excluída. Zona disseminada, ou qualquer zona no imunossuprimido: via aérea e contacto até as lesões estarem em crosta. Profissionais sem imunidade à varicela não prestam cuidados.",
+      "SVCR — evitar desencadeantes: laxantes para não fazer força ao evacuar, evitar esforço físico e manobras de Valsalva, ambiente calmo. Registar cada cefaleia (hora, desencadeante, intensidade, duração): o padrão ajuda o diagnóstico.",
+      "Dor e cefaleia: avaliar com a escala numérica, ou PAINAD se o doente não comunicar, em cada turno e depois da analgesia. Caracterizar o início (súbito ou progressivo) e o local. Na arterite de células gigantes o couro cabeludo dói ao toque: cuidado com óculos, pentes e almofada. Comunicar se a cefaleia mudar de padrão.",
+      "Sono, nutrição, pele e mucosas: corticoide de manhã e higiene do sono. Dor ao mastigar: dieta mole e refeições pequenas. Corticoide: pouco sal e pouco açúcar, peso semanal. Behçet: aftas orais e genitais — escova macia, colutório e analgesia tópica prescritos, evitar alimentos ácidos ou picantes; reduzir as punções ao mínimo (patergia). Pele frágil: avaliar com Braden.",
+      "Apoio psicológico e alta: o diagnóstico é muitas vezes demorado e incerto, e o medo de cegueira é real. Explicar cada exame, envolver a família e respeitar o sigilo (ex.: VIH, sífilis). Avaliar o Barthel na admissão e antes da alta e articular análises, consultas e perfusões no hospital de dia antes da saída."
+    ]},
+    { t: "Ensino ao doente e à família", itens: [
+      "Ligar 112: perda ou alteração súbita da visão, cefaleia súbita e muito intensa, fraqueza, alteração da fala ou convulsão. Na arterite de células gigantes, qualquer queixa visual nova é ida à urgência no próprio dia.",
+      "Contactar a equipa no próprio dia: febre ou arrepios, tosse ou falta de ar, ardor ao urinar ou urina com sangue, aftas dolorosas novas ou dor abdominal persistente. Com tocilizumab ou corticoide pode haver infeção sem febre.",
+      "Corticoides: não suspender nem reduzir por iniciativa própria e seguir o plano de desmame escrito. Se vomitar e não conseguir tomar, procurar ajuda. Comunicar cefaleia, dor ao mastigar ou queixas visuais durante o desmame (recaída).",
+      "Andar sempre com a lista de medicação atualizada (incluindo a data da última perfusão) e com o cartão de alerta, se houver. Não tomar anti-inflamatórios nem produtos de venda livre sem perguntar.",
+      "Vacinas: as inativadas (gripe, pneumococo, COVID-19, zona recombinante) fazem-se conforme indicação médica, de preferência antes de iniciar o imunossupressor. As vacinas vivas estão contraindicadas. Evitar contacto com pessoas com varicela ou zona e avisar se houver exposição.",
+      "Ciclofosfamida: contraceção eficaz durante o tratamento e nos meses seguintes, pelo período indicado no RCM e pelo médico; falar sobre preservação da fertilidade antes do 1.º ciclo. Beber líquidos e urinar com frequência nos dias seguintes; em casa, luvas para lidar com vómito ou urina durante o período indicado. Rituximab: contraceção até 12 meses após a última dose.",
+      "SVCR: até indicação médica, evitar descongestionantes nasais, triptanos, ergotamínicos, canábis, cocaína, anfetaminas e ecstasy. Não suspender antidepressivos sem falar com o médico. Evitar esforços intensos e fazer força ao evacuar durante as semanas indicadas. Nova cefaleia em trovão: 112.",
+      "Vasculites infeciosas: cumprir o tratamento até ao fim (na tuberculose são meses, com toma observada). A rifampicina reduz o efeito da pílula, por isso é preciso outro método. Rastreio dos contactos (tuberculose) ou dos parceiros (sífilis), conforme indicação."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Perda de visão, visão dupla ou turva num doente com suspeita de arterite de células gigantes: comunicar de imediato.",
-      "Novo défice focal, crises ou diminuição da consciência.",
-      "Febre ou sinais de infeção em doente imunossuprimido.",
-      "Hematúria durante ou após ciclofosfamida."
+      "Arterite de células gigantes com perda, turvação ou falhas de visão, ou visão dupla: comunicar de imediato e não atrasar o corticoide (preparar o pulso EV se prescrito). Avaliar e registar a acuidade de cada olho e a hora; pedido urgente à oftalmologia.",
+      "Cefaleia súbita e muito intensa (máxima em menos de 1 minuto): comunicar de imediato. Avaliar Glasgow, pupilas, TA e défice focal e preparar TC urgente — excluir primeiro hemorragia subaracnoideia. Não dar triptanos; registar a hora e o desencadeante.",
+      "Novo défice focal, crise epilética ou queda do Glasgow: atuar como num possível AVC (NIHSS, Glasgow, glicemia capilar, hora de início) e chamar o médico. Informar a equipa de AVC do diagnóstico de vasculite ou SVCR (muda as decisões sobre trombólise e antitrombóticos). Na SVCR, o risco é maior nas primeiras 1–3 semanas.",
+      "Imunossuprimido com febre, arrepios, taquicardia, hipotensão, confusão nova ou dessaturação (ou só mal-estar, se fizer tocilizumab ou corticoide): suspeitar de sépsis. Sinais vitais completos, comunicar de imediato, hemoculturas e antibiótico conforme protocolo, sem atrasos. Tosse seca com falta de ar: pensar em Pneumocystis.",
+      "Hematúria, coágulos, ardor ou retenção urinária durante ou após ciclofosfamida: comunicar, manter a hidratação prescrita e colher urina para análise. Não iniciar novo ciclo sem avaliação médica.",
+      "Reação à perfusão (rituximab, ciclofosfamida ou outra): rubor, prurido, urticária, febre ou arrepios, dispneia, pieira, edema da face ou hipotensão. Parar a perfusão, manter o acesso com soro, avaliar os sinais vitais, chamar o médico e seguir o protocolo de anafilaxia. Reiniciar só com indicação médica.",
+      "Dor abdominal intensa ou persistente sob tocilizumab ou corticoide em dose alta (possível perfuração, mesmo sem febre); na vasculite ANCA, sangue na expetoração, falta de ar ou urina escassa (pulmão e rim): comunicar de imediato.",
+      "Sob aciclovir: urina a diminuir, creatinina a subir, ou confusão ou alucinações novas — comunicar antes da dose seguinte. Sob antituberculosos: icterícia, vómitos ou alterações da visão — comunicar e não administrar a dose seguinte sem indicação."
     ]}
   ]
 },

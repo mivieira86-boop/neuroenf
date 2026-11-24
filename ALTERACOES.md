@@ -1,5 +1,15 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 27 — 24/11/2026
+- **Vasculites do sistema nervoso central** aprofundadas, com os agentes médico e de enfermagem: a secção «Formas a
+  conhecer» deu lugar a um **quadro comparativo** das cinco formas (quem e contexto, clínica típica, exames, o que a
+  distingue), a um quadro **angeíte primária do SNC vs SVCR** e a uma secção própria para cada forma (arterite de células
+  gigantes, angeíte primária, vasculites sistémicas, infeciosas, SVCR). Novas secções «Exames: preparação e cuidados»,
+  «Tratamento: o que vigiar» e «Ensino ao doente e à família»; cuidados de enfermagem e sinais de alarme revistos, cada
+  alarme com a ação a tomar. Escalas associadas (Glasgow, NIHSS, Morse, Braden, Barthel) e temas relacionados.
+- Os quadros comparativos aparecem no telemóvel como cartões (uma forma por cartão, com o nome de cada coluna), sem
+  scroll lateral.
+
 ## Versão 26 — 24/11/2026
 - Novo **Glossário** (menu, logo abaixo das Patologias A–Z): 220 termos de semiologia neurológica e psiquiátrica por
   ordem alfabética, agrupados por letra (fechadas), com índice de letras e filtro. Lista de termos baseada no glossário de

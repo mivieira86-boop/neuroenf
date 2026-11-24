@@ -78,7 +78,7 @@
     disfagia: [], linguagem: ["nihss", "guss"], ela: ["guss"], dnm: [],
     alzheimer: ["morse", "barthel", "guss"], "demencia-vascular": ["morse", "barthel", "guss"], dcl: ["morse", "guss"],
     "epilepsia-az": ["glasgow"], parkinson: ["morse", "guss"], "esclerose-multipla": ["morse"], nmo: ["braden", "morse"],
-    "miastenia-gravis": ["guss"], sgb: ["guss", "braden"]
+    "miastenia-gravis": ["guss"], sgb: ["guss", "braden"], vasculites: ["glasgow", "nihss", "morse", "braden", "barthel"]
   };
   const escalasDoTema = id => (ESCALAS_DO_TEMA[id] || []).map(x => ESCALAS.find(e => e.id === x)).filter(Boolean);
   // Subtítulo de uma secção de alarme: só quando acrescenta algo ao «Sinais de alarme»
@@ -160,7 +160,10 @@
   // Destino de um subgrupo: outro tema, ou a secção do próprio tema onde a doença está descrita
   function alvoSubtema(t, s) {
     if (s.tema && temaPorId(s.tema)) return { href: `#tema-${esc(s.tema)}`, k: -1 };
-    const k = (t.seccoes || []).findIndex(x => JSON.stringify(x).includes(s.procura || "\u0000"));
+    const secs = t.seccoes || [], pr = s.procura || "\u0000";
+    let k = secs.findIndex(x => x.t === pr);
+    if (k < 0) k = secs.findIndex(x => (x.t || "").includes(pr));
+    if (k < 0) k = secs.findIndex(x => JSON.stringify(x).includes(pr));
     return { href: `#tema-${esc(t.id)}`, k };
   }
   // Subtemas (doenças incluídas num tema) por ordem alfabética
@@ -497,9 +500,11 @@
     if (s.itens) h += `<ul>${s.itens.map(i => `<li>${textoComRefs(i, t)}</li>`).join("")}</ul>`;
     if (s.tabela) {
       const cab = s.tabela.cab || [];
-      h += `<div class="tabela-envolvente" role="region" aria-label="Tabela: ${esc(s.t)}" tabindex="0"><table>`;
+      // Quadros comparativos (3+ colunas de texto): no telemóvel, cada linha passa a cartão com o nome de cada coluna
+      const empilhar = s.tabela.empilhar || cab.length >= 4;
+      h += `<div class="tabela-envolvente${empilhar ? " tabela-empilhada" : ""}" role="region" aria-label="Tabela: ${esc(s.t)}" tabindex="0"><table>`;
       if (cab.length) h += `<thead><tr>${cab.map(c => `<th scope="col">${esc(c)}</th>`).join("")}</tr></thead>`;
-      h += `<tbody>` + (s.tabela.lin || []).map(l => `<tr>${l.map((c, i) => i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td>${textoComRefs(c, t)}</td>`).join("")}</tr>`).join("");
+      h += `<tbody>` + (s.tabela.lin || []).map(l => `<tr>${l.map((c, i) => i === 0 ? `<th scope="row">${esc(c)}</th>` : `<td${cab[i] ? ` data-rot="${esc(cab[i])}"` : ""}>${textoComRefs(c, t)}</td>`).join("")}</tr>`).join("");
       h += `</tbody></table></div>`;
       if (s.tabela.nota) h += `<p class="nota">${textoComRefs(s.tabela.nota, t)}</p>`;
     }

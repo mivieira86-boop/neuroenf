@@ -1350,3 +1350,17 @@ details.grupo-gl > dl.glossario .termo:first-child { border-top: 0; }
 .pat-sub:hover { background: var(--afundado); color: var(--acento); }
 .pat-sub:focus-visible { outline: 3px solid var(--acento); outline-offset: -2px; }
 .pat-sub .ic-seta { width: 16px; height: 16px; color: var(--secundario); flex: 0 0 auto; }
+
+/* Quadros comparativos no telemóvel: cada linha é um cartão; cada célula mostra o nome da coluna */
+@media (max-width: 760px) {
+  .tabela-empilhada { overflow: visible; border: 0; border-radius: 0; }
+  .tabela-empilhada table, .tabela-empilhada tbody, .tabela-empilhada tr, .tabela-empilhada th, .tabela-empilhada td { display: block; width: auto; }
+  .tabela-empilhada thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .tabela-empilhada tr { margin: 0 0 12px; border: 1px solid var(--linha); border-radius: 14px; overflow: hidden; background: var(--superficie); }
+  .tabela-empilhada tbody th[scope="row"] { padding: 10px 14px; background: var(--acento-suave); color: var(--acento); font-size: 15.5px; border: 0; }
+  .tabela-empilhada td { padding: 8px 14px 10px; border: 0; border-top: 1px solid var(--linha); }
+  .tabela-empilhada td::before {
+    content: attr(data-rot); display: block; margin-bottom: 2px;
+    font-size: 11.5px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--secundario);
+  }
+}
