@@ -78,10 +78,10 @@
   const ESCALAS_DO_TEMA = {
     avc: ["nihss", "glasgow", "rankin", "guss"], "angiopatia-amiloide": ["glasgow", "nihss", "morse"], "encefalopatia-wernicke": ["glasgow", "morse", "guss"], "avc-isquemico": ["nihss", "glasgow", "rankin", "guss"], "avc-hemorragico": ["glasgow", "nihss", "rankin", "guss"], trombectomia: ["nihss", "glasgow", "rankin"], "territorios-arteriais": ["nihss"], tce: ["glasgow"], coma: ["glasgow"], hic: ["glasgow"],
     semiologia: ["glasgow", "barthel"], demencias: ["painad"], sistemicas: [], seguranca: ["morse", "braden"],
-    disfagia: [], linguagem: ["nihss", "guss", "painad"], ela: ["respiratoria", "guss"], dnm: ["respiratoria"],
+    disfagia: [], linguagem: ["nihss", "guss", "painad"], ela: ["guss"], dnm: [],
     alzheimer: ["morse", "barthel", "guss", "painad"], "demencia-vascular": ["morse", "barthel", "guss", "painad"], dcl: ["morse", "guss", "painad"],
     "epilepsia-az": ["glasgow"], parkinson: ["morse", "guss"], "esclerose-multipla": ["morse"], nmo: ["braden", "morse"],
-    "miastenia-gravis": ["respiratoria", "guss"], miastenia: ["respiratoria", "guss"], neuropatias: ["respiratoria"], botulismo: ["respiratoria", "guss"], sgb: ["respiratoria", "guss", "braden"], vasculites: ["glasgow", "nihss", "morse", "braden", "barthel"], "dor": ["painad"], "meningites-encefalites": ["glasgow"], "emergencias-farmacos": ["glasgow", "braden"], sodio: ["glasgow", "morse"], "disseccao-cervical": ["nihss", "glasgow", "guss"], funcionais: ["morse", "braden"], "delirium": ["painad"], "paliativos": ["painad"], "parkinsonismos-atipicos": ["painad"], "huntington": ["painad"], "dcj": ["painad"]
+    "miastenia-gravis": ["guss"], miastenia: ["guss"], neuropatias: [], botulismo: ["guss"], sgb: ["guss", "braden"], vasculites: ["glasgow", "nihss", "morse", "braden", "barthel"], "dor": ["painad"], "meningites-encefalites": ["glasgow"], "emergencias-farmacos": ["glasgow", "braden"], sodio: ["glasgow", "morse"], "disseccao-cervical": ["nihss", "glasgow", "guss"], funcionais: ["morse", "braden"], "delirium": ["painad"], "paliativos": ["painad"], "parkinsonismos-atipicos": ["painad"], "huntington": ["painad"], "dcj": ["painad"]
   };
   const escalasDoTema = id => (ESCALAS_DO_TEMA[id] || []).map(x => ESCALAS.find(e => e.id === x)).filter(Boolean);
   // Subtítulo de uma secção de alarme: só quando acrescenta algo ao «Sinais de alarme»
@@ -684,105 +684,6 @@
       <p class="rodape">Lista de apoio; segue sempre o protocolo do hospital e a prescrição.</p>`;
   }
 
-  // ── Folha de tendência respiratória (SGB, miastenia, ELA): registos em série com alarmes ──
-  const folhaResp = { peso: "", linhas: [] };
-  function folhaRespHTML(e) {
-    return `<section class="cartao cartao-escala folha-resp" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
-      ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}
-      <form id="formResp" class="form-resp" novalidate>
-        <div class="campos-resp">
-          <label>Hora<input type="time" name="hora"></label>
-          <label>Peso (kg)<input type="number" name="peso" inputmode="decimal" min="20" max="250" step="0.1" value="${esc(folhaResp.peso)}"></label>
-          <label>Contagem numa só expiração<input type="number" name="contagem" inputmode="numeric" min="0" max="80"></label>
-          <label>CVF (mL)<input type="number" name="cvf" inputmode="numeric" min="0" max="8000" step="10"></label>
-          <label>PImáx (cmH₂O)<input type="number" name="pimax" inputmode="numeric" min="-200" max="0" placeholder="ex.: −45"></label>
-          <label>PEmáx (cmH₂O)<input type="number" name="pemax" inputmode="numeric" min="0" max="300"></label>
-          <label>SpO₂ (%)<input type="number" name="spo2" inputmode="numeric" min="50" max="100"></label>
-          <label>FR (/min)<input type="number" name="fr" inputmode="numeric" min="4" max="60"></label>
-        </div>
-        <fieldset class="sinais-resp"><legend>Sinais clínicos</legend>
-          ${[["tosse", "Tosse fraca"], ["acessorios", "Uso de músculos acessórios"], ["paradoxal", "Respiração paradoxal"], ["ortopneia", "Ortopneia"], ["cervical", "Fraqueza cervical"], ["degl", "Disfagia ou voz molhada"]]
-            .map(([k, t]) => `<label class="chk"><input type="checkbox" name="${k}"><span>${t}</span></label>`).join("")}
-        </fieldset>
-        <div class="botoes-resp"><button type="submit" class="btn-pri">${ic("mais")}<span>Registar avaliação</span></button></div>
-      </form>
-      ${e.nota ? `<p class="nota">${esc(e.nota)}</p>` : ""}</section>
-      <section class="cartao resultado-resp" aria-labelledby="tTend"><div class="cab-resp"><h2 id="tTend">Tendência</h2>
-        <div class="lv-acoes"><button type="button" class="btn-sec" id="copiarResp">${ic("copiar")}<span>Copiar</span></button><button type="button" class="btn-sec" id="limparResp">${ic("fechar")}<span>Limpar</span></button></div></div>
-        <div id="saidaResp"></div>
-        <p class="lv-nota">${ic("info")}<span>Os valores ficam só neste dispositivo enquanto a app está aberta. Registar no processo clínico.</span></p></section>`;
-  }
-  function avaliarResp(l, basal) {
-    const a = [];
-    if (l.contagem !== "" && Number(l.contagem) < 20) a.push("contagem < 20");
-    if (l.cvfkg !== null && l.cvfkg < 20) a.push("CVF < 20 mL/kg");
-    if (basal && l.cvf !== "" && basal.cvf !== "" && Number(basal.cvf) > 0 && (1 - Number(l.cvf) / Number(basal.cvf)) > 0.3) a.push("CVF caiu > 30% do basal");
-    if (l.pimax !== "" && Number(l.pimax) > -30) a.push("PImáx menos negativa que −30");
-    if (l.pemax !== "" && Number(l.pemax) < 40) a.push("PEmáx < 40");
-    if (l.sinais.some(x => ["acessorios", "paradoxal", "ortopneia"].includes(x))) a.push("sinais de fadiga respiratória");
-    return a;
-  }
-  const NOMES_SINAIS = { tosse: "tosse fraca", acessorios: "acessórios", paradoxal: "resp. paradoxal", ortopneia: "ortopneia", cervical: "fraqueza cervical", degl: "disfagia/voz molhada" };
-  function desenharResp() {
-    const out = $("#saidaResp"); if (!out) return;
-    const L = folhaResp.linhas;
-    if (!L.length) { out.innerHTML = `<p class="sub">Ainda sem avaliações. A primeira com CVF fica como valor basal.</p>`; return; }
-    const basal = L.find(l => l.cvf !== "");
-    let h = `<div class="tabela-envolvente tabela-empilhada"><table class="tab-resp"><thead><tr><th scope="col">Hora</th><th scope="col">Contagem</th><th scope="col">CVF (mL/kg)</th><th scope="col">PImáx / PEmáx</th><th scope="col">SpO₂ · FR</th><th scope="col">Alarmes</th></tr></thead><tbody>`;
-    L.forEach(l => {
-      const al = avaliarResp(l, basal === l ? null : basal);
-      h += `<tr class="${al.length ? "linha-alarme-resp" : ""}"><th scope="row">${esc(l.hora || "—")}</th><td data-rot="Contagem">${l.contagem !== "" ? esc(l.contagem) : "—"}</td>
-        <td data-rot="CVF mL (mL/kg)">${l.cvf !== "" ? `${esc(l.cvf)}${l.cvfkg !== null ? ` <span class="sub">(${l.cvfkg.toFixed(1)})</span>` : ""}` : "—"}</td>
-        <td data-rot="PImáx / PEmáx">${l.pimax !== "" ? esc(l.pimax) : "—"} / ${l.pemax !== "" ? esc(l.pemax) : "—"}</td>
-        <td data-rot="SpO₂ · FR">${l.spo2 !== "" ? esc(l.spo2) + "%" : "—"} · ${l.fr !== "" ? esc(l.fr) : "—"}</td>
-        <td data-rot="Alarmes">${al.length ? `<strong class="txt-alerta">${al.map(esc).join("; ")}</strong>` : "—"}${l.sinais.length ? `<br><span class="sub">${l.sinais.map(x => NOMES_SINAIS[x]).join(", ")}</span>` : ""}</td></tr>`;
-    });
-    h += `</tbody></table></div>`;
-    // gráfico simples da contagem e da CVF em mL/kg
-    const serie = (k, lim, nome, cls) => {
-      const pts = L.map((l, i) => [i, l[k] === null || l[k] === "" ? null : Number(l[k])]).filter(p => p[1] !== null);
-      if (pts.length < 2) return "";
-      const W = 320, H = 110, max = Math.max(lim * 1.6, ...pts.map(p => p[1])), x = i => 18 + i * ((W - 30) / Math.max(1, L.length - 1)), y = v => H - 14 - (v / max) * (H - 26);
-      return `<figure class="graf-resp"><figcaption>${nome}</figcaption><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${nome}: ${pts.map(p => p[1]).join(", ")}">
-        <line x1="12" x2="${W - 6}" y1="${y(lim)}" y2="${y(lim)}" class="lim"/><text x="${W - 8}" y="${y(lim) - 4}" text-anchor="end" class="lim-t">${lim}</text>
-        <polyline class="${cls}" fill="none" points="${pts.map(p => `${x(p[0])},${y(p[1])}`).join(" ")}"/>
-        ${pts.map(p => `<circle cx="${x(p[0])}" cy="${y(p[1])}" r="3.5" class="${cls}${p[1] < lim ? " abaixo" : ""}"/>`).join("")}</svg></figure>`;
-    };
-    h += `<div class="graf-resp-grelha">${serie("contagem", 20, "Contagem numa só expiração (limiar 20)", "s1")}${serie("cvfkg", 20, "CVF em mL/kg (limiar 20)", "s2")}</div>`;
-    const ult = L[L.length - 1], alU = avaliarResp(ult, basal === ult ? null : basal);
-    if (alU.length) h += `<p class="aviso-resp">${ic("alarme")}<span><strong>Comunicar de imediato ao médico</strong> (possível falência respiratória; avaliar transferência para UCI): ${alU.map(esc).join("; ")}.</span></p>`;
-    out.innerHTML = h;
-  }
-  function ligarFolhaResp() {
-    const f = $("#formResp"); if (!f) return;
-    const hora = f.elements.hora; if (hora && !hora.value) hora.value = horaAgora();
-    f.addEventListener("submit", ev => {
-      ev.preventDefault();
-      const g = n => (f.elements[n].value || "").trim();
-      folhaResp.peso = g("peso");
-      const l = { hora: g("hora") || horaAgora(), contagem: g("contagem"), cvf: g("cvf"), pimax: g("pimax"), pemax: g("pemax"), spo2: g("spo2"), fr: g("fr"),
-        sinais: ["tosse", "acessorios", "paradoxal", "ortopneia", "cervical", "degl"].filter(k => f.elements[k].checked) };
-      l.cvfkg = l.cvf !== "" && Number(folhaResp.peso) > 0 ? Number(l.cvf) / Number(folhaResp.peso) : null;
-      if ([l.contagem, l.cvf, l.pimax, l.pemax, l.spo2, l.fr].every(v => v === "") && !l.sinais.length) return;
-      folhaResp.linhas.push(l);
-      ["contagem", "cvf", "pimax", "pemax", "spo2", "fr"].forEach(n => { f.elements[n].value = ""; });
-      f.querySelectorAll(".sinais-resp input").forEach(c => { c.checked = false; });
-      hora.value = horaAgora();
-      desenharResp();
-      const a = $("#anuncioEscala"); if (a) a.textContent = "Avaliação registada.";
-    });
-    $("#limparResp").addEventListener("click", () => { folhaResp.linhas = []; desenharResp(); });
-    $("#copiarResp").addEventListener("click", ev => {
-      const basal = folhaResp.linhas.find(l => l.cvf !== "");
-      const txt = `Tendência respiratória (${new Date().toLocaleDateString("pt-PT")}; peso ${folhaResp.peso || "—"} kg):\n` + folhaResp.linhas.map(l => {
-        const al = avaliarResp(l, basal === l ? null : basal);
-        return `${l.hora}: contagem ${l.contagem || "—"}; CVF ${l.cvf || "—"} mL${l.cvfkg !== null ? ` (${l.cvfkg.toFixed(1)} mL/kg)` : ""}; PImáx ${l.pimax || "—"}; PEmáx ${l.pemax || "—"}; SpO2 ${l.spo2 || "—"}%; FR ${l.fr || "—"}${l.sinais.length ? "; " + l.sinais.map(x => NOMES_SINAIS[x]).join(", ") : ""}${al.length ? " — ALARME: " + al.join("; ") : ""}`;
-      }).join("\n");
-      copiarTexto(txt, ev.currentTarget);
-    });
-    desenharResp();
-  }
-
   // ── Patologias A–Z: índice de letras (fechadas), com filtro; grupos (AVC, Demências) e doenças incluídas por baixo ──
   let filtroPat = "";
   function vistaPatologias() {
@@ -1278,11 +1179,6 @@
     let h = `<header class="cab-pagina"><h1 tabindex="-1">Escalas e avaliação</h1></header>
       <nav class="separadores" id="separadoresEscalas" aria-label="Escolher escala">${ESCALAS.map(x =>
         `<a href="#escalas-${esc(x.id)}"${x.id === e.id ? ' aria-current="page"' : ""}>${rotSep(x)}</a>`).join("")}</nav>`;
-    if (e.tipo === "folha") {
-      h += folhaRespHTML(e) + `<p class="so-leitor" id="anuncioEscala" aria-live="polite"></p>`;
-      setTimeout(() => { ligarFolhaResp(); ligarSeparadores(); }, 0);
-      return h;
-    }
     h += `
 <section class="cartao cartao-escala" aria-labelledby="tituloEscala"><h2 id="tituloEscala">${esc(e.nome)}</h2>
       ${e.descricao ? `<p class="descricao">${esc(e.descricao)}</p>` : ""}${e.aviso ? `<p class="nota-terap aviso-seccao">${ic("info")}<span>${esc(e.aviso)}</span></p>` : ""}

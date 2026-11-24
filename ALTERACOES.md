@@ -1,5 +1,9 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 31 — 24/11/2026
+- Retirada a «Folha de tendência respiratória» das escalas e dos temas (SGB, miastenia, ELA, botulismo, neuropatias). A
+  vigilância respiratória mantém-se descrita no texto de cada tema (contagem numa só expiração, CVF, regra 20/30/40).
+
 ## Versão 30 — 24/11/2026
 Bloco C da avaliação dos agentes médico e de enfermagem.
 - **Novo tema «Delirium (estado confusional agudo)»** (Cuidados transversais): sinais de alarme, formas hiper/hipoativa,

@@ -3980,14 +3980,6 @@ const ESCALAS = [
                : t <= 6 ? ["moderado","4–6 — dor moderada (orientativo): tratar e reavaliar."]
                : ["grave","7–10 — dor intensa (orientativo): tratar e reavaliar; comunicar ao médico."],
   nota: "Versão portuguesa: Batalha, Duarte, Rosário, Costa, Pereira e Morgado, Revista de Enfermagem Referência, 2012 (original: Warden, Hurley e Volicer, 2003). A validação portuguesa não define pontos de corte: as faixas são orientativas — valorizar sobretudo a evolução no mesmo doente. Na doença respiratória, o item «respiração» pode dar falsos positivos. Reavaliar no pico de efeito do analgésico (cerca de 15–30 min EV, 30 min SC/IM, 60 min oral, ou conforme protocolo), cerca de 30 min após medidas não farmacológicas, antes e depois de cuidados dolorosos e pelo menos uma vez por turno."
-},
-{
-  id: "respiratoria",
-  nome: "Folha de tendência respiratória (Respiração)",
-  tipo: "folha",
-  descricao: "Para doentes com fraqueza neuromuscular (Guillain-Barré, miastenia, ELA). Registar cada avaliação para ver a tendência: o que importa é a descida entre avaliações, não um valor isolado. A primeira CVF registada fica como valor basal; com o peso, a app calcula a CVF em mL/kg.",
-  itens: [],
-  nota: "Alarme (regra 20/30/40): contagem numa só expiração < 20; CVF < 20 mL/kg ou queda > 30% em relação ao basal; PImáx menos negativa que −30 cmH₂O; PEmáx < 40 cmH₂O; ou sinais de fadiga (músculos acessórios, respiração paradoxal, ortopneia). A SpO₂ baixa é um sinal tardio. Frequência das avaliações conforme prescrição (mais apertada na fase de progressão). Contagem: inspirar fundo e contar em voz alta, cerca de 2 números por segundo, a ritmo de fala rápida, sem voltar a respirar."
 }
 ];
 

@@ -65,4 +65,4 @@ Não substitui protocolos institucionais nem a prescrição médica.
 
 `glossario.js` define `GLOSSARIO`: cada termo tem `t` (termo), `d` (definição) e, opcionalmente, `v` (outras formas a ligar no texto), `ligar: false` (não criar ligações automáticas) e `nao` (texto que, logo a seguir, impede a ligação). A app liga automaticamente a 1.ª ocorrência de cada termo em cada parágrafo/ponto ao glossário (`#glossario-<id>`).
 
-`listas.js` define `LISTAS` (listas de verificação: `id`, `titulo`, `tema`, `itens`); cada lista aparece na página «Listas de verificação» e no fim do tema indicado. `cipe.js` define `CIPE[id-do-tema] = { focos, registar }`, mostrado no fim de cada tema. A escala `respiratoria` (tipo `folha`) é uma ferramenta de registo em série; os dados ficam só na memória do dispositivo.
+`listas.js` define `LISTAS` (listas de verificação: `id`, `titulo`, `tema`, `itens`); cada lista aparece na página «Listas de verificação» e no fim do tema indicado. `cipe.js` define `CIPE[id-do-tema] = { focos, registar }`, mostrado no fim de cada tema.
