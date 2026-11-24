@@ -609,13 +609,12 @@
           <span class="pesquisa-ic" aria-hidden="true">${ic("pesquisa")}</span>
           <input id="filtroGl" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="Filtrar termos (ex.: afasia)">
         </div>
-        <nav class="letras-gl" aria-label="Letras">${[...letras.keys()].map(l => `<a href="#glossario" data-letra="${esc(l)}">${esc(l)}</a>`).join("")}</nav>
         <p class="sub filtro-estado" id="estadoGl" role="status" aria-live="polite"></p>
       </header><div class="lista-az lista-gl">`;
     letras.forEach((lista, l) => {
       const aberta = alvo && lista.includes(alvo);
       h += `<details class="grupo-letra grupo-letra-rec grupo-gl" id="gl-letra-${esc(l)}"${aberta ? " open" : ""}>
-        <summary><h2 class="letra">${esc(l)}</h2><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><dl class="glossario">`;
+        <summary><h2 class="letra">${esc(l)}</h2><span class="pontos" aria-hidden="true"></span><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><dl class="glossario">`;
       h += lista.map(g => `<div class="termo${g === alvo ? " destaque" : ""}" id="gl-${g.id}" data-filtro="${textoFiltro(g.t, (g.v || []).join(" "))}"><dt tabindex="-1">${esc(g.t)}</dt><dd>${esc(g.d)}</dd></div>`).join("");
       h += `</dl></details>`;
     });
@@ -790,7 +789,7 @@
       h += `<div class="lista-az">`;
       letras.forEach((lista, l) => {
         h += `<details class="grupo-letra grupo-letra-rec" data-filtro-grupo>
-          <summary><h2 class="letra" id="letra-${esc(l)}">${esc(l)}</h2><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">`;
+          <summary><h2 class="letra" id="letra-${esc(l)}">${esc(l)}</h2><span class="pontos" aria-hidden="true"></span><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">`;
         h += lista.map(f => linha(`#farmaco-${esc(f.id)}`, esc(f.dci), esc(f.classe || ""),
           { extra: etiquetaRisco(f), attrs: ` data-filtro="${textoFiltro(f.dci, f.classe || "")}"` })).join("");
         h += `</div></details>`;

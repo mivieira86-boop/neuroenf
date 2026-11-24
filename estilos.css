@@ -1312,3 +1312,27 @@ dl.glossario .termo.destaque { background: var(--acento-suave); padding-left: 10
 .lateral-nav a.sec-menu-link:hover { background: var(--afundado); }
 .lateral-nav a.sec-menu-link[aria-current="page"] { background: var(--acento-suave); color: var(--acento); box-shadow: none; }
 .lateral-nav a.sec-menu-link > .ic.ic-sum { width: 16px; height: 16px; flex: 0 0 16px; padding: 0; border-radius: 0; background: none; color: var(--secundario); }
+
+/* Índice de letras recolhíveis (Glossário e Guia farmacológico A–Z): letra num círculo, pontos até ao número */
+.lista-az details.grupo-letra-rec, details.grupo-letra-rec { display: block; margin: 0; border-bottom: 1px solid var(--linha); }
+.lista-az details.grupo-letra-rec:last-of-type { border-bottom: 0; }
+details.grupo-letra-rec > summary { min-height: 52px; gap: 12px; padding: 6px 4px; border-radius: 12px; }
+details.grupo-letra-rec > summary:hover { background: var(--afundado); }
+details.grupo-letra-rec > summary .letra,
+.lista-az details.grupo-letra-rec > summary .letra {
+  position: static; flex: 0 0 36px; width: 36px; height: 36px; margin: 0; padding: 0;
+  display: grid; place-content: center; border-radius: 50%;
+  background: var(--acento-suave); color: var(--acento); font-size: 16px; font-weight: 700; line-height: 1;
+}
+details.grupo-letra-rec[open] > summary .letra { background: var(--acento); color: var(--sobre-acento); }
+details.grupo-letra-rec > summary .pontos {
+  flex: 1; min-width: 24px; align-self: center; margin-top: 6px;
+  border-bottom: 2px dotted color-mix(in srgb, var(--secundario) 45%, transparent);
+}
+details.grupo-letra-rec > summary .rec-cont {
+  background: none; padding: 0; min-width: 2.2em; text-align: right; font-size: 15px; font-weight: 600; color: var(--secundario); font-variant-numeric: tabular-nums;
+}
+details.grupo-letra-rec > summary .ic-seta { width: 16px; height: 16px; }
+details.grupo-letra-rec > .lista, details.grupo-letra-rec > dl.glossario { padding: 0 0 10px; }
+details.grupo-gl > dl.glossario .termo:first-child { border-top: 0; }
+.lista-gl { margin-top: 14px; }

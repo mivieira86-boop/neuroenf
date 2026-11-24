@@ -10,6 +10,7 @@
   Liga-se a 1.ª ocorrência de cada termo em cada ponto, e não no tema que já trata desse termo.
 - A pesquisa também encontra os termos do glossário.
 - O Glossário abre logo no filtro, sem texto de introdução; no menu aparece em estilo de índice, como «Patologias A–Z», «Avaliação» e «Clínica».
+- Letras do Glossário e do Guia farmacológico A–Z em estilo de índice: letra num círculo, pontos até ao número, linhas mais compactas (sem a grelha de letras repetida no Glossário).
 
 ## Versão 25 — 23/11/2026
 - **Atualização no telemóvel**: a app vai sempre buscar os ficheiros novos ao servidor (sem cópias antigas da cache) e,
