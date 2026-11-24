@@ -61,4 +61,4 @@ Conteúdo escrito de raiz para a equipa de enfermagem. Os temas clínicos seguem
 Não substitui protocolos institucionais nem a prescrição médica.
 
 ## Esquemas anatómicos
-`esquemas.js` define `ESQUEMAS` (SVG originais com título e legenda). Numa secção de tema, `{ t: "…", esquema: "lateral" }` mostra o esquema; as cores dos territórios estão em `estilos.css` (`--c-aca`, `--c-acm`, `--c-acp`, `--c-vb`, `--c-prof`).
+`esquemas.js` e `glossario.js` define `ESQUEMAS` (SVG originais com título e legenda). Numa secção de tema, `{ t: "…", esquema: "lateral" }` mostra o esquema; as cores dos territórios estão em `estilos.css` (`--c-aca`, `--c-acm`, `--c-acp`, `--c-vb`, `--c-prof`).

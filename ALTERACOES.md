@@ -1,5 +1,15 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 26 — 24/11/2026
+- Novo **Glossário** (menu, logo abaixo das Patologias A–Z): 220 termos de semiologia neurológica e psiquiátrica por
+  ordem alfabética, agrupados por letra (fechadas), com índice de letras e filtro. Lista de termos baseada no glossário de
+  semiologia fornecido pela equipa, com definições redigidas para a NeuroEnf e completada com termos de semiologia
+  neurológica usados na app (anisocoria, hemianopsia, ptose, clónus, freezing…). Revisto pelo agente médico.
+- **Termos ligados em toda a app**: nos temas, sinais de alarme, protocolos e fichas de fármacos, cada termo do glossário
+  aparece com sublinhado pontilhado; ao tocar abre o significado no glossário (a seta «Voltar» regressa ao mesmo sítio).
+  Liga-se a 1.ª ocorrência de cada termo em cada ponto, e não no tema que já trata desse termo.
+- A pesquisa também encontra os termos do glossário.
+
 ## Versão 25 — 23/11/2026
 - **Atualização no telemóvel**: a app vai sempre buscar os ficheiros novos ao servidor (sem cópias antigas da cache) e,
   quando há versão nova, recarrega-se sozinha uma vez ao abrir ou ao voltar ao ecrã.

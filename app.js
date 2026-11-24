@@ -42,6 +42,7 @@
     sirene: '<path d="M6.5 18v-5a5.5 5.5 0 0 1 11 0v5"/><path d="M4.5 18h15v2.5h-15z"/><path d="M12 3v1.5M4.2 6.2l1.1 1.1M19.8 6.2l-1.1 1.1"/>',
     // Precaução: escudo com ponto de exclamação (diferente do triângulo de alarme)
     // Cápsula (guia farmacológico) e ligação externa
+    livro: '<path d="M4.5 5.5A2 2 0 0 1 6.5 3.5H19v14H6.5a2 2 0 0 0-2 2z"/><path d="M4.5 19.5a2 2 0 0 0 2 2H19v-4"/><path d="M8.5 7.5h6M8.5 10.5h4"/>',
     capsula: '<path d="m10.5 20.5 10-10a4.95 4.95 0 0 0-7-7l-10 10a4.95 4.95 0 0 0 7 7Z"/><path d="m8.5 8.5 7 7"/>',
     externo: '<path d="M14 4.5h5.5V10"/><path d="M19.5 4.5 11 13"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/>',
     precaucao: '<path d="M12 3.2 5 5.9v5.6c0 4.3 2.9 7.6 7 9.2 4.1-1.6 7-4.9 7-9.2V5.9Z"/><path d="M12 8.3v4.6"/><path d="M12 16.2h.01"/>',
@@ -91,6 +92,57 @@
     .filter(f => f && f.id && f.dci);
   const farmaco = id => FARM.find(f => f.id === id);
   const temaPorId = id => TEMAS.find(t => t.id === id);
+
+  // ── Glossário (glossario.js é opcional) ──
+  const slugGl = x => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+  const GLOSS = (typeof GLOSSARIO !== "undefined" && Array.isArray(GLOSSARIO) ? GLOSSARIO : [])
+    .filter(g => g && g.t && g.d).map(g => ({ ...g, id: slugGl(g.t) }))
+    .sort((a, b) => a.t.localeCompare(b.t, "pt", { sensitivity: "base" }));
+  const termoGl = id => GLOSS.find(g => g.id === id);
+  // Formas a reconhecer no texto: o termo (sem o que está entre parênteses), o plural simples e as variantes
+  const FORMAS_GL = new Map();
+  GLOSS.forEach(g => {
+    if (g.ligar === false) return;
+    const base = g.t.replace(/\s*\([^)]*\)\s*/g, " ").trim();
+    const formas = [base, ...(g.v || [])];
+    if (!/\s/.test(base)) {
+      if (/ão$/i.test(base)) formas.push(base.replace(/ão$/i, "ões"));
+      else if (/[aeiou]$/i.test(base)) formas.push(base + "s");
+    }
+    formas.forEach(f => { const k = f.toLowerCase(); if (!FORMAS_GL.has(k)) FORMAS_GL.set(k, g); });
+  });
+  let RE_GL = null;
+  try {
+    const alt = [...FORMAS_GL.keys()].sort((a, b) => b.length - a.length).map(f => f.replace(/[.*+?^${}()|[\]\\]/g, "\\$&").replace(/\s+/g, "\\s+"));
+    if (alt.length) RE_GL = new RegExp("(^|[^\\p{L}\\p{N}])(" + alt.join("|") + ")(?![\\p{L}\\p{N}])", "giu");
+  } catch (e) { RE_GL = null; }
+  // Termos a não ligar dentro de um tema (o próprio tema já trata deles: ex. «disfagia» no tema da disfagia)
+  const ignorarNoTema = new Map();
+  function termosDoTitulo(t) {
+    if (!t || !RE_GL) return new Set();
+    if (ignorarNoTema.has(t.id)) return ignorarNoTema.get(t.id);
+    const set = new Set();
+    for (const m of String(t.titulo).matchAll(RE_GL)) { const g = FORMAS_GL.get(m[2].toLowerCase().replace(/\s+/g, " ")); if (g) set.add(g.id); }
+    ignorarNoTema.set(t.id, set);
+    return set;
+  }
+  // Texto simples → HTML escapado com os termos do glossário como ligações (1.ª ocorrência de cada termo no bloco)
+  function comGlossario(raw, usados, ignorar) {
+    raw = String(raw);
+    if (!RE_GL) return esc(raw);
+    let out = "", ultimo = 0;
+    RE_GL.lastIndex = 0;
+    for (const m of raw.matchAll(RE_GL)) {
+      const g = FORMAS_GL.get(m[2].toLowerCase().replace(/\s+/g, " "));
+      const ini = m.index + m[1].length, fim = ini + m[2].length;
+      if (!g || usados.has(g.id) || (ignorar && ignorar.has(g.id))) continue;
+      if (g.nao && new RegExp("^(" + g.nao + ")", "i").test(raw.slice(fim))) continue;
+      usados.add(g.id);
+      out += esc(raw.slice(ultimo, ini)) + `<a class="termo-gl" href="#glossario-${g.id}" title="${esc(g.t)} — ver no glossário">${esc(m[2])}</a>`;
+      ultimo = fim;
+    }
+    return out + esc(raw.slice(ultimo));
+  }
 
   // ── Secção A–Z: grupos (ex.: Demências) e subgrupos dos temas com várias doenças ──
   const GRUPOS = (typeof GRUPOS_AZ !== "undefined" && Array.isArray(GRUPOS_AZ) ? GRUPOS_AZ : []).filter(g => g && g.id && Array.isArray(g.temas));
@@ -269,6 +321,7 @@
         });
       } else temas.forEach(t => { h += item(`#tema-${esc(t.id)}`, `tema-${esc(t.id)}`, "", esc(t.titulo), "tema"); });
       h += `</details>`;
+      if (p.id === "p4" && GLOSS.length) h += item("#glossario", "glossario", ic("livro"), `Glossário <span class="cont">${GLOSS.length}<span class="so-leitor"> termos</span></span>`, "item-glossario");
     });
     nav.innerHTML = h;
   }
@@ -392,13 +445,15 @@
   function textoComRefs(raw, t) {
     raw = String(raw);
     let out = "", ultimo = 0;
+    const usados = new Set(), ign = termosDoTitulo(t);
+    const gl = x => comGlossario(x, usados, ign);
     for (const m of raw.matchAll(/«([^«»]{3,140})»/g)) {
       const alvo = resolverRef(m[1], t);
       if (!alvo) continue;
-      out += esc(raw.slice(ultimo, m.index)) + `<a class="ref-ligacao" href="${alvo.href}"${alvo.k >= 0 ? ` data-seccao="${alvo.k}"` : ""}>${esc(m[1])}${ic("seta", "ic-ref")}</a>`;
+      out += gl(raw.slice(ultimo, m.index)) + `<a class="ref-ligacao" href="${alvo.href}"${alvo.k >= 0 ? ` data-seccao="${alvo.k}"` : ""}>${esc(m[1])}${ic("seta", "ic-ref")}</a>`;
       ultimo = m.index + m[0].length;
     }
-    return out + esc(raw.slice(ultimo));
+    return out + gl(raw.slice(ultimo));
   }
 
   // ── Secções recolhíveis: nos temas extensos só se veem os títulos; ao tocar abre-se o conteúdo ──
@@ -533,6 +588,72 @@
     h += ordenarSeccoes(secs).map(([s, k]) => blocoSeccao(s, k)).join("");
     h += `<p class="rodape">Ficha de bolso do protocolo do Serviço de Neurologia. O documento oficial prevalece sempre.</p>`;
     return h;
+  }
+
+  // ── Glossário: termos por ordem alfabética, agrupados por letra (fechadas), com filtro ──
+  let filtroGl = "";
+  function vistaGlossario(alvoId) {
+    document.title = "Glossário — NeuroEnf";
+    if (!GLOSS.length) return semDados("Glossário");
+    const alvo = alvoId ? termoGl(alvoId) : null;
+    const letras = new Map();
+    GLOSS.forEach(g => {
+      const l = semAcentos(g.t).charAt(0).toUpperCase();
+      if (!letras.has(l)) letras.set(l, []);
+      letras.get(l).push(g);
+    });
+    let h = `<header class="cab-pagina">
+        <h1 tabindex="-1">Glossário</h1>
+        <p class="sub">${GLOSS.length} termos de semiologia neurológica e psiquiátrica. Ao longo da app, as palavras <span class="termo-gl exemplo">sublinhadas assim</span> abrem aqui o significado.</p>
+        <div class="filtro-farm">
+          <label class="so-leitor" for="filtroGl">Filtrar termos</label>
+          <span class="pesquisa-ic" aria-hidden="true">${ic("pesquisa")}</span>
+          <input id="filtroGl" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="Filtrar termos (ex.: afasia)">
+        </div>
+        <nav class="letras-gl" aria-label="Letras">${[...letras.keys()].map(l => `<a href="#glossario" data-letra="${esc(l)}">${esc(l)}</a>`).join("")}</nav>
+        <p class="sub filtro-estado" id="estadoGl" role="status" aria-live="polite"></p>
+      </header><div class="lista-az lista-gl">`;
+    letras.forEach((lista, l) => {
+      const aberta = alvo && lista.includes(alvo);
+      h += `<details class="grupo-letra grupo-letra-rec grupo-gl" id="gl-letra-${esc(l)}"${aberta ? " open" : ""}>
+        <summary><h2 class="letra">${esc(l)}</h2><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><dl class="glossario">`;
+      h += lista.map(g => `<div class="termo${g === alvo ? " destaque" : ""}" id="gl-${g.id}" data-filtro="${textoFiltro(g.t, (g.v || []).join(" "))}"><dt tabindex="-1">${esc(g.t)}</dt><dd>${esc(g.d)}</dd></div>`).join("");
+      h += `</dl></details>`;
+    });
+    h += `</div><p class="rodape">Lista de termos baseada num glossário de semiologia; definições redigidas para a NeuroEnf e completadas com termos de semiologia neurológica usados na app. Não substitui a avaliação clínica.</p>`;
+    return h;
+  }
+  function ligarGlossario(alvoId) {
+    const campo = $("#filtroGl"), estado = $("#estadoGl");
+    if (!campo) return;
+    campo.value = filtroGl;
+    const aplicar = () => {
+      filtroGl = campo.value;
+      const q = semAcentos(campo.value.trim());
+      let n = 0;
+      vista.querySelectorAll("details.grupo-gl").forEach(d => {
+        let vis = 0;
+        d.querySelectorAll(".termo").forEach(el => { const ok = !q || bateFiltro(el.dataset.filtro, q); el.hidden = !ok; if (ok) vis++; });
+        d.hidden = !vis; n += vis;
+        if (q && vis) { if (!d.open) { d.open = true; d.dataset.auto = "1"; } }
+        else if (!q && d.dataset.auto) { d.open = false; delete d.dataset.auto; }
+      });
+      estado.textContent = q ? (n ? `${n} ${n === 1 ? "termo" : "termos"}` : "Nenhum termo com esse nome.") : "";
+    };
+    campo.addEventListener("input", aplicar);
+    if (filtroGl) aplicar();
+    vista.querySelectorAll(".letras-gl a").forEach(a => a.addEventListener("click", ev => {
+      ev.preventDefault();
+      const d = document.getElementById("gl-letra-" + a.dataset.letra);
+      if (!d || d.hidden) return;
+      d.open = true; d.scrollIntoView({ block: "start" });
+      const s = d.querySelector("summary"); if (s) s.focus({ preventScroll: true });
+    }));
+    if (alvoId) {
+      const el = document.getElementById("gl-" + alvoId);
+      if (el) { el.scrollIntoView({ block: "center" }); const dt = el.querySelector("dt"); if (dt) dt.focus({ preventScroll: true }); return true; }
+    }
+    return false;
   }
 
   function vistaTema(id) {
@@ -778,9 +899,9 @@
           <p class="nota-infomed" id="explicaInfomed"><strong>Índice Nacional Terapêutico</strong>: abre logo a ficha da DCI (site privado). <strong>INFOMED</strong>: fonte oficial com o RCM; não permite abrir a ficha diretamente, por isso a DCI é copiada — toque na caixa de pesquisa, «Colar», e escolha a DCI na lista.</p>
         </div>
       </header>`;
-    if (f.alerta) h += `<section class="alerta-farmaco" aria-labelledby="alertaFarm"><p class="faixa-precaucao" id="alertaFarm">${ic("precaucao")}Atenção</p><p class="alerta-txt">${esc(f.alerta)}</p></section>`;
+    if (f.alerta) h += `<section class="alerta-farmaco" aria-labelledby="alertaFarm"><p class="faixa-precaucao" id="alertaFarm">${ic("precaucao")}Atenção</p><p class="alerta-txt">${textoComRefs(f.alerta)}</p></section>`;
     const notas = Array.isArray(f.notas) ? f.notas : (f.notas ? [f.notas] : []);
-    if (notas.length) h += `<section class="cartao" aria-labelledby="cuidadosFarm"><h2 id="cuidadosFarm">Cuidados de enfermagem</h2><ul>${notas.map(n => `<li>${esc(n)}</li>`).join("")}</ul></section>`;
+    if (notas.length) h += `<section class="cartao" aria-labelledby="cuidadosFarm"><h2 id="cuidadosFarm">Cuidados de enfermagem</h2><ul>${notas.map(n => `<li>${textoComRefs(n)}</li>`).join("")}</ul></section>`;
     if (usos.length) {
       h += `<section class="cartao cartao-usos" aria-labelledby="usosFarm"><h2 id="usosFarm">Usado em</h2><div class="lista lista-usos">`;
       h += usos.map(u => linha(`#terapeutica-${esc(u.tema.id)}`, esc(u.tema.titulo), esc(u.grupo), { icone: icParte(u.tema.parte, "ic-linha") })).join("");
@@ -812,7 +933,7 @@
         ? `<details class="cartao grupo-terap"${k === 0 ? " open" : ""}><summary><h2 id="gt-${k}">${esc(g.t)}</h2><span class="rec-cont">${g.farmacos.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">${corpo}</div></details>`
         : `<section class="bloco-terap" aria-labelledby="gt-${k}"><h2 class="etiqueta" id="gt-${k}">${esc(g.t)}</h2><div class="lista">${corpo}</div></section>`;
     });
-    if (x.nota) h += `<p class="nota-terap">${ic("info")}<span>${esc(x.nota)}</span></p>`;
+    if (x.nota) h += `<p class="nota-terap">${ic("info")}<span>${textoComRefs(x.nota, t)}</span></p>`;
     h += `<p class="rodape">Em cada fármaco: «Ver ficha no Índice Nacional Terapêutico» abre logo a ficha; «Abrir no INFOMED» leva à informação oficial (RCM).</p>`;
     return h;
   }
@@ -1113,6 +1234,13 @@
       const corpo = `<div class="resultado-pesquisa"><a class="tit" href="#farmaco-${esc(f.id)}">${ic("capsula")}<span class="tit-txt">${realcar(f.dci, q)}<span class="tit-meta">Fármaco${f.classe ? ` · ${realcar(f.classe, q)}` : ""}${f.alto ? " · Alto risco" : ""}</span></span>${ic("seta", "ic-seta")}</a></div>`;
       res.push({ pont: dciBate ? 1000 + (semAcentos(f.dci).startsWith(q) ? 20 : 3) : 40, html: corpo });
     });
+    GLOSS.forEach(g => {
+      const nomeBate = [g.t, ...(g.v || [])].some(x => contem(x, q));
+      if (!nomeBate) return;
+      const corpo = `<div class="resultado-pesquisa"><a class="tit" href="#glossario-${esc(g.id)}">${ic("livro")}<span class="tit-txt">${realcar(g.t, q)}<span class="tit-meta">Glossário</span></span>${ic("seta", "ic-seta")}</a>
+        <p class="excerto-simples">${esc(g.d)}</p></div>`;
+      res.push({ pont: 900 + (semAcentos(g.t).startsWith(q) ? 20 : 0), html: corpo });
+    });
     TEMAS.forEach(t => {
       const hits = textoTema(t).filter(p => contem(p.txt, q));
       if (!hits.length) return;
@@ -1184,12 +1312,13 @@
   // Página «mãe» de cada rota (destino da seta quando não há página anterior nesta sessão)
   const paiDaRota = r => r.startsWith("terapeutica-") ? `#tema-${r.slice(12)}`
     : r.startsWith("farmaco-") || r === "farmacos-az" ? "#farmacos"
-    : r.startsWith("protocolo-") ? "#protocolos" : "#inicio";
+    : r.startsWith("protocolo-") ? "#protocolos" : r.startsWith("glossario-") ? "#glossario" : "#inicio";
   const nomeRota = h => {
     const r = h.replace(/^#/, "");
     if (r === "inicio") return "Início";
     if (r === "farmacos") return "Guia farmacológico";
     if (r === "protocolos") return "Protocolos do serviço";
+    if (r === "glossario") return "Glossário";
     if (r.startsWith("tema-")) { const t = TEMAS.find(x => x.id === r.slice(5)); return t ? t.titulo : "Início"; }
     return "Início";
   };
@@ -1220,6 +1349,7 @@
     else if (r.startsWith("farmaco-")) { html = vistaFarmaco(r.slice(8)); rotaMenu = "farmacos"; }
     else if (r.startsWith("terapeutica-")) { html = vistaTerapeutica(r.slice(12)); rotaMenu = "farmacos"; }
     else if (r === "protocolos") { html = vistaProtocolos(); rotaMenu = "protocolos"; }
+    else if (r === "glossario" || r.startsWith("glossario-")) { html = vistaGlossario(r.slice(10)); rotaMenu = "glossario"; }
     else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     // Faixa do início (com a pesquisa) só no início
@@ -1254,6 +1384,8 @@
       requestAnimationFrame(() => { congelado = false; });
       return;
     }
+    // Glossário: ligar o filtro e, se veio de um termo, ir diretamente a ele
+    if (rotaMenu === "glossario" && ligarGlossario(r.slice(10)) && nova) { requestAnimationFrame(() => { congelado = false; }); focarTitulo = false; return; }
     // Ao regressar a uma página já vista, reabrir os grupos que estavam abertos e repor a posição de leitura
     if (!nova && abertos[navAtual]) { const ds = vista.querySelectorAll("details"); abertos[navAtual].forEach(i => { if (ds[i]) ds[i].open = true; }); }
     window.scrollTo(0, !nova && posicoes[navAtual] !== undefined ? posicoes[navAtual] : 0);

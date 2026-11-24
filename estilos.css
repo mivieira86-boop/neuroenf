@@ -1275,3 +1275,27 @@ details.grupo-letra-rec > summary { list-style: none; display: flex; align-items
 details.grupo-letra-rec > summary .letra { flex: 1; margin: 0; }
 @media (prefers-reduced-motion: reduce) { details > summary .ic-seta { transition: none !important; } }
 @media print { .barra-seccoes, details > summary .ic-seta { display: none !important; } }
+
+/* Glossário */
+a.termo-gl, .termo-gl.exemplo {
+  color: inherit; text-decoration: underline dotted; text-decoration-color: var(--acento); text-decoration-thickness: 2px;
+  text-underline-offset: 3px; cursor: help;
+}
+a.termo-gl:hover { color: var(--acento); text-decoration-style: solid; }
+a.termo-gl:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; border-radius: 3px; }
+.letras-gl { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
+.letras-gl a {
+  min-width: 40px; min-height: 40px; display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px; background: var(--afundado); color: var(--texto); font-weight: 700; text-decoration: none;
+}
+.letras-gl a:hover { background: var(--acento-suave); color: var(--acento); }
+.letras-gl a:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+dl.glossario { margin: 0; padding: 0 0 8px; }
+dl.glossario .termo { padding: 12px 4px; border-top: 1px solid var(--linha); border-radius: 8px; scroll-margin-top: 90px; }
+dl.glossario dt { font-weight: 700; font-size: 16.5px; color: var(--texto); }
+dl.glossario dt:focus { outline: none; }
+dl.glossario dt:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+dl.glossario dd { margin: 4px 0 0; color: var(--texto); line-height: 1.55; }
+dl.glossario .termo.destaque { background: var(--acento-suave); padding-left: 10px; padding-right: 10px; }
+.item-glossario .cont { margin-left: 6px; font-size: 12px; font-weight: 600; color: var(--secundario); }
+@media print { a.termo-gl { text-decoration: none; } .letras-gl, .lista-gl .filtro-farm { display: none; } }
