@@ -1,5 +1,17 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 32 — 24/11/2026
+Bloco D da avaliação dos agentes médico e de enfermagem (camada transversal).
+- **«Em 30 segundos»** no topo de cada tema com cuidados (69 temas): 3 coisas a fazer já e 3 alarmes, com atalho para
+  o que fazer em cada alarme.
+- **Quadro de vigilância** «Vigiar | Frequência | Comunicar se» em 64 temas (no telemóvel aparece em cartões), sempre
+  «ou conforme prescrição/protocolo».
+- **Alertas doença–fármaco** (60): na ficha de cada fármaco («Atenção em doenças») e na Terapêutica de cada tema
+  («Fármacos a evitar ou usar com cuidado neste tema»), ligados entre si.
+- **Referência principal e data de revisão** em cada tema («Referência: … · Revisto em novembro de 2026»); aparece
+  a etiqueta «a rever» 24 meses depois.
+- **Nova lista «Deterioração neurológica aguda»** (12 passos por ordem), com acesso direto no Início.
+
 ## Versão 31 — 24/11/2026
 - Retirada a «Folha de tendência respiratória» das escalas e dos temas (SGB, miastenia, ELA, botulismo, neuropatias). A
   vigilância respiratória mantém-se descrita no texto de cada tema (contagem numa só expiração, CVF, regra 20/30/40).

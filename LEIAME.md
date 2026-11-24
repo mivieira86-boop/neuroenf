@@ -12,6 +12,8 @@ ou duplo clique no `index.html` no Explorador do Windows.
 - `farmacos.js` — guia farmacológico (FARMACOS e TERAPEUTICA por tema)
 - `protocolos.js` — protocolos do serviço (área em construção; modelo para acrescentar no início do ficheiro)
 - `marchas.js` — marchas: textos (MARCHAS), em que temas aparecem (MARCHAS_DO_TEMA) e o motor das animações (NeuroMarcha)
+- `glossario.js`, `listas.js`, `cipe.js` — glossário, listas de verificação e focos CIPE
+- `estrutura.js` — «Em 30 segundos», quadros de vigilância, alertas doença–fármaco e referências por tema
 - `app.js` — navegação, pesquisa, índice dos temas, página de alarmes, escalas e guia farmacológico
 - `manifest.webmanifest`, `sw.js`, `instalar.js`, `instalar.css`, `icons/` — app instalável no telemóvel (PWA) e funcionamento sem rede
 - `ALTERACOES.md` — registo do que mudou em cada versão (para revisão clínica)
@@ -65,4 +67,4 @@ Não substitui protocolos institucionais nem a prescrição médica.
 
 `glossario.js` define `GLOSSARIO`: cada termo tem `t` (termo), `d` (definição) e, opcionalmente, `v` (outras formas a ligar no texto), `ligar: false` (não criar ligações automáticas) e `nao` (texto que, logo a seguir, impede a ligação). A app liga automaticamente a 1.ª ocorrência de cada termo em cada parágrafo/ponto ao glossário (`#glossario-<id>`).
 
-`listas.js` define `LISTAS` (listas de verificação: `id`, `titulo`, `tema`, `itens`); cada lista aparece na página «Listas de verificação» e no fim do tema indicado. `cipe.js` define `CIPE[id-do-tema] = { focos, registar }`, mostrado no fim de cada tema.
+`listas.js` define `LISTAS` (listas de verificação: `id`, `titulo`, `tema`, `itens`); cada lista aparece na página «Listas de verificação» e no fim do tema indicado. `cipe.js` define `CIPE[id-do-tema] = { focos, registar }`, mostrado no fim de cada tema. `estrutura.js` define a camada transversal: `TRINTA[id] = { prioridades, alarmes }` («Em 30 segundos»), `VIGILANCIA[id]` (linhas [vigiar, frequência, comunicar se]; só usado se o tema não tiver já uma secção «Vigilância: o que…»), `ALERTAS_FD` (`{ temas, farmacos, texto }`), `REFERENCIAS[id]` e `REVISAO_CONTEUDO` (data da revisão; um tema pode ter `revisto` próprio).

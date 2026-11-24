@@ -1387,3 +1387,29 @@ details.grupo-gl > dl.glossario .termo:first-child { border-top: 0; }
 .lv-nota .ic { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 1px; }
 @media print { .lv-acoes, .lv-nota { display: none !important; } .lv-itens input { -webkit-appearance: none; appearance: none; border: 1.5px solid #000; border-radius: 3px; } }
 
+
+/* Bloco «Em 30 segundos» no topo do tema */
+.em30 { margin: 16px 0 12px; border-left: 4px solid var(--acento); }
+.em30 h2 { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; font-size: 17px; }
+.em30 h2 .ic { width: 20px; height: 20px; color: var(--acento); }
+.em30-grelha { display: grid; grid-template-columns: 1fr; gap: 12px; }
+@media (min-width: 761px) { .em30-grelha { grid-template-columns: 1.3fr 1fr; gap: 20px; } }
+.em30 .etiqueta { display: flex; align-items: center; gap: 6px; margin: 0 0 4px; }
+.em30 ol, .em30 ul { margin: 0; padding-left: 20px; }
+.em30 li { margin: 3px 0; line-height: 1.45; }
+.em30-alarmes .etiqueta { color: var(--alerta); }
+.em30-alarmes .etiqueta .ic { width: 16px; height: 16px; }
+.em30-alarmes li::marker { color: var(--alerta); }
+.em30-ver { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-weight: 600; color: var(--alerta); text-decoration: none; min-height: 40px; }
+.em30-ver:hover { text-decoration: underline; }
+.em30-ver .ic-ref { width: 14px; height: 14px; }
+.meta-revisao { font-size: 13px; }
+/* Alertas doença–fármaco */
+.alertas-fd ul { margin: 6px 0 0; padding-left: 20px; }
+.alertas-fd li { margin: 6px 0; line-height: 1.5; }
+.alertas-fd .fd-farmacos a { font-weight: 600; }
+.alertas-fd .fd-temas { display: block; margin-top: 4px; font-size: .86em; color: var(--secundario); }
+.alertas-fd .fd-temas a { font-weight: 600; }
+/* Botão de deterioração aguda no início */
+.linha-deterioracao .linha-tit { color: var(--alerta); }
+@media print { .em30 { border-left-width: 2px; } .em30-ver { display: none; } }

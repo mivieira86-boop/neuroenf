@@ -3,6 +3,20 @@
 // O que se marca fica só na memória do dispositivo enquanto a app está aberta (não se guardam dados de doentes).
 // Conteúdo proposto pelo agente de enfermagem; seguir sempre o protocolo do hospital e a prescrição.
 const LISTAS = [
+{ id: "lv-deterioracao", titulo: "Deterioração neurológica aguda", tema: "semiologia", resumo: "Sonolência, novo défice, crise, agitação ou queda da Glasgow podem esconder uma causa tratável. Siga estes passos por ordem, registe as horas e chame ajuda cedo.", itens: [
+  "Ficar com o doente e garantir a segurança: cama baixa, proteger a cabeça e, se houver crise, cronometrar. Pedir ajuda.",
+  "Via aérea e respiração: permeabilizar e aspirar se necessário, FR, padrão respiratório e SpO2. Oxigénio para o alvo prescrito (no doente neuromuscular, só no alvo, pelo risco de reter CO2). Insuflador manual à cabeceira.",
+  "Glicemia capilar já. Se estiver baixa, corrigir segundo o protocolo, sem esperar pela tiamina.",
+  "Glasgow por componentes (O-V-M) e pupilas (tamanho, simetria, reação). Comparar com o registo de base.",
+  "Procurar défice focal: face, força dos 4 membros, fala, visão. Fazer o NIHSS se for o protocolo.",
+  "Registar a hora de início ou a última vez que foi visto bem. Défice súbito: ativar a Via Verde AVC segundo o protocolo.",
+  "Sinais vitais completos: TA, FC e ritmo, temperatura. Hipertensão com bradicardia e respiração irregular é sinal tardio de herniação.",
+  "Nada por boca, incluindo a medicação, até nova avaliação da deglutição.",
+  "Posição: cabeceira a 30° com a cabeça alinhada. Posição lateral de segurança se houver vómitos, crise ou via aérea não protegida.",
+  "Rever os fármacos recentes: sedativos, opioides, benzodiazepinas e antipsicóticos dados, antiparkinsónicos em falta. Se tomar anticoagulante ou antiagregante, registar o nome e a hora da última toma.",
+  "Chamar o médico de imediato em qualquer agravamento. Chamar a equipa de emergência intra-hospitalar (EEMI) se a via aérea estiver em risco, Glasgow ≤ 8, crise com 5 min ou mais, ou instabilidade.",
+  "Registar cada avaliação com a hora, os valores, a quem foi comunicado e o que se fez. Comunicar em SBAR."
+]},
 { id: "lv-admissao-neuro", titulo: "Admissão neurológica (primeiras horas)", tema: "semiologia", itens: [
   "Sinais vitais, SpO2, glicemia capilar.",
   "Dor com escala adequada (PAINAD só se não for possível a autoavaliação).",

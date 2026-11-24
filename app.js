@@ -21,6 +21,7 @@
   // ── Ícones de linha (24×24, traço 1,8, currentColor). O campo «icone» dos temas não é usado. ──
   const ICONES = {
     mais: '<path d="M12 5v14M5 12h14"/>',
+    relogio: '<circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/>',
     verificar: '<rect x="4" y="3.5" width="16" height="17" rx="2.5"/><path d="m8 9 1.6 1.6L12.5 7.7"/><path d="M14.5 9.2H16.5"/><path d="m8 15 1.6 1.6 2.9-2.9"/><path d="M14.5 15.2H16.5"/>',
     respirar: '<path d="M12 4v7"/><path d="M12 11c-1.5 0-2.5 1-3.2 2.6L7.2 17.4a2.4 2.4 0 0 1-4.2-2.2C4.6 11 6 7.5 9 6.2"/><path d="M12 11c1.5 0 2.5 1 3.2 2.6l1.6 3.8a2.4 2.4 0 0 0 4.2-2.2C19.4 11 18 7.5 15 6.2"/>',
     protocolo: '<path d="M14 3.5H7A1.5 1.5 0 0 0 5.5 5v14A1.5 1.5 0 0 0 7 20.5h10a1.5 1.5 0 0 0 1.5-1.5V8L14 3.5Z"/><path d="M14 3.5V8h4.5"/><path d="M8.5 12.5h7M8.5 16h5"/>',
@@ -98,6 +99,17 @@
   const LV = typeof LISTAS !== "undefined" && Array.isArray(LISTAS) ? LISTAS.filter(x => x && x.id && Array.isArray(x.itens)) : [];
   const listaPorId = id => LV.find(x => x.id === id);
   const CIPE_T = typeof CIPE !== "undefined" && CIPE ? CIPE : {};
+  const TRINTA_T = typeof TRINTA !== "undefined" && TRINTA ? TRINTA : {};
+  const VIGIL_T = typeof VIGILANCIA !== "undefined" && VIGILANCIA ? VIGILANCIA : {};
+  const ALERTAS = typeof ALERTAS_FD !== "undefined" && Array.isArray(ALERTAS_FD) ? ALERTAS_FD.filter(a => a && a.texto) : [];
+  const REF_T = typeof REFERENCIAS !== "undefined" && REFERENCIAS ? REFERENCIAS : {};
+  const DATA_REVISAO = typeof REVISAO_CONTEUDO !== "undefined" ? REVISAO_CONTEUDO : "";
+  const alertasDoFarmaco = id => ALERTAS.filter(a => (a.farmacos || []).includes(id));
+  const alertasDoTema = id => ALERTAS.filter(a => (a.temas || []).includes(id));
+  // Data de revisão: «A rever» passados 24 meses
+  const revisaoTema = t => t.revisto || DATA_REVISAO;
+  const temaARever = t => { const d = revisaoTema(t); if (!d) return false; const x = new Date(d); x.setMonth(x.getMonth() + 24); return x < new Date(); };
+  const mesAnoPT = d => { const x = new Date(d); return isNaN(x) ? "" : x.toLocaleDateString("pt-PT", { month: "long", year: "numeric" }); };
 
   // ── Glossário (glossario.js é opcional) ──
   const slugGl = x => String(x).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\([^)]*\)/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -412,6 +424,7 @@
         + (ESCALAS.some(e => e.id === "nihss") ? linha("#escalas-nihss", "Escala NIHSS", "Gravidade do AVC", { cls: "linha-subitem" }) : "")
         + `</div></details>`;
     }
+    if (listaPorId("lv-deterioracao")) h += linha("#lista-lv-deterioracao", "Deterioração neurológica aguda", "O que fazer já, passo a passo", { icone: ic("alarme", "ic-linha ic-alerta"), cls: "linha-alarme linha-deterioracao" });
     h += linha("#alarmes", "Sinais de alarme", `${temasAlarme} temas`, { icone: ic("alarme", "ic-linha ic-alerta"), cls: "linha-alarme" });
     const rapidos = [];
     // Uma só entrada para as escalas: ao tocar, abre a lista de todas as escalas disponíveis
@@ -819,6 +832,8 @@
     const grupo = grupoDoTema(t.id), subs = subtemasDe(t);
     const seccoes = (t.seccoes || []).slice();
     const extra = [];
+    const temTabVig = seccoes.some(s => /^Vigilância: o que/.test(s.t));
+    if (!temTabVig && VIGIL_T[t.id] && VIGIL_T[t.id].length) seccoes.unshift({ t: "Vigilância: o que, quando e quando comunicar", tabela: { cab: ["Vigiar", "Frequência", "Comunicar se"], lin: VIGIL_T[t.id], empilhar: true } });
     if (t.id === "semiologia" && typeof MRC !== "undefined") {
       extra.push({ t: "Escala de força muscular (MRC)", tabela: { cab: ["Grau", "Descrição"], lin: MRC.map(([g, d]) => [String(g), d]) } });
     }
@@ -838,6 +853,7 @@
           <div class="cab-tema-txt">
             <h1 tabindex="-1">${esc(t.titulo)}</h1>
             <p class="meta">${t.parte === "p4" ? "Patologia específica" : esc(nomeParte(t.parte))} · ${todas.length} ${todas.length === 1 ? "secção" : "secções"}</p>
+            ${REF_T[t.id] || revisaoTema(t) ? `<p class="meta meta-revisao">${REF_T[t.id] && REF_T[t.id] !== "—" ? `Referência: ${esc(REF_T[t.id])} · ` : ""}${revisaoTema(t) ? `Revisto em ${esc(mesAnoPT(revisaoTema(t)))}` : ""}${temaARever(t) ? ` ${ETQ_REVER}` : ""}</p>` : ""}
           </div>
           <button type="button" class="btn-sec btn-imprimir" data-acao="imprimir">${ic("imprimir")}<span>Imprimir</span></button>
         </div>
@@ -852,6 +868,14 @@
       </header>`;
     // Alarmes primeiro, depois precauções, depois as restantes (os índices k mantêm-se)
     const ordem = ordenarSeccoes(todas);
+    const tr = TRINTA_T[t.id];
+    if (tr && ((tr.prioridades || []).length || (tr.alarmes || []).length)) {
+      const kAl = todas.findIndex(s => s.alarme);
+      h += `<section class="cartao em30" aria-labelledby="em30-t"><h2 id="em30-t">${ic("relogio")}Em 30 segundos</h2><div class="em30-grelha">
+        ${(tr.prioridades || []).length ? `<div class="em30-col"><p class="etiqueta">Fazer já</p><ol>${tr.prioridades.map(x => `<li>${textoComRefs(x, t)}</li>`).join("")}</ol></div>` : ""}
+        ${(tr.alarmes || []).length ? `<div class="em30-col em30-alarmes"><p class="etiqueta">${ic("alarme")}Alarmes</p><ul>${tr.alarmes.map(x => `<li>${esc(x)}</li>`).join("")}</ul>${kAl >= 0 ? `<a class="em30-ver" href="#tema-${esc(t.id)}" data-seccao="${kAl}">Ver o que fazer em cada alarme${ic("seta", "ic-ref")}</a>` : ""}</div>` : ""}
+      </div></section>`;
+    }
     const recolher = temaRecolhivel(todas);
     if (recolher) {
       h += `<div class="barra-seccoes"><span class="etiqueta">${todas.length} secções</span><button type="button" class="btn-sec btn-abrir-tudo" data-acao="abrir-tudo" aria-pressed="false">${ic("baixo")}<span>Abrir tudo</span></button></div>`;
@@ -1063,6 +1087,9 @@
         </div>
       </header>`;
     if (f.alerta) h += `<section class="alerta-farmaco" aria-labelledby="alertaFarm"><p class="faixa-precaucao" id="alertaFarm">${ic("precaucao")}Atenção</p><p class="alerta-txt">${textoComRefs(f.alerta)}</p></section>`;
+    const alD = alertasDoFarmaco(f.id);
+    if (alD.length) h += `<section class="cartao precaucao alertas-fd" aria-labelledby="alFD"><p class="faixa-precaucao" id="alFD">${ic("precaucao")}Atenção em doenças</p><ul>${alD.map(a =>
+      `<li>${textoComRefs(a.texto)}<span class="fd-temas">Em: ${(a.temas || []).map(temaPorId).filter(Boolean).map(x => `<a href="#tema-${esc(x.id)}">${esc(x.titulo)}</a>`).join(" · ")}</span></li>`).join("")}</ul></section>`;
     const notas = Array.isArray(f.notas) ? f.notas : (f.notas ? [f.notas] : []);
     if (notas.length) h += `<section class="cartao" aria-labelledby="cuidadosFarm"><h2 id="cuidadosFarm">Cuidados de enfermagem</h2><ul>${notas.map(n => `<li>${textoComRefs(n)}</li>`).join("")}</ul></section>`;
     if (usos.length) {
@@ -1097,6 +1124,9 @@
         : `<section class="bloco-terap" aria-labelledby="gt-${k}"><h2 class="etiqueta" id="gt-${k}">${esc(g.t)}</h2><div class="lista">${corpo}</div></section>`;
     });
     if (x.nota) h += `<p class="nota-terap">${ic("info")}<span>${textoComRefs(x.nota, t)}</span></p>`;
+    const alT = alertasDoTema(t.id);
+    if (alT.length) h += `<section class="cartao precaucao alertas-fd" aria-labelledby="alTD"><p class="faixa-precaucao" id="alTD">${ic("precaucao")}Fármacos a evitar ou usar com cuidado neste tema</p><ul>${alT.map(a =>
+      `<li>${textoComRefs(a.texto, t)}<span class="fd-temas">Fármacos: ${(a.farmacos || []).map(id => FARM.find(f => f.id === id)).filter(Boolean).map(f => `<a href="#farmaco-${esc(f.id)}">${esc(f.dci)}</a>`).join(" · ")}</span></li>`).join("")}</ul></section>`;
     h += `<p class="rodape">Em cada fármaco: «Ver ficha no Índice Nacional Terapêutico» abre logo a ficha; «Abrir no INFOMED» leva à informação oficial (RCM).</p>`;
     return h;
   }
