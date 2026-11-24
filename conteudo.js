@@ -2554,6 +2554,14 @@ const TEMAS = [
       "A vertigem isolada pode ser AVC do cerebelo — valorizar sobretudo se súbita, persistente, com incapacidade de andar ou de se sentar sem apoio, cefaleia occipital ou fatores de risco vascular. Comunicar e não atribuir logo a «labirintite».",
       "A oclusão da basilar pode começar com sintomas flutuantes e evoluir rapidamente para coma: é emergência (trombectomia até 24 h)."
     ]},
+    { t: "Sinais de alarme", alarme: true, itens: [
+      "Sinais de circulação posterior novos ou flutuantes — vertigem com diplopia, disartria, disfagia, ataxia, sinais cruzados ou queda da consciência: possível oclusão da basilar. Comunicar de imediato (emergência, pode haver indicação para trombectomia) e registar a hora.",
+      "Vertigem súbita e persistente com incapacidade de andar ou de se sentar sem apoio, cefaleia occipital ou vómitos: possível AVC do cerebelo — comunicar e não atribuir a «labirintite». Num enfarte cerebeloso extenso, sonolência crescente pode ser compressão do tronco ou hidrocefalia (urgência neurocirúrgica).",
+      "Enfarte extenso da ACM: sonolência crescente, desvio do olhar, anisocoria ou vómitos nos primeiros dias — possível edema maligno. Comunicar de imediato.",
+      "Novo défice num território diferente ou aumento do NIHSS: possível novo AVC ou progressão. Avaliar NIHSS e Glasgow, registar a hora e comunicar.",
+      "Lesões do tronco (ex.: Wallenberg): tosse ao engolir, voz molhada, dessaturação ou febre — possível aspiração. Suspender a via oral e comunicar.",
+      "Lesões do tronco ou locked-in: alteração do padrão respiratório ou dificuldade em gerir as secreções — chamar o médico de imediato."
+    ]},
     { t: "Da localização aos cuidados de enfermagem", itens: [
       "ACM esquerda: comunicação (afasia) — estratégias do tema «Avaliação da linguagem e comunicação»; confirmar a compreensão antes de ensinos.",
       "ACM direita: negligência e anosognosia — abordar inicialmente pelo lado preservado, campainha e objetos ao alcance, risco elevado de quedas (o doente não reconhece o défice).",

@@ -393,7 +393,7 @@
   function vistaInicio() {
     document.title = "NeuroEnf — Guia de Enfermagem em Neurologia";
     const existeTema = id => TEMAS.some(t => t.id === id);
-    const temasAlarme = TEMAS.filter(temAlarme).length;
+    const temasAlarme = TEMAS.filter(t => t.parte !== "p4" && temAlarme(t)).length;
     let h = `<section class="bloco bloco-rapido" aria-labelledby="t-rapido">
         <h2 class="etiqueta" id="t-rapido">Acesso rápido</h2>
         <div class="lista lista-rapida">`;
@@ -804,7 +804,8 @@
       });
       return c + `<p class="rec-abrir"><a href="#tema-${esc(t.id)}" data-seccao="${lista[0][1]}">Abrir o tema ${ic("seta", "ic-seta")}</a></p></div></details>`;
     };
-    const grupos = PARTES.map(p => ({ p, itens: temasParteAlfa(p.id).map(t => [t, secs(t, s => s.alarme)]).filter(([, l]) => l.length) }))
+    // As Patologias A–Z não se repetem aqui: os sinais de alarme estão em cada patologia (menu «Patologias A–Z»)
+    const grupos = PARTES.filter(p => p.id !== "p4").map(p => ({ p, itens: temasParteAlfa(p.id).map(t => [t, secs(t, s => s.alarme)]).filter(([, l]) => l.length) }))
       .filter(g => g.itens.length);
     const precs = TEMAS.slice().sort((a, b) => ordemPT(a.titulo, b.titulo)).map(t => [t, secs(t, ePrecaucao)]).filter(([, l]) => l.length);
     const nTemas = grupos.reduce((n, g) => n + g.itens.length, 0);
@@ -815,6 +816,8 @@
     h += grupos.map(g => `<li><button type="button" data-ir="p-${esc(g.p.id)}">${esc(NOME_CURTO_PARTE[g.p.id] || g.p.nome)}<span class="cont">${g.itens.length}</span></button></li>`).join("");
     if (precs.length) h += `<li><button type="button" class="sep-precaucao" data-ir="p-precaucoes">${ic("precaucao")}Precauções com fármacos<span class="cont">${precs.length}</span></button></li>`;
     h += `</ul></nav>`;
+    const nPat = temasDaParte("p4").filter(temAlarme).length;
+    if (nPat) h += `<p class="nota-terap nota-alarmes-az">${ic("info")}<span>Os sinais de alarme das ${nPat} patologias estão dentro de cada uma, na secção «Sinais de alarme» (sempre a primeira). <a href="#patologias">Abrir as Patologias A–Z</a></span></p>`;
     grupos.forEach(g => {
       h += `<section class="grupo-lista" id="sec-p-${esc(g.p.id)}" aria-labelledby="g-${esc(g.p.id)}">
         <p class="etiqueta" id="g-${esc(g.p.id)}" tabindex="-1">${esc(g.p.nome)}</p>

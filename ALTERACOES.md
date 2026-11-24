@@ -1,5 +1,14 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 28 — 24/11/2026
+- **Sinais de alarme e Patologias A–Z num só sítio.** Comparação: o menu A–Z tinha 40 temas (39 patologias + «Doença
+  cerebrovascular (AVC)», que está no grupo AVC) e a página de alarmes mostrava 38, porque «Territórios arteriais e
+  síndromes de AVC» não tinha secção de alarme e o tema AVC aparece na Clínica. Acrescentada a secção «Sinais de alarme» aos
+  Territórios arteriais (circulação posterior/basilar, cerebelo, edema maligno da ACM, novo défice, aspiração e respiração
+  nas lesões do tronco): as 40 patologias A–Z têm agora sinais de alarme.
+- A página «Sinais de alarme» deixa de repetir as Patologias A–Z (ficam só no menu, dentro de cada patologia, com a secção
+  de alarme sempre em primeiro); uma nota com ligação leva às Patologias A–Z. As «Precauções com fármacos» mantêm-se.
+
 ## Versão 27 — 24/11/2026
 - **Vasculites do sistema nervoso central** aprofundadas, com os agentes médico e de enfermagem: a secção «Formas a
   conhecer» deu lugar a um **quadro comparativo** das cinco formas (quem e contexto, clínica típica, exames, o que a
