@@ -1,5 +1,27 @@
 # Registo de alterações — NeuroEnf
 
+## Versão 29 — 24/11/2026
+Correções da avaliação dos agentes médico e de enfermagem (blocos A e B).
+- **GUSS**: etapa 2 com água espessada **IDDSI nível 4** (extremamente espessa, tipo pudim), e não nível 3.
+- **Andexanet alfa**: benefício incerto e risco trombótico; só em situações selecionadas, conforme protocolo (ESO 2025);
+  alerta de vigilância de eventos trombóticos após a reversão. No AVC hemorrágico, CCP passa a primeira opção.
+- **Sigla «HIC»** usada só para hipertensão intracraniana; hemorragia intracerebral por extenso.
+- **Contagem respiratória** igual em todos os temas (miastenia, SGB, neuropatias, ELA, AME, botulismo): numa só expiração,
+  cerca de 1 número por segundo; menos de 20 é alarme.
+- **TA na hemorragia intracerebral** atualizada (PAS < 140 nas primeiras horas, sem descidas > 70 mmHg; alvo individual nos
+  hematomas > 30 mL, PAS > 220 ou cirurgia).
+- **Punção lombar**: frequência de vigilância e nova secção «Sinais de alarme após punção lombar» (hematoma espinhal,
+  infeção, herniação).
+- **Disreflexia autonómica** (Eliminação): sentar só com coluna estável e TA a cada 2–5 min.
+- **Domperidona**: risco de prolongamento do QT nos temas Doenças do movimento e DCL e na ficha.
+- **Wernicke**: retiradas as doses de tiamina (segundo a prescrição e o protocolo).
+- Harmonização: pós-trombólise «nas 24 h» na ficha da alteplase; ficha da tenecteplase com a apresentação de 25 mg e a
+  incompatibilidade com soros glicosados; oxigénio na crise «se SpO2 baixa» e chamar o médico aos 5 min nos dois temas de
+  epilepsia; antipsicóticos atípicos a evitar também no Parkinson e nos parkinsonismos atípicos; ligação corrigida para
+  «Esclerose múltipla, neuromielite ótica e ADEM».
+- Terminologia uniformizada: EV (em vez de IV), síndrome neuroléptica maligna, atrofia multissistémica, pós-crítico,
+  sudação, hemiparesia, verapamilo, infeciosas.
+
 ## Versão 28 — 24/11/2026
 - **Sinais de alarme e Patologias A–Z num só sítio.** Comparação: o menu A–Z tinha 40 temas (39 patologias + «Doença
   cerebrovascular (AVC)», que está no grupo AVC) e a página de alarmes mostrava 38, porque «Territórios arteriais e

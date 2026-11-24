@@ -71,7 +71,7 @@ const TEMAS = [
       cab: ["Par", "Como avaliar à cabeceira"],
       lin: [
         ["II — ótico", "Acuidade, campos visuais por confrontação, reflexo fotomotor (via aferente)"],
-        ["III, IV, VI — oculomotores", "Seguir o dedo em «H»; diplopia; ptose e midríase sugerem lesão do III"],
+        ["III, EV, VI — oculomotores", "Seguir o dedo em «H»; diplopia; ptose e midríase sugerem lesão do III"],
         ["V — trigémio", "Sensibilidade da face; reflexo corneano; mastigação"],
         ["VII — facial", "Franzir a testa, fechar os olhos, sorrir. Central: poupa a testa. Periférico: atinge toda a hemiface"],
         ["VIII — vestibulococlear", "Audição; vertigem, nistagmo"],
@@ -150,7 +150,7 @@ const TEMAS = [
       "Antes: confirmar consentimento, coagulação e plaquetas, medicação anticoagulante/antiagregante (seguir protocolo), e se foi feita imagem quando há défice focal, alteração da consciência ou suspeita de hipertensão intracraniana.",
       "Posicionamento: decúbito lateral em posição fetal (permite medir a pressão de abertura) ou sentado inclinado para a frente.",
       "Identificar e numerar os tubos por ordem de colheita; enviar de imediato ao laboratório (células degradam-se).",
-      "Após: vigiar local da punção, dor lombar, sinais neurológicos nos membros inferiores e retenção urinária. O repouso prolongado no leito não previne a cefaleia pós-punção — seguir o protocolo do serviço para o levante.",
+      "Após: vigiar o local da punção, a cefaleia, a dor lombar, a força e a sensibilidade dos membros inferiores e a micção (pelo menos de 4 em 4 h nas primeiras 24 h, ou conforme protocolo; mais vezes se anticoagulado ou com plaquetas baixas). O repouso prolongado no leito não previne a cefaleia pós-punção — seguir o protocolo do serviço para o levante.",
       "Cefaleia pós-punção: agrava em pé e alivia deitado; pode surgir até alguns dias depois. Comunicar; hidratação e analgesia conforme prescrição."
     ]},
     { t: "LCR — valores de referência no adulto (orientativos)", tabela: {
@@ -176,6 +176,11 @@ const TEMAS = [
       "Informar o técnico/médico sobre anticoagulação, pacemaker/CDI e linfedema.",
       "Explicar que causa algum desconforto (choques breves e agulha).",
       "Após: vigiar pequenos hematomas nos locais de agulha."
+    ]},
+    { t: "Sinais de alarme após punção lombar", alarme: true, itens: [
+      "Dor lombar intensa e crescente, fraqueza ou dormência das pernas, anestesia «em sela» ou retenção urinária, sobretudo se anticoagulado ou com plaquetas baixas: possível hematoma espinhal — comunicar de imediato (RM urgente; a descompressão é urgente).",
+      "Febre, rigidez da nuca ou cefaleia que muda de padrão (já não melhora deitado): possível infeção — comunicar.",
+      "Sonolência, vómitos, anisocoria ou novo défice após a punção: comunicar de imediato (possível herniação, sobretudo se havia hipertensão intracraniana)."
     ]}
   ]
 },
@@ -257,7 +262,7 @@ const TEMAS = [
       "Via aérea, ventilação, circulação. Glasgow ≤ 8: risco para a via aérea — chamar ajuda.",
       "Glicemia capilar imediata.",
       "Pupilas, movimentos oculares, padrão respiratório, postura motora.",
-      "Na suspeita de défice nutricional/alcoolismo: administrar tiamina IV conforme prescrição. Se houver hipoglicemia, NUNCA atrasar a glicose — dar a tiamina em simultâneo ou logo a seguir.",
+      "Na suspeita de défice nutricional/alcoolismo: administrar tiamina EV conforme prescrição. Se houver hipoglicemia, NUNCA atrasar a glicose — dar a tiamina em simultâneo ou logo a seguir.",
       "Pupilas mióticas e respiração lenta: pensar em opioides. Assimetrias apontam para lesão estrutural; quadro simétrico sugere causa tóxico-metabólica."
     ]},
     { t: "Cuidados ao doente inconsciente", itens: [
@@ -293,7 +298,7 @@ const TEMAS = [
       "Ativar Via Verde AVC conforme protocolo; NIHSS (ver Escalas).",
       "Dois acessos venosos, colheitas, ECG; evitar punções arteriais e injeções IM se candidato a trombólise.",
       "Jejum absoluto (incluindo água e medicação oral) até rastreio de disfagia por enfermeiro treinado, com o instrumento do serviço (ex.: GUSS), nas primeiras horas após a admissão. Se não passar: manter jejum, pedir via alternativa para a medicação e avaliação por terapia da fala; repetir o rastreio a cada 24 h ou se houver melhoria. Registar o resultado e a consistência prescrita (ver «Disfagia e alimentação segura»).",
-      "Trombólise IV (alteplase ou tenecteplase): até 4,5 h após o início/última vez visto bem; entre 4,5 e 9 h, ou AVC ao acordar/início desconhecido, só com seleção por imagem avançada. TA antes < 185/110 mmHg; durante e nas 24 h seguintes < 180/105 mmHg.",
+      "Trombólise EV (alteplase ou tenecteplase): até 4,5 h após o início/última vez visto bem; entre 4,5 e 9 h, ou AVC ao acordar/início desconhecido, só com seleção por imagem avançada. TA antes < 185/110 mmHg; durante e nas 24 h seguintes < 180/105 mmHg.",
       "Sem trombólise nem trombectomia: não baixar a TA por rotina — tratar só se > 220/120 mmHg (descida gradual) ou por outra indicação médica. Após trombectomia: manter < 180/105 mmHg, mas não descer a PAS abaixo de 140 mmHg salvo prescrição.",
       "Trombectomia: oclusão de grande vaso — até 6 h na circulação anterior e 6–24 h com seleção por imagem; oclusão basilar até 24 h. Não atrasar a trombólise à espera da trombectomia.",
       "Glicemia e temperatura: tratar hiperglicemia e febre (pioram o prognóstico)."
@@ -393,10 +398,10 @@ const TEMAS = [
     { t: "Durante a crise", itens: [
       "Registar a hora de início. Ficar com o doente e pedir ajuda.",
       "Proteger a cabeça, afastar objetos, não conter os movimentos, não colocar nada na boca.",
-      "Após os movimentos: posição lateral de segurança, aspirar se necessário, oxigénio, SpO2, glicemia capilar.",
+      "Após os movimentos: posição lateral de segurança, aspirar se necessário, SpO2 e oxigénio se SpO2 baixa, glicemia capilar. Crise com 5 minutos ou mais: chamar o médico (estado de mal) — cronometrar desde o início.",
       "Observar e registar: o que fazia, primeiros sinais, desvio dos olhos/cabeça, lado afetado, automatismos, duração, incontinência, mordedura lateral da língua."
     ]},
-    { t: "Após a crise (pós-ictal)", itens: [
+    { t: "Após a crise (pós-crítico)", itens: [
       "Confusão, sonolência, cefaleia; pode haver défice transitório (parésia de Todd).",
       "Vigilância neurológica até recuperação do estado prévio.",
       "Nada por boca até recuperar totalmente a consciência e a deglutição.",
@@ -413,7 +418,7 @@ const TEMAS = [
     ]},
     { t: "Sinais de alarme — estado de mal epilético", alarme: true, itens: [
       "Crise tónico-clónica ≥ 5 min (crise focal com alteração da consciência ≥ 10 min), ou crises repetidas sem recuperação do estado de consciência entre elas — é estado de mal: iniciar tratamento já.",
-      "Etapas (conforme protocolo): 0–5 min estabilizar (via aérea, O2, glicemia, acesso venoso); 5–20 min benzodiazepina, que pode ser repetida uma vez; 20–40 min antiepilético IV de 2.ª linha; se persistir, estado de mal refratário → anestesia e UCI. Registar a hora de cada fármaco.",
+      "Etapas (conforme protocolo): 0–5 min estabilizar (via aérea, O2, glicemia, acesso venoso); 5–20 min benzodiazepina, que pode ser repetida uma vez; 20–40 min antiepilético EV de 2.ª linha; se persistir, estado de mal refratário → anestesia e UCI. Registar a hora de cada fármaco.",
       "Doente que não recupera a consciência após a crise: pensar em estado de mal não convulsivo (pedir EEG)."
     ]}
   ]
@@ -508,7 +513,7 @@ const TEMAS = [
     ]},
     { t: "Fármacos a evitar no parkinsonismo", tipo: "precaucao", itens: [
       "Antipsicóticos típicos (ex.: haloperidol) e também a maioria dos atípicos (ex.: risperidona, olanzapina), e antieméticos antidopaminérgicos (ex.: metoclopramida) — agravam muito os sintomas; na demência por corpos de Lewy podem causar reações graves.",
-      "Se necessário tratar agitação/psicose ou náuseas: pedir alternativa ao médico (habitualmente quetiapina ou clozapina; domperidona como antiemético).",
+      "Se necessário tratar agitação/psicose ou náuseas: pedir alternativa ao médico (habitualmente quetiapina ou clozapina; como antiemético, domperidona, que pode prolongar o QT — na dose e durante o tempo mínimos prescritos, com cautela nas cardiopatias e nas interações).",
       "Suspensão abrupta da medicação: risco de síndrome de hiperpirexia-parkinsonismo (febre, rigidez, alteração da consciência) — emergência."
     ]},
     { t: "Parkinsonismos atípicos e parkinsonismo secundário", itens: [
@@ -620,9 +625,9 @@ const TEMAS = [
     { t: "Sinais de alarme", alarme: true, itens: [
       "Parkinson sem medicação (jejum, disfagia, medicação em falta) ou suspensão abrupta: rigidez, febre e alteração da consciência — síndrome de hiperpirexia-parkinsonismo, emergência.",
       "Febre, rigidez, alteração da consciência e instabilidade autonómica após antipsicóticos ou outros bloqueadores da dopamina (ex.: metoclopramida, sulpirida): síndrome neuroléptica maligna — emergência.",
-      "Distonia aguda por fármacos (crise oculógira, torcicolo, contração da mandíbula ou da língua): comunicar de imediato — reverte habitualmente em minutos com anticolinérgico (ex.: biperideno) IV/IM conforme prescrição; não repetir o fármaco causal; a contração da laringe com estridor é rara mas ameaça a via aérea.",
+      "Distonia aguda por fármacos (crise oculógira, torcicolo, contração da mandíbula ou da língua): comunicar de imediato — reverte habitualmente em minutos com anticolinérgico (ex.: biperideno) EV/IM conforme prescrição; não repetir o fármaco causal; a contração da laringe com estridor é rara mas ameaça a via aérea.",
       "Distonia generalizada intensa e contínua, com dor, febre, taquicardia ou urina escura (estado distónico — risco de rabdomiólise e insuficiência respiratória): emergência.",
-      "Agitação, mioclonias, tremor, febre, sudorese e diarreia após fármacos serotoninérgicos: síndrome serotoninérgica.",
+      "Agitação, mioclonias, tremor, febre, sudação e diarreia após fármacos serotoninérgicos: síndrome serotoninérgica.",
       "Após toxina botulínica: dificuldade em engolir ou em respirar, voz fraca ou fraqueza generalizada — possível disseminação da toxina, comunicar de imediato.",
       "Estimulação cerebral profunda: agravamento súbito dos sintomas (estimulador parado — pode ser emergência, com rigidez, febre e alteração da consciência), sinais de infeção da ferida, ou ideias de morte ou de suicídio."
     ]}
@@ -687,11 +692,11 @@ const TEMAS = [
       "Outras formas: quadro tipo ADEM (mais em crianças), lesões do tronco cerebral, encefalite cortical com crises epiléticas e cefaleia.",
       "Evolução: ataque único ou doença com recaídas (cerca de metade dos doentes recai); as recaídas são mais prováveis quando os corticoides são reduzidos depressa.",
       "Diagnóstico: anticorpos anti-MOG no sangue (teste em células; um resultado positivo baixo só conta com achados clínicos ou de RM de apoio), RM do cérebro e da medula, avaliação oftalmológica, LCR; segue critérios internacionais (2023).",
-      "Tratamento do surto: corticoides IV em dose alta, depois corticoide oral com redução lenta conforme prescrição; plasmaférese ou imunoglobulina nos casos graves.",
+      "Tratamento do surto: corticoides EV em dose alta, depois corticoide oral com redução lenta conforme prescrição; plasmaférese ou imunoglobulina nos casos graves.",
       "Prevenção de recaídas (quando indicada): imunoglobulina periódica, azatioprina, micofenolato, rituximab ou tocilizumab, conforme prescrição. Os fármacos modificadores da EM não mostraram reduzir as recaídas nesta doença — o diagnóstico correto muda o tratamento.",
       "Enfermagem: avaliação seriada da acuidade visual e da dor ocular; vigiar retenção urinária (resíduo pós-miccional) e obstipação; precauções para crises na forma cortical; ensino para cumprir o desmame lento do corticoide e reconhecer uma recaída (visão, força, sensibilidade, bexiga) e contactar logo a equipa — o tratamento precoce associa-se a melhor recuperação visual."
     ]},
-    { t: "Pulsos de corticoide IV — cuidados", itens: [
+    { t: "Pulsos de corticoide EV — cuidados", itens: [
       "Vigiar glicemia (mesmo em não diabéticos), TA, sono, humor/agitação, sabor metálico, dor epigástrica.",
       "Proteção gástrica e outras medidas conforme prescrição; despiste de infeção antes de iniciar.",
       "Plasmaférese em surtos graves sem resposta: cuidados com acesso venoso central, hipocalcemia, hipotensão."
@@ -739,9 +744,9 @@ const TEMAS = [
     ]},
     { t: "Síndrome de Guillain-Barré", itens: [
       "Fraqueza ascendente simétrica em dias, reflexos diminuídos/abolidos, parestesias, dor; frequentemente após infeção.",
-      "Vigiar de forma seriada (frequência prescrita, mais apertada na fase de progressão): capacidade vital forçada se disponível, força da tosse, contagem numa expiração (inspirar fundo e contar em voz alta a ritmo regular — registar o número para ver a tendência), força cervical e deglutição. SpO2 baixa é sinal tardio.",
+      "Vigiar de forma seriada (frequência prescrita, mais apertada na fase de progressão): capacidade vital forçada se disponível, força da tosse, contagem numa só expiração (inspirar fundo e contar em voz alta, cerca de 1 número por segundo, sem voltar a respirar; registar o número e a tendência), força cervical e deglutição. SpO2 baixa é sinal tardio.",
       "Disautonomia: arritmias, TA muito variável, retenção urinária, íleo — monitorização cardíaca.",
-      "Imunoglobulina IV ou plasmaférese conforme prescrição (vigiar reações à perfusão, função renal, hipotensão).",
+      "Imunoglobulina EV ou plasmaférese conforme prescrição (vigiar reações à perfusão, função renal, hipotensão).",
       "Prevenção de TVP, úlceras por pressão, disfagia/aspiração; controlo da dor; apoio psicológico (doente consciente e muito dependente)."
     ]},
     { t: "Cuidados gerais", itens: [
@@ -767,24 +772,24 @@ const TEMAS = [
       "Ptose, diplopia, disartria, disfagia, fraqueza cervical e proximal dos membros.",
       "Inibidores da colinesterase (ex.: piridostigmina): administrar a horas exatas, idealmente 30–60 min antes das refeições para facilitar a deglutição.",
       "Tratamento imunossupressor/timectomia conforme indicação; imunoglobulina ou plasmaférese nas crises.",
-      "Vigilância seriada: ptose, voz, deglutição, força cervical e contagem numa expiração (ou capacidade vital, se prescrita), registando a tendência. Planear refeições e atividades para as horas de melhor efeito da medicação."
+      "Vigilância seriada: ptose, voz, deglutição, força cervical e contagem numa só expiração (inspirar fundo e contar em voz alta, cerca de 1 número por segundo, sem voltar a respirar; registar o número e a tendência) (ou capacidade vital, se prescrita), registando a tendência. Planear refeições e atividades para as horas de melhor efeito da medicação."
     ]},
     { t: "Crise miasténica vs crise colinérgica", tabela: {
       cab: ["", "Crise miasténica", "Crise colinérgica (excesso de medicação)"],
       lin: [
         ["Causa", "Infeção, cirurgia, fármacos, redução da medicação", "Doses elevadas de anticolinesterásico"],
-        ["Sinais", "Fraqueza, ptose, disfagia, insuficiência respiratória", "Fraqueza + secreções abundantes, sudorese, cólicas, diarreia, bradicardia, miose, fasciculações"]
+        ["Sinais", "Fraqueza, ptose, disfagia, insuficiência respiratória", "Fraqueza + secreções abundantes, sudação, cólicas, diarreia, bradicardia, miose, fasciculações"]
       ],
       nota: "Ambas podem causar insuficiência respiratória — vigilância respiratória como no Guillain-Barré (regra 20/30/40). A crise colinérgica é rara com doses habituais; perante fraqueza respiratória, a prioridade é a via aérea, seja qual for o tipo de crise."
     }},
     { t: "Sinais de alarme — crise miasténica", alarme: true, itens: [
       "Fraqueza cervical crescente (não levanta a cabeça da almofada), voz anasalada ou a apagar-se, disfagia nova, tosse fraca.",
-      "Dispneia sobretudo deitado, uso de músculos acessórios, contagem numa expiração a diminuir — a SpO2 baixa é sinal tardio.",
+      "Dispneia sobretudo deitado, uso de músculos acessórios, contagem numa só expiração a diminuir (abaixo de 20 é alarme) — a SpO2 baixa é sinal tardio.",
       "Atuar: cabeceira elevada, nada por boca se disfagia, chamar o médico de imediato, preparar vigilância respiratória/UCI."
     ]},
     { t: "Fármacos que podem agravar a miastenia", tipo: "precaucao", itens: [
       "Antibióticos: aminoglicosídeos, fluoroquinolonas, macrólidos.",
-      "Magnésio IV, bloqueadores neuromusculares, betabloqueantes, alguns antiarrítmicos (ex.: procainamida, quinidina), quinino e hidroxicloroquina, toxina botulínica, D-penicilamina, inibidores de checkpoint imunitário, contraste iodado (raro).",
+      "Magnésio EV, bloqueadores neuromusculares, betabloqueantes, alguns antiarrítmicos (ex.: procainamida, quinidina), quinino e hidroxicloroquina, toxina botulínica, D-penicilamina, inibidores de checkpoint imunitário, contraste iodado (raro).",
       "Início de corticoide em dose alta pode agravar transitoriamente a fraqueza nos primeiros dias — reforçar a vigilância respiratória e da deglutição.",
       "Confirmar sempre com o médico/farmacêutico antes de administrar fármacos novos."
     ]},
@@ -839,12 +844,12 @@ const TEMAS = [
       "Hiponatremia: confusão, crises; sintomas graves (vómitos, sonolência, convulsões) são emergência (soro salino hipertónico, por prescrição). A correção demasiado rápida pode causar síndrome de desmielinização osmótica: habitualmente não ultrapassar 10 mmol/L nas primeiras 24 h e 8 mmol/L em cada 24 h seguintes (≤ 8 mmol/L/24 h nos doentes de risco: álcool, desnutrição, hipocaliemia, doença hepática, Na inicial muito baixo). Um aumento súbito da diurese (urina clara e abundante) pode indicar sobrecorreção — comunicar.",
       "Encefalopatia hepática: confusão, inversão sono-vigília, asterixis («flapping»); precipitantes: obstipação, hemorragia digestiva, infeção, sedativos.",
       "Encefalopatia urémica e encefalopatia associada à sépsis.",
-      "Encefalopatia de Wernicke (défice de tiamina): confusão, alterações oculomotoras, ataxia (a tríade completa é rara — basta a suspeita). Doentes de risco: álcool, desnutrição, vómitos prolongados, cirurgia bariátrica. Tiamina IV precoce conforme prescrição; a hipoglicemia corrige-se de imediato, sem esperar pela tiamina.",
+      "Encefalopatia de Wernicke (défice de tiamina): confusão, alterações oculomotoras, ataxia (a tríade completa é rara — basta a suspeita). Doentes de risco: álcool, desnutrição, vómitos prolongados, cirurgia bariátrica. Tiamina EV precoce conforme prescrição; a hipoglicemia corrige-se de imediato, sem esperar pela tiamina.",
       "Défice de vitamina B12: neuropatia, alterações da marcha (degenerescência combinada da medula), défice cognitivo.",
       "Disfunção tiroideia: alterações cognitivas, miopatia, neuropatia."
     ]},
     { t: "Álcool", itens: [
-      "Síndrome de abstinência: tremor, sudorese, ansiedade, taquicardia — monitorizar com escala (ex.: CIWA-Ar) conforme protocolo.",
+      "Síndrome de abstinência: tremor, sudação, ansiedade, taquicardia — monitorizar com escala (ex.: CIWA-Ar) conforme protocolo.",
       "Delirium tremens: confusão, alucinações, instabilidade autonómica — emergência.",
       "Crises de abstinência, neuropatia, degenerescência cerebelosa."
     ]},
@@ -978,7 +983,7 @@ const TEMAS = [
       "Registar o que se observa com exemplos concretos (ex.: «diz “ganela” por janela; cumpre ordens simples, não as complexas»), e não apenas «afásico» — permite comparar ao longo do turno e entre turnos."
     ]},
     { t: "Tipos de afasia — orientação rápida", aviso: "Classificação de orientação: na prática os quadros são muitas vezes mistos. A avaliação detalhada é feita pela terapia da fala.", itens: [
-      "Broca (de expressão): não fluente, compreensão relativamente preservada, repetição alterada. Fala com esforço, frases curtas, agramatismo; o doente percebe as dificuldades e frustra-se; muitas vezes com hemiparésia direita.",
+      "Broca (de expressão): não fluente, compreensão relativamente preservada, repetição alterada. Fala com esforço, frases curtas, agramatismo; o doente percebe as dificuldades e frustra-se; muitas vezes com hemiparesia direita.",
       "Wernicke (de compreensão): fluente, compreensão muito alterada, repetição alterada. Muitas parafasias e neologismos, jargão; pouca consciência do défice — pode parecer confuso ou «psiquiátrico». Muitas vezes não há fraqueza (pode haver só defeito do campo visual direito): a ausência de défice motor não exclui AVC.",
       "Global: não fluente, compreensão e repetição muito alteradas. Lesão extensa (ex.: oclusão da artéria cerebral média esquerda); comunicação muito limitada.",
       "De condução: fluente, compreensão preservada, repetição muito alterada. Parafasias fonémicas; o doente tenta corrigir-se.",
@@ -1133,7 +1138,7 @@ const TEMAS = [
       "Produtos de apoio (cadeira sanitária, elevador de sanita, urinol) e articulação com o centro de saúde."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Disreflexia autonómica (lesão medular a nível de T6 ou acima): subida súbita da TA, cefaleia intensa, rubor e sudorese acima da lesão, bradicardia. Sentar o doente com as pernas para baixo, desapertar roupa e meias, verificar algália (dobrada ou obstruída), bexiga cheia ou fecaloma, chamar o médico.",
+      "Disreflexia autonómica (lesão medular a nível de T6 ou acima): subida súbita da TA, cefaleia intensa, rubor e sudação acima da lesão, bradicardia. Sentar o doente com as pernas para baixo (se a coluna estiver estável), desapertar roupa e meias, verificar algália (dobrada ou obstruída), bexiga cheia ou fecaloma, medir a TA a cada 2–5 minutos e chamar o médico.",
       "Retenção urinária nova com dor lombar, fraqueza dos membros inferiores ou anestesia em sela: suspeitar de compressão medular ou cauda equina — urgência.",
       "Distensão abdominal, vómitos, ausência de dejeções e gases: suspeitar de íleo (Guillain-Barré, disautonomia) ou oclusão.",
       "Febre com confusão e urina turva: suspeitar de urossepsis."
@@ -1154,7 +1159,7 @@ const TEMAS = [
     ]},
     { t: "Respiração — vigiar", itens: [
       "Sinais precoces de hipoventilação: falta de ar deitado (ortopneia), sono fragmentado, cefaleia matinal, sonolência diurna, cansaço, tosse fraca.",
-      "Registar a capacidade vital e/ou a contagem numa expiração conforme prescrição, para comparar a tendência.",
+      "Registar a capacidade vital e/ou a contagem numa só expiração conforme prescrição, para comparar a tendência.",
       "Cabeceira elevada; técnicas de tosse assistida e insuflador-exsuflador mecânico se prescrito.",
       "Oxigénio: no doente que hipoventila, o oxigénio sem ventilação pode agravar a retenção de CO2 — cumprir o alvo de SpO2 prescrito (gasimetria)."
     ]},
@@ -1230,7 +1235,7 @@ const TEMAS = [
     { t: "Sinais de alarme", alarme: true, itens: [
       "Ataxia de instalação súbita (horas), com cefaleia, vómitos, vertigem ou alteração da consciência: pensar em AVC ou hemorragia cerebelosa — emergência (risco de compressão do tronco e hidrocefalia).",
       "Engasgamento frequente, febre ou dessaturação: suspeitar de aspiração.",
-      "Ataxia com confusão e alteração dos movimentos oculares em doente com consumo de álcool, desnutrição ou vómitos prolongados: possível encefalopatia de Wernicke — comunicar de imediato; tiamina IV precoce conforme prescrição (ver «Manifestações neurológicas nas doenças sistémicas»)."
+      "Ataxia com confusão e alteração dos movimentos oculares em doente com consumo de álcool, desnutrição ou vómitos prolongados: possível encefalopatia de Wernicke — comunicar de imediato; tiamina EV precoce conforme prescrição (ver «Manifestações neurológicas nas doenças sistémicas»)."
     ]}
   ]
 },
@@ -1258,7 +1263,7 @@ const TEMAS = [
       "Punção lombar: posicionamento adaptado às contraturas e à escoliose; após o procedimento, vigiar cefaleia pós-punção, dor lombar, vómitos e o local de punção (ver «Exames complementares»).",
       "Comunicar sonolência ou alteração da consciência em doente tratado com nusinersen (foram descritos casos de hidrocefalia).",
       "Risdiplam: horário diário fixo; ensinar a conservação e a preparação da forma prescrita; contraceção e planeamento de gravidez com a equipa médica.",
-      "Vigilância respiratória (contagem numa expiração, tosse, sinais de hipoventilação noturna) e da deglutição.",
+      "Vigilância respiratória (contagem numa só expiração, tosse, sinais de hipoventilação noturna) e da deglutição.",
       "Transferências seguras com produtos de apoio; prevenção de úlceras por pressão e de quedas; respeitar a autonomia e a forma como a pessoa costuma ser posicionada."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
@@ -1296,7 +1301,7 @@ const TEMAS = [
     ]},
     { t: "Cuidados de enfermagem", itens: [
       "Colheitas conforme prescrição e orientação do laboratório: soro obrigatoriamente antes da antitoxina; fezes (se houver obstipação, pedir orientação, porque pode ser preciso enema com água estéril), vómito ou aspirado gástrico; na forma por ferida, amostra da ferida. Guardar os restos do alimento suspeito com a embalagem, refrigerados. Não atrasar a antitoxina por causa das colheitas.",
-      "Vigilância respiratória seriada como no Guillain-Barré (contagem numa expiração, força da tosse, força cervical, capacidade vital se prescrita).",
+      "Vigilância respiratória seriada como no Guillain-Barré (contagem numa só expiração, força da tosse, força cervical, capacidade vital se prescrita).",
       "Nada por boca até avaliação da deglutição; aspiração de secreções; cabeceira elevada.",
       "Antitoxina (de origem equina): perguntar por alergia a cavalos, asma ou soros equinos administrados antes; acesso venoso, monitorização durante e após a perfusão, adrenalina e material de anafilaxia preparados. Ensinar o doente e a família a reconhecer a doença do soro (febre, erupção, dores articulares e musculares), que surge habitualmente 10 a 21 dias depois, muitas vezes já após a alta.",
       "Fármacos que podem agravar o bloqueio neuromuscular (ex.: aminoglicosídeos, clindamicina, tetraciclinas, magnésio, bloqueadores neuromusculares): alertar o médico antes de administrar.",
@@ -1421,7 +1426,7 @@ const TEMAS = [
     { t: "Sinais de alarme", alarme: true, itens: [
       "Ideação ou comportamento suicida: não deixar sozinho, comunicar de imediato.",
       "Perda de peso rápida, engasgamento frequente, febre: risco de desnutrição e aspiração.",
-      "Sonolência excessiva, rigidez nova ou febre após iniciar/ajustar antipsicóticos (possível síndrome maligna dos neurolépticos)."
+      "Sonolência excessiva, rigidez nova ou febre após iniciar/ajustar antipsicóticos (possível síndrome neuroléptica maligna)."
     ]}
   ]
 },
@@ -1505,7 +1510,7 @@ const TEMAS = [
     { t: "Tratamentos imunológicos — cuidados de enfermagem", itens: [
       "Antes de iniciar imunossupressão: confirmar os rastreios pedidos (hepatites B e C, VIH, tuberculose latente, varicela-zóster; teste de gravidez se aplicável) e a situação vacinal; as vacinas devem idealmente ser feitas semanas antes de iniciar; vacinas vivas estão contraindicadas durante o tratamento e algum tempo depois — confirmar com o médico.",
       "Corticoides (pulsos ou orais): glicemia, TA, sono, humor, proteção gástrica e óssea conforme prescrição; após tratamento prolongado, desmame conforme prescrição — nunca suspender bruscamente. Na miastenia, o início em dose alta pode agravar transitoriamente a fraqueza — vigiar deglutição e respiração.",
-      "Imunoglobulina IV: ritmo de perfusão crescente conforme protocolo; vigiar febre, arrepios, cefaleia, rubor, hipotensão; hidratação; atenção, até 2–3 dias depois, a cefaleia intensa com rigidez da nuca (meningite assética); sinais de trombose (défice neurológico novo, dor torácica, dor ou edema de um membro), com maior risco em idosos e doentes imobilizados; função renal e débito urinário; urina escura ou anemia (hemólise); dispneia.",
+      "Imunoglobulina EV: ritmo de perfusão crescente conforme protocolo; vigiar febre, arrepios, cefaleia, rubor, hipotensão; hidratação; atenção, até 2–3 dias depois, a cefaleia intensa com rigidez da nuca (meningite assética); sinais de trombose (défice neurológico novo, dor torácica, dor ou edema de um membro), com maior risco em idosos e doentes imobilizados; função renal e débito urinário; urina escura ou anemia (hemólise); dispneia.",
       "Plasmaférese: cuidados ao cateter venoso central; vigiar hipotensão e sinais de hipocalcemia (formigueiros à volta da boca e nos dedos, cãibras); alguns fármacos são removidos (incluindo imunoglobulina e anticorpos monoclonais) — confirmar o horário das tomas em relação à sessão. Os IECA são habitualmente suspensos 24–48 h antes (risco de hipotensão grave e rubor) — confirmar com o médico. Vigiar hemorragia (perda de fatores da coagulação, sobretudo com sessões em dias seguidos).",
       "Anticorpos monoclonais (ex.: rituximab, ocrelizumab, natalizumab, inibidores do complemento, inibidores do recetor FcRn): pré-medicação e vigilância durante e após a perfusão conforme protocolo.",
       "Inibidores do complemento (ex.: eculizumab, ravulizumab, zilucoplan): vacinação contra o meningococo (ACWY e B) pelo menos 2 semanas antes de iniciar; se for preciso iniciar antes, profilaxia antibiótica conforme prescrição até 2 semanas após a vacina. A vacina não elimina o risco. Entregar cartão de alerta — febre ou cefaleia intensa são urgência, mesmo em doente vacinado.",
@@ -1548,11 +1553,11 @@ const TEMAS = [
     ]},
     { t: "Diagnóstico e tratamento (visão geral)", itens: [
       "LCR, RM, EEG, pesquisa de anticorpos no sangue e no LCR, procura de tumor.",
-      "Imunoterapia precoce: corticoides, imunoglobulina IV e/ou plasmaférese; depois, nas formas graves, outros imunossupressores; remoção do tumor quando existe.",
+      "Imunoterapia precoce: corticoides, imunoglobulina EV e/ou plasmaférese; depois, nas formas graves, outros imunossupressores; remoção do tumor quando existe.",
       "A recuperação pode ser lenta (meses) e exige reabilitação."
     ]},
     { t: "Cuidados de enfermagem", itens: [
-      "Segurança: agitação, alucinações e crises — ambiente calmo, vigilância próxima, cama baixa; contenção só como último recurso. Os antipsicóticos podem agravar o quadro (rigidez, febre, instabilidade autonómica, semelhante à síndrome maligna dos neurolépticos) — se prescritos, vigiar temperatura, rigidez e CK.",
+      "Segurança: agitação, alucinações e crises — ambiente calmo, vigilância próxima, cama baixa; contenção só como último recurso. Os antipsicóticos podem agravar o quadro (rigidez, febre, instabilidade autonómica, semelhante à síndrome neuroléptica maligna) — se prescritos, vigiar temperatura, rigidez e CK.",
       "Registo das crises e dos movimentos anómalos (hora, duração, descrição; vídeo se o protocolo permitir).",
       "Vigilância autonómica: FC, TA, temperatura, respiração; balanço hídrico e natremia (anti-LGI1).",
       "Cuidados durante imunoglobulina, plasmaférese e corticoides (ver temas respetivos).",
@@ -1577,7 +1582,7 @@ const TEMAS = [
         ["Grau I", "Alterações subtis da atenção e do cálculo, inversão do ritmo sono-vigília, ansiedade ou euforia; o doente parece «quase normal»"],
         ["Grau II", "Sonolência, desorientação no tempo, comportamento inadequado, asterixis («flapping»)"],
         ["Grau III", "Muito sonolento mas responde a estímulos, confusão marcada, desorientação no espaço"],
-        ["Grau IV", "Coma"]
+        ["Grau EV", "Coma"]
       ],
       nota: "Registar o grau a cada avaliação para ver a tendência."
     }},
@@ -1931,14 +1936,14 @@ const TEMAS = [
   resumo: "Doenças que se parecem com a doença de Parkinson mas evoluem mais depressa, respondem pouco à levodopa e trazem cedo quedas, disfagia e disautonomia.",
   subtemas: [
     {nome: "Paralisia supranuclear progressiva (PSP)", procura: "Paralisia supranuclear progressiva"},
-    {nome: "Atrofia de múltiplos sistemas (AMS)", procura: "Atrofia de múltiplos sistemas"},
+    {nome: "Atrofia multissistémica (AMS)", procura: "Atrofia multissistémica"},
     {nome: "Degenerescência corticobasal", procura: "Degenerescência corticobasal"},
     {nome: "Demência por corpos de Lewy (DCL)", tema: "dcl"}
   ],
   seccoes: [
     { t: "Principais formas", itens: [
       "Paralisia supranuclear progressiva (PSP): quedas precoces, sobretudo para trás; dificuldade em olhar para baixo; rigidez do pescoço; disartria e disfagia; alterações do comportamento.",
-      "Atrofia de múltiplos sistemas (AMS): disautonomia marcada (hipotensão ortostática grave, retenção ou incontinência urinária, disfunção sexual) com parkinsonismo e/ou ataxia; ressonar e estridor noturno; perturbação do comportamento do sono REM.",
+      "Atrofia multissistémica (AMS): disautonomia marcada (hipotensão ortostática grave, retenção ou incontinência urinária, disfunção sexual) com parkinsonismo e/ou ataxia; ressonar e estridor noturno; perturbação do comportamento do sono REM.",
       "Degenerescência corticobasal: sintomas muito assimétricos — rigidez e distonia de um membro, dificuldade em executar gestos (apraxia), mioclonias, por vezes o membro «parece não obedecer».",
       "Demência por corpos de Lewy: ver «Demência por corpos de Lewy (DCL)» no grupo Demências (A–Z) e o tema «Demências»."
     ]},
@@ -1953,7 +1958,7 @@ const TEMAS = [
       "Rastreio de disfagia e técnica segura; vigilância de aspiração.",
       "Vigilância vesical (resíduo pós-miccional) e intestinal.",
       "Comunicação e cognição: dar tempo; ambiente estruturado.",
-      "Os fármacos a evitar no Parkinson aplicam-se igualmente (antipsicóticos típicos, metoclopramida)."
+      "Os fármacos a evitar no Parkinson aplicam-se igualmente: antipsicóticos típicos (ex.: haloperidol) e a maioria dos atípicos (ex.: risperidona, olanzapina), metoclopramida e prometazina."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
       "Estridor respiratório (ruído agudo na inspiração), sobretudo noturno, na AMS: comunicar — risco de obstrução da via aérea.",
@@ -2166,7 +2171,7 @@ const TEMAS = [
       "Complicações, sobretudo nas 2 primeiras semanas: HSA da convexidade, PRES (ver «PRES — síndrome de encefalopatia posterior reversível»), hemorragia intracerebral, crises. A isquemia (AIT ou enfarte) surge mais tarde, sobretudo na 2.ª semana, por vezes quando a cefaleia já melhorou. A maioria recupera totalmente; as formas pós-parto podem ser mais graves.",
       "Exames: a primeira cefaleia em trovão obriga a excluir HSA aneurismática (TC e, se necessário, punção lombar) e outras causas (dissecção arterial, trombose venosa cerebral, apoplexia hipofisária). Angio-TC, angio-RM ou angiografia mostram estreitamentos e dilatações segmentares («em rosário»), que podem não aparecer nos primeiros dias — por isso repete-se o estudo. LCR normal ou quase normal.",
       "Diagnóstico: confirma-se pela normalização das artérias num estudo de controlo até 12 semanas após o início. A pontuação RCVS2 (cefaleias em trovão recorrentes, desencadeante vasoativo, sexo feminino, HSA; desconta se a carótida intracraniana estiver atingida) apoia o diagnóstico quando é 5 ou mais.",
-      "Tratamento: suspender o desencadeante, evitar esforços e manobras de Valsalva, analgesia, controlo da TA sem descidas bruscas, tratamento das crises. Bloqueadores dos canais de cálcio (ex.: nimodipina, verapamil) por decisão médica, com evidência limitada. Evitar triptanos e ergotamínicos.",
+      "Tratamento: suspender o desencadeante, evitar esforços e manobras de Valsalva, analgesia, controlo da TA sem descidas bruscas, tratamento das crises. Bloqueadores dos canais de cálcio (ex.: nimodipina, verapamilo) por decisão médica, com evidência limitada. Evitar triptanos e ergotamínicos.",
       "Os corticoides associam-se a agravamento clínico e radiológico: não iniciar corticoides empíricos «por suspeita de vasculite» sem discussão médica. A biópsia cerebral não está indicada."
     ]},
     { t: "Exames: preparação e cuidados", aviso: "Preparação, jejum e suspensão de antitrombóticos segundo o protocolo do hospital e a indicação médica.", itens: [
@@ -2189,7 +2194,7 @@ const TEMAS = [
       "Tocilizumab: baixa a febre e a PCR, por isso uma infeção pode dar só mal-estar, taquicardia, hipotensão ou confusão — avaliar o doente e não confiar só nos valores. Dor abdominal intensa ou persistente, ou alteração do trânsito com febre, pode ser diverticulite ou perfuração. Fazer as análises prescritas (neutrófilos, enzimas hepáticas).",
       "Aciclovir EV: em pelo menos 1 hora (nunca em bólus), com hidratação, diurese e creatinina (pode lesar o rim). Vigiar confusão ou alucinações, sobretudo em idosos e na insuficiência renal, e flebite. Penicilina G EV a horas rigorosas; nas primeiras 24 h pode surgir febre, arrepios, mialgias e hipotensão (reação de Jarisch-Herxheimer): comunicar, não é alergia.",
       "Antituberculosos: toma observada, conforme prescrição. A rifampicina cora a urina e as lágrimas de laranja e reduz o efeito de corticoides, contracetivos hormonais e anticoagulantes — confirmar ajustes com o médico. Vigiar icterícia e náuseas, formigueiros (isoniazida) e alterações da visão ou das cores (etambutol).",
-      "SVCR: não dar triptanos, ergotamínicos nem descongestionantes nasais. Confirmar com o médico qualquer fármaco vasoativo ou serotoninérgico e qualquer corticoide prescrito (podem agravar). Analgesia regular prescrita. Nimodipina ou verapamil, se prescritos: TA antes de cada toma e comunicar hipotensão (agrava a perfusão cerebral)."
+      "SVCR: não dar triptanos, ergotamínicos nem descongestionantes nasais. Confirmar com o médico qualquer fármaco vasoativo ou serotoninérgico e qualquer corticoide prescrito (podem agravar). Analgesia regular prescrita. Nimodipina ou verapamilo, se prescritos: TA antes de cada toma e comunicar hipotensão (agrava a perfusão cerebral)."
     ]},
     { t: "Cuidados de enfermagem", itens: [
       "Vigilância neurológica: Glasgow, pupilas, força (MRC), linguagem e NIHSS se houver défice. Registo de base na admissão e repetir com a frequência prescrita (pelo menos uma vez por turno). Um défice novo é um possível AVC: registar a hora e chamar o médico.",
@@ -2228,7 +2233,7 @@ const TEMAS = [
 {
   id: "angiopatia-amiloide", cap: null, parte: "p4", icone: "🩸",
   titulo: "Angiopatia amiloide cerebral", pags: null,
-  resumo: "Depósito de proteína amiloide (β-amiloide) nas paredes das pequenas artérias do córtex, que ficam frágeis. Principal causa de hemorragia lobar no idoso; também dá episódios neurológicos transitórios, siderose superficial e declínio cognitivo. Na enfermagem: vigilância como na HIC, reconhecer os episódios transitórios, prevenir quedas e rever os antitrombóticos.",
+  resumo: "Depósito de proteína amiloide (β-amiloide) nas paredes das pequenas artérias do córtex, que ficam frágeis. Principal causa de hemorragia lobar no idoso; também dá episódios neurológicos transitórios, siderose superficial e declínio cognitivo. Na enfermagem: vigilância como na hemorragia intracerebral, reconhecer os episódios transitórios, prevenir quedas e rever os antitrombóticos.",
   relacionados: ["avc-hemorragico", "avc", "demencias", "alzheimer", "territorios-arteriais"],
   seccoes: [
     { t: "O essencial", itens: [
@@ -2372,7 +2377,7 @@ const TEMAS = [
   relacionados: ["avc", "avc-isquemico", "angiopatia-amiloide", "hic", "territorios-arteriais"],
   seccoes: [
     { t: "O essencial", itens: [
-      "Hemorragia intracerebral (HIC): cerca de 10–15% dos AVC, com mortalidade mais alta do que o AVC isquémico. O hematoma pode crescer nas primeiras horas — é nesse período que os cuidados mais contam.",
+      "Hemorragia intracerebral: cerca de 10–15% dos AVC, com mortalidade mais alta do que o AVC isquémico. O hematoma pode crescer nas primeiras horas — é nesse período que os cuidados mais contam.",
       "Hemorragia subaracnoideia (HSA): sangue no espaço à volta do cérebro, na maioria dos casos por rotura de um aneurisma; doentes muitas vezes mais jovens.",
       "Os sinais focais são semelhantes aos do AVC isquémico; cefaleia intensa, vómitos e alteração precoce da consciência são mais frequentes. Só a imagem (TC) distingue."
     ]},
@@ -2388,8 +2393,8 @@ const TEMAS = [
       nota: "Escala ICH (gravidade): Glasgow, volume do hematoma ≥ 30 mL, sangue nos ventrículos, origem infratentorial e idade ≥ 80 anos."
     }},
     { t: "Hemorragia intracerebral: tratamento na fase aguda", aviso: "Decisões médicas segundo o protocolo do hospital; o papel da enfermagem é preparar, administrar sem atrasos, vigiar e registar as horas.", itens: [
-      "TA: baixar cedo (idealmente atingir o alvo na 1.ª hora) e de forma suave até ao alvo prescrito (habitualmente PAS < 140 mmHg; evitar descidas superiores a 70 mmHg em relação ao valor inicial, PAS < 130 mmHg e grandes oscilações). Medir com frequência — de 5 em 5 a 15 em 15 minutos durante o ajuste. Nos hematomas grandes ou com cirurgia prevista, cumprir o alvo individual prescrito.",
-      "Reverter a anticoagulação o mais cedo possível (idealmente na 1.ª hora): varfarina ou acenocumarol → complexo de protrombina (CCP) + vitamina K EV, com INR de controlo após o CCP; dabigatrano → idarucizumab; apixabano ou rivaroxabano → andexanet alfa ou CCP, conforme o protocolo; edoxabano → CCP (o andexanet não está aprovado na UE para o edoxabano); heparina não fracionada → protamina (nas heparinas de baixo peso molecular a reversão é só parcial). Registar a hora e a dose da última toma do anticoagulante.",
+      "TA: baixar cedo (idealmente atingir o alvo na 1.ª hora) e de forma suave até ao alvo prescrito (habitualmente PAS < 140 mmHg nas primeiras horas, idealmente na 1.ª hora e até às 6 h; evitar descidas superiores a 70 mmHg em relação ao valor inicial, descidas abaixo do limite inferior prescrito e grandes oscilações). Medir com frequência — de 5 em 5 a 15 em 15 minutos durante o ajuste. Nos hematomas grandes (mais de 30 mL), com PAS inicial muito elevada (acima de 220 mmHg) ou com cirurgia prevista, cumprir o alvo individual prescrito.",
+      "Reverter a anticoagulação o mais cedo possível (idealmente na 1.ª hora): varfarina ou acenocumarol → complexo de protrombina (CCP) + vitamina K EV, com INR de controlo após o CCP; dabigatrano → idarucizumab; apixabano ou rivaroxabano → CCP ou andexanet alfa, conforme o protocolo (o benefício do andexanet é incerto e há risco trombótico: a orientação europeia só sugere pondera-lo em situações selecionadas, com última toma e início dos sintomas recentes); edoxabano → CCP (o andexanet não está aprovado na UE para o edoxabano); heparina não fracionada → protamina (nas heparinas de baixo peso molecular a reversão é só parcial). Registar a hora e a dose da última toma do anticoagulante.",
       "Doentes antiagregados: a transfusão de plaquetas não está indicada por rotina (só em situações selecionadas, como antes de cirurgia).",
       "Controlar glicemia e temperatura; crises epiléticas tratam-se se ocorrerem (sem profilaxia por rotina).",
       "Prevenção de TVP: compressão pneumática intermitente desde a admissão; heparina profilática só quando prescrita (em regra após confirmação de que o hematoma estabilizou).",
@@ -2588,7 +2593,7 @@ const TEMAS = [
     ]},
     { t: "Quem está em risco", itens: [
       "Consumo excessivo de álcool (a causa mais frequente).",
-      "Desnutrição de qualquer causa: vómitos persistentes (incluindo hiperémese gravídica), jejum prolongado, anorexia nervosa, cancro, doenças infecciosas graves.",
+      "Desnutrição de qualquer causa: vómitos persistentes (incluindo hiperémese gravídica), jejum prolongado, anorexia nervosa, cancro, doenças infeciosas graves.",
       "Cirurgia bariátrica ou gastrointestinal, dificuldade em iniciar a alimentação no pós-operatório, nutrição parentérica sem vitaminas.",
       "Hemodiálise, diálise peritoneal e diarreia crónica (perdas de vitaminas).",
       "Início de alimentação ou de soros com glicose num doente desnutrido: pode precipitar ou agravar o quadro."
@@ -2607,7 +2612,7 @@ const TEMAS = [
       "Uma RM normal não exclui o diagnóstico."
     ]},
     { t: "Tratamento", aviso: "Doses e duração segundo a prescrição e o protocolo do hospital.", itens: [
-      "Tiamina EV em doses altas e o mais cedo possível (ex.: 200 mg 3 vezes por dia segundo a EFNS, ou 300–500 mg 3 vezes por dia em protocolos britânicos), durante pelo menos 3–5 dias e enquanto houver melhoria; depois passa a via oral, durante semanas.",
+      "Tiamina EV em dose alta e o mais cedo possível, segundo a prescrição e o protocolo do hospital, durante pelo menos 3–5 dias e enquanto houver melhoria; depois passa a via oral, durante semanas.",
       "A via oral não chega na fase aguda: a absorção intestinal é fraca, sobretudo no consumo de álcool.",
       "Glicose: num doente de risco, a tiamina deve ser dada antes ou ao mesmo tempo que soros com glicose ou o início da alimentação. Mas uma hipoglicemia corrige-se de imediato — nunca se atrasa a glicose à espera da tiamina.",
       "Corrigir o magnésio (necessário para a tiamina atuar), o potássio e o fósforo; tratar a abstinência alcoólica e a causa da desnutrição.",
@@ -2791,8 +2796,8 @@ const TEMAS = [
       "Hipotensão ortostática: medidas gerais e, se prescrito, midodrina ou fludrocortisona."
     ]},
     { t: "Sensibilidade grave aos antipsicóticos", tipo: "precaucao", itens: [
-      "Haloperidol e muitos outros antipsicóticos podem provocar rigidez grave, confusão, quedas, síndrome maligna dos neurolépticos e morte. Não administrar sem confirmação médica, mesmo em SOS para agitação.",
-      "Evitar a metoclopramida; para náuseas, usar a alternativa prescrita (ex.: domperidona).",
+      "Haloperidol e muitos outros antipsicóticos podem provocar rigidez grave, confusão, quedas, síndrome neuroléptica maligna e morte. Não administrar sem confirmação médica, mesmo em SOS para agitação.",
+      "Evitar a metoclopramida; para náuseas, usar a alternativa prescrita (ex.: domperidona, que pode prolongar o QT — na dose e durante o tempo mínimos prescritos, com cautela nas cardiopatias e nas interações).",
       "Benzodiazepinas e anticolinérgicos agravam a confusão e as quedas.",
       "Registar de forma visível no processo «sensibilidade a neurolépticos» e informar a equipa nas passagens de turno."
     ]},
@@ -2812,7 +2817,7 @@ const TEMAS = [
       "Segurança noturna (quarto e cama), levantar devagar, beber água e prevenir a obstipação."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Rigidez grave, febre, sudorese e alteração da consciência após um antipsicótico: suspeitar de síndrome maligna dos neurolépticos — comunicar de imediato.",
+      "Rigidez grave, febre, sudação e alteração da consciência após um antipsicótico: suspeitar de síndrome neuroléptica maligna — comunicar de imediato.",
       "Agravamento súbito da confusão ou da vigília, para além das flutuações habituais.",
       "Síncope ou quedas repetidas.",
       "Engasgamento, febre ou dessaturação (aspiração)."
@@ -2851,7 +2856,7 @@ const TEMAS = [
     { t: "Epilepsia refratária: avaliação pré-cirúrgica", itens: [
       "Epilepsia refratária (farmacorresistente): não se consegue uma ausência mantida de crises com dois esquemas de antiepiléticos (em monoterapia ou em associação) bem escolhidos, bem tolerados e em dose adequada.",
       "Nestes doentes avalia-se se há um foco epilético que possa ser tratado sem fármacos (ex.: cirurgia). Para o localizar, juntam-se vários exames.",
-      "Monitorização vídeo-EEG prolongada numa unidade de monitorização de epilepsia (em regra 24 horas a 2 semanas), muitas vezes com redução ou suspensão da medicação para registar crises. Durante a redução há maior risco de crises em salvas, estado de mal, quedas e psicose pós-ictal: vigilância contínua, acesso venoso periférico permeável, protocolo escrito de resgate e reintrodução da medicação no fim, conforme prescrição.",
+      "Monitorização vídeo-EEG prolongada numa unidade de monitorização de epilepsia (em regra 24 horas a 2 semanas), muitas vezes com redução ou suspensão da medicação para registar crises. Durante a redução há maior risco de crises em salvas, estado de mal, quedas e psicose pós-crítico: vigilância contínua, acesso venoso periférico permeável, protocolo escrito de resgate e reintrodução da medicação no fim, conforme prescrição.",
       "RM cerebral com protocolo de alta resolução (e, por vezes, RM funcional para mapear a fala e o movimento); PET (consumo de glicose); SPECT (fluxo de sangue); avaliação neuropsicológica.",
       "Quando estes exames não chegam (cerca de um terço dos casos): EEG intracraniano com elétrodos intracerebrais (estereo-EEG) ou subdurais."
     ]},
@@ -2870,7 +2875,7 @@ const TEMAS = [
     { t: "Durante a crise", itens: [
       "Manter a calma, registar a hora de início, ficar junto do doente e pedir ajuda.",
       "Proteger a cabeça, afastar objetos e desapertar a roupa; não conter os movimentos nem pôr nada na boca.",
-      "Quando os abalos param: posição lateral de segurança, aspirar secreções se necessário, oxigénio se SpO2 baixa e glicemia capilar. Nada pela boca até recuperar a consciência e a deglutição.",
+      "Quando os abalos param: posição lateral de segurança, aspirar secreções se necessário, SpO2 e oxigénio se SpO2 baixa, glicemia capilar. Nada pela boca até recuperar a consciência e a deglutição.",
       "Vigilância pós-crise: Glasgow, sinais vitais e SpO2 até o doente voltar ao estado basal; registar.",
       "Se durar 5 minutos ou mais, ou se houver crises seguidas sem recuperar: tratar como estado de mal (protocolo e médico de imediato).",
       "Registar: hora e duração, como começou (lado, desvio do olhar), tipo de movimentos, consciência, incontinência, mordedura da língua e recuperação."
@@ -2932,7 +2937,7 @@ const TEMAS = [
       "Dar a medicação antiparkinsónica no horário do doente, não no horário da enfermaria; não atrasar mais de 15 a 30 minutos.",
       "Nunca suspender de repente (risco de síndrome de hiperpirexia-parkinsonismo). Em jejum ou com disfagia, pedir ao médico uma alternativa (SNG, rotigotina transdérmica).",
       "Não triturar as formulações de libertação prolongada (levodopa de libertação prolongada, agonistas LP); por SNG, usar a formulação dispersível prescrita.",
-      "Evitar haloperidol e outros antipsicóticos típicos, metoclopramida e prometazina: agravam o parkinsonismo. Para náuseas, domperidona (prolonga o QT: na dose e durante o tempo mínimos prescritos); para alucinações, quetiapina ou clozapina por indicação médica.",
+      "Evitar haloperidol e outros antipsicóticos típicos, a maioria dos atípicos (ex.: risperidona, olanzapina), metoclopramida e prometazina: agravam o parkinsonismo. Para náuseas, domperidona (prolonga o QT: na dose e durante o tempo mínimos prescritos); para alucinações, quetiapina ou clozapina por indicação médica.",
       "Inibidores da MAO-B: há interações (ex.: tramadol, petidina, alguns antidepressivos) — confirmar com o médico ou o farmacêutico."
     ]},
     { t: "Cuidados de enfermagem", itens: [
@@ -2955,7 +2960,7 @@ const TEMAS = [
       "Associação de doentes (APDPk) e apoio ao cuidador."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Rigidez extrema, febre, sudorese e alteração da consciência após suspensão ou redução da medicação (síndrome de hiperpirexia-parkinsonismo): emergência.",
+      "Rigidez extrema, febre, sudação e alteração da consciência após suspensão ou redução da medicação (síndrome de hiperpirexia-parkinsonismo): emergência.",
       "Incapacidade de engolir a medicação: comunicar de imediato para encontrar uma via alternativa.",
       "Engasgamento, febre ou dessaturação (pneumonia de aspiração).",
       "Confusão aguda ou alucinações novas (procurar infeção, desidratação ou fármacos).",
@@ -3029,7 +3034,7 @@ const TEMAS = [
       "Doença inflamatória do SNC mediada por anticorpos, na maioria antiaquaporina-4 (anti-AQP4); mais frequente nas mulheres, sobretudo entre os 30 e os 50 anos.",
       "Evolui por surtos e cada surto pode deixar sequelas graves (cegueira, paraplegia): prevenir as recaídas é essencial.",
       "Associa-se por vezes a outras doenças autoimunes (lúpus, síndrome de Sjögren).",
-      "A doença associada ao anticorpo anti-MOG (MOGAD) é parecida mas distinta (ver «Esclerose múltipla, neuromielite ótica e outras doenças desmielinizantes»)."
+      "A doença associada ao anticorpo anti-MOG (MOGAD) é parecida mas distinta (ver «Esclerose múltipla, neuromielite ótica e ADEM»)."
     ]},
     { t: "Como se manifesta", itens: [
       "Nevrite ótica grave, por vezes dos dois olhos.",
@@ -3103,7 +3108,7 @@ const TEMAS = [
       "Confirmar sempre com o médico ou o farmacêutico antes de um fármaco novo; o doente deve ter consigo a lista de fármacos a evitar."
     ]},
     { t: "Cuidados de enfermagem", itens: [
-      "Avaliação respiratória pelo menos de 4 em 4 horas e sempre que houver queixas (mais vezes se prescrito): FR, SpO2, padrão respiratório e contagem em voz alta numa só inspiração; capacidade vital forçada conforme protocolo. Registar em tabela para ver a tendência — a descida da SpO2 é um sinal tardio.",
+      "Avaliação respiratória pelo menos de 4 em 4 horas e sempre que houver queixas (mais vezes se prescrito): FR, SpO2, padrão respiratório e contagem numa só expiração (inspirar fundo e contar em voz alta, cerca de 1 número por segundo, sem voltar a respirar; registar o número e a tendência); capacidade vital forçada conforme protocolo. Registar em tabela para ver a tendência — a descida da SpO2 é um sinal tardio.",
       "Cabeceira elevada; aspirador de secreções e material de ventilação prontos.",
       "Avaliar a deglutição antes das refeições e da medicação (GUSS); refeições no período de melhor força (30 a 60 minutos após a piridostigmina).",
       "Piridostigmina à hora exata; vigiar efeitos colinérgicos (salivação, cólicas, diarreia, bradicardia).",
@@ -3119,7 +3124,7 @@ const TEMAS = [
       "Desencadeantes: infeções, cirurgias, stress, calor e falta de sono; manter a vacinação em dia."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Dispneia, ortopneia, tosse fraca, uso dos músculos acessórios ou incapacidade de contar até 20 numa só inspiração: possível crise miasténica — chamar o médico de imediato (pode precisar de ventilação).",
+      "Dispneia, ortopneia, tosse fraca, uso dos músculos acessórios ou incapacidade de contar até 20 numa só expiração: possível crise miasténica — chamar o médico de imediato (pode precisar de ventilação).",
       "Disfagia grave, engasgamento ou acumulação de secreções.",
       "Fraqueza com aumento de secreções, cólicas e bradicardia: possível crise colinérgica (excesso de piridostigmina). Na dúvida, atuar como numa crise miasténica (via aérea e ventilação); não dar doses extra de piridostigmina sem indicação médica.",
       "Capacidade vital forçada abaixo de 20 mL/kg ou a descer mais de 30%: considerar UCI.",
@@ -3156,7 +3161,7 @@ const TEMAS = [
       "Suporte: ventilação em UCI se necessário, profilaxia da trombose, tratamento da dor neuropática (gabapentina, pregabalina) e reabilitação precoce."
     ]},
     { t: "Cuidados de enfermagem", itens: [
-      "Vigilância respiratória de 2 em 2 a 4 em 4 horas na fase de progressão, conforme prescrição: FR, SpO2, força da tosse, contagem numa só inspiração e capacidade vital forçada; registar em tabela para ver a tendência.",
+      "Vigilância respiratória de 2 em 2 a 4 em 4 horas na fase de progressão, conforme prescrição: FR, SpO2, força da tosse, contagem numa só expiração (inspirar fundo e contar em voz alta, cerca de 1 número por segundo, sem voltar a respirar; registar o número e a tendência) e capacidade vital forçada; registar em tabela para ver a tendência.",
       "Monitorização cardíaca e da TA (disautonomia); cuidado com a hipotensão nas mudanças de posição.",
       "A aspiração de secreções e as mudanças de posição podem provocar bradicardia grave ou assistolia: fazer com monitorização e atropina disponível, conforme o protocolo. A resposta aos fármacos vasoativos pode ser exagerada.",
       "Avaliar a deglutição (GUSS) e a força muscular (escala MRC) várias vezes por dia na fase de agravamento.",
@@ -3172,7 +3177,7 @@ const TEMAS = [
       "Vacinação futura: esclarecer com o médico."
     ]},
     { t: "Sinais de alarme", alarme: true, itens: [
-      "Dispneia, tosse fraca, ortopneia, capacidade vital forçada abaixo de 20 mL/kg ou a descer, ou incapacidade de contar até 20 numa inspiração: risco de falência respiratória — chamar o médico (UCI).",
+      "Dispneia, tosse fraca, ortopneia, capacidade vital forçada abaixo de 20 mL/kg ou a descer, ou incapacidade de contar até 20 numa só expiração: risco de falência respiratória — chamar o médico (UCI).",
       "Disfagia ou acumulação de secreções.",
       "Arritmias, bradicardia ou oscilações acentuadas da TA.",
       "Fraqueza a progredir rapidamente, em horas.",
@@ -3306,7 +3311,7 @@ const ESCALAS = [
   etapas: [
     { titulo: "1. Teste indireto (saliva)", de: 0, ate: 4, minimo: 5 },
     { titulo: "2. Semissólido", de: 5, ate: 8, minimo: 5,
-      texto: "½ colher de chá de água espessada (IDDSI nível 3, tipo pudim); se correr bem, repetir até 5 vezes." },
+      texto: "½ colher de chá de água espessada (IDDSI nível 4, extremamente espessa, tipo pudim); se correr bem, repetir até 5 vezes." },
     { titulo: "3. Líquido", de: 9, ate: 12, minimo: 5,
       texto: "Água num copo: 3, 5, 10 e 20 mL; se correr bem, 50 mL o mais depressa que conseguir." },
     { titulo: "4. Sólido", de: 13, ate: 16, minimo: 5,
