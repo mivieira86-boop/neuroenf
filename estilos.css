@@ -1336,3 +1336,17 @@ details.grupo-letra-rec > summary .ic-seta { width: 16px; height: 16px; }
 details.grupo-letra-rec > .lista, details.grupo-letra-rec > dl.glossario { padding: 0 0 10px; }
 details.grupo-gl > dl.glossario .termo:first-child { border-top: 0; }
 .lista-gl { margin-top: 14px; }
+
+/* Patologias A–Z: entradas dentro de cada letra */
+.lista-pat .pat-entrada + .pat-entrada { margin-top: 2px; }
+.pat-grupo { display: flex; align-items: center; gap: 12px; margin: 6px 0 2px; padding: 8px 12px; font-weight: 700; color: var(--texto); }
+.pat-grupo > span:first-of-type { flex: 1; }
+.pat-grupo .rec-cont { background: var(--afundado); padding: 2px 9px; border-radius: 999px; font-size: 13px; }
+.pat-subs { display: flex; flex-direction: column; margin: 0 0 6px 30px; padding-left: 12px; border-left: 2px solid var(--linha); }
+.pat-sub {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 44px; padding: 6px 10px;
+  border-radius: 10px; color: var(--texto); text-decoration: none; font-size: 15.5px;
+}
+.pat-sub:hover { background: var(--afundado); color: var(--acento); }
+.pat-sub:focus-visible { outline: 3px solid var(--acento); outline-offset: -2px; }
+.pat-sub .ic-seta { width: 16px; height: 16px; color: var(--secundario); flex: 0 0 auto; }

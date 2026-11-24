@@ -304,6 +304,13 @@
     PARTES_ORDEM.forEach(p => {
       const temas = temasDaParte(p.id);
       if (!temas.length || FORA_DO_MENU.includes(p.id)) return;
+      const ligIndice = (href, r, nome, n, un) => `<a class="sec-menu sec-menu-link" href="${href}" data-r="${r}"><span class="sec-nome">${nome}</span><span class="traco" aria-hidden="true"></span><span class="cont">${n}<span class="so-leitor"> ${un}</span></span>${ic("seta", "ic-sum")}</a>`;
+      // Patologias A–Z e Glossário abrem uma página própria com índice de letras
+      if (p.id === "p4") {
+        h += ligIndice("#patologias", "patologias", esc(NOME_CURTO_PARTE[p.id] || p.nome), temas.length, "temas");
+        if (GLOSS.length) h += ligIndice("#glossario", "glossario", "Glossário", GLOSS.length, "termos");
+        return;
+      }
       // As Patologias A–Z ficam fechadas: a lista só aparece quando se toca no título
       h += `<details class="grupo-menu" data-parte="${esc(p.id)}"${p.id === "p4" ? "" : " open"}>
         <summary class="sec-menu"><span class="sec-nome">${esc(NOME_CURTO_PARTE[p.id] || p.nome)}</span><span class="traco" aria-hidden="true"></span><span class="cont">${temas.length}<span class="so-leitor"> temas</span></span>${ic("seta", "ic-sum")}</summary>`;
@@ -321,7 +328,6 @@
         });
       } else temas.forEach(t => { h += item(`#tema-${esc(t.id)}`, `tema-${esc(t.id)}`, "", esc(t.titulo), "tema"); });
       h += `</details>`;
-      if (p.id === "p4" && GLOSS.length) h += `<a class="sec-menu sec-menu-link" href="#glossario" data-r="glossario"><span class="sec-nome">Glossário</span><span class="traco" aria-hidden="true"></span><span class="cont">${GLOSS.length}<span class="so-leitor"> termos</span></span>${ic("seta", "ic-sum")}</a>`;
     });
     nav.innerHTML = h;
   }
@@ -588,6 +594,70 @@
     h += ordenarSeccoes(secs).map(([s, k]) => blocoSeccao(s, k)).join("");
     h += `<p class="rodape">Ficha de bolso do protocolo do Serviço de Neurologia. O documento oficial prevalece sempre.</p>`;
     return h;
+  }
+
+  // ── Patologias A–Z: índice de letras (fechadas), com filtro; grupos (AVC, Demências) e doenças incluídas por baixo ──
+  let filtroPat = "";
+  function vistaPatologias() {
+    const parte = PARTES.find(p => p.id === "p4");
+    const nome = parte ? (NOME_CURTO_PARTE.p4 || parte.nome) : "Patologias A–Z";
+    document.title = `${nome} — NeuroEnf`;
+    const ent = entradasAZ();
+    if (!ent.length) return semDados(nome);
+    const letras = new Map();
+    ent.forEach(e => {
+      const l = semAcentos(e.nome).charAt(0).toUpperCase();
+      if (!letras.has(l)) letras.set(l, []);
+      letras.get(l).push(e);
+    });
+    const subLig = (href, txt, k = -1) => `<a class="pat-sub" href="${href}"${k >= 0 ? ` data-seccao="${k}"` : ""}>${txt}${ic("seta", "ic-seta")}</a>`;
+    let h = `<header class="cab-pagina"><h1 tabindex="-1">${esc(nome)}</h1>
+        <div class="filtro-farm">
+          <label class="so-leitor" for="filtroPat">Filtrar patologias</label>
+          <span class="pesquisa-ic" aria-hidden="true">${ic("pesquisa")}</span>
+          <input id="filtroPat" type="search" autocomplete="off" spellcheck="false" enterkeyhint="search" placeholder="Filtrar patologias (ex.: epilepsia)">
+        </div>
+        <p class="sub filtro-estado" id="estadoPat" role="status" aria-live="polite"></p>
+      </header><div class="lista-az lista-pat">`;
+    letras.forEach((lista, l) => {
+      h += `<details class="grupo-letra grupo-letra-rec grupo-pat">
+        <summary><h2 class="letra">${esc(l)}</h2><span class="pontos" aria-hidden="true"></span><span class="rec-cont">${lista.length}</span>${ic("seta", "ic-seta")}</summary><div class="lista">`;
+      lista.forEach(e => {
+        if (e.tipo === "grupo") {
+          const filtro = textoFiltro(e.nome, ...e.temas.map(t => t.titulo));
+          h += `<div class="pat-entrada" data-filtro="${filtro}"><p class="pat-grupo"><span>${esc(e.nome)}</span><span class="rec-cont">${e.temas.length}</span></p>
+            <div class="pat-subs">${e.temas.map(t => subLig(`#tema-${esc(t.id)}`, esc(t.titulo))).join("")}</div></div>`;
+        } else {
+          const t = e.t, subs = subtemasDe(t);
+          const filtro = textoFiltro(t.titulo, ...subs.map(x => x.nome));
+          h += `<div class="pat-entrada" data-filtro="${filtro}">${linha(`#tema-${esc(t.id)}`, esc(t.titulo), subs.length ? `${subs.length} doenças incluídas` : "")}`;
+          if (subs.length) h += `<div class="pat-subs">${subs.map(x => { const a = alvoSubtema(t, x); return subLig(a.href, esc(x.nome), a.k); }).join("")}</div>`;
+          h += `</div>`;
+        }
+      });
+      h += `</div></details>`;
+    });
+    return h + `</div>`;
+  }
+  function ligarPatologias() {
+    const campo = $("#filtroPat"), estado = $("#estadoPat");
+    if (!campo) return;
+    campo.value = filtroPat;
+    const aplicar = () => {
+      filtroPat = campo.value;
+      const q = semAcentos(campo.value.trim());
+      let n = 0;
+      vista.querySelectorAll("details.grupo-pat").forEach(d => {
+        let vis = 0;
+        d.querySelectorAll(".pat-entrada").forEach(el => { const ok = !q || bateFiltro(el.dataset.filtro, q); el.hidden = !ok; if (ok) vis++; });
+        d.hidden = !vis; n += vis;
+        if (q && vis) { if (!d.open) { d.open = true; d.dataset.auto = "1"; } }
+        else if (!q && d.dataset.auto) { d.open = false; delete d.dataset.auto; }
+      });
+      estado.textContent = q ? (n ? `${n} ${n === 1 ? "resultado" : "resultados"}` : "Nenhuma patologia com esse nome.") : "";
+    };
+    campo.addEventListener("input", aplicar);
+    if (filtroPat) aplicar();
   }
 
   // ── Glossário: termos por ordem alfabética, agrupados por letra (fechadas), com filtro ──
@@ -1310,13 +1380,15 @@
   // Página «mãe» de cada rota (destino da seta quando não há página anterior nesta sessão)
   const paiDaRota = r => r.startsWith("terapeutica-") ? `#tema-${r.slice(12)}`
     : r.startsWith("farmaco-") || r === "farmacos-az" ? "#farmacos"
-    : r.startsWith("protocolo-") ? "#protocolos" : r.startsWith("glossario-") ? "#glossario" : "#inicio";
+    : r.startsWith("protocolo-") ? "#protocolos" : r.startsWith("glossario-") ? "#glossario"
+    : r.startsWith("tema-") && (temaPorId(r.slice(5)) || {}).parte === "p4" ? "#patologias" : "#inicio";
   const nomeRota = h => {
     const r = h.replace(/^#/, "");
     if (r === "inicio") return "Início";
     if (r === "farmacos") return "Guia farmacológico";
     if (r === "protocolos") return "Protocolos do serviço";
     if (r === "glossario") return "Glossário";
+    if (r === "patologias") return NOME_CURTO_PARTE.p4 || "Patologias A–Z";
     if (r.startsWith("tema-")) { const t = TEMAS.find(x => x.id === r.slice(5)); return t ? t.titulo : "Início"; }
     return "Início";
   };
@@ -1348,6 +1420,7 @@
     else if (r.startsWith("terapeutica-")) { html = vistaTerapeutica(r.slice(12)); rotaMenu = "farmacos"; }
     else if (r === "protocolos") { html = vistaProtocolos(); rotaMenu = "protocolos"; }
     else if (r === "glossario" || r.startsWith("glossario-")) { html = vistaGlossario(r.slice(10)); rotaMenu = "glossario"; }
+    else if (r === "patologias") { html = vistaPatologias(); rotaMenu = "patologias"; }
     else if (r.startsWith("protocolo-")) { html = vistaProtocolo(r.slice(10)); rotaMenu = "protocolos"; }
     if (html === null) { html = vistaInicio(); rotaMenu = "inicio"; }
     // Faixa do início (com a pesquisa) só no início
@@ -1382,6 +1455,7 @@
       requestAnimationFrame(() => { congelado = false; });
       return;
     }
+    if (rotaMenu === "patologias") ligarPatologias();
     // Glossário: ligar o filtro e, se veio de um termo, ir diretamente a ele
     if (rotaMenu === "glossario" && ligarGlossario(r.slice(10)) && nova) { requestAnimationFrame(() => { congelado = false; }); focarTitulo = false; return; }
     // Ao regressar a uma página já vista, reabrir os grupos que estavam abertos e repor a posição de leitura
